@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#38a169"/>
+      <stop offset="100%" style="stop-color:#48bb78"/>
+    </linearGradient>
+    <linearGradient id="yellowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#d69e2e"/>
+      <stop offset="100%" style="stop-color:#ecc94b"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e53e3e"/>
+      <stop offset="100%" style="stop-color:#fc8181"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="#f7fafc"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#1a365d">Simulation Accuracy by Question Type</text>
+  
+  <!-- Legend -->
+  <rect x="520" y="60" width="16" height="16" rx="3" fill="#38a169"/>
+  <text x="542" y="73" font-family="system-ui, sans-serif" font-size="12" fill="#2d3748">High (MAE ≤3 pts)</text>
+  <rect x="630" y="60" width="16" height="16" rx="3" fill="#d69e2e"/>
+  <text x="652" y="73" font-family="system-ui, sans-serif" font-size="12" fill="#2d3748">Medium (3-5 pts)</text>
+  <rect x="520" y="82" width="16" height="16" rx="3" fill="#e53e3e"/>
+  <text x="542" y="95" font-family="system-ui, sans-serif" font-size="12" fill="#2d3748">Low (>5 pts)</text>
+  
+  <!-- HIGH ACCURACY SECTION -->
+  <text x="40" y="130" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Trust/Confidence</text>
+  <rect x="200" y="115" width="520" height="24" rx="4" fill="url(#greenGrad)"/>
+  <text x="710" y="132" font-family="system-ui, sans-serif" font-size="12" fill="#38a169" font-weight="600">~2 pts</text>
+  
+  <text x="40" y="165" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Awareness Questions</text>
+  <rect x="200" y="150" width="500" height="24" rx="4" fill="url(#greenGrad)"/>
+  <text x="710" y="167" font-family="system-ui, sans-serif" font-size="12" fill="#38a169" font-weight="600">&lt;3 pts</text>
+  
+  <text x="40" y="200" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Satisfaction (General)</text>
+  <rect x="200" y="185" width="480" height="24" rx="4" fill="url(#greenGrad)"/>
+  <text x="710" y="202" font-family="system-ui, sans-serif" font-size="12" fill="#38a169" font-weight="600">~3 pts</text>
+  
+  <!-- MEDIUM ACCURACY SECTION -->
+  <text x="40" y="245" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Concern/Worry Scales</text>
+  <rect x="200" y="230" width="360" height="24" rx="4" fill="url(#yellowGrad)"/>
+  <text x="710" y="247" font-family="system-ui, sans-serif" font-size="12" fill="#d69e2e" font-weight="600">~4 pts</text>
+  
+  <text x="40" y="280" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Ranking (Top 3)</text>
+  <rect x="200" y="265" width="340" height="24" rx="4" fill="url(#yellowGrad)"/>
+  <text x="710" y="282" font-family="system-ui, sans-serif" font-size="12" fill="#d69e2e" font-weight="600">70% match</text>
+  
+  <!-- LOW ACCURACY SECTION -->
+  <text x="40" y="325" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Emotional Intensity</text>
+  <rect x="200" y="310" width="220" height="24" rx="4" fill="url(#redGrad)"/>
+  <text x="710" y="327" font-family="system-ui, sans-serif" font-size="12" fill="#e53e3e" font-weight="600">5-8 pts</text>
+  
+  <text x="40" y="360" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Purchase Intent</text>
+  <rect x="200" y="345" width="180" height="24" rx="4" fill="url(#redGrad)"/>
+  <text x="710" y="362" font-family="system-ui, sans-serif" font-size="12" fill="#e53e3e" font-weight="600">15-25 pts</text>
+  
+  <!-- Axis line -->
+  <line x1="200" y1="380" x2="720" y2="380" stroke="#cbd5e0" stroke-width="2"/>
+  <text x="200" y="395" font-family="system-ui, sans-serif" font-size="10" fill="#718096">Lower Error</text>
+  <text x="680" y="395" font-family="system-ui, sans-serif" font-size="10" fill="#718096">Higher Error</text>
+</svg>

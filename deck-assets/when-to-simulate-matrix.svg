@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500">
+  <!-- Background -->
+  <rect width="700" height="500" fill="#f7fafc"/>
+  
+  <!-- Title -->
+  <text x="350" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#1a365d">When to Use Simulation</text>
+  <text x="350" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#718096">Decision Framework</text>
+  
+  <!-- Axis labels -->
+  <text x="350" y="465" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a365d">CALIBRATION CONFIDENCE →</text>
+  <text x="30" y="265" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a365d" transform="rotate(-90, 30, 265)">DECISION STAKES →</text>
+  
+  <!-- Grid lines -->
+  <line x1="100" y1="250" x2="650" y2="250" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="375" y1="90" x2="375" y2="430" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <!-- Quadrants -->
+  <!-- Top Left - High Stakes, Low Confidence (RED) -->
+  <rect x="100" y="90" width="275" height="160" rx="8" fill="#fed7d7" stroke="#e53e3e" stroke-width="2"/>
+  <text x="237" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#e53e3e">⚠️ VALIDATE FIRST</text>
+  <text x="237" y="165" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#742a2a">High risk without human data</text>
+  <text x="237" y="185" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#742a2a">• Run human validation study</text>
+  <text x="237" y="202" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#742a2a">• Use simulation for hypothesis only</text>
+  <text x="237" y="219" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#742a2a">• Wide confidence intervals</text>
+  
+  <!-- Top Right - High Stakes, High Confidence (GREEN) -->
+  <rect x="375" y="90" width="275" height="160" rx="8" fill="#c6f6d5" stroke="#38a169" stroke-width="2"/>
+  <text x="512" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#38a169">✓ SIMULATE</text>
+  <text x="512" y="165" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#22543d">Confident predictions available</text>
+  <text x="512" y="185" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#22543d">• Trust/confidence questions</text>
+  <text x="512" y="202" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#22543d">• Validated demographics</text>
+  <text x="512" y="219" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#22543d">• Apply calibration multipliers</text>
+  
+  <!-- Bottom Left - Low Stakes, Low Confidence (YELLOW) -->
+  <rect x="100" y="250" width="275" height="160" rx="8" fill="#fefcbf" stroke="#d69e2e" stroke-width="2"/>
+  <text x="237" y="300" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#d69e2e">◐ EXPLORE</text>
+  <text x="237" y="325" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#744210">Good for directional insights</text>
+  <text x="237" y="345" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#744210">• Early-stage ideation</text>
+  <text x="237" y="362" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#744210">• Hypothesis generation</text>
+  <text x="237" y="379" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#744210">• Internal discussion only</text>
+  
+  <!-- Bottom Right - Low Stakes, High Confidence (GREEN LIGHT) -->
+  <rect x="375" y="250" width="275" height="160" rx="8" fill="#c6f6d5" stroke="#38a169" stroke-width="2"/>
+  <text x="512" y="300" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#38a169">✓✓ IDEAL USE</text>
+  <text x="512" y="325" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#22543d">Fast, reliable, cost-effective</text>
+  <text x="512" y="345" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#22543d">• Quick pulse checks</text>
+  <text x="512" y="362" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#22543d">• Iteration and refinement</text>
+  <text x="512" y="379" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#22543d">• Pre-testing concepts</text>
+  
+  <!-- Axis endpoints -->
+  <text x="100" y="445" font-family="system-ui, sans-serif" font-size="11" fill="#718096">Low</text>
+  <text x="635" y="445" font-family="system-ui, sans-serif" font-size="11" fill="#718096">High</text>
+  <text x="70" y="410" font-family="system-ui, sans-serif" font-size="11" fill="#718096">Low</text>
+  <text x="70" y="105" font-family="system-ui, sans-serif" font-size="11" fill="#718096">High</text>
+</svg>

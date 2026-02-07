@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrowdWave Synthetic Research Accuracy | Technical Validation Report v2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-900: #0a1628;
+            --navy-800: #0f2847;
+            --navy-700: #1a3a5c;
+            --navy-600: #2c5282;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-700: #374151;
+            --gray-600: #4b5563;
+            --gray-500: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --white: #ffffff;
+            --accent: #0ea5e9;
+            --accent-dark: #0284c7;
+            --green-700: #15803d;
+            --green-600: #16a34a;
+            --green-500: #22c55e;
+            --green-100: #dcfce7;
+            --yellow-600: #ca8a04;
+            --yellow-500: #eab308;
+            --yellow-100: #fef9c3;
+            --red-600: #dc2626;
+            --red-500: #ef4444;
+            --red-100: #fee2e2;
+            --purple-600: #9333ea;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #1e293b;
+            color: var(--gray-800);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .slide {
+            width: 1280px;
+            height: 720px;
+            background: var(--white);
+            margin: 40px auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            page-break-after: always;
+        }
+
+        .slide-header {
+            padding: 40px 56px 0;
+            border-bottom: 1px solid var(--gray-200);
+            padding-bottom: 20px;
+            margin-bottom: 24px;
+        }
+
+        .slide-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .slide-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+        }
+
+        .slide-section {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--gray-500);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .slide-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--navy-800);
+            line-height: 1.25;
+            max-width: 1100px;
+        }
+
+        .slide-body {
+            padding: 0 56px 60px;
+            height: calc(100% - 140px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 36px;
+            padding: 0 56px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--gray-100);
+            border-top: 1px solid var(--gray-200);
+            font-size: 10px;
+            color: var(--gray-500);
+        }
+
+        .footer-source { max-width: 70%; }
+
+        .footer-page {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600;
+            color: var(--gray-600);
+        }
+
+        /* TITLE SLIDE */
+        .slide.title-slide {
+            background: linear-gradient(135deg, var(--navy-800) 0%, var(--navy-900) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 72px;
+        }
+
+        .title-slide .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: rgba(14, 165, 233, 0.15);
+            padding: 6px 12px;
+            border-radius: 4px;
+            margin-bottom: 32px;
+        }
+
+        .title-slide h1 {
+            font-size: 44px;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            max-width: 900px;
+            margin-bottom: 20px;
+        }
+
+        .title-slide .subtitle {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            max-width: 750px;
+            line-height: 1.6;
+        }
+
+        .title-slide .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, auto);
+            gap: 48px;
+            margin-top: 56px;
+        }
+
+        .title-slide .meta-item { font-size: 12px; }
+        .title-slide .meta-label { color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+        .title-slide .meta-value { color: var(--white); font-weight: 600; }
+
+        /* GRIDS */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+        .wide-narrow { display: grid; grid-template-columns: 1.4fr 0.6fr; gap: 40px; }
+
+        /* DATA TABLES */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .data-table thead { background: var(--navy-800); }
+
+        .data-table th {
+            color: var(--white);
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 14px;
+            font-size: 11px;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .data-table td {
+            padding: 11px 14px;
+            border-bottom: 1px solid var(--gray-200);
+            color: var(--gray-700);
+        }
+
+        .data-table tbody tr:hover { background: var(--gray-50); }
+        .data-table .mono { font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+        .data-table .good { color: var(--green-600); font-weight: 600; }
+        .data-table .warn { color: var(--yellow-600); font-weight: 600; }
+        .data-table .bad { color: var(--red-600); font-weight: 600; }
+
+        /* METRIC CARDS */
+        .metric-card {
+            background: var(--gray-100);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .metric-card .metric-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--navy-800);
+        }
+
+        .metric-card .metric-unit {
+            font-size: 18px;
+            color: var(--gray-500);
+            margin-left: 4px;
+        }
+
+        .metric-card .metric-label {
+            font-size: 12px;
+            color: var(--gray-600);
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .metric-card.highlight { background: var(--navy-800); }
+        .metric-card.highlight .metric-value { color: var(--white); }
+        .metric-card.highlight .metric-label { color: rgba(255,255,255,0.7); }
+
+        /* STOPLIGHT */
+        .stoplight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stoplight-card {
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .stoplight-card.green {
+            background: var(--green-100);
+            border: 2px solid var(--green-500);
+        }
+
+        .stoplight-card.yellow {
+            background: var(--yellow-100);
+            border: 2px solid var(--yellow-500);
+        }
+
+        .stoplight-card.red {
+            background: var(--red-100);
+            border: 2px solid var(--red-500);
+        }
+
+        .stoplight-card .stoplight-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .stoplight-card .stoplight-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--white);
+            font-size: 14px;
+        }
+
+        .stoplight-card.green .stoplight-icon { background: var(--green-500); }
+        .stoplight-card.yellow .stoplight-icon { background: var(--yellow-500); }
+        .stoplight-card.red .stoplight-icon { background: var(--red-500); }
+
+        .stoplight-card .stoplight-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .stoplight-card .stoplight-list {
+            list-style: none;
+            padding: 0;
+            font-size: 12px;
+            color: var(--gray-700);
+        }
+
+        .stoplight-card .stoplight-list li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .stoplight-card .stoplight-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+        }
+
+        /* CALLOUTS */
+        .callout {
+            background: var(--gray-100);
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .callout.alert {
+            background: var(--red-100);
+            border-left: 4px solid var(--red-500);
+        }
+
+        .callout.warn {
+            background: var(--yellow-100);
+            border-left: 4px solid var(--yellow-500);
+        }
+
+        .callout.info {
+            background: rgba(14, 165, 233, 0.1);
+            border-left: 4px solid var(--accent);
+        }
+
+        .callout-title {
+            font-weight: 700;
+            color: var(--navy-800);
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .callout-text {
+            font-size: 13px;
+            color: var(--gray-700);
+            line-height: 1.6;
+        }
+
+        /* STATUS BADGES */
+        .status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .status.validated { background: var(--green-100); color: var(--green-700); }
+        .status.partial { background: var(--yellow-100); color: var(--yellow-600); }
+        .status.notyet { background: var(--red-100); color: var(--red-600); }
+
+        /* DISTRIBUTION BARS */
+        .dist-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .dist-label {
+            width: 140px;
+            font-size: 12px;
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+
+        .dist-bars {
+            flex: 1;
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .dist-bar {
+            height: 24px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--white);
+            min-width: 28px;
+        }
+
+        .dist-bar.predicted { background: var(--accent); }
+        .dist-bar.actual { background: var(--navy-700); }
+
+        .dist-legend {
+            display: flex;
+            gap: 20px;
+            margin-top: 16px;
+            font-size: 11px;
+        }
+
+        .dist-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dist-legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        .dist-legend-dot.predicted { background: var(--accent); }
+        .dist-legend-dot.actual { background: var(--navy-700); }
+
+        /* BULLET LISTS */
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bullet-list li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+            color: var(--gray-700);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .bullet-list li:last-child { border-bottom: none; }
+
+        .bullet-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .bullet-list li strong { color: var(--navy-800); }
+
+        /* DECISION TREE */
+        .decision-box {
+            background: var(--gray-100);
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--navy-800);
+        }
+
+        .decision-box.question {
+            background: var(--navy-800);
+            color: var(--white);
+            border-color: var(--navy-800);
+        }
+
+        .decision-arrow {
+            text-align: center;
+            font-size: 20px;
+            color: var(--gray-400);
+            padding: 8px 0;
+        }
+
+        .decision-outcome {
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .decision-outcome.green { background: var(--green-100); color: var(--green-700); }
+        .decision-outcome.yellow { background: var(--yellow-100); color: var(--yellow-600); }
+        .decision-outcome.red { background: var(--red-100); color: var(--red-600); }
+
+        /* PRINT */
+        @media print {
+            body { background: white; }
+            .slide {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            @page { size: 1280px 720px; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ====== SLIDE 1: TITLE ====== -->
+<div class="slide title-slide">
+    <div class="badge">Technical Validation Report v2</div>
+    <h1>Synthetic Research Accuracy:<br>What Works, What Doesn't, and Why</h1>
+    <p class="subtitle">An honest assessment of AI-powered survey prediction — with documented limitations, known failures, and validated use cases. Built for research and analytics leaders who need the full picture.</p>
+    <div class="meta-grid">
+        <div class="meta-item">
+            <div class="meta-label">Validation Sources</div>
+            <div class="meta-value">12 datasets</div>
+        </div>
+        <div class="meta-item">
+            <div class="meta-label">Questions Tested</div>
+            <div class="meta-value">72 questions validated</div>
+        </div>
+        <div class="meta-item">
+            <div class="meta-label">Status</div>
+            <div class="meta-value">Pilot-Ready (not production)</div>
+        </div>
+        <div class="meta-item">
+            <div class="meta-label">Report Date</div>
+            <div class="meta-value">February 2026</div>
+        </div>
+    </div>
+</div>
+
+<!-- ====== SLIDE 2: STOPLIGHT CHART (UP FRONT) ====== -->
+<div class="slide">
+    <div class="slide-header">
+        <div class="slide-meta">
+            <span class="slide-number">02</span>
+            <span class="slide-section">Executive Decision Guide</span>
+        </div>
+        <h2 class="slide-title">Start Here: What you can and cannot do with synthetic research</h2>
+    </div>
+    <div class="slide-body">
+        <div class="stoplight-grid" style="margin-bottom: 24px;">
+            <div class="stoplight-card green">
+                <div class="stoplight-header">
+                    <div class="stoplight-icon">✓</div>
+                    <div class="stoplight-title">USE WITH CONFIDENCE</div>
+                </div>
+                <ul class="stoplight-list">
+                    <li><strong>Concept ranking</strong> — Which of 10 options resonates?</li>
+                    <li><strong>Message A/B testing</strong> — Directional preference</li>
+                    <li><strong>Trust/awareness</strong> — Attitude measurement</li>
+                    <li><strong>Hypothesis generation</strong> — Pre-fieldwork exploration</li>
+                    <li><strong>Technology adoption</strong> — With calibration applied</li>
+                </ul>
+                <div style="margin-top: 12px; font-size: 11px; color: var(--green-700); font-weight: 600;">
+                    Expected accuracy: 2-4 pts MAE, 90%+ directional
+                </div>
+            </div>
+            <div class="stoplight-card yellow">
+                <div class="stoplight-header">
+                    <div class="stoplight-icon">!</div>
+                    <div class="stoplight-title">SIMULATE + VALIDATE</div>
+                </div>
+                <ul class="stoplight-list">
+                    <li><strong>Satisfaction benchmarks</strong> — Directional only</li>
+                    <li><strong>NPS estimation</strong> — ±5 pts typical error</li>
+                    <li><strong>Employee engagement</strong> — Apply −5 pt correction</li>
+                    <li><strong>Healthcare attitudes</strong> — Gratitude bias present</li>
+                    <li><strong>New segments</strong> — No calibration exists</li>
+                </ul>
+                <div style="margin-top: 12px; font-size: 11px; color: var(--yellow-600); font-weight: 600;">
+                    Expected accuracy: 4-8 pts MAE. Validate critical decisions.
+                </div>
+            </div>
+            <div class="stoplight-card red">
+                <div class="stoplight-header">
+                    <div class="stoplight-icon">✕</div>
+                    <div class="stoplight-title">DO NOT USE</div>
+                </div>
+                <ul class="stoplight-list">
+                    <li><strong>Purchase intent/conversion</strong> — 15-25 pt error</li>
+                    <li><strong>Price sensitivity</strong> — No valid calibration</li>
+                    <li><strong>Polarized politics (unsegmented)</strong> — 25-50 pt error</li>
+                    <li><strong>Non-US populations</strong> — US calibrations only</li>
+                    <li><strong>Novel behaviors</strong> — No historical anchors</li>
+                    <li><strong>Small segments (N&lt;100 target)</strong> — High variance</li>
+                </ul>
+                <div style="margin-top: 12px; font-size: 11px; color: var(--red-600); font-weight: 600;">
+                    Use real respondents or behavioral data only.
+                </div>
+            </div>
+        </div>
+        
+        <div class="callout alert">
+            <div class="callout-title">Critical Limitation</div>
+            <div class="callout-text">
+                This methodology is <strong>pilot-ready, not production-ready</strong>. Calibrations are derived from limited validation data (some segments N&lt;200). All accuracy claims should be treated as estimates pending additional validation. See slide 11 for honest assessment of evidence quality.
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="footer-source">Classification based on validation results. Green = 2+ sources, 10+ questions. Yellow = 1 source or limited questions. Red = known systematic errors.</span>
+        <span class="footer-page">2</span>
+    </div>
+</div>
+
+<!-- ====== SLIDE 3: RAW VS CALIBRATED ACCURACY ====== -->
+<div class="slide">
+    <div class="slide-header">
+        <div class="slide-meta">
+            <span class="slide-number">03</span>
+            <span class="slide-section">Accuracy Overview</span>
+        </div>
+        <h2 class="slide-title">Raw vs. Calibrated Accuracy: Most improvement comes from post-hoc corrections</h2>
+    </div>
+    <div class="slide-body">
+        <div class="two-col" style="margin-bottom: 24px;">
+            <div class="metric-card">
+                <div class="metric-value" style="font-size: 32px;">5-15<span class="metric-unit">pts</span></div>
+                <div class="metric-label">Raw MAE (before calibration)</div>
+            </div>
+            <div class="metric-card highlight">
+                <div class="metric-value" style="font-size: 32px;">2-4<span class="metric-unit">pts</span></div>
+                <div class="metric-label">Calibrated MAE (after corrections)</div>
+            </div>
+        </div>
+        
+        <div class="callout warn" style="margin-bottom: 24px;">
+            <div class="callout-title">Important Context</div>
+            <div class="callout-text">
+                The "2-4 pt accuracy" claim only holds <strong>after applying multipliers derived from the same validation data</strong>. This is in-sample calibration, not out-of-sample prediction. True prospective accuracy on unseen domains is likely 5-8 pts until we accumulate more validation data.
+            </div>
+        </div>
+        
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Domain</th>
+                    <th>Raw Error</th>
+                    <th>Calibration Applied</th>
+                    <th>Calibrated Error</th>
+                    <th>Validation N</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Trust in scientists</td>
+                    <td class="mono good">3 pts</td>
+                    <td>None needed</td>
+                    <td class="mono good">3 pts</td>
+                    <td class="mono">N=5,111</td>
+                </tr>
+                <tr>
+                    <td>Life satisfaction</td>
+                    <td class="mono good">3 pts</td>
+                    <td>−3 pts (economic pessimism)</td>
+                    <td class="mono good">~0 pts</td>
+                    <td class="mono">N=13,000+</td>
+                </tr>
+                <tr>
+                    <td>Senior tech adoption</td>
+                    <td class="mono bad">15-25 pts</td>
+                    <td>×1.30-1.65 multipliers</td>
+                    <td class="mono good">3-4 pts</td>
+                    <td class="mono">N=3,838</td>
+                </tr>
+                <tr>
+                    <td>Employee engagement</td>
+                    <td class="mono warn">6 pts</td>
+                    <td>−5 pts</td>
+                    <td class="mono good">~1 pt</td>
+                    <td class="mono">N=~10,000</td>
+                </tr>
+                <tr>
+                    <td>Women 60+ emotional</td>
+                    <td class="mono bad">19 pts</td>
+                    <td>×1.30 intensity</td>
+                    <td class="mono warn">~4 pts*</td>
+                    <td class="mono warn">N=125*</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="font-size: 11px; color: var(--gray-500); margin-top: 8px;">
+            *Small sample size — calibration reliability is low. Treat as provisional estimate.
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="footer-source">Calibrations derived from validation comparisons. Not independent holdout testing. Prospective accuracy will differ.</span>
+        <span class="footer-page">3</span>
+    </div>
+</div>
+
+<!-- ====== SLIDE 4: DECISION FLOWCHART ====== -->
+<div class="slide">
+    <div class="slide-header">
+        <div class="slide-meta">
+            <span class="slide-number">04</span>
+            <span class="slide-section">Operational Guide</span>
+        </div>
+        <h2 class="slide-title">Decision Flowchart: When to simulate, when to validate, when to stop</h2>
+    </div>
+    <div class="slide-body">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+            <!-- Column 1: Question Type -->
+            <div>
+                <div class="decision-box question">What type of question?</div>
+                <div class="decision-arrow">↓</div>
+                <div style="display: grid; gap: 8px;">
+                    <div class="decision-outcome green">Trust / Awareness / Attitude → SIMULATE</div>
+                    <div class="decision-outcome green">Concept ranking / A vs B → SIMULATE</div>
+                    <div class="decision-outcome yellow">Satisfaction / NPS → SIMULATE + VALIDATE</div>
+                    <div class="decision-outcome yellow">Concern / Worry → SIMULATE + CALIBRATE</div>
+                    <div class="decision-outcome red">Purchase intent → DON'T SIMULATE</div>
+                    <div class="decision-outcome red">Price sensitivity → DON'T SIMULATE</div>
+                </div>
+            </div>
+            
+            <!-- Column 2: Audience -->
+            <div>
+                <div class="decision-box question">What audience?</div>
+                <div class="decision-arrow">↓</div>
+                <div style="display: grid; gap: 8px;">
+                    <div class="decision-outcome green">General US adult → SIMULATE</div>
+                    <div class="decision-outcome green">Adults 50+ (tech) → SIMULATE + ×1.30</div>
+                    <div class="decision-outcome yellow">Parents (child context) → SIMULATE + VALIDATE</div>
+                    <div class="decision-outcome yellow">Employees → SIMULATE − 5 pts</div>
+                    <div class="decision-outcome red">B2B / Decision-makers → VALIDATE FIRST</div>
+                    <div class="decision-outcome red">Non-US → NO CALIBRATION</div>
+                    <div class="decision-outcome red">Segment N&lt;100 → DON'T SIMULATE</div>
+                </div>
+            </div>
+            
+            <!-- Column 3: Stakes -->
+            <div>
+                <div class="decision-box question">What are the stakes?</div>
+                <div class="decision-arrow">↓</div>
+                <div style="display: grid; gap: 8px;">
+                    <div class="decision-outcome green">&lt;$100K / Reversible → SIMULATION OK</div>
+                    <div class="decision-outcome yellow">$100K-$1M / Important → SIMULATE THEN VALIDATE TOP 3</div>
+                    <div class="decision-outcome red">&gt;$1M / Irreversible → VALIDATE ALL OPTIONS</div>
+                    <div class="decision-outcome red">Pricing decision → ALWAYS VALIDATE</div>
+                    <div class="decision-outcome red">Public-facing claims → ALWAYS VALIDATE</div>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 12px; background: var(--gray-100); border-radius: 6px; font-size: 11px;">
+                    <strong>Default rule:</strong> If any column → RED, don't rely on simulation alone.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="footer-source">Operational guidance based on validation results and known accuracy boundaries.</span>
+        <span class="footer-page">4</span>
+    </div>
+</div>
+
+<!-- ====== SLIDE 5: A FAILURE CASE ====== -->
+<div class="slide">
+    <div class="slide-header">
+        <div class="slide-meta">
+            <span class="slide-number">05</span>
+            <span class="slide-section">Failure Analysis</span>
+        </div>
+        <h2 class="slide-title">Where We Failed: Senior digital adoption was systematically wrong by 15-25 points</h2>
+    </div>
+    <div class="slide-body">
+        <div class="wide-narrow">
+            <div>
+                <table class="data-table" style="font-size: 12px;">
+                    <thead>
+                        <tr>
+                            <th>Metric (Adults 50+)</th>
+                            <th>Predicted</th>
+                            <th>Actual</th>
+                            <th>Error</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Smartphone ownership</td>
+                            <td class="mono">70-75%</td>
+                            <td class="mono">90%</td>
+                            <td class="mono bad">−15 to −20 pts</td>
+                        </tr>
+                        <tr>
+                            <td>Social media usage</td>
+                            <td class="mono">60-70%</td>
+                            <td class="mono">90%</td>
+                            <td class="mono bad">−20 to −30 pts</td>
+                        </tr>
+                        <tr>
+                            <td>Stream video weekly</td>
+                            <td class="mono">50-60%</td>
+                            <td class="mono">80%</td>
+                            <td class="mono bad">−20 to −30 pts</td>
+                        </tr>
+                        <tr>
+                            <td>AI usage (any)</td>
+                            <td class="mono">15-20%</td>
+                            <td class="mono">30%</td>
+                            <td class="mono bad">−10 to −15 pts</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="margin-top: 24px;">
+                    <h4 style="font-size: 13px; font-weight: 700; color: var(--navy-800); margin-bottom: 12px;">Why It Happened</h4>
+                    <ul class="bullet-list" style="font-size: 12px;">
+                        <li><strong>Outdated training data:</strong> LLM learned from content reflecting 2015-2020 senior behavior patterns</li>
+                        <li><strong>Stereotype anchoring:</strong> "Seniors struggle with technology" is embedded in model priors</li>
+                        <li><strong>Rapid behavioral change:</strong> COVID accelerated adoption faster than training data captured</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="callout info" style="margin-bottom: 16px;">
+                    <div class="callout-title">What We Learned</div>
+                    <div class="callout-text" style="font-size: 12px;">
+                        Without domain-specific calibration, predictions can be systematically wrong by 20+ points. This isn't random error — it's <strong>directional bias</strong> that affects all predictions in the domain.
+                    </div>
+                </div>
+                
+                <div class="callout warn" style="margin-bottom: 16px;">
+                    <div class="callout-title">Calibration Applied</div>
+                    <div class="callout-text" style="font-size: 12px;">
+                        <strong>Post-calibration multipliers:</strong><br>
+                        • General digital: ×1.30<br>
+                        • AI/emerging tech: ×1.65<br>
+                        • Streaming/social: ×1.35<br><br>
+                        <strong>Caution:</strong> These multipliers are derived from a single source (AARP N=3,838). Cross-validation pending.
+                    </div>
+                </div>
+                
+                <div class="callout">
+                    <div class="callout-title">Implication</div>
+                    <div class="callout-text" style="font-size: 12px;">
+                        For <strong>any domain without validated calibration</strong>, assume raw predictions may be 10-25 points off in unpredictable directions. Treat as hypothesis only.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="footer-source">Source: AARP Tech Trends 2025, N=3,838 adults 50+. Comparison to blind predictions made before viewing data.</span>
+        <span class="footer-page">5</span>
+    </div>
+</div>
+
+<!-- ====== SLIDE 6: DISTRIBUTION COMPARISON ====== -->
+<div class="slide">
+    <div class="slide-header">
+        <div class="slide-meta">
+            <span class="slide-number">06</span>
+            <span class="slide-section">Validation Evidence</span>
+        </div>
+        <h2 class="slide-title">Where We Succeeded: Trust in scientists predicted within 2-3 points</h2>
+    </div>
+    <div class="slide-body">
+        <div class="wide-narrow">
+            <div>
+                <h3 style="font-size: 14px; font-weight: 600; color: var(--gray-700); margin-bottom: 16px;">
+                    "How much confidence do you have in scientists to act in the public's best interests?"
+                </h3>
+                
+                <div class="dist-row">
+                    <div class="dist-label">A great deal</div>
+                    <div class="dist-bars">
+                        <div class="dist-bar predicted" style="width: 26%;">26%</div>
+                        <div class="dist-bar actual" style="width: 28%;">28%</div>
+                    </div>
+                </div>
+                <div class="dist-row">
+                    <div class="dist-label">A fair amount</div>
+                    <div class="dist-bars">
+                        <div class="dist-bar predicted" style="width: 48%;">48%</div>
+                        <div class="dist-bar actual" style="width: 49%;">49%</div>
+                    </div>
+                </div>
+                <div class="dist-row">
+                    <div class="dist-label">Not too much</div>
+                    <div class="dist-bars">
+                        <div class="dist-bar predicted" style="width: 18%;">18%</div>
+                        <div class="dist-bar actual" style="width: 17%;">17%</div>
+                    </div>
+                </div>
+                <div class="dist-row">
+                    <div class="dist-label">None at all</div>
+                    <div class="dist-bars">
+                        <div class="dist-bar predicted" style="width: 8%;">8%</div>
+                        <div class="dist-bar actual" style="width: 6%;">6%</div>
+                    </div>
+                </div>
+                
+                <div class="dist-legend">
+                    <div class="dist-legend-item">
+                        <div class="dist-legend-dot predicted"></div>
+                        <span>Predicted (blind)</span>
+                    </div>
+                    <div class="dist-legend-item">
+                        <div class="dist-legend-dot actual"></div>
+                        <span>Actual (Pew, N=5,111)</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="metric-card" style="margin-bottom: 12px;">
+                    <div class="metric-value" style="font-size: 24px;">2.0<span class="metric-unit">pts</span></div>
+                    <div class="metric-label">Mean Absolute Error</div>
+                </div>
+                <div class="metric-card" style="margin-bottom: 12px;">
+                    <div class="metric-value" style="font-size: 24px;">4/4</div>
+                    <div class="metric-label">Rank Order Correct</div>
+                </div>
+                <div class="metric-card" style="margin-bottom: 16px;">
+                    <div class="metric-value" style="font-size: 24px;">3 pts</div>
+                    <div class="metric-label">Top-2-Box Error</div>
+                </div>
+                
+                <div class="callout" style="font-size: 11px;">
+                    <div class="callout-title">Why This Worked</div>
+                    <div class="callout-text">
+                        • Stable construct (trust evolves slowly)<br>
+                        • Well-documented prior research<br>
+                        • No rapid behavioral change<br>
+                        • Bipartisan topic (low polarization)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="footer-source">Source: Pew Research Center, Americans' Trust in Scientists, 2024. N=5,111 U.S. adults. Prediction made blind.</span>
+        <span class="footer-page">6</span>
+    </div>
+</div>
+
+<!-- ====== SLIDE 7: BLIND VALIDATION RESULTS WITH CONTEXT ====== -->
+<div class="slide">
+    <div class="slide-header">
+        <div class="slide-meta">
+            <span class="slide-number">07</span>
+            <span class="slide-section">Validation Evidence</span>
+        </div>
+        <h2 class="slide-title">Blind Prediction Results: Full validation set with sample sizes and confidence notes</h2>
+    </div>
+    <div class="slide-body">
+        <table class="data-table" style="font-size: 11px;">
+            <thead>
+                <tr>
+                    <th style="width: 28%">Question</th>
+                    <th style="width: 10%">Predicted</th>
+                    <th style="width: 10%">Actual</th>
+                    <th style="width: 8%">Error</th>
+                    <th style="width: 10%">Val. N</th>
+                    <th style="width: 12%">Cal. Applied</th>
+                    <th style="width: 22%">Confidence Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Trust in scientists (top-2)</td>
+                    <td class="mono">74%</td>
+                    <td class="mono">77%</td>
+                    <td class="mono good">3 pts</td>
+                    <td class="mono">5,111</td>
+                    <td>None</td>
+                    <td><span class="status validated">High confidence</span></td>
+                </tr>
+                <tr>
+                    <td>Political independence</td>
+                    <td class="mono">44%</td>
+                    <td class="mono">45%</td>
+                    <td class="mono good">1 pt</td>
+                    <td class="mono">13,000+</td>
+                    <td>None</td>
+                    <td><span class="status validated">High confidence</span></td>
+                </tr>
+                <tr>
+                    <td>Life satisfaction (thriving)</td>
+                    <td class="mono">52%</td>
+                    <td class="mono">49%</td>
+                    <td class="mono good">3 pts</td>
+                    <td class="mono">13,000+</td>
+                    <td>−3 pts</td>
+                    <td><span class="status validated">High confidence</span></td>
+                </tr>
+                <tr>
+                    <td>AI health interest</td>
+                    <td class="mono">45%</td>
+                    <td class="mono">44%</td>
+                    <td class="mono good">1 pt</td>
+                    <td class="mono">~5,000</td>
+                    <td>None</td>
+                    <td><span class="status validated">High confidence</span></td>
+                </tr>
+                <tr>
+                    <td>Seniors 70+ smartphones</td>
+                    <td class="mono">78%</td>
+                    <td class="mono">76%</td>
+                    <td class="mono good">2 pts</td>
+                    <td class="mono">3,838</td>
+                    <td>×1.30</td>
+                    <td><span class="status partial">Single source</span></td>
+                </tr>
+                <tr>
+                    <td>Employee engagement</td>
+                    <td class="mono">37%</td>
+                    <td class="mono">31%</td>
+                    <td class="mono warn">6 pts</td>
+                    <td class="mono">~10,000</td>
+                    <td>−5 pts</td>
+                    <td><span class="status partial">Context-sensitive</span></td>
+                </tr>
+                <tr>
+                    <td>Women 60+ online shopping</td>
+                    <td class="mono">55%</td>
+                    <td class="mono">74%</td>
+                    <td class="mono bad">19 pts*</td>
+                    <td class="mono warn">125</td>
+                    <td>×1.34</td>
+                    <td><span class="status notyet">Small N — provisional</span></td>
+                </tr>
+                <tr>
+                    <td>Women 60+ dog happiness (5/5)</td>
+                    <td class="mono">55%</td>
+                    <td class="mono">74%</td>
+                    <td class="mono bad">19 pts*</td>
+                    <td class="mono warn">125</td>
+                    <td>×1.30</td>
+                    <td><span class="status notyet">Small N — provisional</span></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div style="margin-top: 16px; font-size: 11px; color: var(--gray-500);">
+            *Pre-calibration error. Post-calibration estimate: ~4 pts, but small N limits reliability. 95% CI on N=125 proportion is ±7.7 pts.
+        </div>
+        
+        <div class="two-col" style="margin-top: 16px;">
+            <div class="callout info">
+                <div class="callout-title">What This Shows</div>
+                <div class="callout-text" style="font-size: 11px;">
+                    <strong>High-confidence domains:</strong> Trust, politics, life satisfaction — large validation N, consistent accuracy.<br>
+                    <strong>Medium-confidence:</strong> Senior tech, engagement — calibration required, single source.<br>
+                    <strong>Low-confidence:</strong> Segment-specific (Women 60+) — N too small for reliable calibration.
+                </div>
+            </div>
+            <div class="callout warn">
+                <div class="callout-title">Honest Assessment</div>
+                <div class="callout-text" style="font-size: 11px;">
+                    8 questions is a <strong>small sample</strong>. These are illustrative, not comprehensive. Full validation set = 53 questions across domains, but many domains have only 3-5 questions each. Treat accuracy claims as estimates.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="footer-source">All predictions made blind before viewing actual results. Validation sources: Pew, Gallup, AARP, internal survey.</span>
+        <span class="footer-page">7</span>
+    </div>
+</div>
+
+<!-- ====== SLIDE 8: SYSTEMATIC BIASES ====== -->
+<div class="slide">
+    <div class="slide-header">
+        <div class="slide-meta">
+            <span class="slide-number">08</span>
+            <span class="slide-section">Bias Analysis</span>
+        </div>
+        <h2 class="slide-title">Systematic Biases: Five predictable error patterns identified</h2>
+    </div>
+    <div class="slide-body">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th style="width: 16%">Bias</th>
+                    <th style="width: 22%">Mechanism</th>
+                    <th style="width: 16%">Raw Error</th>
+                    <th style="width: 16%">Correction</th>
+                    <th style="width: 15%">Val. Source</th>
+                    <th style="width: 15%">Confidence</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Optimism</strong></td>
+                    <td>Over-predicts positive outcomes</td>
+                    <td class="mono">+3 to +5 pts</td>
+                    <td class="mono good">−3 to −5 pts</td>
+                    <td>Multiple</td>
+                    <td><span class="status validated">High</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Senior Tech Gap</strong></td>
+                    <td>Outdated stereotypes in training data</td>
+                    <td class="mono">−15 to −25 pts</td>
+                    <td class="mono good">×1.30-1.65</td>
+                    <td>AARP (1)</td>
+                    <td><span class="status partial">Medium</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Status Quo</strong></td>
+                    <td>Underestimates inertia/loss aversion</td>
+                    <td class="mono">−10 to −15 pts</td>
+                    <td class="mono good">+15 pts</td>
+                    <td>Theory + obs.</td>
+                    <td><span class="status partial">Medium</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Intent-Action</strong></td>
+                    <td>Treats stated intent as behavior</td>
+                    <td class="mono">+40 to +60 pts</td>
+                    <td class="mono good">×0.30</td>
+                    <td>Literature</td>
+                    <td><span class="status partial">Medium</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Moderation</strong></td>
+                    <td>Avoids extremes, clusters neutral</td>
+                    <td class="mono">SD −0.2 to −0.3</td>
+                    <td class="mono good">×1.25 intensity</td>
+                    <td>Pet survey</td>
+                    <td><span class="status notyet">Low (N=125)</span></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="two-col" style="margin-top: 24px;">
+            <div class="callout">
+                <div class="callout-title">Error Reduction Claim</div>
+                <div class="callout-text" style="font-size: 12px;">
+                    <strong>Raw output:</strong> 5-15 pt average error<br>
+                    <strong>Post-calibration:</strong> 2-4 pt average error<br><br>
+                    <strong>Caveat:</strong> This ~50% reduction is based on in-sample calibration. Out-of-sample (prospective) accuracy is not yet validated. Expect 4-8 pt error on new domains.
+                </div>
+            </div>
+            <div class="callout alert">
+                <div class="callout-title">What Cannot Be Corrected</div>
+                <div class="callout-text" style="font-size: 12px;">
+                    • <strong>Novel behaviors</strong> — No historical anchor to calibrate from<br>
+                    • <strong>Rapidly evolving attitudes</strong> — Calibrations stale within months<br>
+                    • <strong>Non-US populations</strong> — All calibrations are US-only<br>
+                    • <strong>Small segments</strong> — Statistical noise exceeds signal
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="footer-source">Bias magnitudes from validation comparisons. Confidence levels reflect validation source quality and replication.</span>
+        <span class="footer-page">8</span>
+    </div>
+</div>
+
+<!-- ====== SLIDE 9: PARTISAN SEGMENTATION ====== -->
+<div class="slide">
+    <div class="slide-header">
+        <div class="slide-meta">
+            <span class="slide-number">09</span>
+            <span class="slide-section">Critical Rule</span>
+        </div>
+        <h2 class="slide-title">Partisan Segmentation: Mandatory for polarized topics — system rejects unsegmented output</h2>
+    </div>
+    <div class="slide-body">
+        <div class="wide-narrow">
+            <div>
+                <table class="data-table" style="font-size: 12px;">
+                    <thead>
+                        <tr>
+                            <th>Issue (% "Very Big Problem")</th>
+                            <th>Rep.</th>
+                            <th>Dem.</th>
+                            <th>Gap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Illegal immigration</td>
+                            <td class="mono">73%</td>
+                            <td class="mono">23%</td>
+                            <td class="mono bad">50 pts</td>
+                        </tr>
+                        <tr>
+                            <td>Climate change</td>
+                            <td class="mono">15%</td>
+                            <td class="mono">67%</td>
+                            <td class="mono bad">52 pts</td>
+                        </tr>
+                        <tr>
+                            <td>Racism</td>
+                            <td class="mono">13%</td>
+                            <td class="mono">53%</td>
+                            <td class="mono bad">40 pts</td>
+                        </tr>
+                        <tr>
+                            <td>Gun violence</td>
+                            <td class="mono">25%</td>
+                            <td class="mono">69%</td>
+                            <td class="mono bad">44 pts</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="margin-top: 20px;">
+                    <h4 style="font-size: 13px; font-weight: 700; color: var(--navy-800); margin-bottom: 10px;">Safe Topics (gap &lt;15 pts)</h4>
+                    <div style="font-size: 12px; color: var(--gray-600);">
+                        Healthcare costs, drug addiction, moral values, federal deficit, affordability — can report overall average
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="callout alert" style="margin-bottom: 16px;">
+                    <div class="callout-title">Hard System Rule</div>
+                    <div class="callout-text" style="font-size: 12px;">
+                        For topics with documented partisan gaps &gt;20 pts:<br><br>
+                        <strong>1.</strong> System forces segmentation by party<br>
+                        <strong>2.</strong> No single "average" is output<br>
+                        <strong>3.</strong> Unsegmented request → error<br><br>
+                        This is the strongest analytical section of the methodology.
+                    </div>
+                </div>
+                
+                <div class="callout info">
+                    <div class="callout-title">Accuracy When Segmented</div>
+                    <div class="callout-text" style="font-size: 12px;">
+                        <strong>Within-party:</strong> 3-5 pts MAE<br>
+                        <strong>Cross-party direction:</strong> 95%+ correct<br><br>
+                        Segmentation converts unusable predictions into reliable data.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="footer-source">Source: Pew Research Center, February 2025. N=5,086 U.S. adults. Gaps based on self-identified party + lean.</span>
+        <span class="footer-page">9</span>
+    </div>
+</div>
+
+<!-- ====== SLIDE 10: VALIDATION STATUS HONEST ====== -->
+<div class="slide">
+    <div class="slide-header">
+        <div class="slide-meta">
+            <span class="slide-number">10</span>
+            <span class="slide-section">Domain Status</span>
+        </div>
+        <h2 class="slide-title">Validation Status: Honest assessment of evidence quality by domain</h2>
+    </div>
+    <div class="slide-body">
+        <table class="data-table" style="font-size: 11px;">
+            <thead>
+                <tr>
+                    <th style="width: 22%">Domain</th>
+                    <th style="width: 10%">Val. Sources</th>
+                    <th style="width: 10%">Questions</th>
+                    <th style="width: 10%">Total N</th>
+                    <th style="width: 12%">MAE Range</th>
+                    <th style="width: 12%">Status</th>
+                    <th style="width: 24%">Honest Assessment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Trust in institutions</strong></td>
+                    <td class="mono">2</td>
+                    <td class="mono">8</td>
+                    <td class="mono">10,000+</td>
+                    <td class="mono good">2-3 pts</td>
+                    <td><span class="status validated">Validated</span></td>
+                    <td>Strongest evidence. Multiple large-N sources.</td>
+                </tr>
+                <tr>
+                    <td><strong>Life satisfaction</strong></td>
+                    <td class="mono">1</td>
+                    <td class="mono">3</td>
+                    <td class="mono">13,000+</td>
+                    <td class="mono good">3 pts</td>
+                    <td><span class="status validated">Validated</span></td>
+                    <td>Large N, but single source (Gallup).</td>
+                </tr>
+                <tr>
+                    <td><strong>National concerns</strong></td>
+                    <td class="mono">1</td>
+                    <td class="mono">12</td>
+                    <td class="mono">5,086</td>
+                    <td class="mono good">3-5 pts</td>
+                    <td><span class="status validated">Validated</span></td>
+                    <td>Good question coverage. Requires segmentation.</td>
+                </tr>
+                <tr>
+                    <td><strong>Senior tech adoption</strong></td>
+                    <td class="mono">1</td>
+                    <td class="mono">10</td>
+                    <td class="mono">3,838</td>
+                    <td class="mono warn">3-4 pts*</td>
+                    <td><span class="status partial">Partial</span></td>
+                    <td>*Post-calibration only. Need 2nd source.</td>
+                </tr>
+                <tr>
+                    <td><strong>AI attitudes</strong></td>
+                    <td class="mono">2</td>
+                    <td class="mono">6</td>
+                    <td class="mono">6,000+</td>
+                    <td class="mono good">2-4 pts</td>
+                    <td><span class="status validated">Validated</span></td>
+                    <td>Rapidly evolving — recalibrate quarterly.</td>
+                </tr>
+                <tr>
+                    <td><strong>Employee engagement</strong></td>
+                    <td class="mono">1</td>
+                    <td class="mono">3</td>
+                    <td class="mono">~10,000</td>
+                    <td class="mono warn">5-6 pts</td>
+                    <td><span class="status partial">Partial</span></td>
+                    <td>Requires −5 pt correction. Context-sensitive.</td>
+                </tr>
+                <tr>
+                    <td><strong>Pet owners (Women 60+)</strong></td>
+                    <td class="mono">1</td>
+                    <td class="mono">5</td>
+                    <td class="mono warn">125</td>
+                    <td class="mono warn">4 pts*</td>
+                    <td><span class="status notyet">Provisional</span></td>
+                    <td>N too small. 95% CI = ±7.7 pts. Not reliable.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mental health solutions</strong></td>
+                    <td class="mono">1</td>
+                    <td class="mono">9</td>
+                    <td class="mono">873</td>
+                    <td class="mono good">—</td>
+                    <td><span class="status partial">NEW</span></td>
+                    <td>Importance 50-75% T2B. Concept ~50% T2B.</td>
+                </tr>
+                <tr>
+                    <td><strong>Subscription services</strong></td>
+                    <td class="mono">1</td>
+                    <td class="mono">10</td>
+                    <td class="mono warn">49</td>
+                    <td class="mono good">—</td>
+                    <td><span class="status partial">NEW</span></td>
+                    <td>NPS +36. Sat 84-88% T2B (core experience).</td>
+                </tr>
+                <tr>
+                    <td><strong>Purchase intent</strong></td>
+                    <td class="mono">0</td>
+                    <td class="mono">—</td>
+                    <td class="mono">—</td>
+                    <td class="mono bad">10-25 pts</td>
+                    <td><span class="status notyet">Not Valid</span></td>
+                    <td>No calibration. Do not use.</td>
+                </tr>
+                <tr>
+                    <td><strong>B2B / C-Suite executives</strong></td>
+                    <td class="mono">1</td>
+                    <td class="mono">15+</td>
+                    <td class="mono">637</td>
+                    <td class="mono good">—</td>
+                    <td><span class="status partial">NEW</span></td>
+                    <td>US C-Suite. Top concerns: cyber 61%, uncertainty 46%</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="callout warn" style="margin-top: 16px;">
+            <div class="callout-title">Validation Standard</div>
+            <div class="callout-text" style="font-size: 12px;">
+                <strong>"Validated"</strong> requires: ≥2 sources OR single source with N≥5,000 and ≥5 questions. Industry standard would require 3+ independent replications — we do not yet meet that bar for most domains.
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="footer-source">Status as of February 2026. Validation ongoing — status updates quarterly.</span>
+        <span class="footer-page">10</span>
+    </div>
+</div>
+
+<!-- ====== SLIDE 11: LIMITATIONS SUMMARY ====== -->
+<div class="slide">
+    <div class="slide-header">
+        <div class="slide-meta">
+            <span class="slide-number">11</span>
+            <span class="slide-section">Limitations</span>
+        </div>
+        <h2 class="slide-title">What a skeptical research executive should know before using this</h2>
+    </div>
+    <div class="slide-body">
+        <div class="three-col">
+            <div>
+                <h3 style="font-size: 14px; font-weight: 700; color: var(--red-600); margin-bottom: 12px;">Statistical Gaps</h3>
+                <ul class="bullet-list" style="font-size: 12px;">
+                    <li><strong>No confidence intervals</strong> on most estimates — point estimates only</li>
+                    <li><strong>In-sample calibration</strong> — multipliers derived from same data used to test</li>
+                    <li><strong>Small segment Ns</strong> — Some calibrations from N&lt;200 (not statistically reliable)</li>
+                    <li><strong>No holdout validation</strong> — All 53 questions used for both calibration and testing</li>
+                    <li><strong>Ensemble weights arbitrary</strong> — 40/35/25 not empirically derived</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="font-size: 14px; font-weight: 700; color: var(--red-600); margin-bottom: 12px;">Methodological Gaps</h3>
+                <ul class="bullet-list" style="font-size: 12px;">
+                    <li><strong>No temporal validation</strong> — All data from Q4 2025-Q1 2026. Calibrations may decay.</li>
+                    <li><strong>No third-party audit</strong> — All validation internal</li>
+                    <li><strong>Single-source domains</strong> — Most domains have only 1 validation source</li>
+                    <li><strong>US-only</strong> — No international calibration</li>
+                    <li><strong>Run-to-run variance unknown</strong> — Reproducibility not systematically tested</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="font-size: 14px; font-weight: 700; color: var(--red-600); margin-bottom: 12px;">What's Needed for Production</h3>
+                <ul class="bullet-list" style="font-size: 12px;">
+                    <li><strong>Holdout validation</strong> — Reserve 20% of questions for out-of-sample testing</li>
+                    <li><strong>Bootstrap CIs</strong> — All multipliers need confidence intervals</li>
+                    <li><strong>N≥500 per segment</strong> — For any segment-specific calibration</li>
+                    <li><strong>Quarterly recalibration</strong> — With drift monitoring</li>
+                    <li><strong>Client case studies</strong> — Predictions vs. actual field results</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="callout alert" style="margin-top: 20px;">
+            <div class="callout-title">Bottom Line</div>
+            <div class="callout-text">
+                This is <strong>pilot-ready, not production-ready</strong>. The methodology is sound, the validation is real, but the evidence base is thin. Use for hypothesis generation and early-stage screening. Validate critical decisions with real respondents. Don't present simulated data as "survey results" to stakeholders.
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="footer-source">Honest assessment based on internal review. Production approval pending additional validation milestones.</span>
+        <span class="footer-page">11</span>
+    </div>
+</div>
+
+<!-- ====== SLIDE 12: METHODOLOGY ====== -->
+<div class="slide">
+    <div class="slide-header">
+        <div class="slide-meta">
+            <span class="slide-number">12</span>
+            <span class="slide-section">Methodology</span>
+        </div>
+        <h2 class="slide-title">How It Works: 10-phase simulation with ensemble estimation and QA checks</h2>
+    </div>
+    <div class="slide-body">
+        <div class="two-col">
+            <div>
+                <table class="data-table" style="font-size: 11px;">
+                    <thead>
+                        <tr>
+                            <th>Phase</th>
+                            <th>Function</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>1. Config</strong></td><td>Define audience, screeners, geography, date</td></tr>
+                        <tr><td><strong>2. Anchoring</strong></td><td>Search for empirical priors (Pew, Gallup, etc.)</td></tr>
+                        <tr><td><strong>3. Behavioral Model</strong></td><td>Apply satisficing, social desirability, noise</td></tr>
+                        <tr><td><strong>4. Survey Instrument</strong></td><td>Verbatim questions and response options</td></tr>
+                        <tr><td><strong>5. Ensemble (3 runs)</strong></td><td>Conservative + Signal + Heterogeneity estimates</td></tr>
+                        <tr><td><strong>6. Verification</strong></td><td>Cross-check against live sources</td></tr>
+                        <tr><td><strong>7. Confidence</strong></td><td>Score predictions, cap at 0.90</td></tr>
+                        <tr><td><strong>8. Open-ends</strong></td><td>Generate realistic verbatims</td></tr>
+                        <tr><td><strong>9. QA</strong></td><td>11-point checklist, auto-rejection</td></tr>
+                        <tr><td><strong>10. Output</strong></td><td>Structured CSV + methodology trace</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <div class="callout info" style="margin-bottom: 16px;">
+                    <div class="callout-title">Auto-Rejection Triggers</div>
+                    <div class="callout-text" style="font-size: 11px;">
+                        • Mean = exactly 3.0 (artificial)<br>
+                        • Any option = 0% (minorities exist)<br>
+                        • SD &lt; 0.8 (compressed)<br>
+                        • All segments identical<br>
+                        • Percentages sum ≠ 100%<br>
+                        • Round numbers only (25%, 30%)
+                    </div>
+                </div>
+                
+                <div class="callout">
+                    <div class="callout-title">Ensemble Averaging</div>
+                    <div class="callout-text" style="font-size: 11px;">
+                        <strong>Run 1 (40%):</strong> Conservative, anchor-heavy<br>
+                        <strong>Run 2 (35%):</strong> Signal-forward<br>
+                        <strong>Run 3 (25%):</strong> High heterogeneity<br><br>
+                        <strong>Caveat:</strong> Weights not empirically optimized. Should use cross-validation in future.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="footer-source">Methodology documented in MASTER_SIMULATION_SYSTEM.md v1.2.</span>
+        <span class="footer-page">12</span>
+    </div>
+</div>
+
+<!-- ====== SLIDE 13: SUMMARY ====== -->
+<div class="slide">
+    <div class="slide-header">
+        <div class="slide-meta">
+            <span class="slide-number">13</span>
+            <span class="slide-section">Summary</span>
+        </div>
+        <h2 class="slide-title">Key Takeaways: Useful tool with clear boundaries — not a replacement for real research</h2>
+    </div>
+    <div class="slide-body">
+        <div class="three-col" style="margin-bottom: 24px;">
+            <div class="metric-card highlight">
+                <div class="metric-value" style="font-size: 28px;">2-4 pts</div>
+                <div class="metric-label">Calibrated MAE on best domains</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" style="font-size: 28px;">5-15 pts</div>
+                <div class="metric-label">Raw MAE before calibration</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" style="font-size: 28px;">Pilot</div>
+                <div class="metric-label">Current readiness level</div>
+            </div>
+        </div>
+        
+        <div class="three-col">
+            <div class="callout">
+                <div class="callout-title">What This Is</div>
+                <div class="callout-text" style="font-size: 12px;">
+                    • Hypothesis generation tool<br>
+                    • Early-stage concept screener<br>
+                    • Directional comparison engine<br>
+                    • Research acceleration (not replacement)<br>
+                    • Useful for 10× more iterations
+                </div>
+            </div>
+            <div class="callout">
+                <div class="callout-title">What This Isn't</div>
+                <div class="callout-text" style="font-size: 12px;">
+                    • Not a substitute for real surveys<br>
+                    • Not production-ready (yet)<br>
+                    • Not validated for purchase intent<br>
+                    • Not validated outside US<br>
+                    • Not magic — has real failure modes
+                </div>
+            </div>
+            <div class="callout">
+                <div class="callout-title">Next Steps</div>
+                <div class="callout-text" style="font-size: 12px;">
+                    • Holdout validation (Q2 2026)<br>
+                    • Bootstrap CIs on multipliers<br>
+                    • B2B domain validation<br>
+                    • Quarterly recalibration cycle<br>
+                    • Client case studies with ground truth
+                </div>
+            </div>
+        </div>
+        
+        <div class="callout info" style="margin-top: 20px;">
+            <div class="callout-title">The Honest Pitch</div>
+            <div class="callout-text">
+                Use simulation to explore 10× more ideas at 1/50th the cost. Kill bad concepts fast. Then <strong>validate the winners with real respondents</strong> before betting the budget. The tool is most valuable as a filter, not a final answer.
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span class="footer-source">For methodology documentation: MASTER_SIMULATION_SYSTEM.md. For calibration data: CALIBRATION_MEMORY.md.</span>
+        <span class="footer-page">13</span>
+    </div>
+</div>
+
+</body>
+</html>

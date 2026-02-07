@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Presentation | Confidential</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           CONSULTING DECK TEMPLATE
+           Premium McKinsey/BCG Style
+           ============================================ */
+        
+        :root {
+            --navy: #1a365d;
+            --navy-dark: #0f2140;
+            --navy-light: #2d4a6f;
+            --gold: #d4a84b;
+            --gold-light: #e8c777;
+            --gold-muted: rgba(212, 168, 75, 0.15);
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-200);
+            color: var(--gray-800);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ============================================
+           SLIDE CONTAINER
+           ============================================ */
+        
+        .slide {
+            width: 1280px;
+            height: 720px;
+            background: var(--white);
+            margin: 40px auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            page-break-after: always;
+            page-break-inside: avoid;
+        }
+
+        .slide-content {
+            padding: 60px 80px 80px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ============================================
+           HEADER & FOOTER
+           ============================================ */
+        
+        .slide-header {
+            margin-bottom: 40px;
+        }
+
+        .slide-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .slide-subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--gray-500);
+            margin-top: 8px;
+        }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            padding: 0 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: var(--gray-400);
+            border-top: 1px solid var(--gray-100);
+            background: var(--gray-50);
+        }
+
+        .slide-footer .confidential {
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .slide-footer .page-number {
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        /* Gold accent bar */
+        .accent-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+        }
+
+        /* ============================================
+           TITLE SLIDE
+           ============================================ */
+        
+        .slide.title-slide {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+        }
+
+        .slide.title-slide .slide-content {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px;
+        }
+
+        .slide.title-slide .company-logo {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 60px;
+        }
+
+        .slide.title-slide .main-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            max-width: 900px;
+        }
+
+        .slide.title-slide .main-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 24px;
+            max-width: 700px;
+        }
+
+        .slide.title-slide .presentation-meta {
+            margin-top: 80px;
+            display: flex;
+            gap: 40px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .slide.title-slide .presentation-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .slide.title-slide .slide-footer {
+            background: transparent;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .slide.title-slide .slide-footer .page-number {
+            color: var(--gold);
+        }
+
+        /* Gold corner accent */
+        .slide.title-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, transparent 50%, rgba(212, 168, 75, 0.1) 50%);
+        }
+
+        /* ============================================
+           EXECUTIVE SUMMARY SLIDE
+           ============================================ */
+        
+        .exec-summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 32px;
+            flex: 1;
+        }
+
+        .exec-summary-item {
+            background: var(--gray-50);
+            border-radius: 8px;
+            padding: 28px;
+            border-left: 3px solid var(--gold);
+            transition: all 0.2s ease;
+        }
+
+        .exec-summary-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .exec-summary-item .item-number {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+        }
+
+        .exec-summary-item .item-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .exec-summary-item .item-text {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           DATA TABLE SLIDE
+           ============================================ */
+        
+        .data-table-container {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .data-table thead {
+            background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
+        }
+
+        .data-table th {
+            color: var(--white);
+            font-weight: 600;
+            text-align: left;
+            padding: 16px 20px;
+            font-size: 13px;
+            letter-spacing: 0.02em;
+        }
+
+        .data-table th:first-child {
+            border-radius: 6px 0 0 0;
+        }
+
+        .data-table th:last-child {
+            border-radius: 0 6px 0 0;
+        }
+
+        .data-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--gray-100);
+            color: var(--gray-700);
+        }
+
+        .data-table tbody tr:hover {
+            background: var(--gray-50);
+        }
+
+        .data-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tbody tr:last-child td:first-child {
+            border-radius: 0 0 0 6px;
+        }
+
+        .data-table tbody tr:last-child td:last-child {
+            border-radius: 0 0 6px 0;
+        }
+
+        .data-table .highlight {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .data-table .positive {
+            color: #059669;
+            font-weight: 500;
+        }
+
+        .data-table .negative {
+            color: #dc2626;
+            font-weight: 500;
+        }
+
+        .data-table .neutral {
+            color: var(--gray-500);
+        }
+
+        /* ============================================
+           2x2 MATRIX SLIDE
+           ============================================ */
+        
+        .matrix-container {
+            flex: 1;
+            display: flex;
+            gap: 40px;
+        }
+
+        .matrix-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .matrix-labels {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .matrix-y-label {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-500);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .matrix-grid-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .matrix-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 3px;
+            background: var(--gray-200);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .matrix-cell {
+            background: var(--white);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .matrix-cell:hover {
+            background: var(--gray-50);
+        }
+
+        .matrix-cell.highlight-cell {
+            background: var(--gold-muted);
+        }
+
+        .matrix-cell .cell-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .matrix-cell .cell-desc {
+            font-size: 12px;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        .matrix-x-label {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-500);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 16px;
+        }
+
+        .matrix-legend {
+            width: 200px;
+            padding: 24px;
+            background: var(--gray-50);
+            border-radius: 8px;
+        }
+
+        .matrix-legend h4 {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.gold { background: var(--gold); }
+        .legend-dot.navy { background: var(--navy); }
+        .legend-dot.gray { background: var(--gray-400); }
+
+        /* ============================================
+           SINGLE STAT CALLOUT SLIDE
+           ============================================ */
+        
+        .stat-callout-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-callout {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .stat-callout .stat-context {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 24px;
+        }
+
+        .stat-callout .stat-number {
+            font-size: 140px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1;
+            letter-spacing: -0.03em;
+        }
+
+        .stat-callout .stat-number .stat-unit {
+            font-size: 60px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .stat-callout .stat-label {
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--gray-600);
+            margin-top: 24px;
+            line-height: 1.4;
+        }
+
+        .stat-callout .stat-source {
+            font-size: 12px;
+            color: var(--gray-400);
+            margin-top: 40px;
+        }
+
+        /* ============================================
+           COMPARISON SLIDE
+           ============================================ */
+        
+        .comparison-container {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 60px 1fr;
+            gap: 0;
+            align-items: stretch;
+        }
+
+        .comparison-column {
+            padding: 32px;
+            border-radius: 12px;
+        }
+
+        .comparison-column.before {
+            background: var(--gray-50);
+            border: 2px solid var(--gray-200);
+        }
+
+        .comparison-column.after {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+            color: var(--white);
+        }
+
+        .comparison-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .comparison-arrow {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .comparison-column .column-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            opacity: 0.7;
+        }
+
+        .comparison-column .column-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .comparison-column.before .column-title {
+            color: var(--gray-700);
+        }
+
+        .comparison-list {
+            list-style: none;
+        }
+
+        .comparison-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .comparison-column.before .comparison-list li {
+            color: var(--gray-600);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .comparison-column.after .comparison-list li {
+            color: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-list li:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-list .icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .comparison-column.before .icon {
+            background: var(--gray-200);
+            color: var(--gray-500);
+        }
+
+        .comparison-column.after .icon {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        /* ============================================
+           RECOMMENDATION SLIDE
+           ============================================ */
+        
+        .recommendation-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .recommendation-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+            border-radius: 12px;
+            padding: 32px 40px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recommendation-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 168, 75, 0.2));
+        }
+
+        .recommendation-header .rec-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .recommendation-header .rec-main {
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
+        }
+
+        .recommendation-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            flex: 1;
+        }
+
+        .action-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 10px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s ease;
+        }
+
+        .action-card:hover {
+            border-color: var(--gold);
+            box-shadow: var(--shadow-md);
+        }
+
+        .action-card .action-number {
+            width: 32px;
+            height: 32px;
+            background: var(--gold);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .action-card .action-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .action-card .action-desc {
+            font-size: 13px;
+            color: var(--gray-600);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .action-card .action-timeline {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--gray-100);
+            font-size: 12px;
+            color: var(--gray-500);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-card .action-timeline strong {
+            color: var(--navy);
+        }
+
+        /* ============================================
+           SECTION DIVIDER SLIDE
+           ============================================ */
+        
+        .slide.section-slide {
+            background: var(--gray-50);
+        }
+
+        .slide.section-slide .slide-content {
+            justify-content: center;
+            align-items: flex-start;
+            padding-left: 120px;
+        }
+
+        .slide.section-slide .section-number {
+            font-size: 80px;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 24px;
+        }
+
+        .slide.section-slide .section-title {
+            font-size: 44px;
+            font-weight: 600;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+        }
+
+        .slide.section-slide .section-subtitle {
+            font-size: 18px;
+            color: var(--gray-500);
+            margin-top: 16px;
+            font-weight: 400;
+        }
+
+        .slide.section-slide .accent-line {
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+            margin-top: 40px;
+            border-radius: 2px;
+        }
+
+        /* ============================================
+           PRINT STYLES
+           ============================================ */
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .slide {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+                page-break-inside: avoid;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            @page {
+                size: 1280px 720px;
+                margin: 0;
+            }
+        }
+
+        /* ============================================
+           UTILITY CLASSES
+           ============================================ */
+        
+        .text-navy { color: var(--navy); }
+        .text-gold { color: var(--gold); }
+        .text-gray { color: var(--gray-500); }
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .mt-auto { margin-top: auto; }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         SLIDE 1: TITLE SLIDE
+         ============================================ -->
+    <div class="slide title-slide">
+        <div class="slide-content">
+            <div class="company-logo">Acme Corporation</div>
+            <h1 class="main-title">Digital Transformation Strategy</h1>
+            <p class="main-subtitle">A comprehensive roadmap for operational excellence and sustainable growth in the digital era</p>
+            <div class="presentation-meta">
+                <span>Board of Directors</span>
+                <span>•</span>
+                <span>February 2026</span>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="confidential">Confidential | February 2026</span>
+            <span class="page-number">1</span>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SLIDE 2: SECTION DIVIDER
+         ============================================ -->
+    <div class="slide section-slide">
+        <div class="accent-bar"></div>
+        <div class="slide-content">
+            <div class="section-number">01</div>
+            <div class="section-title">Executive Summary</div>
+            <div class="section-subtitle">Key findings and strategic recommendations</div>
+            <div class="accent-line"></div>
+        </div>
+        <div class="slide-footer">
+            <span class="confidential">Confidential | February 2026</span>
+            <span class="page-number">2</span>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SLIDE 3: EXECUTIVE SUMMARY
+         ============================================ -->
+    <div class="slide">
+        <div class="accent-bar"></div>
+        <div class="slide-content">
+            <div class="slide-header">
+                <h2 class="slide-title">Three strategic imperatives will drive $450M in value creation</h2>
+                <p class="slide-subtitle">Our analysis identifies clear opportunities across operations, technology, and talent</p>
+            </div>
+            <div class="exec-summary-grid">
+                <div class="exec-summary-item">
+                    <div class="item-number">01</div>
+                    <h3 class="item-title">Operational Excellence</h3>
+                    <p class="item-text">Streamline core processes through automation and lean methodologies, reducing operational costs by 25% within 18 months while improving quality metrics.</p>
+                </div>
+                <div class="exec-summary-item">
+                    <div class="item-number">02</div>
+                    <h3 class="item-title">Technology Modernization</h3>
+                    <p class="item-text">Migrate to cloud-native architecture and implement AI-driven analytics to enable real-time decision making and accelerate time-to-market by 40%.</p>
+                </div>
+                <div class="exec-summary-item">
+                    <div class="item-number">03</div>
+                    <h3 class="item-title">Talent Transformation</h3>
+                    <p class="item-text">Upskill workforce with digital capabilities and restructure organization around agile pods, driving employee engagement up 35% and reducing attrition.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="confidential">Confidential | February 2026</span>
+            <span class="page-number">3</span>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SLIDE 4: SINGLE STAT CALLOUT
+         ============================================ -->
+    <div class="slide">
+        <div class="accent-bar"></div>
+        <div class="slide-content">
+            <div class="slide-header">
+                <h2 class="slide-title">The market opportunity is substantial and growing</h2>
+            </div>
+            <div class="stat-callout-container">
+                <div class="stat-callout">
+                    <div class="stat-context">Total Addressable Market by 2028</div>
+                    <div class="stat-number">$47<span class="stat-unit">B</span></div>
+                    <div class="stat-label">Representing a 23% CAGR from current market size,<br>driven by accelerating digital adoption across industries</div>
+                    <div class="stat-source">Source: Industry analysis, Expert interviews, Proprietary research (2025)</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="confidential">Confidential | February 2026</span>
+            <span class="page-number">4</span>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SLIDE 5: DATA TABLE
+         ============================================ -->
+    <div class="slide">
+        <div class="accent-bar"></div>
+        <div class="slide-content">
+            <div class="slide-header">
+                <h2 class="slide-title">Competitive benchmarking reveals significant gaps and opportunities</h2>
+                <p class="slide-subtitle">Analysis of key performance indicators across top 5 market players</p>
+            </div>
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 22%">Company</th>
+                            <th style="width: 13%">Revenue ($M)</th>
+                            <th style="width: 13%">Growth YoY</th>
+                            <th style="width: 13%">EBITDA %</th>
+                            <th style="width: 13%">Market Share</th>
+                            <th style="width: 13%">NPS Score</th>
+                            <th style="width: 13%">Digital Rev %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="highlight">Acme Corporation</td>
+                            <td>2,450</td>
+                            <td class="positive">+12.5%</td>
+                            <td>18.2%</td>
+                            <td>15.3%</td>
+                            <td>42</td>
+                            <td>28%</td>
+                        </tr>
+                        <tr>
+                            <td>Competitor A</td>
+                            <td>4,120</td>
+                            <td class="positive">+8.3%</td>
+                            <td>22.1%</td>
+                            <td>25.8%</td>
+                            <td>58</td>
+                            <td>45%</td>
+                        </tr>
+                        <tr>
+                            <td>Competitor B</td>
+                            <td>3,890</td>
+                            <td class="positive">+15.2%</td>
+                            <td>19.8%</td>
+                            <td>24.3%</td>
+                            <td>61</td>
+                            <td>52%</td>
+                        </tr>
+                        <tr>
+                            <td>Competitor C</td>
+                            <td>1,980</td>
+                            <td class="negative">-2.1%</td>
+                            <td>14.5%</td>
+                            <td>12.4%</td>
+                            <td>35</td>
+                            <td>18%</td>
+                        </tr>
+                        <tr>
+                            <td>Competitor D</td>
+                            <td>1,540</td>
+                            <td class="positive">+6.8%</td>
+                            <td>16.3%</td>
+                            <td>9.6%</td>
+                            <td>48</td>
+                            <td>35%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="confidential">Confidential | February 2026</span>
+            <span class="page-number">5</span>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SLIDE 6: 2x2 MATRIX
+         ============================================ -->
+    <div class="slide">
+        <div class="accent-bar"></div>
+        <div class="slide-content">
+            <div class="slide-header">
+                <h2 class="slide-title">Strategic initiatives should be prioritized by impact and feasibility</h2>
+                <p class="slide-subtitle">Portfolio view of transformation initiatives across all business units</p>
+            </div>
+            <div class="matrix-container">
+                <div class="matrix-wrapper">
+                    <div class="matrix-labels">
+                        <div class="matrix-y-label">Implementation Feasibility →</div>
+                        <div class="matrix-grid-wrapper">
+                            <div class="matrix-grid">
+                                <div class="matrix-cell">
+                                    <div class="cell-title">Strategic Bets</div>
+                                    <div class="cell-desc">High impact, requires significant investment and change management</div>
+                                </div>
+                                <div class="matrix-cell highlight-cell">
+                                    <div class="cell-title">Quick Wins</div>
+                                    <div class="cell-desc">Prioritize immediately — high value with manageable effort</div>
+                                </div>
+                                <div class="matrix-cell">
+                                    <div class="cell-title">Deprioritize</div>
+                                    <div class="cell-desc">Low value, high complexity — consider elimination</div>
+                                </div>
+                                <div class="matrix-cell">
+                                    <div class="cell-title">Fill-ins</div>
+                                    <div class="cell-desc">Easy to implement but limited strategic value</div>
+                                </div>
+                            </div>
+                            <div class="matrix-x-label">Business Impact →</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="matrix-legend">
+                    <h4>Legend</h4>
+                    <div class="legend-item">
+                        <div class="legend-dot gold"></div>
+                        <span>Priority focus</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot navy"></div>
+                        <span>Secondary</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot gray"></div>
+                        <span>Deprioritize</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="confidential">Confidential | February 2026</span>
+            <span class="page-number">6</span>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SLIDE 7: COMPARISON (Before/After)
+         ============================================ -->
+    <div class="slide">
+        <div class="accent-bar"></div>
+        <div class="slide-content">
+            <div class="slide-header">
+                <h2 class="slide-title">The transformation will fundamentally reshape operating model</h2>
+                <p class="slide-subtitle">From legacy constraints to future-ready capabilities</p>
+            </div>
+            <div class="comparison-container">
+                <div class="comparison-column before">
+                    <div class="column-label">Current State</div>
+                    <div class="column-title">Legacy Operating Model</div>
+                    <ul class="comparison-list">
+                        <li><span class="icon">✕</span> Siloed departments with limited collaboration</li>
+                        <li><span class="icon">✕</span> Manual processes requiring 40+ FTE hours weekly</li>
+                        <li><span class="icon">✕</span> 6-month average time-to-market for new products</li>
+                        <li><span class="icon">✕</span> On-premise infrastructure with 99.2% uptime</li>
+                        <li><span class="icon">✕</span> Reactive customer service model</li>
+                    </ul>
+                </div>
+                <div class="comparison-divider">
+                    <div class="comparison-arrow">→</div>
+                </div>
+                <div class="comparison-column after">
+                    <div class="column-label">Future State</div>
+                    <div class="column-title">Digital-First Model</div>
+                    <ul class="comparison-list">
+                        <li><span class="icon">✓</span> Cross-functional agile pods with shared OKRs</li>
+                        <li><span class="icon">✓</span> 85% process automation, 8 FTE hours weekly</li>
+                        <li><span class="icon">✓</span> 6-week sprint cycles with continuous delivery</li>
+                        <li><span class="icon">✓</span> Cloud-native with 99.99% uptime SLA</li>
+                        <li><span class="icon">✓</span> AI-powered proactive customer engagement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="confidential">Confidential | February 2026</span>
+            <span class="page-number">7</span>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SLIDE 8: RECOMMENDATION
+         ============================================ -->
+    <div class="slide">
+        <div class="accent-bar"></div>
+        <div class="slide-content">
+            <div class="slide-header">
+                <h2 class="slide-title">Recommended next steps and immediate actions</h2>
+                <p class="slide-subtitle">A phased approach to capture value while managing risk</p>
+            </div>
+            <div class="recommendation-container">
+                <div class="recommendation-header">
+                    <div class="rec-label">Strategic Recommendation</div>
+                    <div class="rec-main">Approve the $125M transformation investment to capture $450M in value over 36 months, beginning with quick-win initiatives in Q1 2026</div>
+                </div>
+                <div class="recommendation-actions">
+                    <div class="action-card">
+                        <div class="action-number">1</div>
+                        <h4 class="action-title">Establish PMO</h4>
+                        <p class="action-desc">Stand up dedicated transformation office with executive sponsorship and cross-functional leadership team.</p>
+                        <div class="action-timeline">📅 <strong>Q1 2026</strong> — Weeks 1-4</div>
+                    </div>
+                    <div class="action-card">
+                        <div class="action-number">2</div>
+                        <h4 class="action-title">Launch Pilots</h4>
+                        <p class="action-desc">Begin automation pilots in 3 highest-impact process areas to validate business case and refine approach.</p>
+                        <div class="action-timeline">📅 <strong>Q1 2026</strong> — Weeks 4-12</div>
+                    </div>
+                    <div class="action-card">
+                        <div class="action-number">3</div>
+                        <h4 class="action-title">Scale & Iterate</h4>
+                        <p class="action-desc">Roll out proven solutions across enterprise while building internal capabilities and change readiness.</p>
+                        <div class="action-timeline">📅 <strong>Q2-Q4 2026</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="confidential">Confidential | February 2026</span>
+            <span class="page-number">8</span>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SLIDE 9: CLOSING SLIDE
+         ============================================ -->
+    <div class="slide title-slide">
+        <div class="slide-content">
+            <div class="company-logo">Thank You</div>
+            <h1 class="main-title" style="font-size: 40px;">Questions & Discussion</h1>
+            <p class="main-subtitle">We look forward to partnering with you on this transformation journey</p>
+            <div class="presentation-meta" style="flex-direction: column; gap: 8px; margin-top: 60px;">
+                <span style="font-size: 15px; color: rgba(255,255,255,0.7);">Contact: strategy@acmecorp.com</span>
+                <span style="font-size: 13px;">+1 (555) 123-4567</span>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="confidential">Confidential | February 2026</span>
+            <span class="page-number">9</span>
+        </div>
+    </div>
+
+</body>
+</html>

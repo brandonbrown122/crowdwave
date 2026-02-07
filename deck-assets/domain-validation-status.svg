@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500">
+  <!-- Background -->
+  <rect width="750" height="500" fill="#f7fafc"/>
+  
+  <!-- Title -->
+  <text x="375" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#1a365d">Domain Validation Status</text>
+  <text x="375" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#718096">Calibration confidence by research domain</text>
+  
+  <!-- Legend -->
+  <circle cx="200" cy="85" r="8" fill="#38a169"/>
+  <text x="215" y="89" font-family="system-ui, sans-serif" font-size="12" fill="#2d3748">Human Validated</text>
+  <circle cx="350" cy="85" r="8" fill="#d69e2e"/>
+  <text x="365" y="89" font-family="system-ui, sans-serif" font-size="12" fill="#2d3748">Partial / Needs More Data</text>
+  <circle cx="540" cy="85" r="8" fill="#e53e3e"/>
+  <text x="555" y="89" font-family="system-ui, sans-serif" font-size="12" fill="#2d3748">Not Validated</text>
+  
+  <!-- VALIDATED DOMAINS (GREEN) -->
+  <text x="50" y="130" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#38a169">✓ VALIDATED</text>
+  
+  <rect x="50" y="145" width="310" height="40" rx="6" fill="#c6f6d5" stroke="#38a169" stroke-width="1.5"/>
+  <circle cx="75" cy="165" r="10" fill="#38a169"/>
+  <text x="68" y="170" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">✓</text>
+  <text x="95" y="162" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Pet Ownership</text>
+  <text x="95" y="177" font-family="system-ui, sans-serif" font-size="10" fill="#22543d">n=173 • Women 18-59, 60+</text>
+  
+  <rect x="50" y="195" width="310" height="40" rx="6" fill="#c6f6d5" stroke="#38a169" stroke-width="1.5"/>
+  <circle cx="75" cy="215" r="10" fill="#38a169"/>
+  <text x="68" y="220" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">✓</text>
+  <text x="95" y="212" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Senior Tech Adoption</text>
+  <text x="95" y="227" font-family="system-ui, sans-serif" font-size="10" fill="#22543d">AARP 2025 • n=3,838</text>
+  
+  <rect x="50" y="245" width="310" height="40" rx="6" fill="#c6f6d5" stroke="#38a169" stroke-width="1.5"/>
+  <circle cx="75" cy="265" r="10" fill="#38a169"/>
+  <text x="68" y="270" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">✓</text>
+  <text x="95" y="262" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Trust in Scientists</text>
+  <text x="95" y="277" font-family="system-ui, sans-serif" font-size="10" fill="#22543d">Pew 2025 • n=5,111</text>
+  
+  <rect x="50" y="295" width="310" height="40" rx="6" fill="#c6f6d5" stroke="#38a169" stroke-width="1.5"/>
+  <circle cx="75" cy="315" r="10" fill="#38a169"/>
+  <text x="68" y="320" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">✓</text>
+  <text x="95" y="312" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">AI Concern Levels</text>
+  <text x="95" y="327" font-family="system-ui, sans-serif" font-size="10" fill="#22543d">YouGov/Pew 2025 • ×0.90 multiplier</text>
+  
+  <rect x="50" y="345" width="310" height="40" rx="6" fill="#c6f6d5" stroke="#38a169" stroke-width="1.5"/>
+  <circle cx="75" cy="365" r="10" fill="#38a169"/>
+  <text x="68" y="370" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">✓</text>
+  <text x="95" y="362" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">National Concerns</text>
+  <text x="95" y="377" font-family="system-ui, sans-serif" font-size="10" fill="#22543d">Pew Feb 2025 • n=5,086</text>
+  
+  <rect x="50" y="395" width="310" height="40" rx="6" fill="#c6f6d5" stroke="#38a169" stroke-width="1.5"/>
+  <circle cx="75" cy="415" r="10" fill="#38a169"/>
+  <text x="68" y="420" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">✓</text>
+  <text x="95" y="412" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Employee Engagement</text>
+  <text x="95" y="427" font-family="system-ui, sans-serif" font-size="10" fill="#22543d">Gallup 2025 • 10-year tracking</text>
+  
+  <!-- PARTIAL VALIDATION (YELLOW) -->
+  <text x="400" y="130" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#d69e2e">◐ PARTIAL</text>
+  
+  <rect x="400" y="145" width="310" height="40" rx="6" fill="#fefcbf" stroke="#d69e2e" stroke-width="1.5"/>
+  <circle cx="425" cy="165" r="10" fill="#d69e2e"/>
+  <text x="418" y="170" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">◐</text>
+  <text x="445" y="162" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Healthcare Decisions</text>
+  <text x="445" y="177" font-family="system-ui, sans-serif" font-size="10" fill="#744210">Need patient validation data</text>
+  
+  <rect x="400" y="195" width="310" height="40" rx="6" fill="#fefcbf" stroke="#d69e2e" stroke-width="1.5"/>
+  <circle cx="425" cy="215" r="10" fill="#d69e2e"/>
+  <text x="418" y="220" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">◐</text>
+  <text x="445" y="212" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">CEO/Executive</text>
+  <text x="445" y="227" font-family="system-ui, sans-serif" font-size="10" fill="#744210">Comparison only (no human data)</text>
+  
+  <rect x="400" y="245" width="310" height="40" rx="6" fill="#fefcbf" stroke="#d69e2e" stroke-width="1.5"/>
+  <circle cx="425" cy="265" r="10" fill="#d69e2e"/>
+  <text x="418" y="270" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">◐</text>
+  <text x="445" y="262" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Purchase Intent</text>
+  <text x="445" y="277" font-family="system-ui, sans-serif" font-size="10" fill="#744210">Intent-action gap needs testing</text>
+  
+  <!-- NOT VALIDATED (RED) -->
+  <text x="400" y="320" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#e53e3e">✗ NOT VALIDATED</text>
+  
+  <rect x="400" y="335" width="310" height="40" rx="6" fill="#fed7d7" stroke="#e53e3e" stroke-width="1.5"/>
+  <circle cx="425" cy="355" r="10" fill="#e53e3e"/>
+  <text x="418" y="360" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">✗</text>
+  <text x="445" y="352" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">B2B Decision-Makers</text>
+  <text x="445" y="367" font-family="system-ui, sans-serif" font-size="10" fill="#742a2a">No human benchmark</text>
+  
+  <rect x="400" y="385" width="310" height="40" rx="6" fill="#fed7d7" stroke="#e53e3e" stroke-width="1.5"/>
+  <circle cx="425" cy="405" r="10" fill="#e53e3e"/>
+  <text x="418" y="410" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">✗</text>
+  <text x="445" y="402" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Feature Importance</text>
+  <text x="445" y="417" font-family="system-ui, sans-serif" font-size="10" fill="#742a2a">No human benchmark</text>
+  
+  <rect x="400" y="435" width="310" height="40" rx="6" fill="#fed7d7" stroke="#e53e3e" stroke-width="1.5"/>
+  <circle cx="425" cy="455" r="10" fill="#e53e3e"/>
+  <text x="418" y="460" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">✗</text>
+  <text x="445" y="452" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">Non-US Populations</text>
+  <text x="445" y="467" font-family="system-ui, sans-serif" font-size="10" fill="#742a2a">US priors don't transfer</text>
+  
+  <!-- Summary stats -->
+  <rect x="50" y="450" width="310" height="30" rx="4" fill="#1a365d"/>
+  <text x="205" y="470" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="white">6 domains validated • 11 calibration sources</text>
+</svg>

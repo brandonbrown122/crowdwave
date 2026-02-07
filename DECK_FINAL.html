@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrowdWave Survey Simulation - Executive Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --navy: #1a365d;
+            --navy-light: #2c5282;
+            --gold: #d4a84b;
+            --green: #38a169;
+            --yellow: #d69e2e;
+            --red: #e53e3e;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-600: #718096;
+            --gray-800: #2d3748;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: white;
+            color: var(--gray-800);
+            line-height: 1.5;
+        }
+        
+        .slide {
+            width: 1280px;
+            height: 720px;
+            padding: 60px 80px;
+            page-break-after: always;
+            position: relative;
+            background: white;
+            margin: 0 auto 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .slide-title {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: white;
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 30px;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--gray-600);
+            border-top: 1px solid var(--gray-200);
+            padding-top: 15px;
+        }
+        
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        
+        h2 {
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 40px;
+            line-height: 1.3;
+        }
+        
+        .slide-title h1 {
+            font-size: 52px;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .slide-title h2 {
+            font-size: 28px;
+            color: rgba(255,255,255,0.9);
+            font-weight: 400;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: var(--gray-600);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 16px;
+        }
+        
+        th {
+            background: var(--navy);
+            color: white;
+            padding: 16px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        td {
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        tr:nth-child(even) {
+            background: var(--gray-100);
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, var(--gray-100) 0%, white 100%);
+            border-left: 4px solid var(--gold);
+            padding: 24px 30px;
+            margin: 30px 0;
+            font-size: 18px;
+        }
+        
+        .highlight-box strong {
+            color: var(--navy);
+        }
+        
+        .stat-row {
+            display: flex;
+            gap: 40px;
+            margin: 40px 0;
+        }
+        
+        .stat-box {
+            flex: 1;
+            text-align: center;
+            padding: 30px;
+            background: var(--gray-100);
+            border-radius: 8px;
+        }
+        
+        .stat-number {
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        li {
+            padding: 12px 0 12px 30px;
+            position: relative;
+            font-size: 18px;
+        }
+        
+        li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 20px;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 30px;
+        }
+        
+        .col-header {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray-600);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gray-200);
+        }
+        
+        .status-green { color: var(--green); }
+        .status-yellow { color: var(--yellow); }
+        .status-red { color: var(--red); }
+        
+        .matrix {
+            display: grid;
+            grid-template-columns: 120px 1fr 1fr;
+            grid-template-rows: auto 1fr 1fr;
+            gap: 2px;
+            margin: 30px 0;
+            background: var(--gray-200);
+        }
+        
+        .matrix-cell {
+            background: white;
+            padding: 20px;
+            font-size: 14px;
+        }
+        
+        .matrix-header {
+            background: var(--navy);
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+        
+        .matrix-row-header {
+            background: var(--gray-100);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        .matrix-green { background: #c6f6d5; }
+        .matrix-yellow { background: #fefcbf; }
+        .matrix-red { background: #fed7d7; }
+        
+        .action-box {
+            background: var(--navy);
+            color: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .action-box h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+        
+        .action-box li::before {
+            background: var(--gold);
+        }
+        
+        .impact-table td:first-child {
+            font-weight: 600;
+            color: var(--navy);
+        }
+        
+        .checkmark { color: var(--green); font-weight: bold; }
+        .xmark { color: var(--red); font-weight: bold; }
+        .caution { color: var(--yellow); font-weight: bold; }
+        
+        @media print {
+            .slide {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- SLIDE 1: TITLE -->
+<div class="slide slide-title" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+    <h1>Your Market Research<br>Just Got 100x Faster</h1>
+    <h2 style="margin-top: 30px;">CrowdWave Survey Simulation Engine</h2>
+    <p style="margin-top: 60px; font-size: 16px; opacity: 0.7;">Validated Accuracy Report | February 2026</p>
+    <div class="footer" style="color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.2);">
+        <span>Confidential</span>
+        <span>1</span>
+    </div>
+</div>
+
+<!-- SLIDE 2: THE PROBLEM -->
+<div class="slide">
+    <p class="subtitle">The Challenge</p>
+    <h1>You're Flying Blind for 4-6 Weeks</h1>
+    <h2>While Competitors Move</h2>
+    
+    <ul style="margin-top: 50px;">
+        <li>Traditional research costs <strong>$25K+</strong> and takes a month to deliver answers</li>
+        <li>By the time you have data, the market has already shifted</li>
+        <li>Most teams run <strong>2-3 concept tests per quarter</strong> — competitors testing 20 will win</li>
+    </ul>
+    
+    <div class="highlight-box">
+        <strong>The insight:</strong> Speed is the new competitive moat in market research.
+    </div>
+    
+    <div class="footer">
+        <span>Confidential | February 2026</span>
+        <span>2</span>
+    </div>
+</div>
+
+<!-- SLIDE 3: THE SOLUTION -->
+<div class="slide">
+    <p class="subtitle">The Solution</p>
+    <h1>Simulation Delivers Accurate Insights</h1>
+    <h2>In Minutes, Not Months</h2>
+    
+    <table style="margin-top: 40px;">
+        <tr>
+            <th style="width: 30%;">Dimension</th>
+            <th style="width: 35%;">Traditional Survey</th>
+            <th style="width: 35%;">CrowdWave Simulation</th>
+        </tr>
+        <tr>
+            <td><strong>Time</strong></td>
+            <td>4-6 weeks</td>
+            <td style="color: var(--green); font-weight: 600;">Minutes</td>
+        </tr>
+        <tr>
+            <td><strong>Cost</strong></td>
+            <td>$25,000+</td>
+            <td style="color: var(--green); font-weight: 600;">Near-zero</td>
+        </tr>
+        <tr>
+            <td><strong>Iterations</strong></td>
+            <td>1-2 maximum</td>
+            <td style="color: var(--green); font-weight: 600;">Unlimited</td>
+        </tr>
+    </table>
+    
+    <div class="highlight-box">
+        <strong>The insight:</strong> Test 10x more ideas. Kill bad ones instantly. Double down on winners.
+    </div>
+    
+    <div class="footer">
+        <span>Confidential | February 2026</span>
+        <span>3</span>
+    </div>
+</div>
+
+<!-- SLIDE 4: THE PROOF -->
+<div class="slide">
+    <p class="subtitle">Validation Results</p>
+    <h1>We Predicted Real Consumer Behavior</h1>
+    <h2>Within 3 Points — Across 9 Domains</h2>
+    
+    <div class="stat-row">
+        <div class="stat-box">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">Directional Accuracy</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">3 pts</div>
+            <div class="stat-label">Average Error</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">9</div>
+            <div class="stat-label">Domains Validated</div>
+        </div>
+    </div>
+    
+    <p style="margin-top: 30px; font-size: 16px; color: var(--gray-600);">
+        Tested blind predictions against Pew Research, Gallup, AARP, and YouGov data
+    </p>
+    
+    <div class="highlight-box">
+        <strong>The insight:</strong> Accurate enough to make $1M decisions with confidence.
+    </div>
+    
+    <div class="footer">
+        <span>Confidential | February 2026</span>
+        <span>4</span>
+    </div>
+</div>
+
+<!-- SLIDE 5: WHERE IT WORKS -->
+<div class="slide">
+    <p class="subtitle">Application Zones</p>
+    <h1>Trust, Attitudes, and Preference Ranking</h1>
+    <h2>Perform at 95%+ Accuracy</h2>
+    
+    <div class="two-col">
+        <div>
+            <div class="col-header" style="color: var(--green);">✓ Use with Confidence</div>
+            <ul>
+                <li>Consumer trust and sentiment <span style="color: var(--gray-600);">(2-3 pt error)</span></li>
+                <li>Technology adoption by age <span style="color: var(--gray-600);">(3-4 pt error)</span></li>
+                <li>Concept ranking and messaging <span style="color: var(--gray-600);">(80% match)</span></li>
+                <li>National concerns and priorities</li>
+            </ul>
+        </div>
+        <div>
+            <div class="col-header" style="color: var(--yellow);">⚠ Use with Caution</div>
+            <ul>
+                <li>Pricing decisions <span style="color: var(--gray-600);">(validate with real data)</span></li>
+                <li>Purchase conversion predictions <span style="color: var(--gray-600);">(10+ pt error)</span></li>
+                <li>Highly polarized political topics</li>
+                <li>Novel behaviors without priors</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="highlight-box">
+        <strong>The insight:</strong> Match the tool to the question. High accuracy exists — use it there.
+    </div>
+    
+    <div class="footer">
+        <span>Confidential | February 2026</span>
+        <span>5</span>
+    </div>
+</div>
+
+<!-- SLIDE 6: THE BREAKTHROUGH -->
+<div class="slide">
+    <p class="subtitle">Technical Innovation</p>
+    <h1>We Found 5 Predictable Biases</h1>
+    <h2>And Corrected Them</h2>
+    
+    <table style="margin-top: 30px;">
+        <tr>
+            <th>Bias</th>
+            <th>What Happens</th>
+            <th>Our Correction</th>
+        </tr>
+        <tr>
+            <td><strong>Optimism</strong></td>
+            <td>AI over-predicts positive outcomes</td>
+            <td>Subtract 4 points</td>
+        </tr>
+        <tr>
+            <td><strong>Senior Tech Gap</strong></td>
+            <td>AI underestimates 60+ digital adoption</td>
+            <td>Increase by 40%</td>
+        </tr>
+        <tr>
+            <td><strong>Status Quo</strong></td>
+            <td>AI underestimates consumer inertia</td>
+            <td>Add 15 points to "keep"</td>
+        </tr>
+        <tr>
+            <td><strong>Moderation</strong></td>
+            <td>AI clusters around neutral responses</td>
+            <td>Force realistic distribution</td>
+        </tr>
+        <tr>
+            <td><strong>Articulation</strong></td>
+            <td>Open-ends too polished</td>
+            <td>Inject realistic quality mix</td>
+        </tr>
+    </table>
+    
+    <div class="highlight-box">
+        <strong>The insight:</strong> Raw AI output is biased but predictable. Calibration makes it reliable.
+    </div>
+    
+    <div class="footer">
+        <span>Confidential | February 2026</span>
+        <span>6</span>
+    </div>
+</div>
+
+<!-- SLIDE 7: THE TRAP -->
+<div class="slide">
+    <p class="subtitle">Critical Warning</p>
+    <h1>Political Topics Require Segmentation</h1>
+    <h2>Or You'll Be Off by 50 Points</h2>
+    
+    <table style="margin-top: 30px;">
+        <tr>
+            <th>Issue</th>
+            <th>Republican</th>
+            <th>Democrat</th>
+            <th>Gap</th>
+        </tr>
+        <tr>
+            <td>Immigration concern</td>
+            <td>73%</td>
+            <td>23%</td>
+            <td class="status-red" style="font-weight: 700;">50 pts</td>
+        </tr>
+        <tr>
+            <td>Climate concern</td>
+            <td>15%</td>
+            <td>67%</td>
+            <td class="status-red" style="font-weight: 700;">52 pts</td>
+        </tr>
+        <tr>
+            <td>Gun violence concern</td>
+            <td>25%</td>
+            <td>69%</td>
+            <td class="status-red" style="font-weight: 700;">44 pts</td>
+        </tr>
+    </table>
+    
+    <div class="action-box" style="margin-top: 40px;">
+        <h3>⚠️ Rule</h3>
+        <p style="font-size: 18px;">Never report a single number on polarized topics. Average = wrong. Segment = accurate.</p>
+    </div>
+    
+    <div class="footer">
+        <span>Confidential | February 2026</span>
+        <span>7</span>
+    </div>
+</div>
+
+<!-- SLIDE 8: DECISION FRAMEWORK -->
+<div class="slide">
+    <p class="subtitle">Decision Framework</p>
+    <h1>Match Simulation Confidence</h1>
+    <h2>To Decision Stakes</h2>
+    
+    <div class="matrix">
+        <div class="matrix-cell"></div>
+        <div class="matrix-cell matrix-header">Low Stakes</div>
+        <div class="matrix-cell matrix-header">High Stakes</div>
+        
+        <div class="matrix-cell matrix-row-header">HIGH<br>CONFIDENCE</div>
+        <div class="matrix-cell matrix-green">
+            <strong style="color: var(--green);">✓ Use Freely</strong><br><br>
+            • Concept ranking<br>
+            • Message testing<br>
+            • Audience sizing
+        </div>
+        <div class="matrix-cell matrix-green">
+            <strong style="color: var(--green);">✓ Use + Validate</strong><br><br>
+            • Strategic positioning<br>
+            • Major campaigns<br>
+            • Board presentations
+        </div>
+        
+        <div class="matrix-cell matrix-row-header">LOW<br>CONFIDENCE</div>
+        <div class="matrix-cell matrix-yellow">
+            <strong style="color: var(--yellow);">⚠ Directional Only</strong><br><br>
+            • Early hypotheses<br>
+            • Exploration<br>
+            • Quick filters
+        </div>
+        <div class="matrix-cell matrix-red">
+            <strong style="color: var(--red);">✗ Don't Use Alone</strong><br><br>
+            • Pricing decisions<br>
+            • Conversion prediction<br>
+            • Legal/regulatory
+        </div>
+    </div>
+    
+    <div class="highlight-box">
+        <strong>The insight:</strong> Simulation accelerates decisions; it doesn't replace judgment.
+    </div>
+    
+    <div class="footer">
+        <span>Confidential | February 2026</span>
+        <span>8</span>
+    </div>
+</div>
+
+<!-- SLIDE 9: BENCHMARKS -->
+<div class="slide">
+    <p class="subtitle">Reference Library</p>
+    <h1>Instant Benchmark Comparisons</h1>
+    <h2>Know Immediately If Your Numbers Are Good, Bad, or Average</h2>
+    
+    <div class="two-col" style="margin-top: 30px;">
+        <div>
+            <div class="col-header">Consumer Metrics</div>
+            <table style="font-size: 15px;">
+                <tr><td>NPS (SaaS)</td><td style="font-weight: 600;">+35 to +45</td></tr>
+                <tr><td>NPS (Retail)</td><td style="font-weight: 600;">+25 to +35</td></tr>
+                <tr><td>Brand switch for price</td><td style="font-weight: 600;">40-45%</td></tr>
+                <tr><td>WTP premium</td><td style="font-weight: 600;">50-55%</td></tr>
+            </table>
+        </div>
+        <div>
+            <div class="col-header">Attitude Metrics</div>
+            <table style="font-size: 15px;">
+                <tr><td>Trust in scientists</td><td style="font-weight: 600;">75-80%</td></tr>
+                <tr><td>Employee engagement</td><td style="font-weight: 600;">30-35%</td></tr>
+                <tr><td>Tech adoption (60+)</td><td style="font-weight: 600;">85-90%</td></tr>
+                <tr><td>AI concern</td><td style="font-weight: 600;">48-53%</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class="highlight-box" style="margin-top: 40px;">
+        <strong>The insight:</strong> Context turns numbers into decisions. We provide the context.
+    </div>
+    
+    <div class="footer">
+        <span>Confidential | February 2026</span>
+        <span>9</span>
+    </div>
+</div>
+
+<!-- SLIDE 10: IMPACT -->
+<div class="slide">
+    <p class="subtitle">Business Impact</p>
+    <h1>Simulation Transforms</h1>
+    <h2>Research Economics</h2>
+    
+    <table class="impact-table" style="margin-top: 40px; font-size: 18px;">
+        <tr>
+            <th>Metric</th>
+            <th>Before</th>
+            <th>After</th>
+            <th>Change</th>
+        </tr>
+        <tr>
+            <td>Research cycle</td>
+            <td>4-6 weeks</td>
+            <td style="color: var(--green); font-weight: 600;">1-2 weeks</td>
+            <td style="color: var(--green); font-weight: 600;">3x faster</td>
+        </tr>
+        <tr>
+            <td>Cost per concept</td>
+            <td>$25,000</td>
+            <td style="color: var(--green); font-weight: 600;">~$0</td>
+            <td style="color: var(--green); font-weight: 600;">99% reduction</td>
+        </tr>
+        <tr>
+            <td>Concepts per quarter</td>
+            <td>2-3</td>
+            <td style="color: var(--green); font-weight: 600;">20+</td>
+            <td style="color: var(--green); font-weight: 600;">10x more</td>
+        </tr>
+        <tr>
+            <td>Time to insight</td>
+            <td>Days</td>
+            <td style="color: var(--green); font-weight: 600;">Minutes</td>
+            <td style="color: var(--green); font-weight: 600;">100x faster</td>
+        </tr>
+    </table>
+    
+    <div class="highlight-box" style="margin-top: 40px;">
+        <strong>The insight:</strong> 10x more learning at 1/10th the cost. Compounding advantage.
+    </div>
+    
+    <div class="footer">
+        <span>Confidential | February 2026</span>
+        <span>10</span>
+    </div>
+</div>
+
+<!-- SLIDE 11: ROADMAP -->
+<div class="slide">
+    <p class="subtitle">Forward View</p>
+    <h1>Accuracy Improves Every Quarter</h1>
+    <h2>As We Validate More Domains</h2>
+    
+    <div class="two-col" style="margin-top: 40px;">
+        <div>
+            <div style="background: var(--green); color: white; padding: 8px 16px; border-radius: 4px; display: inline-block; font-size: 13px; font-weight: 600; margin-bottom: 20px;">NOW — Q1 2026</div>
+            <ul>
+                <li>9 domains production-ready</li>
+                <li>5 bias corrections deployed</li>
+                <li>95%+ directional accuracy</li>
+            </ul>
+        </div>
+        <div>
+            <div style="background: var(--navy); color: white; padding: 8px 16px; border-radius: 4px; display: inline-block; font-size: 13px; font-weight: 600; margin-bottom: 20px;">NEXT — Q2-Q3 2026</div>
+            <ul>
+                <li>B2B decision-maker attitudes</li>
+                <li>Healthcare patient sentiment</li>
+                <li>Price sensitivity calibration</li>
+                <li>International markets</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="highlight-box" style="margin-top: 50px;">
+        <strong>The insight:</strong> Every real survey we run makes the system smarter. Accuracy compounds.
+    </div>
+    
+    <div class="footer">
+        <span>Confidential | February 2026</span>
+        <span>11</span>
+    </div>
+</div>
+
+<!-- SLIDE 12: THE ASK -->
+<div class="slide">
+    <p class="subtitle">Recommendation</p>
+    <h1>Deploy Simulation Now</h1>
+    <h2>Capture the Speed Advantage</h2>
+    
+    <div class="action-box">
+        <h3>Three Immediate Actions</h3>
+        <ul style="margin: 0;">
+            <li style="color: white;"><strong>Integrate into every research project</strong> — Simulate first, then validate</li>
+            <li style="color: white;"><strong>Set validation thresholds</strong> — Under $500K: simulation. Over $1M: validate top options</li>
+            <li style="color: white;"><strong>Track accuracy quarterly</strong> — Log predictions vs. outcomes. Calibration improves automatically</li>
+        </ul>
+    </div>
+    
+    <div style="text-align: center; margin-top: 50px; padding: 40px; background: var(--gray-100); border-radius: 8px;">
+        <p style="font-size: 24px; font-weight: 600; color: var(--navy);">
+            The question isn't whether to use simulation —<br>
+            it's how fast you can start.
+        </p>
+    </div>
+    
+    <div class="footer">
+        <span>Confidential | February 2026</span>
+        <span>12</span>
+    </div>
+</div>
+
+</body>
+</html>

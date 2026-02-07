@@ -1,0 +1,219 @@
+CROWDWAVE SURVEY SIMULATION ENGINE v2.0
+
+═══════════════════════════════════════════════════════════════
+PHASE 0: CAPABILITY CHECK
+═══════════════════════════════════════════════════════════════
+If you cannot perform live web search, output exactly: CAPABILITY_ERROR
+If any required config field is empty/missing, output exactly: CONFIG_ERROR
+
+═══════════════════════════════════════════════════════════════
+PHASE 1: PROJECT CONFIG
+═══════════════════════════════════════════════════════════════
+as_of_date: {{AS_OF_DATE}}
+time_window: {{TIME_WINDOW}}
+geography: {{GEO}}
+sample_size: N={{N}}
+
+AUDIENCE DEFINITION:
+{{AUDIENCE}}
+
+SCREENERS (respondents MUST match ALL):
+{{SCREENERS}}
+
+TOPIC/DOMAIN:
+{{TOPIC}}
+
+STIMULI (treat as exposures — do not invent beyond these):
+{{STIMULI_LIST}}
+
+═══════════════════════════════════════════════════════════════
+PHASE 2: ANCHORING PRIORS (critical for accuracy)
+═══════════════════════════════════════════════════════════════
+Before simulating, you MUST establish priors. For each major construct
+in this survey, search for existing benchmark data.
+
+PRIOR SEARCH PROTOCOL:
+1. Search: "[construct] survey [audience segment] [geo] [recent year]"
+2. Search: "[construct] polling data [demographic]"
+3. Search: "[topic] consumer research [year range]"
+
+For each construct, document:
+- Source name + date
+- Sample size + relevance to our audience (1-5 score)
+- Key distribution or finding
+- How much weight to give it (high/medium/low)
+
+OUTPUT YOUR PRIORS TABLE:
+| Construct | Source | Date | Relevance | Finding | Weight |
+|-----------|--------|------|-----------|---------|--------|
+
+If no credible prior exists for a construct, note: "No anchor — high uncertainty"
+
+═══════════════════════════════════════════════════════════════
+PHASE 3: BEHAVIORAL REALISM MODEL
+═══════════════════════════════════════════════════════════════
+You are simulating {{N}} respondents from this population:
+{{AUDIENCE}}
+
+RESPONSE BEHAVIOR RULES:
+- Satisficing: ~15-25% of respondents speed through, select midpoints or first options
+- Acquiescence bias: slight skew toward agreement on agree/disagree scales
+- Social desirability: inflate "good" behaviors by 5-15% on self-report
+- Attention check failures: assume ~5-8% would fail embedded attention checks
+- Scale bunching: most respondents cluster in 2-3 adjacent scale points, not uniform
+- Primacy/recency: slight bias toward first and last options in long lists
+
+OPEN-END BEHAVIOR:
+- ~20% skip or write "N/A" / "nothing" / single word
+- ~50% write 1-2 sentences, functional
+- ~25% write substantive 2-4 sentence responses
+- ~5% write long, detailed responses
+- Include realistic typos, informal language, incomplete thoughts
+- Vary vocabulary and specificity — not everyone is articulate
+
+═══════════════════════════════════════════════════════════════
+PHASE 4: SURVEY INSTRUMENT (verbatim — do not modify)
+═══════════════════════════════════════════════════════════════
+{{SURVEY_QUESTIONS_VERBATIM}}
+
+SCALE QUESTIONS (compute mean/stdev): {{SCALE_QUESTION_IDS}}
+OPEN-END QUESTIONS: {{OPEN_END_QUESTION_IDS}}
+
+═══════════════════════════════════════════════════════════════
+PHASE 5: ENSEMBLE SIMULATION (3 independent runs)
+═══════════════════════════════════════════════════════════════
+You MUST generate 3 INDEPENDENT distribution estimates, then reconcile.
+
+RUN 1: Conservative estimate
+- Anchor heavily on priors from Phase 2
+- Assume modest stimulus effects
+- When uncertain, compress toward center of scale
+
+RUN 2: Signal-forward estimate  
+- Assume stimuli have meaningful impact
+- Allow larger shifts from baseline attitudes
+- Weight recent/relevant sources more heavily
+
+RUN 3: Heterogeneity estimate
+- Model higher variance within audience
+- Assume audience segments respond differently
+- Produce wider distribution spreads
+
+FOR EACH RUN, OUTPUT:
+| Question | Option | Run1_pct | Run2_pct | Run3_pct |
+
+RECONCILIATION RULE:
+- Final_pct = weighted average: 40% Run1 + 35% Run2 + 25% Run3
+- If any run differs by >15 points from others on same option, FLAG for review
+- Round to 1 decimal, adjust largest option to force sum = 100.0
+
+═══════════════════════════════════════════════════════════════
+PHASE 6: VERIFICATION + ADJUSTMENT
+═══════════════════════════════════════════════════════════════
+After ensemble averaging, verify against live data.
+
+VERIFICATION SEARCHES (minimum 3 per key construct):
+{{VERIFY_TOPICS}}
+
+SOURCE QUALITY SCORING:
+5 = Academic study, major pollster, N>1000, exact audience match
+4 = Industry research, N>500, close audience match  
+3 = Credible journalism citing research, partial audience match
+2 = Blog/commentary citing data, loose audience match
+1 = Anecdotal, opinion, no clear methodology
+
+ADJUSTMENT RULES:
+- Only adjust if 2+ quality-4+ sources contradict your estimate by >10 points
+- Maximum single adjustment: ±12 points per option
+- Document every adjustment with source + rationale
+
+OUTPUT ADJUSTMENT LOG:
+| Question | Option | Pre_pct | Post_pct | Source | Rationale |
+
+═══════════════════════════════════════════════════════════════
+PHASE 7: CONFIDENCE CALIBRATION  
+═══════════════════════════════════════════════════════════════
+For each question, compute confidence as:
+
+confidence = base_score × prior_weight × agreement_factor
+
+Where:
+- base_score: 0.5 (no priors) / 0.7 (weak priors) / 0.85 (strong priors)
+- prior_weight: average relevance score of sources (1-5 → 0.2-1.0)
+- agreement_factor: 1.0 if runs agreed within 10pts, 0.8 if 10-15pts, 0.6 if >15pts
+
+Cap confidence at 0.90 — never claim near-certainty on simulated data.
+
+═══════════════════════════════════════════════════════════════
+PHASE 8: OPEN-END GENERATION
+═══════════════════════════════════════════════════════════════
+For each open-end question, generate {{OPEN_END_N_THEMES}} response clusters.
+
+REALISM REQUIREMENTS:
+- Include 1-2 "low effort" responses (short, vague, or off-topic)
+- Vary sentence structure and vocabulary
+- Include at least one response with a typo or grammatical quirk
+- Responses must be plausible given screeners + stimuli exposure
+- Do NOT make responses sound like marketing copy or AI-generated text
+
+Theme distribution should reflect realistic heterogeneity:
+- Top theme: typically 20-35%
+- 2nd-3rd themes: typically 15-25% each
+- Long tail themes: 5-15% each
+- Avoid suspiciously even distributions (e.g., all themes at 20%)
+
+═══════════════════════════════════════════════════════════════
+PHASE 9: QA CHECKLIST (must pass ALL)
+═══════════════════════════════════════════════════════════════
+□ All questions from survey instrument have output rows
+□ Every closed-end question sums to exactly 100.0%
+□ Every open-end question sums to exactly 100.0%
+□ question_text matches verbatim
+□ option_text matches verbatim for closed-ends
+□ option_order is sequential (1, 2, 3...)
+□ mean/stdev computed ONLY for scale questions
+□ mean/stdev repeated on all rows for same question
+□ confidence is between 0.00 and 0.90
+□ Ensemble runs completed (3 runs)
+□ Verification searches performed
+□ Adjustment log populated (even if no adjustments)
+
+If ANY check fails: output FORMAT_ERROR
+
+═══════════════════════════════════════════════════════════════
+PHASE 10: FINAL OUTPUT
+═══════════════════════════════════════════════════════════════
+Output exactly TWO blocks:
+
+BLOCK 1: METHODOLOGY TRACE (for debugging)
+{
+  "priors_found": [list of prior sources used],
+  "ensemble_agreement": "high|medium|low",
+  "adjustments_made": count,
+  "lowest_confidence_question": "Q#",
+  "flags": [any flagged discrepancies]
+}
+
+BLOCK 2: FINAL CSV
+{{CSV_HEADER_EXACT}}
+[data rows]
+
+═══════════════════════════════════════════════════════════════
+EXECUTE NOW
+═══════════════════════════════════════════════════════════════
+Run Phases 2-9 internally, then output Phase 10 only.
+
+
+═══════════════════════════════════════════════════════════════
+KEY IMPROVEMENTS SUMMARY
+═══════════════════════════════════════════════════════════════
+
+| Issue                              | Fix                                                        |
+|------------------------------------|------------------------------------------------------------|
+| No anchoring                       | Phase 2 forces prior search before simulation              |
+| Single-shot variance               | Phase 5 ensemble (3 runs + weighted average)               |
+| Hidden reasoning                   | Phase 10 outputs methodology trace for debugging           |
+| Bad confidence                     | Phase 7 gives explicit calibration formula, caps at 0.90   |
+| Unrealistic open-ends              | Phase 8 mandates typos, low-effort responses, uneven dist  |
+| Over-anchoring on random sources   | Phase 6 source quality scoring (1-5)                       |
+| Generic responses                  | Phase 3 behavioral realism model with satisficing, etc.    |

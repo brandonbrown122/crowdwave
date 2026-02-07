@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420">
+  <!-- Background -->
+  <rect width="800" height="420" fill="#f7fafc"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#1a365d">Traditional Research vs. Simulation</text>
+  
+  <!-- Headers -->
+  <text x="250" y="85" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#718096">TRADITIONAL</text>
+  <text x="550" y="85" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#1a365d">SIMULATION</text>
+  
+  <!-- Divider -->
+  <line x1="400" y1="100" x2="400" y2="390" stroke="#e2e8f0" stroke-width="2"/>
+  
+  <!-- Arrow -->
+  <polygon points="390,250 410,250 400,245" fill="#1a365d"/>
+  <polygon points="390,250 410,250 400,255" fill="#1a365d"/>
+  
+  <!-- COST Row -->
+  <rect x="60" y="110" width="280" height="60" rx="8" fill="#fed7d7"/>
+  <text x="200" y="135" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">💰 Cost</text>
+  <text x="200" y="155" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#e53e3e">$15,000 - $50,000+</text>
+  
+  <rect x="460" y="110" width="280" height="60" rx="8" fill="#c6f6d5"/>
+  <text x="600" y="135" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">💰 Cost</text>
+  <text x="600" y="155" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#38a169">~$0.50/response</text>
+  
+  <!-- Savings badge -->
+  <rect x="390" y="125" width="20" height="30" fill="#38a169" rx="4"/>
+  <text x="400" y="147" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="white">→</text>
+  
+  <!-- TIME Row -->
+  <rect x="60" y="185" width="280" height="60" rx="8" fill="#fed7d7"/>
+  <text x="200" y="210" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">⏱️ Time to Results</text>
+  <text x="200" y="230" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#e53e3e">2-4 weeks</text>
+  
+  <rect x="460" y="185" width="280" height="60" rx="8" fill="#c6f6d5"/>
+  <text x="600" y="210" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">⏱️ Time to Results</text>
+  <text x="600" y="230" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#38a169">Minutes</text>
+  
+  <rect x="390" y="200" width="20" height="30" fill="#38a169" rx="4"/>
+  <text x="400" y="222" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="white">→</text>
+  
+  <!-- ITERATIONS Row -->
+  <rect x="60" y="260" width="280" height="60" rx="8" fill="#fed7d7"/>
+  <text x="200" y="285" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">🔄 Iterations</text>
+  <text x="200" y="305" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#e53e3e">1-2 (budget limited)</text>
+  
+  <rect x="460" y="260" width="280" height="60" rx="8" fill="#c6f6d5"/>
+  <text x="600" y="285" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">🔄 Iterations</text>
+  <text x="600" y="305" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#38a169">Unlimited</text>
+  
+  <rect x="390" y="275" width="20" height="30" fill="#38a169" rx="4"/>
+  <text x="400" y="297" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="white">→</text>
+  
+  <!-- SAMPLE SIZE Row -->
+  <rect x="60" y="335" width="280" height="60" rx="8" fill="#fefcbf"/>
+  <text x="200" y="360" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">👥 Sample Size</text>
+  <text x="200" y="380" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#d69e2e">n=300-1000</text>
+  
+  <rect x="460" y="335" width="280" height="60" rx="8" fill="#c6f6d5"/>
+  <text x="600" y="360" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1a365d">👥 Sample Size</text>
+  <text x="600" y="380" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#38a169">Any size instantly</text>
+  
+  <rect x="390" y="350" width="20" height="30" fill="#38a169" rx="4"/>
+  <text x="400" y="372" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="white">→</text>
+</svg>
