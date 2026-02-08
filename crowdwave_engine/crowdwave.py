@@ -41,6 +41,8 @@ from .calibration_current import (
     STREAMING_BENCHMARKS,
     CONSUMER_CONFIDENCE_FEB2026,
     VEHICLE_PURCHASE_FEB2026,
+    PARTY_IDENTIFICATION_2025,
+    GENERATIONAL_ATTITUDES,
     get_current_calibration,
 )
 
@@ -191,6 +193,20 @@ class CrowdwaveEngine:
             flags=flags,
         )
     
+    def _detect_generation(self, audience: str) -> Optional[str]:
+        """Detect generation from audience description."""
+        audience_lower = audience.lower()
+        
+        if any(t in audience_lower for t in ["gen z", "genz", "18-24", "18-25", "zoomers"]):
+            return "gen_z"
+        elif any(t in audience_lower for t in ["millennial", "25-40", "25-44", "gen y"]):
+            return "millennial"
+        elif any(t in audience_lower for t in ["gen x", "genx", "40-55", "45-60"]):
+            return "gen_x"
+        elif any(t in audience_lower for t in ["boomer", "55+", "60+", "65+", "senior", "older"]):
+            return "boomer"
+        return None
+    
     def _establish_priors(
         self,
         config: SurveyConfig,
@@ -203,6 +219,16 @@ class CrowdwaveEngine:
         
         # Audience priors
         audience_lower = config.audience.lower()
+        
+        # Detect generation
+        generation = self._detect_generation(config.audience)
+        if generation:
+            priors.append({
+                "type": "generation",
+                "generation": generation,
+                "party_id": PARTY_IDENTIFICATION_2025["by_generation"].get(generation, {}),
+                "relevance": 4,
+            })
         
         # Check for demographic matches
         for demo_key, modifiers in DEMOGRAPHIC_MULTIPLIERS.items():
@@ -354,7 +380,7 @@ class CrowdwaveEngine:
         runs = []
         
         # Get base distribution from benchmarks
-        base = self._get_base_distribution(question, priors, config.topic)
+        base = self._get_base_distribution(question, priors, config.topic, config.audience)
         
         # Run 1: Conservative (anchor on priors, compress toward center)
         conservative = self._apply_conservative_shift(base)
@@ -386,7 +412,8 @@ class CrowdwaveEngine:
         self,
         question: Question,
         priors: List[Dict],
-        topic: str = ""
+        topic: str = "",
+        audience: str = ""
     ) -> Dict[str, float]:
         """Get base distribution from benchmarks or defaults."""
         q_lower = question.text.lower()
@@ -543,6 +570,29 @@ class CrowdwaveEngine:
                     return {opt0: 14.0, opt1: 86.0}
                 elif "no" in opt0_lower:
                     return {opt0: 86.0, opt1: 14.0}
+            
+            # Party identification (Gallup 2025)
+            if any(t in combined_context for t in ["party", "political", "democrat", "republican", "independent"]):
+                if any(t in q_lower for t in ["identify", "affiliation", "party"]):
+                    # Detect generation from audience for calibration
+                    generation = self._detect_generation(audience) if hasattr(self, '_detect_generation') else None
+                    if generation and generation in PARTY_IDENTIFICATION_2025["by_generation"]:
+                        gen_data = PARTY_IDENTIFICATION_2025["by_generation"][generation]
+                        if "democrat" in opt0_lower:
+                            return {opt0: gen_data["democrat"] * 100, opt1: (1 - gen_data["democrat"]) * 100}
+                        elif "republican" in opt0_lower:
+                            return {opt0: gen_data["republican"] * 100, opt1: (1 - gen_data["republican"]) * 100}
+                        elif "independent" in opt0_lower:
+                            return {opt0: gen_data["independent"] * 100, opt1: (1 - gen_data["independent"]) * 100}
+                    else:
+                        # Use overall
+                        overall = PARTY_IDENTIFICATION_2025["overall"]
+                        if "independent" in opt0_lower:
+                            return {opt0: 45.0, opt1: 55.0}  # Record high
+                        elif "democrat" in opt0_lower:
+                            return {opt0: 27.0, opt1: 73.0}
+                        elif "republican" in opt0_lower:
+                            return {opt0: 28.0, opt1: 72.0}
             
             # Remote work preferences (calibrated)
             if any(t in combined_context for t in ["remote", "work from home", "wfh", "hybrid", "office"]):

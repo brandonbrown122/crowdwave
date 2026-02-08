@@ -185,6 +185,46 @@ STREAMING_BENCHMARKS = {
     "source": "Parks Associates, Antenna 2025"
 }
 
+# Political Party Identification (Gallup 2025)
+PARTY_IDENTIFICATION_2025 = {
+    "overall": {
+        "independent": 0.45,  # Record high
+        "democrat": 0.27,
+        "republican": 0.28,
+    },
+    "by_generation": {
+        "gen_z": {"independent": 0.56, "democrat": 0.24, "republican": 0.20},
+        "millennial": {"independent": 0.54, "democrat": 0.26, "republican": 0.20},
+        "gen_x": {"independent": 0.44, "democrat": 0.28, "republican": 0.28},
+        "boomer": {"independent": 0.38, "democrat": 0.30, "republican": 0.32},
+    },
+    "young_voter_unfavorable": {
+        "democrat": 0.56,
+        "republican": 0.62,
+    },
+    "source": "Gallup Jan 2025, U Chicago Nov 2025"
+}
+
+# Generational Differences in Attitudes
+GENERATIONAL_ATTITUDES = {
+    "socialism_positive_view": {
+        "gen_z_millennial_18_29": 0.51,  # 51% positive on socialism
+        "capitalism_positive": 0.45,      # 45% positive on capitalism (same age)
+    },
+    "purchase_drivers_gen_z": {
+        "quality": 0.43,
+        "brand_reputation": 0.26,
+        "price": 0.20,
+        "influencer": 0.06,
+    },
+    "data_sharing_for_personalization": {
+        "age_25_44": 0.52,  # Highest willingness
+        "age_45_plus": 0.35,
+    },
+    "source": "Gallup 2018, BusinessToday 2026, Capillary 2025"
+}
+
+
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
     Get current calibrations for a topic.
