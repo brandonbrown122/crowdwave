@@ -900,6 +900,14 @@ SECONDHAND_2026 = {
     "source": "Capital One, BoF, NRF 2026"
 }
 
+# Meal Kit Delivery (2025-2026)
+MEAL_KIT_2026 = {
+    "users_millions": 23.3,  # 23.3 million in 2026
+    "penetration_rate": 0.07,  # ~7%
+    "market_billion": 27.35,
+    "source": "Market.us 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

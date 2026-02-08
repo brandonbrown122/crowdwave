@@ -1235,6 +1235,12 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 60.0, opt1: 40.0}
             
+            # Meal kit delivery
+            if any(t in combined_context for t in ["meal kit", "hello fresh", "blue apron"]):
+                if any(t in q_lower for t in ["use", "subscribe", "order"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 7.0, opt1: 93.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
