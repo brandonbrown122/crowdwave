@@ -776,6 +776,14 @@ BOOK_READING_2026 = {
     "source": "YouGov, Dataopedia 2025-2026"
 }
 
+# Outdoor/Camping (2025-2026)
+OUTDOOR_CAMPING_2026 = {
+    "campers_millions": 82.4,  # 82.4 million in 2025
+    "campers_percentage": 0.25,  # ~25% of population
+    "peak_year_millions": 84.8,  # 2023 was peak
+    "source": "The Dyrt 2026 Camping Report"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
