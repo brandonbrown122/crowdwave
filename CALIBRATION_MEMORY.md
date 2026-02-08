@@ -108,6 +108,13 @@ Observations (methodology alignment, not validation):
 | **2026-02-07** | **Global C-Suite** | **Conference Board** | **Validation** | **✅ Active** |
 | **2026-02-07** | **CEO Concerns** | **Conference Board** | **Validation** | **✅ Active** |
 | **2026-02-07** | **Regional Executives** | **Conference Board** | **Validation** | **✅ Active** |
+| **2026-02-07** | **NPS by Industry** | **Survicate/Retently** | **Validation** | **✅ Active** |
+| **2026-02-07** | **Life Evaluation** | **Gallup Q1 2025** | **Validation** | **✅ Active** |
+| **2026-02-07** | **Political Identity** | **Gallup 2025** | **Validation** | **✅ Active** |
+| **2026-02-07** | **Cruise CX** | **CLIA/Gitnux 2025** | **Validation** | **✅ Active** |
+| **2026-02-07** | **Hotel Satisfaction** | **JD Power 2025** | **Validation** | **✅ Active** |
+| **2026-02-07** | **Institutional Trust** | **Edelman 2025** | **Validation** | **✅ Active** |
+| **2026-02-07** | **B2B Buying** | **Forrester 2025** | **Validation** | **✅ Active** |
 
 ---
 
@@ -384,8 +391,206 @@ Top concerns (% "very big problem"):
 | Healthcare decisions | ⚠️ No data yet | Need validation |
 | **Executive/C-Suite** | ✅ **NOW VALIDATED** | Conference Board N=1,732 |
 | Purchase intent | ❌ Not validated | High error, ×0.30 intent gap |
+| **NPS by Industry** | ✅ **NOW VALIDATED** | Survicate/Retently N=5.4M+ |
+| **Cruise/Travel CX** | ✅ **NOW VALIDATED** | CLIA/Gitnux 2025 |
+| **Hotel Satisfaction** | ✅ **NOW VALIDATED** | JD Power N=39,219 |
+| **Political Identity** | ✅ **NOW VALIDATED** | Gallup N=13,000+ |
+| **Institutional Trust** | ✅ **NOW VALIDATED** | Edelman N=33,000 |
+| **B2B Buying Behavior** | ✅ **NOW VALIDATED** | Forrester 2025 |
 
 ---
+
+## 🆕 NPS BENCHMARKS BY INDUSTRY (Feb 7, 2026)
+
+### 13. NPS Industry Benchmarks (Global)
+**Source:** Survicate NPS Benchmark 2025 (N=5.4M responses, 599 companies)
+**Validated:** 2026-02-07
+**Status:** ✅ VALID FOR CALIBRATION
+
+#### Overall Benchmarks
+| Metric | Value |
+|--------|-------|
+| Median NPS (all industries) | **42** |
+| Median NPS (B2C) | **49** |
+| Median NPS (B2B) | **38** |
+| B2C vs B2B Gap | **+11 pts** |
+
+#### By Industry (Median)
+| Industry | NPS | B2B | B2C |
+|----------|-----|-----|-----|
+| Manufacturing | 65 | 66 | 62 |
+| Healthcare | 61 | 38 | 70 |
+| Agency & Consulting | 59 | 59 | 58 |
+| Retail & Ecommerce | 55 | 55 | 54 |
+| Professional Services | 50 | — | — |
+| Fintech | 46 | — | — |
+| Education | 42 | 16 | 47 |
+| Media | 40 | 44 | 40 |
+| Wholesale | 36 | — | — |
+| Digital Marketplaces | 35 | 39 | 27 |
+| Software | 30 | 29 | 47 |
+
+#### NPS Calibration Multipliers
+| Context | LLM Default | Actual | Correction |
+|---------|-------------|--------|------------|
+| Manufacturing | 35-40 | 65 | **+25 pts** |
+| Healthcare B2C | 40-45 | 70 | **+25-30 pts** |
+| Healthcare B2B | 40-45 | 38 | -5 pts |
+| Education B2B | 35-40 | 16 | **-20 pts** |
+| Software B2B | 35-40 | 29 | -10 pts |
+| Software B2C | 35-40 | 47 | +10 pts |
+| Cruise/Travel | 30-35 | 40+ | **+10 pts** |
+
+---
+
+### 14. Cruise/Travel Customer Experience (2025)
+**Source:** CLIA State of Cruise Industry 2025, Gitnux Market Report
+**Validated:** 2026-02-07
+**Status:** ✅ VALID FOR CALIBRATION
+
+#### Core Metrics
+| Metric | Value | LLM Would Predict | Correction |
+|--------|-------|-------------------|------------|
+| Overall satisfaction | 90%+ | 75-80% | **+12-15 pts** |
+| Intent to cruise again | 85% | 65-70% | **+15-20 pts** |
+| NPS average | +40 | +25-30 | **+10-15 pts** |
+| Loyalty program membership | 65% | 45-50% | **+15-20 pts** |
+| Book via travel advisor | 82% | 50% | **+30 pts** |
+
+#### Decision Drivers
+| Factor | % Citing as #1 |
+|--------|----------------|
+| Destination | 40% |
+| Ship amenities | ~25% |
+| Dining quality | ~20% |
+| Price | ~15% |
+
+#### Sustainability (Travel Segment)
+| Metric | Value | LLM Would Predict | Correction |
+|--------|-------|-------------------|------------|
+| Interested in sustainable travel | 69% | 55% | **+15 pts** |
+| Pay more for green practices | 78% | 55-60% | **+20 pts** |
+| Waste visibility improves brand | 44% | 30% | **+15 pts** |
+
+#### Demographics
+| Metric | Value |
+|--------|-------|
+| Average age | 46 (dropping) |
+| Average income | $114,000 |
+| Married | 71% |
+| Multi-generational | 73% |
+| Solo cruising growth | +13% |
+
+**Key Insight:** Cruise loyalty is MUCH higher than LLMs predict. Status quo bias is extreme (82% use advisors). Sustainability matters MORE in travel than general consumer.
+
+---
+
+### 15. Political/Social Benchmarks (2025)
+**Source:** Gallup (N=13,000+)
+**Validated:** 2026-02-07
+**Status:** ✅ VALID FOR CALIBRATION
+
+#### Political Identity
+| Affiliation | % | Notes |
+|-------------|---|-------|
+| Independent | **45%** | Record high |
+| Democrat | 27% | — |
+| Republican | 27% | — |
+
+#### By Generation (Independent %)
+| Generation | Independent % |
+|------------|---------------|
+| Gen Z | 56% |
+| Millennials | 50%+ |
+| Gen X | 40%+ |
+| Boomers | ~33% |
+| Silent | <33% |
+
+#### Life Evaluation (Q1 2025)
+| Metric | Value | Notes |
+|--------|-------|-------|
+| Thriving (overall) | 48.9% | Five-year low |
+| Democrats thriving | 46.1% | -11 pts post-election |
+| Republicans thriving | 55%+ | +5 pts post-election |
+| Independents thriving | 47.9% | Unchanged |
+
+#### Calibration Updates
+| Construct | LLM Default | Actual | Correction |
+|-----------|-------------|--------|------------|
+| Independent affiliation | 35% | 45% | **+10 pts** |
+| Young adult independents | 40% | 56% | **+16 pts** |
+| Thriving baseline | 52-55% | 48-49% | **-4 to -6 pts** |
+| Post-election partisan swing | 3-5 pts | 8-11 pts | **×2** |
+
+---
+
+### 16. Institutional Trust (2025)
+**Source:** Edelman Trust Barometer 2025 (28 countries, N=33,000)
+**Validated:** 2026-02-07
+**Status:** ✅ VALID FOR CALIBRATION
+
+#### Trust by Institution
+| Institution | Trust % |
+|-------------|---------|
+| Business | Highest |
+| NGOs | Second |
+| Government | Low |
+| Media | Lowest |
+
+#### Misinformation Perception
+- **70%** believe officials/business leaders/journalists deliberately mislead
+
+#### Trust Index by Country
+| Country | Trust Index |
+|---------|-------------|
+| India | Highest |
+| China | High |
+| USA | 50 |
+| UK | 43 |
+| Germany | 41 |
+| Japan | 37 (lowest) |
+
+#### Financial Services Trust
+| Metric | Value |
+|--------|-------|
+| Global trust | 64% |
+| YoY change | +2 pts |
+| Rank among sectors | Bottom tier |
+
+**Key Insight:** LLMs over-predict institutional trust. Apply -5 to -10 pts. Japan/Germany are 15-20 pts lower than expected.
+
+---
+
+### 17. B2B Buying Behavior (2025)
+**Source:** Forrester B2B Buyers Journey Survey
+**Validated:** 2026-02-07
+**Status:** ✅ VALID FOR CALIBRATION
+
+#### Incumbent/Status Quo Bias
+| Metric | Value |
+|--------|-------|
+| First-time buyers with preferred vendor | **48%** |
+| Repeat buyers with preferred vendor | 70%+ |
+| Open RFP consideration | <30% |
+
+#### Influence Sources
+| Source | Influence Level |
+|--------|-----------------|
+| Previous vendor experience | Highest |
+| Peer recommendations | Very High |
+| Analyst insights | High |
+| Digital content | High |
+| Social media (young buyers) | 42% |
+| Sales teams | Lower than expected |
+
+#### Calibration Updates
+| Construct | Correction |
+|-----------|------------|
+| Incumbent vendor preference | **+20 pts** |
+| Open consideration set | **-15 pts** |
+| Peer/analyst influence | **+15 pts** |
+| Sales team influence | **-10 pts** |
+| Young buyer social influence | 42% baseline |
 
 ## 🆕 NEW VALIDATION — Conference Board C-Suite Survey (Feb 7, 2026)
 

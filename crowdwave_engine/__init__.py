@@ -1,6 +1,17 @@
 """
 CrowdWave Simulation Engine
 Production-ready survey simulation with 79% error reduction vs naive LLM.
+
+Quick Start:
+    from crowdwave_engine import CrowdWaveEngine
+    
+    engine = CrowdWaveEngine()
+    results = engine.simulate(config, questions)
+    print(engine.to_json(results))
+
+API Server:
+    from crowdwave_engine.api import run_server
+    run_server(port=8000)
 """
 
 from .crowdwave import (

@@ -46,8 +46,8 @@ SENIOR_DIGITAL_TRIGGERS = [
 
 HEALTHCARE_CONCERN_TRIGGERS = [
     "health", "medical", "treatment", "medication", "side effect",
-    "diagnosis", "worry", "concern", "anxiety", "fear", "risk",
-    "doctor", "hospital", "insurance", "cancer", "disease"
+    "diagnosis", "worry", "worried", "concern", "anxiety", "fear", "risk",
+    "doctor", "hospital", "insurance", "cancer", "disease", "drug", "prescription"
 ]
 
 POLITICAL_REGULATORY_TRIGGERS = [
@@ -102,7 +102,7 @@ def detect_biases(question_text: str, audience: str, question_type: str) -> List
     
     # Check Healthcare Concern Dampening
     health_trigger = any(t in text for t in ["health", "medical", "treatment", "medication"])
-    concern_trigger = any(t in text for t in ["concern", "worry", "anxiety", "fear", "risk"])
+    concern_trigger = any(t in text for t in ["concern", "worry", "worried", "anxiety", "fear", "risk"])
     if health_trigger and concern_trigger:
         triggers = [t for t in HEALTHCARE_CONCERN_TRIGGERS if t in text]
         # Higher correction for children's health

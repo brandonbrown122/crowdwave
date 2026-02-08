@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CrowdWave</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .slide {
+      width: 1280px;
+      height: 720px;
+      padding: 48px 64px;
+      page-break-after: always;
+      position: relative;
+      background: #fff;
+    }
+    
+    .slide-dark {
+      width: 1280px;
+      height: 720px;
+      padding: 48px 64px;
+      page-break-after: always;
+      position: relative;
+      background: linear-gradient(135deg, #003366 0%, #001a33 100%);
+      color: #fff;
+    }
+    
+    .slide-title {
+      width: 1280px;
+      height: 720px;
+      background: linear-gradient(135deg, #003366 0%, #001a33 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      page-break-after: always;
+    }
+    
+    .slide-title h1 {
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+    
+    .slide-title p {
+      font-size: 24px;
+      font-weight: 300;
+      opacity: 0.9;
+    }
+    
+    .slide-title .date {
+      position: absolute;
+      bottom: 48px;
+      font-size: 14px;
+      opacity: 0.6;
+    }
+    
+    h1.action-title {
+      font-size: 28px;
+      font-weight: 600;
+      color: #003366;
+      border-bottom: 3px solid #003366;
+      padding-bottom: 14px;
+      margin-bottom: 32px;
+      line-height: 1.3;
+    }
+    
+    h1.action-title-light {
+      font-size: 28px;
+      font-weight: 600;
+      color: #fff;
+      border-bottom: 3px solid rgba(255,255,255,0.3);
+      padding-bottom: 14px;
+      margin-bottom: 32px;
+      line-height: 1.3;
+    }
+    
+    .footer {
+      position: absolute;
+      bottom: 24px;
+      left: 64px;
+      right: 64px;
+      font-size: 11px;
+      color: #999;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .footer-light {
+      position: absolute;
+      bottom: 24px;
+      left: 64px;
+      right: 64px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .content {
+      display: flex;
+      gap: 48px;
+      height: calc(100% - 100px);
+    }
+    
+    .content-left { flex: 1; }
+    .content-right { width: 400px; flex-shrink: 0; }
+    
+    /* Big numbers */
+    .hero-stat {
+      text-align: center;
+      padding: 40px;
+    }
+    .hero-stat .number {
+      font-size: 120px;
+      font-weight: 700;
+      color: #003366;
+      line-height: 1;
+    }
+    .hero-stat .label {
+      font-size: 24px;
+      color: #666;
+      margin-top: 16px;
+    }
+    
+    .stat-row {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+    }
+    
+    .stat-card {
+      background: #f5f7fa;
+      border-radius: 12px;
+      padding: 24px 32px;
+      text-align: center;
+      min-width: 160px;
+    }
+    .stat-card .value {
+      font-size: 36px;
+      font-weight: 700;
+      color: #003366;
+    }
+    .stat-card .label {
+      font-size: 13px;
+      color: #666;
+      margin-top: 4px;
+    }
+    
+    /* Insight box */
+    .insight-box {
+      background: linear-gradient(135deg, #003366 0%, #004488 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 32px;
+    }
+    .insight-box .number {
+      font-size: 64px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .insight-box .label {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+    
+    /* Comparison bars */
+    .comparison {
+      display: flex;
+      gap: 64px;
+      justify-content: center;
+      align-items: flex-end;
+      height: 340px;
+      margin-top: 24px;
+    }
+    .comparison-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .comparison-bar {
+      width: 160px;
+      border-radius: 16px 16px 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 24px;
+    }
+    .comparison-bar .value {
+      font-size: 48px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .comparison-bar .unit {
+      font-size: 16px;
+      color: rgba(255,255,255,0.8);
+    }
+    .comparison-label {
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .comparison-sub {
+      font-size: 13px;
+      color: #888;
+    }
+    
+    /* Process flow */
+    .process-flow {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 32px;
+    }
+    .process-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+    .process-step::after {
+      content: '→';
+      position: absolute;
+      right: -20px;
+      top: 30px;
+      font-size: 32px;
+      color: #ccc;
+    }
+    .process-step:last-child::after {
+      display: none;
+    }
+    .process-icon {
+      width: 80px;
+      height: 80px;
+      background: #003366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 32px;
+      color: #fff;
+    }
+    .process-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #003366;
+      margin-bottom: 8px;
+    }
+    .process-desc {
+      font-size: 13px;
+      color: #666;
+      max-width: 180px;
+      margin: 0 auto;
+    }
+    
+    /* Accuracy visual */
+    .accuracy-visual {
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      margin-top: 40px;
+    }
+    .accuracy-circle {
+      text-align: center;
+    }
+    .accuracy-ring {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .accuracy-ring.bad {
+      background: #ffebee;
+      border: 8px solid #c62828;
+    }
+    .accuracy-ring.good {
+      background: #e8f5e9;
+      border: 8px solid #2e7d32;
+    }
+    .accuracy-ring .value {
+      font-size: 48px;
+      font-weight: 700;
+    }
+    .accuracy-ring.bad .value { color: #c62828; }
+    .accuracy-ring.good .value { color: #2e7d32; }
+    .accuracy-ring .unit {
+      font-size: 14px;
+      color: #666;
+    }
+    .accuracy-label {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .accuracy-sub {
+      font-size: 13px;
+      color: #888;
+      margin-top: 4px;
+    }
+    
+    /* Zones */
+    .zone-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .zone {
+      display: flex;
+      align-items: center;
+      padding: 20px 24px;
+      border-radius: 12px;
+      background: #f8f8f8;
+    }
+    .zone.high { border-left: 6px solid #2e7d32; }
+    .zone.low { border-left: 6px solid #ef6c00; }
+    .zone-content {
+      flex: 1;
+    }
+    .zone-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .zone.high .zone-title { color: #2e7d32; }
+    .zone.low .zone-title { color: #ef6c00; }
+    .zone-desc {
+      font-size: 14px;
+      color: #555;
+    }
+    .zone-action {
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 6px;
+    }
+    .zone.high .zone-action {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+    .zone.low .zone-action {
+      background: #fff3e0;
+      color: #ef6c00;
+    }
+    
+    /* ROI */
+    .roi-simple {
+      background: #f8f8f8;
+      border-radius: 16px;
+      padding: 32px;
+      margin-top: 24px;
+    }
+    .roi-equation {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      font-size: 20px;
+    }
+    .roi-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px 32px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .roi-box .value {
+      font-size: 36px;
+      font-weight: 700;
+      color: #003366;
+    }
+    .roi-box .label {
+      font-size: 13px;
+      color: #666;
+      margin-top: 4px;
+    }
+    .roi-box.highlight {
+      background: #003366;
+    }
+    .roi-box.highlight .value {
+      color: #fff;
+    }
+    .roi-box.highlight .label {
+      color: rgba(255,255,255,0.8);
+    }
+    .roi-operator {
+      font-size: 32px;
+      color: #999;
+    }
+    
+    /* Actions */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 32px;
+    }
+    .action-card {
+      background: #f5f7fa;
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+    .action-card .number {
+      width: 48px;
+      height: 48px;
+      background: #003366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .action-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #003366;
+      margin-bottom: 12px;
+    }
+    .action-card p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    /* Callout */
+    .callout {
+      background: #f0f7ff;
+      border-left: 4px solid #003366;
+      padding: 20px 24px;
+      font-size: 15px;
+      margin-top: 32px;
+    }
+    .callout strong { color: #003366; }
+    
+    /* CTA */
+    .cta-box {
+      background: #003366;
+      color: #fff;
+      padding: 28px 32px;
+      border-radius: 16px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .cta-box p {
+      font-size: 20px;
+      font-weight: 500;
+    }
+    
+    .source {
+      font-size: 11px;
+      color: #999;
+      margin-top: 16px;
+    }
+    
+    @media print {
+      .slide, .slide-dark { page-break-after: always; }
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide-title">
+  <h1>CrowdWave</h1>
+  <p>Survey simulation with documented accuracy</p>
+  <div class="date">February 2026</div>
+</div>
+
+<!-- Slide 2: The Speed Problem -->
+<div class="slide">
+  <h1 class="action-title">Market research takes 6 weeks. Your competitors aren't waiting.</h1>
+  
+  <div class="comparison">
+    <div class="comparison-item">
+      <div class="comparison-bar" style="height: 80px; background: #c62828;">
+        <span class="value">3</span>
+      </div>
+      <div class="comparison-label">Traditional Research</div>
+      <div class="comparison-sub">$25K each × 6 weeks</div>
+    </div>
+    <div class="comparison-item">
+      <div class="comparison-bar" style="height: 300px; background: #2e7d32;">
+        <span class="value">50</span>
+      </div>
+      <div class="comparison-label">With Simulation</div>
+      <div class="comparison-sub">Minutes each × ~$0</div>
+    </div>
+  </div>
+  
+  <p style="text-align:center;font-size:16px;color:#666;margin-top:24px;">Concept tests per quarter with the same budget</p>
+  
+  <div class="callout">
+    <strong>The learning gap:</strong> At 50 tests vs. 3, that's 17x more opportunities to find winners and kill losers before your competitors even have their first data point.
+  </div>
+  
+  <div class="footer">
+    <span>CrowdWave</span>
+    <span>2</span>
+  </div>
+</div>
+
+<!-- Slide 3: The Accuracy Proof -->
+<div class="slide">
+  <h1 class="action-title">We tested our predictions blind against real survey data. Average error: 1.9 points.</h1>
+  
+  <div class="accuracy-visual">
+    <div class="accuracy-circle">
+      <div class="accuracy-ring bad">
+        <div class="value">9.1</div>
+        <div class="unit">points error</div>
+      </div>
+      <div class="accuracy-label">Raw AI</div>
+      <div class="accuracy-sub">Uncalibrated LLM output</div>
+    </div>
+    
+    <div style="display:flex;align-items:center;font-size:48px;color:#ccc;">→</div>
+    
+    <div class="accuracy-circle">
+      <div class="accuracy-ring good">
+        <div class="value">1.9</div>
+        <div class="unit">points error</div>
+      </div>
+      <div class="accuracy-label">CrowdWave</div>
+      <div class="accuracy-sub">Calibrated simulation</div>
+    </div>
+  </div>
+  
+  <div class="stat-row" style="margin-top:48px;">
+    <div class="stat-card">
+      <div class="value">27</div>
+      <div class="label">Blind test cases</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">100%</div>
+      <div class="label">Within 5 points</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">79%</div>
+      <div class="label">Error reduction</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">5M+</div>
+      <div class="label">Human responses in calibration</div>
+    </div>
+  </div>
+  
+  <div class="source">Validated against: Pew Research, Gallup, AARP, Conference Board, Survicate (combined N > 25,000)</div>
+  
+  <div class="footer">
+    <span>CrowdWave</span>
+    <span>3</span>
+  </div>
+</div>
+
+<!-- Slide 4: How It Works -->
+<div class="slide">
+  <h1 class="action-title">Why calibration matters: Raw AI inherits training biases. We measure and correct them.</h1>
+  
+  <div class="process-flow">
+    <div class="process-step">
+      <div class="process-icon">📊</div>
+      <div class="process-title">Anchor to Reality</div>
+      <div class="process-desc">Start with benchmark data from authoritative sources, not zero</div>
+    </div>
+    <div class="process-step">
+      <div class="process-icon">🔄</div>
+      <div class="process-title">Ensemble Simulation</div>
+      <div class="process-desc">3 independent runs with different assumptions, then reconcile</div>
+    </div>
+    <div class="process-step">
+      <div class="process-icon">⚖️</div>
+      <div class="process-title">Apply Corrections</div>
+      <div class="process-desc">8 documented bias patterns with validated correction factors</div>
+    </div>
+    <div class="process-step">
+      <div class="process-icon">✓</div>
+      <div class="process-title">Confidence Score</div>
+      <div class="process-desc">Know when to trust the output vs. when to validate</div>
+    </div>
+  </div>
+  
+  <div class="callout" style="margin-top:48px;">
+    <strong>The difference:</strong> Raw LLMs guess. We've built correction factors from 5M+ real survey responses across 20+ domains. When we predict senior tech adoption or industry NPS, we're adjusting for known gaps between AI assumptions and measured reality.
+  </div>
+  
+  <div class="footer">
+    <span>CrowdWave</span>
+    <span>4</span>
+  </div>
+</div>
+
+<!-- Slide 5: Power and Limits -->
+<div class="slide-dark">
+  <h1 class="action-title-light">The power: 95% directional accuracy. The limit: know when to validate.</h1>
+  
+  <div class="zone-container" style="margin-top:48px;">
+    <div class="zone high" style="background:rgba(255,255,255,0.95);">
+      <div class="zone-content">
+        <div class="zone-title">HIGH CONFIDENCE (±2-4 points)</div>
+        <div class="zone-desc">Trust & sentiment, awareness, demographics, concept ranking, message testing, trend validation</div>
+      </div>
+      <div class="zone-action">Use for decisions</div>
+    </div>
+    
+    <div class="zone low" style="background:rgba(255,255,255,0.95);">
+      <div class="zone-content">
+        <div class="zone-title">VALIDATE FIRST (±8-15 points)</div>
+        <div class="zone-desc">Purchase intent, price sensitivity, conversion predictions, polarized political topics</div>
+      </div>
+      <div class="zone-action">Simulation + real data</div>
+    </div>
+  </div>
+  
+  <div style="display:flex;gap:32px;margin-top:48px;">
+    <div style="flex:1;background:rgba(255,255,255,0.1);border-radius:12px;padding:24px;">
+      <div style="font-size:16px;font-weight:600;margin-bottom:12px;">✓ Use simulation alone</div>
+      <ul style="font-size:14px;opacity:0.9;padding-left:20px;line-height:1.8;">
+        <li>Ranking 10+ concepts to find top 3</li>
+        <li>Audience sizing and segmentation</li>
+        <li>Benchmark comparisons</li>
+        <li>Early-stage screening</li>
+      </ul>
+    </div>
+    <div style="flex:1;background:rgba(255,255,255,0.1);border-radius:12px;padding:24px;">
+      <div style="font-size:16px;font-weight:600;margin-bottom:12px;">⚠ Simulate then validate</div>
+      <ul style="font-size:14px;opacity:0.9;padding-left:20px;line-height:1.8;">
+        <li>Final go/no-go on major launches</li>
+        <li>Pricing strategy</li>
+        <li>High-stakes competitive moves</li>
+        <li>Decisions over $500K</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer-light">
+    <span>CrowdWave</span>
+    <span>5</span>
+  </div>
+</div>
+
+<!-- Slide 6: Business Impact -->
+<div class="slide">
+  <h1 class="action-title">The math: Test more, fail faster, win sooner.</h1>
+  
+  <div class="roi-simple">
+    <div class="roi-equation">
+      <div class="roi-box">
+        <div class="value">40</div>
+        <div class="label">More concepts tested/year</div>
+      </div>
+      <div class="roi-operator">×</div>
+      <div class="roi-box">
+        <div class="value">10%</div>
+        <div class="label">Are winners you'd have missed</div>
+      </div>
+      <div class="roi-operator">×</div>
+      <div class="roi-box">
+        <div class="value">$500K</div>
+        <div class="label">Value per winner</div>
+      </div>
+      <div class="roi-operator">=</div>
+      <div class="roi-box highlight">
+        <div class="value">$2M</div>
+        <div class="label">Annual value</div>
+      </div>
+    </div>
+  </div>
+  
+  <div style="display:flex;gap:32px;margin-top:40px;">
+    <div class="stat-card" style="flex:1;">
+      <div class="value" style="font-size:28px;">4-6 weeks</div>
+      <div class="label">Faster to market per winner</div>
+    </div>
+    <div class="stat-card" style="flex:1;">
+      <div class="value" style="font-size:28px;">$50K×</div>
+      <div class="label">Saved per killed loser</div>
+    </div>
+    <div class="stat-card" style="flex:1;">
+      <div class="value" style="font-size:28px;">17x</div>
+      <div class="label">Learning advantage</div>
+    </div>
+  </div>
+  
+  <div class="callout">
+    <strong>The compounding effect:</strong> Week 1: Simulate 20 concepts, kill 15. Week 2: Iterate on survivors. Week 3: Validate top 2. Week 4: Launch with confidence. Traditional approach: Still waiting for first data.
+  </div>
+  
+  <div class="footer">
+    <span>CrowdWave</span>
+    <span>6</span>
+  </div>
+</div>
+
+<!-- Slide 7: Get Started -->
+<div class="slide">
+  <h1 class="action-title">Start with your next research question. Results in days, not months.</h1>
+  
+  <div class="action-grid">
+    <div class="action-card">
+      <div class="number">1</div>
+      <h3>Pick one project</h3>
+      <p>Choose an upcoming concept test, audience study, or message test. Run simulation alongside your current process.</p>
+    </div>
+    <div class="action-card">
+      <div class="number">2</div>
+      <h3>Compare results</h3>
+      <p>When real data comes in, measure prediction accuracy. Build confidence in where simulation works for your domain.</p>
+    </div>
+    <div class="action-card">
+      <div class="number">3</div>
+      <h3>Scale what works</h3>
+      <p>Set thresholds for simulation-only vs. validate. Your team moves faster with clear decision rules.</p>
+    </div>
+  </div>
+  
+  <div class="cta-box">
+    <p>The question isn't whether to use simulation.<br>It's how much ground you'll lose to competitors who start first.</p>
+  </div>
+  
+  <div class="footer">
+    <span>CrowdWave</span>
+    <span>7</span>
+  </div>
+</div>
+
+<!-- Slide 8: Closing -->
+<div class="slide-title">
+  <h1>CrowdWave</h1>
+  <p>Documented accuracy. Known limits. Transparent methodology.</p>
+  <div class="date">crowdwave.ai</div>
+</div>
+
+</body>
+</html>

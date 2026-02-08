@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Crowdwave</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .slide {
+      width: 1280px;
+      height: 720px;
+      padding: 48px 64px;
+      page-break-after: always;
+      position: relative;
+      background: #fff;
+    }
+    
+    .slide-dark {
+      width: 1280px;
+      height: 720px;
+      padding: 48px 64px;
+      page-break-after: always;
+      position: relative;
+      background: linear-gradient(135deg, #003366 0%, #001a33 100%);
+      color: #fff;
+    }
+    
+    .slide-title {
+      width: 1280px;
+      height: 720px;
+      background: linear-gradient(135deg, #003366 0%, #001a33 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      page-break-after: always;
+    }
+    
+    .slide-title h1 {
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+    
+    .slide-title p {
+      font-size: 24px;
+      font-weight: 300;
+      opacity: 0.9;
+    }
+    
+    .slide-title .date {
+      position: absolute;
+      bottom: 48px;
+      font-size: 14px;
+      opacity: 0.6;
+    }
+    
+    h1.action-title {
+      font-size: 26px;
+      font-weight: 600;
+      color: #003366;
+      border-bottom: 3px solid #003366;
+      padding-bottom: 14px;
+      margin-bottom: 28px;
+      line-height: 1.3;
+    }
+    
+    h1.action-title-light {
+      font-size: 26px;
+      font-weight: 600;
+      color: #fff;
+      border-bottom: 3px solid rgba(255,255,255,0.3);
+      padding-bottom: 14px;
+      margin-bottom: 28px;
+      line-height: 1.3;
+    }
+    
+    .footer {
+      position: absolute;
+      bottom: 24px;
+      left: 64px;
+      right: 64px;
+      font-size: 11px;
+      color: #999;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .footer-light {
+      position: absolute;
+      bottom: 24px;
+      left: 64px;
+      right: 64px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .content {
+      display: flex;
+      gap: 48px;
+      height: calc(100% - 100px);
+    }
+    
+    .content-left { flex: 1; }
+    .content-right { width: 400px; flex-shrink: 0; }
+    
+    .stat-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+    
+    .stat-card {
+      background: #f5f7fa;
+      border-radius: 12px;
+      padding: 20px 28px;
+      text-align: center;
+      min-width: 150px;
+    }
+    .stat-card .value {
+      font-size: 32px;
+      font-weight: 700;
+      color: #003366;
+    }
+    .stat-card .label {
+      font-size: 12px;
+      color: #666;
+      margin-top: 4px;
+    }
+    
+    .stat-card.warning {
+      background: #fff3e0;
+      border: 2px solid #ef6c00;
+    }
+    .stat-card.warning .value {
+      color: #ef6c00;
+    }
+    
+    .insight-box {
+      background: linear-gradient(135deg, #003366 0%, #004488 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .insight-box .number {
+      font-size: 56px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .insight-box .label {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+    
+    .comparison {
+      display: flex;
+      gap: 64px;
+      justify-content: center;
+      align-items: flex-end;
+      height: 300px;
+      margin-top: 24px;
+    }
+    .comparison-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .comparison-bar {
+      width: 150px;
+      border-radius: 16px 16px 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 20px;
+    }
+    .comparison-bar .value {
+      font-size: 42px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .comparison-label {
+      font-size: 15px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .comparison-sub {
+      font-size: 12px;
+      color: #888;
+    }
+    
+    /* Domain accuracy table */
+    .domain-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 13px;
+    }
+    .domain-table th {
+      background: #003366;
+      color: #fff;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .domain-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .domain-table tr:nth-child(even) { background: #f8f8f8; }
+    .domain-table .pass { color: #2e7d32; font-weight: 600; }
+    .domain-table .warn { color: #ef6c00; font-weight: 600; }
+    .domain-table .fail { color: #c62828; font-weight: 600; }
+    
+    /* Honest callout */
+    .honest-box {
+      background: #fff3e0;
+      border: 2px solid #ef6c00;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 24px;
+    }
+    .honest-box .title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ef6c00;
+      margin-bottom: 8px;
+    }
+    .honest-box p {
+      font-size: 13px;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    /* ROI Framework */
+    .roi-framework {
+      background: #f8f8f8;
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .roi-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .roi-row:last-child { border-bottom: none; }
+    .roi-input {
+      background: #fff;
+      border: 2px solid #003366;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #003366;
+      width: 120px;
+      text-align: center;
+    }
+    
+    /* When not to use */
+    .when-not {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .when-box {
+      background: #f5f5f5;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .when-box.good {
+      background: #e8f5e9;
+      border-left: 4px solid #2e7d32;
+    }
+    .when-box.bad {
+      background: #ffebee;
+      border-left: 4px solid #c62828;
+    }
+    .when-box h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .when-box.good h3 { color: #2e7d32; }
+    .when-box.bad h3 { color: #c62828; }
+    .when-box ul {
+      font-size: 13px;
+      padding-left: 20px;
+      line-height: 1.8;
+    }
+    
+    .callout {
+      background: #f0f7ff;
+      border-left: 4px solid #003366;
+      padding: 16px 20px;
+      font-size: 14px;
+      margin-top: 24px;
+    }
+    .callout strong { color: #003366; }
+    
+    .source {
+      font-size: 11px;
+      color: #999;
+      margin-top: 16px;
+    }
+    
+    /* Actions */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .action-card {
+      background: #f5f7fa;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+    .action-card .number {
+      width: 40px;
+      height: 40px;
+      background: #003366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .action-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #003366;
+      margin-bottom: 8px;
+    }
+    .action-card p {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.5;
+    }
+    
+    .cta-box {
+      background: #003366;
+      color: #fff;
+      padding: 24px 28px;
+      border-radius: 12px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    .cta-box p {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    
+    @media print {
+      .slide, .slide-dark { page-break-after: always; }
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide-title">
+  <h1>Crowdwave</h1>
+  <p>Survey simulation with documented accuracy and known limits</p>
+  <div class="date">February 2026</div>
+</div>
+
+<!-- Slide 2: Speed Problem -->
+<div class="slide">
+  <h1 class="action-title">Market research takes 6 weeks. Your competitors aren't waiting.</h1>
+  
+  <div class="comparison">
+    <div class="comparison-item">
+      <div class="comparison-bar" style="height: 70px; background: #c62828;">
+        <span class="value">3</span>
+      </div>
+      <div class="comparison-label">Traditional Research</div>
+      <div class="comparison-sub">$25K each × 6 weeks</div>
+    </div>
+    <div class="comparison-item">
+      <div class="comparison-bar" style="height: 280px; background: #2e7d32;">
+        <span class="value">50</span>
+      </div>
+      <div class="comparison-label">With Simulation</div>
+      <div class="comparison-sub">Minutes each × ~$0 marginal</div>
+    </div>
+  </div>
+  
+  <p style="text-align:center;font-size:15px;color:#666;margin-top:20px;">Concept tests per quarter with the same budget</p>
+  
+  <div class="callout">
+    <strong>The trade-off:</strong> Simulation is faster and cheaper, but requires calibration to be accurate. Raw AI predictions average 9+ points error. We've reduced that — but not eliminated it.
+  </div>
+  
+  <div class="footer">
+    <span>Crowdwave</span>
+    <span>2</span>
+  </div>
+</div>
+
+<!-- Slide 3: Accuracy by Domain (HONEST) -->
+<div class="slide">
+  <h1 class="action-title">Accuracy varies by domain — here's the honest breakdown</h1>
+  
+  <table class="domain-table">
+    <tr>
+      <th>Domain</th>
+      <th>Tests</th>
+      <th>Mean Error</th>
+      <th>Confidence</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>Political Identity & Attitudes</td>
+      <td>6</td>
+      <td>2.0 pts</td>
+      <td>HIGH — stable construct, rich priors</td>
+      <td class="pass">✓ Production-ready</td>
+    </tr>
+    <tr>
+      <td>Technology Adoption (50+)</td>
+      <td>6</td>
+      <td>2.1 pts</td>
+      <td>HIGH — AARP validation strong</td>
+      <td class="pass">✓ Production-ready</td>
+    </tr>
+    <tr>
+      <td>Institutional Trust</td>
+      <td>4</td>
+      <td>1.8 pts</td>
+      <td>HIGH — Gallup/Pew multi-year</td>
+      <td class="pass">✓ Production-ready</td>
+    </tr>
+    <tr>
+      <td>AI Attitudes</td>
+      <td>4</td>
+      <td>1.5 pts</td>
+      <td>MEDIUM — fast-changing domain</td>
+      <td class="warn">⚠ Monitor drift</td>
+    </tr>
+    <tr>
+      <td>Consumer Behavior</td>
+      <td>4</td>
+      <td>2.6 pts</td>
+      <td>MEDIUM — context-dependent</td>
+      <td class="warn">⚠ Use directionally</td>
+    </tr>
+    <tr>
+      <td>Workplace/Engagement</td>
+      <td>3</td>
+      <td>2.7 pts</td>
+      <td>MEDIUM — limited test cases</td>
+      <td class="warn">⚠ Needs more validation</td>
+    </tr>
+    <tr style="background:#fff3e0;">
+      <td><strong>C-Suite Executives</strong></td>
+      <td>8</td>
+      <td><strong>6.2 pts</strong></td>
+      <td>LOW — major gaps found</td>
+      <td class="fail">✗ Calibration needed</td>
+    </tr>
+  </table>
+  
+  <div class="honest-box">
+    <div class="title">⚠ Known Gap: Executive Audiences</div>
+    <p>Conference Board C-Suite validation revealed significant misses. Cyberattacks concern: predicted 35-40%, actual 60.5%. Uncertainty concern: predicted 25-30%, actual 46.1%. Executive calibration is in progress — do not rely on simulation alone for C-suite research.</p>
+  </div>
+  
+  <div class="footer">
+    <span>Crowdwave</span>
+    <span>3</span>
+  </div>
+</div>
+
+<!-- Slide 4: What "Blind" Actually Means -->
+<div class="slide">
+  <h1 class="action-title">35 tests, 2.4 pt average error — with important caveats</h1>
+  
+  <div class="content">
+    <div class="content-left">
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="value">35</div>
+          <div class="label">Total test cases</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">2.4 pts</div>
+          <div class="label">Overall mean error</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">2.0 pts</div>
+          <div class="label">Consumer domains</div>
+        </div>
+        <div class="stat-card warning">
+          <div class="value">6.2 pts</div>
+          <div class="label">Executive domains</div>
+        </div>
+      </div>
+      
+      <div style="margin-top:32px;">
+        <h3 style="font-size:15px;font-weight:600;color:#003366;margin-bottom:16px;">What "blind prediction" means in our tests:</h3>
+        <ul style="font-size:14px;line-height:1.8;padding-left:24px;">
+          <li><strong>What we did:</strong> Made predictions before seeing specific study results</li>
+          <li><strong>What we had:</strong> Access to historical benchmarks and related prior data</li>
+          <li><strong>What we didn't have:</strong> The actual survey results being predicted</li>
+        </ul>
+        
+        <h3 style="font-size:15px;font-weight:600;color:#003366;margin-top:24px;margin-bottom:16px;">What this is NOT:</h3>
+        <ul style="font-size:14px;line-height:1.8;padding-left:24px;">
+          <li>Zero-knowledge prediction (we use priors)</li>
+          <li>Guaranteed accuracy for novel domains</li>
+          <li>Validation of every possible question type</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="content-right">
+      <div class="insight-box">
+        <div class="number">79%</div>
+        <div class="label">Error reduction vs raw AI (consumer domains only)</div>
+      </div>
+      
+      <div style="background:#f5f5f5;border-radius:12px;padding:20px;margin-top:20px;">
+        <div style="font-size:14px;font-weight:600;color:#003366;margin-bottom:12px;">Statistical confidence (n=35):</div>
+        <ul style="font-size:13px;line-height:1.8;padding-left:16px;">
+          <li>95% CI on mean: ±0.7 pts</li>
+          <li>Consumer (n=27): 2.0 pts ± 0.5</li>
+          <li>Executive (n=8): 6.2 pts ± 2.1</li>
+        </ul>
+      </div>
+      
+      <div class="source">
+        Sources: Pew (N=5K+), Gallup (N=13K+), AARP (N=3.8K), Conference Board (N=1.7K), Edelman (N=34K), McKinsey (N=15K+)
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <span>Crowdwave</span>
+    <span>4</span>
+  </div>
+</div>
+
+<!-- Slide 5: Known Limits -->
+<div class="slide-dark">
+  <h1 class="action-title-light">When to use Crowdwave — and when NOT to</h1>
+  
+  <div class="when-not">
+    <div class="when-box good" style="background:rgba(232,245,233,0.95);">
+      <h3>✓ USE CROWDWAVE</h3>
+      <ul>
+        <li>Ranking 10+ concepts to find top 3</li>
+        <li>Audience sizing and segmentation</li>
+        <li>Trend validation against benchmarks</li>
+        <li>Message testing and positioning</li>
+        <li>High-volume screening (kill losers fast)</li>
+        <li>Budget-constrained research programs</li>
+        <li>Consumer/general population questions</li>
+      </ul>
+    </div>
+    
+    <div class="when-box bad" style="background:rgba(255,235,238,0.95);">
+      <h3>✗ DON'T RELY ON CROWDWAVE ALONE</h3>
+      <ul>
+        <li>C-suite/executive audiences (calibration gaps)</li>
+        <li>Purchase intent (×0.30 intent-action gap)</li>
+        <li>Price sensitivity (validate with real data)</li>
+        <li>Polarized political topics (segment required)</li>
+        <li>Novel categories with no calibration history</li>
+        <li>Regulatory/legal decisions requiring human data</li>
+        <li>Single high-stakes decision (always validate)</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:20px;margin-top:32px;">
+    <div style="font-size:15px;font-weight:600;margin-bottom:12px;">Traditional research still wins when:</div>
+    <ul style="font-size:14px;opacity:0.9;padding-left:24px;line-height:1.8;columns:2;">
+      <li>Legally defensible data required</li>
+      <li>Open-end verbatim richness needed</li>
+      <li>Academic publication standards apply</li>
+      <li>Discovering truly unknown behaviors</li>
+    </ul>
+  </div>
+  
+  <div class="footer-light">
+    <span>Crowdwave</span>
+    <span>5</span>
+  </div>
+</div>
+
+<!-- Slide 6: ROI Framework (Not Claim) -->
+<div class="slide">
+  <h1 class="action-title">ROI framework — input your own assumptions</h1>
+  
+  <div class="content">
+    <div class="content-left">
+      <div class="roi-framework">
+        <div style="font-size:16px;font-weight:600;color:#003366;margin-bottom:20px;">Calculate your potential value:</div>
+        
+        <div class="roi-row">
+          <span>Additional concepts you could test per year</span>
+          <div class="roi-input">___</div>
+        </div>
+        <div class="roi-row">
+          <span>% that would reveal winners you'd have missed</span>
+          <div class="roi-input">___</div>
+        </div>
+        <div class="roi-row">
+          <span>Average value of each incremental winner ($)</span>
+          <div class="roi-input">___</div>
+        </div>
+        <div class="roi-row" style="background:#e8f5e9;margin:0 -24px;padding:16px 24px;border-radius:8px;">
+          <span style="font-weight:600;">= Annual discovery value</span>
+          <div class="roi-input" style="background:#2e7d32;color:#fff;border-color:#2e7d32;">Calculated</div>
+        </div>
+        
+        <div style="margin-top:24px;padding-top:16px;border-top:1px solid #e0e0e0;">
+          <div class="roi-row">
+            <span>Losers killed before development</span>
+            <div class="roi-input">___</div>
+          </div>
+          <div class="roi-row">
+            <span>Average development cost avoided ($)</span>
+            <div class="roi-input">___</div>
+          </div>
+          <div class="roi-row" style="background:#e8f5e9;margin:0 -24px;padding:16px 24px;border-radius:8px;">
+            <span style="font-weight:600;">= Annual waste reduction</span>
+            <div class="roi-input" style="background:#2e7d32;color:#fff;border-color:#2e7d32;">Calculated</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="content-right">
+      <div class="honest-box" style="background:#f0f7ff;border-color:#003366;">
+        <div class="title" style="color:#003366;">Why we don't claim specific ROI</div>
+        <p>Every company's value equation is different. We don't know your hit rate, winner value, or development costs. Rather than invent numbers, we provide the framework — you input reality.</p>
+      </div>
+      
+      <div style="background:#f5f5f5;border-radius:12px;padding:20px;margin-top:20px;">
+        <div style="font-size:14px;font-weight:600;color:#003366;margin-bottom:12px;">What we can say:</div>
+        <ul style="font-size:13px;line-height:1.8;padding-left:16px;">
+          <li>Speed: Minutes vs. weeks</li>
+          <li>Marginal cost: ~$0 per simulation</li>
+          <li>Accuracy: ±2-3 pts (calibrated domains)</li>
+          <li>Volume: 10-50x more tests possible</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <span>Crowdwave</span>
+    <span>6</span>
+  </div>
+</div>
+
+<!-- Slide 7: How to Start -->
+<div class="slide">
+  <h1 class="action-title">Start with a pilot — validate before scaling</h1>
+  
+  <div class="action-grid">
+    <div class="action-card">
+      <div class="number">1</div>
+      <h3>Pick one project</h3>
+      <p>Choose an upcoming study in a calibrated domain (consumer attitudes, tech adoption, trust). Run simulation alongside traditional research.</p>
+    </div>
+    <div class="action-card">
+      <div class="number">2</div>
+      <h3>Compare results</h3>
+      <p>When real data comes in, measure prediction accuracy for YOUR audience and questions. Build confidence in what works for you.</p>
+    </div>
+    <div class="action-card">
+      <div class="number">3</div>
+      <h3>Define your rules</h3>
+      <p>Set thresholds: When is simulation sufficient? When do you validate? Document criteria so the team can move fast with confidence.</p>
+    </div>
+  </div>
+  
+  <div class="callout">
+    <strong>The honest pitch:</strong> We've validated accuracy in specific domains with specific audiences. We don't know yet if it works for YOUR domain until we test it. Start with a pilot, not a leap of faith.
+  </div>
+  
+  <div class="cta-box">
+    <p>Simulation accelerates decisions — but doesn't replace judgment on high-stakes calls.</p>
+  </div>
+  
+  <div class="footer">
+    <span>Crowdwave</span>
+    <span>7</span>
+  </div>
+</div>
+
+<!-- Slide 8: Closing -->
+<div class="slide-title">
+  <h1>Crowdwave</h1>
+  <p>Documented accuracy. Known limits. Honest methodology.</p>
+  <div class="date">crowdwave.ai</div>
+</div>
+
+</body>
+</html>

@@ -287,10 +287,13 @@ CONSTRUCT_CORRECTIONS = {
 # ═══════════════════════════════════════════════════════════════
 
 PARTISAN_TOPICS = {
-    "illegal_immigration": {"gap": 50, "required": True},
-    "climate_change": {"gap": 40, "required": True},
+    "illegal immigration": {"gap": 50, "required": True},
+    "immigration": {"gap": 50, "required": True},
+    "climate change": {"gap": 40, "required": True},
+    "climate": {"gap": 40, "required": True},
     "racism": {"gap": 40, "required": True},
-    "gun_violence": {"gap": 35, "required": True},
+    "gun violence": {"gap": 35, "required": True},
+    "guns": {"gap": 35, "required": True},
     "poverty": {"gap": 25, "required": True},
     "inflation": {"gap": 20, "required": True},
     
