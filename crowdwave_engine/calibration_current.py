@@ -149,6 +149,21 @@ HEALTHCARE_COSTS_2026 = {
     "source": "KFF Health Tracking Poll Jan 2026"
 }
 
+# Tariffs (Feb 2026)
+TARIFFS_FEB2026 = {
+    "disapprove_tariff_increases": 0.60,  # 60% disapprove (Pew)
+    "strongly_disapprove": 0.39,
+    "approve": 0.38,
+    "court_should_limit_authority": 0.63,  # 63% (Marquette)
+    "by_party": {
+        "democrat": 0.85,  # disapprove
+        "republican": 0.25,  # disapprove (75% approve)
+        "independent": 0.62,
+    },
+    "avg_household_cost_2026": 1300,  # Tax Foundation
+    "source": "Pew Research Feb 2026, Marquette Law School Poll"
+}
+
 # Climate Change (Fall 2025)
 CLIMATE_CHANGE_2025 = {
     "believe_affecting_weather": {

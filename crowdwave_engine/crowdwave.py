@@ -503,6 +503,15 @@ class CrowdwaveEngine:
             opt0, opt1 = question.options[0], question.options[1]
             opt0_lower, opt1_lower = opt0.lower(), opt1.lower()
             
+            # Tariffs (Feb 2026)
+            if any(t in combined_context for t in ["tariff", "trade war", "import tax"]):
+                if "approve" in opt0_lower or "support" in opt0_lower:
+                    # 38% approve tariffs
+                    return {opt0: 38.0, opt1: 62.0}
+                elif "disapprove" in opt0_lower or "oppose" in opt0_lower:
+                    # 60% disapprove
+                    return {opt0: 60.0, opt1: 40.0}
+            
             # Presidential approval (Feb 2026)
             if any(t in combined_context for t in ["trump", "president", "administration"]) and any(t in q_lower for t in ["approve", "approval"]):
                 if "approve" in opt0_lower:

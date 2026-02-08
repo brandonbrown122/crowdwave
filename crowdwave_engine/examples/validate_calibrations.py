@@ -19,6 +19,7 @@ tests = [
     # (Topic, Audience, Question, Type, Options/Scale, Expected, Source)
     ('Immigration', 'US adults', 'Do you approve of ICE enforcement?', 'binary', ['Approve', 'Disapprove'], 33, 'NPR/Marist'),
     ('Trump', 'US voters', 'Do you approve of Trump administration?', 'binary', ['Approve', 'Disapprove'], 39, 'NPR/Marist'),
+    ('Tariffs', 'US adults', 'Do you approve of tariff increases?', 'binary', ['Approve', 'Disapprove'], 38, 'Pew'),
     ('AI jobs', 'US workers', 'Has your employer started using AI?', 'binary', ['Yes', 'No'], 53, 'Randstad'),
     ('Vaccines', 'US parents', 'Are your children vaccinated (MMR)?', 'binary', ['Yes', 'No'], 91, 'CDC'),
     ('Streaming', 'Subscribers', 'Considering canceling streaming?', 'binary', ['Yes', 'No'], 35, 'Antenna'),
@@ -27,6 +28,7 @@ tests = [
     ('Hybrid car', 'Car buyers', 'Would you buy a hybrid?', 'binary', ['Yes', 'No'], 33, 'TransUnion'),
     ('Car purchase', 'US adults', 'Planning to buy a car this year?', 'binary', ['Yes', 'No'], 40, 'TransUnion'),
     ('Remote work', 'Workers', 'Do you prefer remote work?', 'binary', ['Remote', 'In-office'], 37, 'FlexJobs'),
+    ('Party ID', 'Gen Z adults', 'Do you identify as independent?', 'binary', ['Independent', 'Party'], 56, 'Gallup'),
 ]
 
 print()
