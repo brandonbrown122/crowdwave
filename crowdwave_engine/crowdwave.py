@@ -1007,6 +1007,21 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 55.0, opt1: 45.0}
             
+            # Food delivery
+            if any(t in combined_context for t in ["food delivery", "doordash", "uber eats", "grubhub"]):
+                if any(t in q_lower for t in ["use", "order"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 52.0, opt1: 48.0}
+            
+            # Subscription fatigue
+            if any(t in combined_context for t in ["subscription", "streaming", "cancel"]):
+                if any(t in q_lower for t in ["cancel", "cut", "reduce"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 65.0, opt1: 35.0}
+                if any(t in q_lower for t in ["too many", "fatigue", "overwhelmed"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 65.0, opt1: 35.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

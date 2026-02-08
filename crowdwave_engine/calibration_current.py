@@ -647,6 +647,22 @@ POLICE_TRUST_2026 = {
     "source": "Gallup 2026"
 }
 
+# Food Delivery (2025-2026)
+FOOD_DELIVERY_2026 = {
+    "orders_not_dine_in": 0.75,  # 75% not eaten in restaurant
+    "doordash_market_share": 0.56,
+    "use_restaurant_apps": 0.52,
+    "source": "NYT, Wikipedia 2026"
+}
+
+# Subscription Fatigue (2025-2026)
+SUBSCRIPTION_FATIGUE_2026 = {
+    "canceled_one_service": 0.65,  # 65% canceled at least one
+    "plan_to_cancel": 0.39,  # 39% plan to cancel
+    "monthly_churn_rate": 0.055,  # 5.5%
+    "source": "Deloitte, Oak Hill 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
