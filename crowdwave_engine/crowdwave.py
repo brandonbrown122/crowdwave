@@ -950,6 +950,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 45.0, opt1: 55.0}
             
+            # Inflation concern
+            if any(t in combined_context for t in ["inflation", "price", "cost of living"]):
+                if any(t in q_lower for t in ["concern", "worried", "problem"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 66.0, opt1: 34.0}
+            
+            # Dreamers/DACA
+            if any(t in combined_context for t in ["dreamer", "daca", "undocumented youth"]):
+                if any(t in q_lower for t in ["pathway", "citizenship", "stay"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 81.0, opt1: 19.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

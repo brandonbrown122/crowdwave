@@ -579,6 +579,23 @@ SHOPPING_PREFERENCES_2026 = {
     "source": "Capital One Shopping, PwC 2026"
 }
 
+# Inflation/Economic Concern (2025-2026)
+INFLATION_CONCERN_2026 = {
+    "top_issue_economy_inflation_healthcare": 0.66,  # 66%
+    "expect_finances_worse": 0.32,  # 32% expect worse
+    "optimistic": 0.35,
+    "anxious": 0.32,
+    "stressed": 0.30,
+    "source": "Brookings, Bankrate 2026"
+}
+
+# Dreamers/DACA Pathway (2025-2026)
+DREAMERS_2026 = {
+    "support_pathway": 0.81,  # 81% support
+    "republican_support_2017": 0.79,  # Was 79% R support in 2017
+    "source": "Various polls 2025-2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
