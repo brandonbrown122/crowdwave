@@ -1040,6 +1040,13 @@ CREDIT_CARD_DEBT_2026 = {
     "source": "Bankrate, WalletHub 2026"
 }
 
+# Emergency Savings (2025-2026)
+EMERGENCY_SAVINGS_2026 = {
+    "cant_cover_1000": 0.43,  # 43%
+    "have_fund_under_44": 0.65,  # 65%
+    "source": "US News, 401k Specialist 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
