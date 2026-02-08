@@ -1339,6 +1339,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 12.5, opt1: 87.5}
             
+            # Flu vaccination
+            if any(t in combined_context for t in ["flu shot", "flu vaccine", "influenza"]):
+                if any(t in q_lower for t in ["get", "got", "received"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 46.0, opt1: 54.0}
+            
+            # Credit card debt
+            if any(t in combined_context for t in ["credit card", "credit card debt"]):
+                if any(t in q_lower for t in ["balance", "carry", "debt"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 36.0, opt1: 64.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

@@ -1026,6 +1026,20 @@ SLEEP_2026 = {
     "source": "Wikipedia, USF 2025"
 }
 
+# Flu Vaccination (2025-2026)
+FLU_VACCINE_2026 = {
+    "adults_vaccinated": 0.462,  # 46.2%
+    "source": "CDC 2026"
+}
+
+# Credit Card Debt (2025-2026)
+CREDIT_CARD_DEBT_2026 = {
+    "carry_balance": 0.36,  # ~36%
+    "avg_household_balance": 11019,
+    "avg_user_balance": 5595,
+    "source": "Bankrate, WalletHub 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
