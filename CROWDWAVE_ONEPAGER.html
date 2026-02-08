@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Crowdwave - One Pager</title>
+<style>
+@page { size: letter; margin: 0; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+  font-family: 'Segoe UI', Arial, sans-serif; 
+  background: #fff;
+  width: 8.5in;
+  min-height: 11in;
+  padding: 0.5in;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #1e293b;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #10b981;
+  margin-bottom: 20px;
+}
+
+.logo { 
+  font-size: 28px; 
+  font-weight: 800; 
+  letter-spacing: -1px; 
+}
+.logo span { color: #10b981; }
+
+.tagline {
+  font-size: 14px;
+  color: #64748b;
+  text-align: right;
+}
+
+.hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: white;
+  padding: 20px 25px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-text h1 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.hero-text p {
+  font-size: 12px;
+  opacity: 0.85;
+  max-width: 400px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 25px;
+}
+.hero-stat {
+  text-align: center;
+}
+.hero-stat-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: #10b981;
+}
+.hero-stat-label {
+  font-size: 9px;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
+.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+
+.section {
+  margin-bottom: 18px;
+}
+
+.section-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #10b981;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.card {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 12px;
+}
+.card-green { background: #f0fdf4; border-left: 3px solid #10b981; }
+.card-blue { background: #eff6ff; border-left: 3px solid #3b82f6; }
+.card-red { background: #fef2f2; border-left: 3px solid #ef4444; }
+
+.card h3 {
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #1e293b;
+}
+.card p {
+  font-size: 10px;
+  color: #64748b;
+}
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 10px;
+}
+.metric-row:last-child { border-bottom: none; }
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9px;
+}
+.comparison-table th, .comparison-table td {
+  padding: 6px 8px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+.comparison-table th {
+  background: #1e293b;
+  color: white;
+  font-weight: 600;
+}
+.check { color: #10b981; font-weight: 700; }
+.cross { color: #ef4444; }
+
+.use-case-item {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.use-case-icon {
+  width: 20px;
+  height: 20px;
+  background: #10b981;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.footer {
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: #94a3b8;
+}
+
+.cta-box {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+.cta-box h3 {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 3px;
+  color: white;
+}
+.cta-box p {
+  font-size: 10px;
+  opacity: 0.9;
+}
+
+ul { list-style: none; }
+li {
+  padding-left: 12px;
+  position: relative;
+  margin-bottom: 4px;
+  font-size: 10px;
+}
+li:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 4px;
+  height: 4px;
+  background: #10b981;
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="logo">Crowd<span>wave</span></div>
+  <div class="tagline">Survey Intelligence That Actually Works</div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-text">
+    <h1>AI-Powered Survey Simulation</h1>
+    <p>Get instant, accurate survey predictions calibrated against 5.4M real responses. 79% more accurate than generic AI, 90% cheaper than traditional research.</p>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-number">79%</div>
+      <div class="hero-stat-label">More Accurate</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-number">10x</div>
+      <div class="hero-stat-label">Faster</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-number">90%</div>
+      <div class="hero-stat-label">Cost Savings</div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="grid-2">
+  <!-- Left Column -->
+  <div>
+    <!-- Problem -->
+    <div class="section">
+      <div class="section-title">The Problem</div>
+      <div class="card card-red">
+        <h3>$50B Market, 80% Failure Rate</h3>
+        <p>Traditional surveys cost $15-50K and take 4-8 weeks. Generic AI predictions are fast but wrong by 9+ points. Companies are forced to choose between speed and accuracy.</p>
+      </div>
+    </div>
+
+    <!-- Solution -->
+    <div class="section">
+      <div class="section-title">Our Solution</div>
+      <div class="grid-3">
+        <div class="card card-green">
+          <h3>Instant</h3>
+          <p>Results in seconds, not weeks</p>
+        </div>
+        <div class="card card-green">
+          <h3>Accurate</h3>
+          <p>1.9 pt MAE vs 9.1 for raw AI</p>
+        </div>
+        <div class="card card-green">
+          <h3>Transparent</h3>
+          <p>Know confidence levels</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="section">
+      <div class="section-title">How It Works</div>
+      <div class="use-case-item">
+        <div class="use-case-icon">1</div>
+        <div><strong>Define survey</strong> - Input audience, questions, context via API or dashboard</div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">2</div>
+        <div><strong>Auto-calibrate</strong> - Engine matches to 100+ validated industry benchmarks</div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">3</div>
+        <div><strong>Correct biases</strong> - 8 documented LLM bias patterns automatically fixed</div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon">4</div>
+        <div><strong>Get results</strong> - Full distributions with accuracy zones and confidence</div>
+      </div>
+    </div>
+
+    <!-- Use Cases -->
+    <div class="section">
+      <div class="section-title">Who Uses Crowdwave</div>
+      <div class="card" style="padding:10px;">
+        <div class="metric-row">
+          <span><strong>Product Teams</strong></span>
+          <span>Feature prioritization, concept testing</span>
+        </div>
+        <div class="metric-row">
+          <span><strong>Market Researchers</strong></span>
+          <span>Survey pre-testing, benchmarking</span>
+        </div>
+        <div class="metric-row">
+          <span><strong>Consultants</strong></span>
+          <span>Rapid hypothesis testing, due diligence</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column -->
+  <div>
+    <!-- Competitive Advantage -->
+    <div class="section">
+      <div class="section-title">Competitive Advantage</div>
+      <table class="comparison-table">
+        <tr>
+          <th></th>
+          <th>Traditional</th>
+          <th>Generic AI</th>
+          <th style="background:#059669;">Crowdwave</th>
+        </tr>
+        <tr>
+          <td>Time</td>
+          <td>4-8 weeks</td>
+          <td>Seconds</td>
+          <td class="check">Seconds</td>
+        </tr>
+        <tr>
+          <td>Cost</td>
+          <td>$15-50K</td>
+          <td>~$0</td>
+          <td class="check">~$0</td>
+        </tr>
+        <tr>
+          <td>Accuracy</td>
+          <td>Ground truth</td>
+          <td class="cross">9.1 pt error</td>
+          <td class="check">1.9 pt error</td>
+        </tr>
+        <tr>
+          <td>Bias correction</td>
+          <td>Manual</td>
+          <td class="cross">None</td>
+          <td class="check">Automatic</td>
+        </tr>
+        <tr>
+          <td>Confidence levels</td>
+          <td>Yes</td>
+          <td class="cross">No</td>
+          <td class="check">Yes</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Validation -->
+    <div class="section">
+      <div class="section-title">Validated Results</div>
+      <div class="card card-blue">
+        <div class="metric-row">
+          <span>Survicate NPS Benchmark</span>
+          <strong>5.4M responses, +/-3 pts</strong>
+        </div>
+        <div class="metric-row">
+          <span>Amazon S&S Survey</span>
+          <strong>N=49, MAE &lt;0.6 pts</strong>
+        </div>
+        <div class="metric-row">
+          <span>Conference Board C-Suite</span>
+          <strong>N=1,732, +/-2-3 pts</strong>
+        </div>
+        <div class="metric-row">
+          <span>Test Coverage</span>
+          <strong>65 tests passing</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Market & Business -->
+    <div class="section">
+      <div class="section-title">Market & Business Model</div>
+      <div class="grid-2" style="gap:10px;">
+        <div class="card">
+          <h3>Market Size</h3>
+          <ul>
+            <li>$50B market research TAM</li>
+            <li>$8B survey software</li>
+            <li>$2B AI research tools</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>SaaS Pricing</h3>
+          <ul>
+            <li>Starter: $99/mo</li>
+            <li>Professional: $499/mo</li>
+            <li>Enterprise: Custom</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Traction -->
+    <div class="section">
+      <div class="section-title">Traction</div>
+      <div class="grid-4">
+        <div class="card" style="text-align:center; padding:8px;">
+          <div style="font-size:16px; font-weight:800; color:#10b981;">v1.0</div>
+          <div style="font-size:8px; color:#64748b;">Production Ready</div>
+        </div>
+        <div class="card" style="text-align:center; padding:8px;">
+          <div style="font-size:16px; font-weight:800; color:#10b981;">100+</div>
+          <div style="font-size:8px; color:#64748b;">Calibrations</div>
+        </div>
+        <div class="card" style="text-align:center; padding:8px;">
+          <div style="font-size:16px; font-weight:800; color:#10b981;">20+</div>
+          <div style="font-size:8px; color:#64748b;">Industries</div>
+        </div>
+        <div class="card" style="text-align:center; padding:8px;">
+          <div style="font-size:16px; font-weight:800; color:#10b981;">85%</div>
+          <div style="font-size:8px; color:#64748b;">Gross Margin</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <h3>Ready to Transform Your Research?</h3>
+      <p>hello@crowdwave.ai | Pilot programs available</p>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div>Crowdwave, Inc. | Confidential</div>
+  <div>February 2026</div>
+</div>
+
+</body>
+</html>
