@@ -759,6 +759,23 @@ VOLUNTEERING_2026 = {
     "source": "Gallup, AP-NORC 2025"
 }
 
+# Car Ownership (2025-2026)
+CAR_OWNERSHIP_2026 = {
+    "households_own_car": 0.92,  # 92%
+    "total_vehicles_million": 284.6,
+    "evs_new_registrations": 0.08,  # 8% of new
+    "source": "AutoInsurance.com, MoneyGeek 2026"
+}
+
+# Book Reading (2025-2026)
+BOOK_READING_2026 = {
+    "read_at_least_one": 0.60,  # 60% read at least one
+    "read_zero": 0.40,  # 40% read none
+    "read_for_pleasure_daily": 0.16,  # 16% on given day
+    "median_books": 2,
+    "source": "YouGov, Dataopedia 2025-2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

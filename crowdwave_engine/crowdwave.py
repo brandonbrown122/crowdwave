@@ -1112,6 +1112,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 55.0, opt1: 45.0}
             
+            # Car ownership
+            if any(t in combined_context for t in ["car", "vehicle", "automobile"]):
+                if any(t in q_lower for t in ["own", "have"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 92.0, opt1: 8.0}
+            
+            # Book reading
+            if any(t in combined_context for t in ["book", "reading", "read"]):
+                if any(t in q_lower for t in ["read", "finish"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 60.0, opt1: 40.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
