@@ -798,6 +798,24 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 47.0, opt1: 53.0}
             
+            # News consumption/trust
+            if any(t in combined_context for t in ["news", "media", "journalism"]):
+                if any(t in q_lower for t in ["trust", "reliable", "believe"]):
+                    if "yes" in opt0_lower:
+                        # 56% trust national, higher for local
+                        if "local" in q_lower:
+                            return {opt0: 68.0, opt1: 32.0}
+                        else:
+                            return {opt0: 56.0, opt1: 44.0}
+            
+            # Sleep (2025)
+            if any(t in combined_context for t in ["sleep", "rest", "tired"]):
+                if any(t in q_lower for t in ["enough", "recommended", "7 hours"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 69.0, opt1: 31.0}
+                    else:
+                        return {opt0: 31.0, opt1: 69.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

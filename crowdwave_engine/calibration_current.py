@@ -397,6 +397,22 @@ CREDIT_CARD_DEBT_2025 = {
     "source": "NerdWallet, Bankrate 2025"
 }
 
+# News Consumption (2025-2026)
+NEWS_CONSUMPTION_2025 = {
+    "trust_national_news": 0.56,  # 56% (down 20 pts since 2016)
+    "trust_local_news": 0.68,  # Higher trust for local
+    "decline_since_2016": 0.20,
+    "source": "Pew 2025"
+}
+
+# Sleep (2025)
+SLEEP_2025 = {
+    "get_recommended_hours": 0.69,  # 69% get 7+ hours
+    "dont_get_enough": 0.31,  # 31% don't get enough
+    "revenge_procrastination": 0.96,  # 96% guilty of this
+    "source": "CDC, USAFacts 2025"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
