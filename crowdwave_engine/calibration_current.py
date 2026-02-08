@@ -847,6 +847,14 @@ GLP1_DRUGS_2026 = {
     "source": "KFF, RAND, Pew 2025-2026"
 }
 
+# Fast Food (2025-2026)
+FAST_FOOD_2026 = {
+    "households_weekly": 0.83,  # 83%
+    "adults_daily": 0.37,  # 37%
+    "avg_annual_spend": 1200,
+    "source": "World Population Review, Gitnux 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

@@ -1187,6 +1187,15 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 53.0, opt1: 47.0}
             
+            # Fast food
+            if any(t in combined_context for t in ["fast food", "mcdonald", "burger king", "wendy"]):
+                if any(t in q_lower for t in ["eat", "weekly", "often"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 83.0, opt1: 17.0}  # Weekly
+                if any(t in q_lower for t in ["daily"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 37.0, opt1: 63.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
