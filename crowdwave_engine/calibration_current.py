@@ -750,6 +750,15 @@ HOMEOWNERSHIP_2026 = {
     "source": "FRED, Zebra 2026"
 }
 
+# Volunteering/Charity (2025-2026)
+VOLUNTEERING_2026 = {
+    "volunteer_nonreligious": 0.55,  # 55% (Gallup)
+    "donated_money": 0.76,  # 76% donated
+    "volunteer_45_plus": 0.33,  # 33% ages 45+
+    "volunteer_under_45": 0.22,  # 22%
+    "source": "Gallup, AP-NORC 2025"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
