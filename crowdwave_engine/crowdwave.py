@@ -744,6 +744,21 @@ class CrowdwaveEngine:
                         # Currently 56% onsite
                         return {opt0: 56.0, opt1: 44.0}
             
+            # Online shopping (2025)
+            if any(t in combined_context for t in ["shopping", "ecommerce", "online", "retail"]):
+                if any(t in q_lower for t in ["prefer online", "shop online"]):
+                    if "yes" in opt0_lower or "online" in opt0_lower:
+                        return {opt0: 28.0, opt1: 72.0}
+                if any(t in q_lower for t in ["mobile", "phone", "app"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 48.0, opt1: 52.0}
+            
+            # Work-life balance
+            if any(t in combined_context for t in ["work-life", "work life", "balance"]):
+                if any(t in q_lower for t in ["satisfied", "happy", "good"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 60.0, opt1: 40.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

@@ -346,6 +346,23 @@ FITNESS_2025 = {
     "source": "HFA 2025, Gym Statistics"
 }
 
+# Online Shopping (2025)
+ONLINE_SHOPPING_2025 = {
+    "prefer_online": 0.284,  # 28.4%
+    "prefer_hybrid": 0.263,
+    "prefer_in_store": 0.453,
+    "mobile_purchase": 0.48,  # 48% made mobile purchase
+    "ecommerce_share": 0.158,  # 15.8% of retail
+    "source": "Capital One Shopping 2025"
+}
+
+# Work-Life Balance (2025)
+WORK_LIFE_BALANCE_2025 = {
+    "satisfied": 0.601,  # 60.1%
+    "improvement_from_2021": 0.058,  # +5.8 percentage points
+    "source": "Novoresume 2025"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
