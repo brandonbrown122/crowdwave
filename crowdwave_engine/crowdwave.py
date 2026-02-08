@@ -1359,6 +1359,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 57.0, opt1: 43.0}
             
+            # 401k retirement
+            if any(t in combined_context for t in ["401k", "retirement", "ira"]):
+                if any(t in q_lower for t in ["max", "maximum", "limit"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 14.0, opt1: 86.0}
+            
+            # News trust
+            if any(t in combined_context for t in ["news", "media", "journalism"]):
+                if any(t in q_lower for t in ["trust", "believe"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 56.0, opt1: 44.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

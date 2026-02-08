@@ -1054,6 +1054,19 @@ COMMUTE_TIME_2026 = {
     "source": "Business Journals, AnswerIQ 2026"
 }
 
+# 401k Retirement (2025-2026)
+RETIREMENT_401K_2026 = {
+    "contribute_max": 0.14,  # 14%
+    "source": "Investopedia, Vanguard 2026"
+}
+
+# News Trust (2025-2026)
+NEWS_TRUST_2026 = {
+    "trust_national_news": 0.56,  # 56%
+    "fallen_20_points_since_2016": True,
+    "source": "Pew 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
