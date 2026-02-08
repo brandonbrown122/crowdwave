@@ -112,6 +112,47 @@ SATISFACTION_BENCHMARKS = {
         validated_date="2026-02-08",
         accuracy_zone=AccuracyZone.MEDIUM
     ),
+    # C-Suite Executive Benchmarks (Conference Board 2025)
+    "csuite_cyber_concern": Benchmark(
+        construct="concern",
+        mean_range=(0.46, 0.50),  # 46-50% cite as top concern
+        sd_range=(0.05, 0.08),
+        shape="normal",
+        source="Conference Board C-Suite Survey 2025 (N=1,732)",
+        sample_size=1732,
+        validated_date="2026-02-08",
+        accuracy_zone=AccuracyZone.HIGH
+    ),
+    "csuite_recession_concern": Benchmark(
+        construct="concern",
+        mean_range=(0.34, 0.38),  # 34-38% cite recession
+        sd_range=(0.05, 0.08),
+        shape="normal",
+        source="Conference Board C-Suite Survey 2025",
+        sample_size=1732,
+        validated_date="2026-02-08",
+        accuracy_zone=AccuracyZone.HIGH
+    ),
+    "csuite_ai_impact": Benchmark(
+        construct="concern",
+        mean_range=(0.33, 0.37),  # 33-37% cite AI
+        sd_range=(0.05, 0.08),
+        shape="normal",
+        source="Conference Board C-Suite Survey 2025",
+        sample_size=1732,
+        validated_date="2026-02-08",
+        accuracy_zone=AccuracyZone.HIGH
+    ),
+    "csuite_regulation_concern": Benchmark(
+        construct="concern",
+        mean_range=(0.33, 0.37),  # 33-37% cite regulation
+        sd_range=(0.05, 0.08),
+        shape="normal",
+        source="Conference Board C-Suite Survey 2025",
+        sample_size=1732,
+        validated_date="2026-02-08",
+        accuracy_zone=AccuracyZone.HIGH
+    ),
 }
 
 

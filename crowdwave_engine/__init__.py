@@ -58,7 +58,30 @@ except ImportError:
     PriorSearcher = None
     create_enhanced_engine = None
 
-__version__ = "1.0.0"
+# Evaluation framework
+from .evaluation import (
+    EvaluationTracker,
+    CalibrationMetrics,
+    PredictionRecord,
+    calculate_mae,
+    calculate_mape,
+    calculate_rmse,
+    calculate_calibration_score,
+)
+
+# Distribution generators
+from .distributions import (
+    generate_beta_distribution,
+    generate_truncated_normal,
+    generate_skewed_distribution,
+    generate_bimodal_distribution,
+    generate_nps_distribution,
+    generate_likert_distribution,
+    calculate_distribution_stats,
+    adjust_distribution_for_bias,
+)
+
+__version__ = "1.0.1"
 __author__ = "Crowdwave"
 
 __all__ = [
@@ -87,4 +110,23 @@ __all__ = [
     # Prompts
     "build_simulation_prompt",
     "get_quick_calibration_insert",
+    
+    # Evaluation
+    "EvaluationTracker",
+    "CalibrationMetrics",
+    "PredictionRecord",
+    "calculate_mae",
+    "calculate_mape",
+    "calculate_rmse",
+    "calculate_calibration_score",
+    
+    # Distributions
+    "generate_beta_distribution",
+    "generate_truncated_normal",
+    "generate_skewed_distribution",
+    "generate_bimodal_distribution",
+    "generate_nps_distribution",
+    "generate_likert_distribution",
+    "calculate_distribution_stats",
+    "adjust_distribution_for_bias",
 ]
