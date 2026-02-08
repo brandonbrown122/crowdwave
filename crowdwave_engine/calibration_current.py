@@ -363,6 +363,23 @@ WORK_LIFE_BALANCE_2025 = {
     "source": "Novoresume 2025"
 }
 
+# Dating Apps (2026)
+DATING_APPS_2026 = {
+    "ever_used": 0.37,  # 37%
+    "currently_using": 0.06,  # 6%
+    "niche_apps_share": 0.20,
+    "source": "SSRS 2026"
+}
+
+# Religion (2025)
+RELIGION_2025 = {
+    "church_membership": 0.47,  # 47% (2020, continuing decline)
+    "religiously_unaffiliated": 0.28,  # "Nones"
+    "christian": 0.65,
+    "attend_weekly": 0.24,  # ~24%
+    "source": "Gallup, Pew 2025"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
