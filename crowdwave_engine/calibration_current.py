@@ -832,6 +832,21 @@ EV_RANGE_ANXIETY_2026 = {
     "source": "InsideEVs, U-M 2026"
 }
 
+# Telehealth (2025-2026)
+TELEHEALTH_2026 = {
+    "used_past_year": 0.54,  # 54%
+    "visits_virtual_projected": 0.27,  # 25-30% by end of 2026
+    "market_billion": 140,
+    "source": "Benchmark Systems, ScienceSoft 2026"
+}
+
+# GLP-1/Weight Loss Drugs (2025-2026)
+GLP1_DRUGS_2026 = {
+    "tried_glp1": 0.12,  # 12% (1 in 8)
+    "hear_often": 0.53,  # 53% hear about it often
+    "source": "KFF, RAND, Pew 2025-2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
