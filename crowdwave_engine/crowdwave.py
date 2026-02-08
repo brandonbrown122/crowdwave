@@ -1145,6 +1145,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 34.0, opt1: 66.0}
             
+            # Sports betting
+            if any(t in combined_context for t in ["sports betting", "gambling", "bet on sports"]):
+                if any(t in q_lower for t in ["bet", "gamble", "wager"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 22.0, opt1: 78.0}
+            
+            # Plastic surgery
+            if any(t in combined_context for t in ["plastic surgery", "cosmetic surgery", "botox"]):
+                if any(t in q_lower for t in ["consider", "had", "get"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 15.0, opt1: 85.0}  # Approximate
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

@@ -800,6 +800,21 @@ ALCOHOL_2026 = {
     "source": "Gallup, Scripps 2026"
 }
 
+# Sports Betting (2025-2026)
+SPORTS_BETTING_2026 = {
+    "bet_past_year": 0.22,  # 22% bet in past year
+    "bet_online": 0.10,  # 10%
+    "bettors_cant_pay_bills": 0.25,  # 25%
+    "source": "Pew 2025"
+}
+
+# Plastic Surgery (2025-2026)
+PLASTIC_SURGERY_2026 = {
+    "us_global_market_share": 0.45,  # 45% of global
+    "men_procedures_doubled": True,
+    "source": "MedicalXpress 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
