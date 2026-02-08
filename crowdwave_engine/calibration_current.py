@@ -432,6 +432,13 @@ STUDENT_LOANS_2025 = {
     "source": "Education Data, Motley Fool 2025"
 }
 
+# Health Insurance Satisfaction (2025)
+HEALTH_INSURANCE_2025 = {
+    "satisfied_overall": 0.82,  # 82% (NBC/SurveyMonkey)
+    "very_satisfied": 0.33,  # ~1 in 3
+    "source": "NBC News/SurveyMonkey 2025"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
