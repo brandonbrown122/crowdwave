@@ -784,6 +784,22 @@ OUTDOOR_CAMPING_2026 = {
     "source": "The Dyrt 2026 Camping Report"
 }
 
+# Coffee (2025-2026)
+COFFEE_2026 = {
+    "drink_daily": 0.66,  # 66% drink daily
+    "avg_cups": 3.1,
+    "source": "Beverage Daily 2026"
+}
+
+# Alcohol (2025-2026)
+ALCOHOL_2026 = {
+    "adults_drink": 0.54,  # 54% (90-year low)
+    "california_sober": 0.34,  # 34%
+    "gen_z_california_sober": 0.48,  # 48%
+    "sober_curious_growth": 0.44,  # 44% increase
+    "source": "Gallup, Scripps 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
