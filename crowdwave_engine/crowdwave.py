@@ -932,6 +932,24 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 80.0, opt1: 20.0}
             
+            # Social Security confidence
+            if any(t in combined_context for t in ["social security"]):
+                if any(t in q_lower for t in ["cut", "reduce", "change"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 70.0, opt1: 30.0}
+                if any(t in q_lower for t in ["available", "there", "trust"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 70.0, opt1: 30.0}  # 70% believe it'll be there
+            
+            # Shopping preferences
+            if any(t in combined_context for t in ["shopping", "retail", "store"]):
+                if any(t in q_lower for t in ["online", "internet"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 28.0, opt1: 72.0}  # 28% prefer online
+                if any(t in q_lower for t in ["in-store", "brick", "physical"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 45.0, opt1: 55.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

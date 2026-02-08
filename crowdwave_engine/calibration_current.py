@@ -562,6 +562,23 @@ DATA_PRIVACY_2026 = {
     "source": "Cisco 2025, Folio3 2026"
 }
 
+# Social Security Confidence (2025-2026)
+SOCIAL_SECURITY_2026 = {
+    "expect_benefit_cuts": 0.70,  # 70% expect cuts (Cato)
+    "dont_believe_available": 0.30,  # 30% don't believe it'll be there
+    "trust_fund_solvent_until": 2034,
+    "source": "Cato Institute 2025, SSA Trustees"
+}
+
+# Shopping Preferences (2025-2026)
+SHOPPING_PREFERENCES_2026 = {
+    "prefer_in_store": 0.45,  # 45% prefer in-store
+    "prefer_online": 0.28,  # 28% prefer online
+    "gen_z_in_store_discovery": 0.61,  # 61% Gen Z discover in-store
+    "shop_in_store_weekly": 0.64,  # 64% shop stores weekly
+    "source": "Capital One Shopping, PwC 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
