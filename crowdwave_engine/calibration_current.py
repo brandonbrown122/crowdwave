@@ -1081,6 +1081,20 @@ ORGAN_DONATION_2026 = {
     "source": "Market.us 2026"
 }
 
+# Internet Access (2025-2026)
+INTERNET_ACCESS_2026 = {
+    "use_daily": 0.90,  # 90%
+    "almost_constantly": 0.41,  # 41%
+    "source": "Pew, Broadband Breakfast 2026"
+}
+
+# Gun Ownership (2025-2026)
+GUN_OWNERSHIP_2026 = {
+    "household_own": 0.42,  # 42%
+    "protection_reason": 0.77,  # 77%
+    "source": "Gallup, Pew, Legal Reader 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

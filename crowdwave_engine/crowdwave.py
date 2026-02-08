@@ -1380,6 +1380,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 58.0, opt1: 42.0}
             
+            # Internet access
+            if any(t in combined_context for t in ["internet", "online", "broadband"]):
+                if any(t in q_lower for t in ["use", "access"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 90.0, opt1: 10.0}
+            
+            # Gun ownership
+            if any(t in combined_context for t in ["gun", "firearm", "handgun"]):
+                if any(t in q_lower for t in ["own", "have"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 42.0, opt1: 58.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
