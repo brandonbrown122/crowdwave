@@ -39,6 +39,8 @@ from .calibration_current import (
     AI_JOB_CONCERNS_2026,
     VACCINATION_RATES_US,
     STREAMING_BENCHMARKS,
+    CONSUMER_CONFIDENCE_FEB2026,
+    VEHICLE_PURCHASE_FEB2026,
     get_current_calibration,
 )
 
@@ -398,6 +400,18 @@ class CrowdwaveEngine:
             if n_points == 5:
                 # Check for current calibrations first
                 
+                # Economic sentiment - calibrated Feb 2026
+                if any(t in combined_context for t in ["economy", "economic", "recession", "financial"]):
+                    if any(t in q_lower for t in ["recession", "downturn"]):
+                        # Only 14% expect recession
+                        return {"1": 35.0, "2": 28.0, "3": 23.0, "4": 10.0, "5": 4.0}
+                    elif any(t in q_lower for t in ["optimistic", "confident", "positive"]):
+                        # Mixed sentiment (57.3 index)
+                        return {"1": 12.0, "2": 18.0, "3": 32.0, "4": 26.0, "5": 12.0}
+                    elif any(t in q_lower for t in ["concern", "worried"]):
+                        # Inflation/job concerns elevated
+                        return {"1": 8.0, "2": 14.0, "3": 24.0, "4": 34.0, "5": 20.0}
+                
                 # AI/job concerns - calibrated Feb 2026
                 if any(t in combined_context for t in ["ai ", "artificial intelligence", "automation"]):
                     if any(t in q_lower for t in ["concern", "worried", "fear", "impact"]):
@@ -484,12 +498,36 @@ class CrowdwaveEngine:
                     return {opt0: 9.0, opt1: 91.0}
             
             # Streaming cancellation (calibrated)
-            if any(t in combined_context for t in ["cancel", "streaming", "subscription"]):
+            if any(t in combined_context for t in ["streaming"]) and "cancel" in q_lower:
                 if "yes" in opt0_lower:
                     # ~35% considering canceling
                     return {opt0: 35.0, opt1: 65.0}
                 else:
                     return {opt0: 65.0, opt1: 35.0}
+            
+            # Vehicle purchase intent (Feb 2026)
+            if any(t in combined_context for t in ["car", "vehicle", "auto"]):
+                if any(t in q_lower for t in ["electric", "ev "]):
+                    if "yes" in opt0_lower or "would" in opt0_lower:
+                        # Only 16% intend to buy EV
+                        return {opt0: 16.0, opt1: 84.0}
+                    else:
+                        return {opt0: 84.0, opt1: 16.0}
+                elif any(t in q_lower for t in ["hybrid"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 33.0, opt1: 67.0}
+                elif any(t in q_lower for t in ["planning", "intend", "buy"]):
+                    if "yes" in opt0_lower:
+                        # 40% planning to buy
+                        return {opt0: 40.0, opt1: 60.0}
+            
+            # Recession expectations (Feb 2026)
+            if any(t in combined_context for t in ["recession", "economic"]):
+                if "yes" in opt0_lower or "expect" in opt0_lower or "likely" in opt0_lower:
+                    # Only 14% expect recession
+                    return {opt0: 14.0, opt1: 86.0}
+                elif "no" in opt0_lower:
+                    return {opt0: 86.0, opt1: 14.0}
             
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):

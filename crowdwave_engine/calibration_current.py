@@ -88,6 +88,30 @@ INSTITUTIONAL_TRUST = {
     "source": "Gallup, Edelman Trust Barometer 2025, NPR/Marist Feb 2026"
 }
 
+# Consumer Confidence (Feb 2026)
+CONSUMER_CONFIDENCE_FEB2026 = {
+    "sentiment_index": 57.3,  # U Michigan, 6-month high
+    "confidence_index": 84.5,  # Conference Board, lowest since 2014
+    "personal_finances_good": 0.52,
+    "economy_good": 0.38,
+    "recession_expected_12mo": 0.14,  # Only 14% expect recession
+    "inflation_concern": 0.68,
+    "job_market_concern": 0.45,
+    "source": "U Michigan Sentiment Feb 2026, Conference Board Jan 2026"
+}
+
+# Vehicle Purchase Intent (Feb 2026)
+VEHICLE_PURCHASE_FEB2026 = {
+    "planning_to_buy_car": 0.40,  # 40% of adults
+    "intent_by_type": {
+        "gas": 0.50,      # 50% prefer gas
+        "hybrid": 0.33,   # 33% prefer hybrid
+        "ev": 0.16,       # 16% prefer EV
+    },
+    "ev_sales_share_2026": 0.275,  # 27.5% of global sales
+    "source": "TransUnion Consumer Auto Survey Feb 2026"
+}
+
 # Streaming Services (late 2025)
 STREAMING_BENCHMARKS = {
     "nps_by_service": {
