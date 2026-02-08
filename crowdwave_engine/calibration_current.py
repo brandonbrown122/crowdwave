@@ -663,6 +663,22 @@ SUBSCRIPTION_FATIGUE_2026 = {
     "source": "Deloitte, Oak Hill 2026"
 }
 
+# Loneliness (2025-2026)
+LONELINESS_2026 = {
+    "feel_lonely_45_plus": 0.40,  # 40% ages 45+ feel lonely
+    "eat_meals_alone": 0.20,  # 20% eat alone
+    "struggling_millions": 52,  # 52 million
+    "source": "AARP, Gallup, Penn Medicine 2025-2026"
+}
+
+# Job Satisfaction (2025-2026)
+JOB_SATISFACTION_2026 = {
+    "like_job_overall": 0.51,  # 51% like job
+    "happy_with_pay": 0.34,  # 34% happy with pay
+    "satisfied_recognition": 0.52,  # 52% satisfied with recognition
+    "source": "Pew Research, SSR 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

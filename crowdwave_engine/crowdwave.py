@@ -1022,6 +1022,21 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 65.0, opt1: 35.0}
             
+            # Loneliness
+            if any(t in combined_context for t in ["lonely", "loneliness", "isolated", "alone"]):
+                if any(t in q_lower for t in ["feel", "experience"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 40.0, opt1: 60.0}
+            
+            # Job satisfaction
+            if any(t in combined_context for t in ["job satisfaction", "work satisfaction", "happy at work"]):
+                if any(t in q_lower for t in ["satisfied", "happy", "like"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 51.0, opt1: 49.0}
+                if any(t in q_lower for t in ["pay", "salary", "compensation"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 34.0, opt1: 66.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
