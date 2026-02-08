@@ -3,18 +3,18 @@ Crowdwave Simulation Engine
 Production-ready survey simulation with 79% error reduction vs naive LLM.
 
 Quick Start:
-    from Crowdwave_engine import CrowdwaveEngine
+    from crowdwave_engine import CrowdwaveEngine
     
     engine = CrowdwaveEngine()
     results = engine.simulate(config, questions)
     print(engine.to_json(results))
 
 API Server:
-    from Crowdwave_engine.api import run_server
+    from crowdwave_engine.api import run_server
     run_server(port=8000)
 """
 
-from .Crowdwave import (
+from .crowdwave import (
     CrowdwaveEngine,
     SurveyConfig,
     Question,
@@ -43,6 +43,20 @@ from .prompts import (
     build_simulation_prompt,
     get_quick_calibration_insert,
 )
+
+# LLM integration (optional - requires anthropic/openai packages)
+try:
+    from .llm_integration import (
+        EnhancedCrowdwaveEngine,
+        PriorSearcher,
+        create_enhanced_engine,
+    )
+    LLM_AVAILABLE = True
+except ImportError:
+    LLM_AVAILABLE = False
+    EnhancedCrowdwaveEngine = None
+    PriorSearcher = None
+    create_enhanced_engine = None
 
 __version__ = "1.0.0"
 __author__ = "Crowdwave"

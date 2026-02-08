@@ -16,7 +16,7 @@ if sys.platform == 'win32':
 # Add parent to path for local testing
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from Crowdwave_engine import CrowdwaveEngine, AccuracyZone
+from crowdwave_engine import CrowdwaveEngine, AccuracyZone
 
 
 def main():
