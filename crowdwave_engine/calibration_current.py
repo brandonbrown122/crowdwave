@@ -596,6 +596,23 @@ DREAMERS_2026 = {
     "source": "Various polls 2025-2026"
 }
 
+# Healthcare Costs (2025-2026)
+HEALTHCARE_COSTS_2026 = {
+    "worried_afford": 0.66,  # 66% worried about affording healthcare
+    "bankruptcies_medical": 0.63,  # 60-65% bankruptcies tied to medical
+    "cost_increase_2025": 0.07,  # 7% increase
+    "source": "KFF 2026, Johns Hopkins"
+}
+
+# Mental Health (2025-2026)
+MENTAL_HEALTH_2026 = {
+    "received_therapy": 0.14,  # 14% received therapy (CDC)
+    "has_mental_illness": 0.20,  # 1 in 5
+    "depression_receive_treatment": 0.41,  # 39-43%
+    "gen_z_monthly_challenges": 0.94,  # 94% Gen Z
+    "source": "CDC 2024, Zebra 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

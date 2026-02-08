@@ -962,6 +962,21 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 81.0, opt1: 19.0}
             
+            # Healthcare costs
+            if any(t in combined_context for t in ["healthcare cost", "medical bill", "health insurance cost"]):
+                if any(t in q_lower for t in ["worried", "afford", "concern"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 66.0, opt1: 34.0}
+            
+            # Mental health treatment
+            if any(t in combined_context for t in ["therapy", "counseling", "mental health treatment"]):
+                if any(t in q_lower for t in ["received", "sought", "gotten"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 14.0, opt1: 86.0}
+                if any(t in q_lower for t in ["struggle", "challenge", "issue"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 20.0, opt1: 80.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
