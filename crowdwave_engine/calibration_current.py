@@ -1005,6 +1005,13 @@ MARRIAGE_2026 = {
     "source": "South Denver Therapy 2026"
 }
 
+# Homeownership (2025-2026)
+HOMEOWNERSHIP_2026 = {
+    "rate": 0.657,  # 65.7%
+    "renters_millions": 40,
+    "source": "FRED, Zebra 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
