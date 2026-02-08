@@ -995,6 +995,18 @@ class CrowdwaveEngine:
                     if "office" in opt0_lower:
                         return {opt0: 12.0, opt1: 88.0}
             
+            # Gun control
+            if any(t in combined_context for t in ["gun", "firearm", "assault weapon"]):
+                if any(t in q_lower for t in ["ban", "control", "restrict"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 57.0, opt1: 43.0}
+            
+            # Police trust
+            if any(t in combined_context for t in ["police", "law enforcement", "cop"]):
+                if any(t in q_lower for t in ["trust", "confidence", "approve"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 55.0, opt1: 45.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

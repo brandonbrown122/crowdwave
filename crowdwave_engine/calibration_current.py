@@ -632,6 +632,21 @@ WORK_ARRANGEMENTS_2026 = {
     "source": "Slack, Robert Half 2026"
 }
 
+# Gun Control (2025-2026)
+GUN_CONTROL_2026 = {
+    "support_assault_weapons_ban": 0.57,  # 57%
+    "gun_violence_priority": 0.87,  # 87% (NY poll)
+    "partisan_gap": 0.40,  # ~40 point gap
+    "source": "CBS News, Everytown 2026"
+}
+
+# Police Trust (2025-2026)
+POLICE_TRUST_2026 = {
+    "partisan_gap_points": 34,  # 34-point R-D gap
+    "local_approval_avg": 0.55,  # ~55% local approval
+    "source": "Gallup 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
