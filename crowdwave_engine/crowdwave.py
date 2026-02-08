@@ -573,12 +573,36 @@ class CrowdwaveEngine:
                         return {opt0: 40.0, opt1: 60.0}
             
             # Recession expectations (Feb 2026)
-            if any(t in combined_context for t in ["recession", "economic"]):
+            if any(t in combined_context for t in ["recession"]):
                 if "yes" in opt0_lower or "expect" in opt0_lower or "likely" in opt0_lower:
                     # Only 14% expect recession
                     return {opt0: 14.0, opt1: 86.0}
                 elif "no" in opt0_lower:
                     return {opt0: 86.0, opt1: 14.0}
+            
+            # Cryptocurrency (2026)
+            if any(t in combined_context for t in ["crypto", "bitcoin", "cryptocurrency"]):
+                if any(t in q_lower for t in ["own", "have", "hold"]):
+                    if "yes" in opt0_lower:
+                        # 28% own crypto
+                        return {opt0: 28.0, opt1: 72.0}
+                    else:
+                        return {opt0: 72.0, opt1: 28.0}
+                elif any(t in q_lower for t in ["plan to buy", "intend", "considering"]):
+                    if "yes" in opt0_lower:
+                        # Only 6% of non-owners plan to buy
+                        return {opt0: 6.0, opt1: 94.0}
+            
+            # Homeownership
+            if any(t in combined_context for t in ["home", "house", "mortgage"]):
+                if any(t in q_lower for t in ["own", "homeowner"]):
+                    if "yes" in opt0_lower:
+                        # 65.7% homeownership rate
+                        return {opt0: 66.0, opt1: 34.0}
+                elif any(t in q_lower for t in ["first-time", "first time"]):
+                    if "yes" in opt0_lower:
+                        # 54% of buyers are first-time
+                        return {opt0: 54.0, opt1: 46.0}
             
             # Party identification (Gallup 2025)
             if any(t in combined_context for t in ["party", "political", "democrat", "republican", "independent"]):

@@ -29,6 +29,8 @@ tests = [
     ('Car purchase', 'US adults', 'Planning to buy a car this year?', 'binary', ['Yes', 'No'], 40, 'TransUnion'),
     ('Remote work', 'Workers', 'Do you prefer remote work?', 'binary', ['Remote', 'In-office'], 37, 'FlexJobs'),
     ('Party ID', 'Gen Z adults', 'Do you identify as independent?', 'binary', ['Independent', 'Party'], 56, 'Gallup'),
+    ('Crypto', 'US adults', 'Do you own cryptocurrency?', 'binary', ['Yes', 'No'], 28, 'Security.org'),
+    ('Homeowner', 'US adults', 'Do you own your home?', 'binary', ['Yes', 'No'], 66, 'FRED'),
 ]
 
 print()

@@ -240,6 +240,26 @@ GENERATIONAL_ATTITUDES = {
 }
 
 
+# Cryptocurrency (2026)
+CRYPTO_2026 = {
+    "own_crypto": 0.28,  # 28% of Americans (Security.org)
+    "expect_value_rise": 0.60,  # Under Trump
+    "non_owners_plan_to_buy": 0.06,  # Only 6%
+    "bitcoin_among_crypto_owners": 0.74,  # 74% own BTC
+    "source": "Security.org 2026 Report"
+}
+
+# Homeownership (Q4 2025)
+HOMEOWNERSHIP_2025 = {
+    "overall_rate": 0.657,  # 65.7%
+    "under_35_rate": 0.379,  # 37.9%
+    "first_time_buyers_pct": 0.54,  # 54% of 2026 buyers
+    "expecting_family_help": 0.30,  # 30%
+    "mortgage_rate": 6.25,  # Late 2025
+    "source": "FRED Q4 2025, IPX1031"
+}
+
+
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
     Get current calibrations for a topic.
