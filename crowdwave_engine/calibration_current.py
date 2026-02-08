@@ -467,6 +467,24 @@ TERM_LIMITS_2025 = {
     "source": "Pew Research"
 }
 
+# Smart Home (2025-2026)
+SMART_HOME_2026 = {
+    "have_device": 0.48,  # 48% have at least one (Horowitz Research)
+    "expected_2026": 0.57,  # 57% expected by end of 2026
+    "avg_devices_per_home": 15,  # 15-20 devices in smart homes
+    "higher_income_adoption": 0.65,  # Higher income households
+    "source": "Horowitz Research, eMarketer 2026"
+}
+
+# Social Media (2025-2026)
+SOCIAL_MEDIA_2026 = {
+    "get_news_youtube": 0.35,  # 35% get news from YouTube
+    "get_news_facebook": 0.30,  # ~30% from Facebook
+    "purchases_influenced_gen_z": 0.77,  # 77% Gen Z influenced by social
+    "daily_tiktok_minutes": 89,  # 89 min daily TikTok (Gen Z)
+    "source": "Hootsuite, Pew 2025-2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

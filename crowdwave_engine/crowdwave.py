@@ -863,6 +863,21 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 90.0, opt1: 10.0}
             
+            # Smart home
+            if any(t in combined_context for t in ["smart home", "alexa", "google home", "smart speaker"]):
+                if any(t in q_lower for t in ["have", "own", "use"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 48.0, opt1: 52.0}
+            
+            # Social media
+            if any(t in combined_context for t in ["social media", "facebook", "instagram", "tiktok"]):
+                if any(t in q_lower for t in ["news", "get news"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 35.0, opt1: 65.0}
+                if any(t in q_lower for t in ["influence", "purchase", "buy"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 55.0, opt1: 45.0}  # Avg across generations
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
