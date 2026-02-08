@@ -974,6 +974,13 @@ VEGANISM_2026 = {
     "source": "Forbes, Gallup 2026"
 }
 
+# Smart Speakers (2025-2026)
+SMART_SPEAKERS_2026 = {
+    "households_voice_assistant": 0.75,  # 75% projected
+    "google_assistant_accuracy": 0.93,  # 93%
+    "source": "Digital Holics, Security.org 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
