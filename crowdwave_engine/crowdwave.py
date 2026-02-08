@@ -851,6 +851,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 45.0, opt1: 55.0}
             
+            # Death penalty
+            if any(t in combined_context for t in ["death penalty", "capital punishment", "execution"]):
+                if any(t in q_lower for t in ["support", "favor"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 52.0, opt1: 48.0}
+            
+            # Term limits
+            if any(t in combined_context for t in ["term limit", "congress"]):
+                if any(t in q_lower for t in ["support", "favor"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 90.0, opt1: 10.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

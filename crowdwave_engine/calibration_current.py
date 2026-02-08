@@ -453,6 +453,20 @@ UBI_2025 = {
     "source": "U Chicago, YouGov"
 }
 
+# Death Penalty (2025)
+DEATH_PENALTY_2025 = {
+    "support": 0.52,  # 52% (Gallup Oct 2025) - down from 80% in 1994
+    "oppose": 0.48,
+    "source": "Gallup Oct 2025"
+}
+
+# Term Limits (2025)
+TERM_LIMITS_2025 = {
+    "support": 0.90,  # ~90% support
+    "bipartisan": True,
+    "source": "Pew Research"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
