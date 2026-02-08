@@ -977,6 +977,24 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 20.0, opt1: 80.0}
             
+            # College value
+            if any(t in combined_context for t in ["college", "university", "degree"]):
+                if any(t in q_lower for t in ["worth", "value"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 33.0, opt1: 67.0}
+                    else:
+                        return {opt0: 63.0, opt1: 37.0}  # Not worth it
+            
+            # Work arrangements
+            if any(t in combined_context for t in ["work from home", "remote work", "hybrid", "office"]):
+                if any(t in q_lower for t in ["prefer", "want"]):
+                    if "hybrid" in opt0_lower:
+                        return {opt0: 72.0, opt1: 28.0}
+                    if "remote" in opt0_lower:
+                        return {opt0: 16.0, opt1: 84.0}
+                    if "office" in opt0_lower:
+                        return {opt0: 12.0, opt1: 88.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

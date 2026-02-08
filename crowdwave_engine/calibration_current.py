@@ -613,6 +613,25 @@ MENTAL_HEALTH_2026 = {
     "source": "CDC 2024, Zebra 2026"
 }
 
+# College Value (2025-2026)
+COLLEGE_VALUE_2026 = {
+    "not_worth_cost": 0.63,  # 63% say not worth it
+    "worth_cost": 0.33,  # 33% say worth it
+    "very_important": 0.35,  # 35% say very important
+    "source": "Gallup, News polls 2025-2026"
+}
+
+# Work Arrangements (2025-2026)
+WORK_ARRANGEMENTS_2026 = {
+    "prefer_hybrid": 0.72,  # 72% prefer hybrid
+    "prefer_always_office": 0.12,
+    "prefer_always_remote": 0.16,
+    "current_on_site": 0.56,
+    "current_hybrid": 0.30,
+    "current_remote": 0.14,
+    "source": "Slack, Robert Half 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
