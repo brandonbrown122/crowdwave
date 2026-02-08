@@ -1052,6 +1052,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 54.0, opt1: 46.0}
             
+            # Parental stress
+            if any(t in combined_context for t in ["parenting", "parent", "child rearing"]):
+                if any(t in q_lower for t in ["stress", "burnout", "overwhelm", "mental health"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 30.0, opt1: 70.0}
+            
+            # Life satisfaction
+            if any(t in combined_context for t in ["life satisfaction", "happiness", "well-being"]):
+                if any(t in q_lower for t in ["optimistic", "better", "improve"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 72.0, opt1: 28.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

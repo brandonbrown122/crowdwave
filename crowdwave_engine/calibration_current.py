@@ -695,6 +695,20 @@ FINANCIAL_LITERACY_2026 = {
     "source": "Pew Research, Intuit 2026"
 }
 
+# Parental Stress (2025-2026)
+PARENTAL_STRESS_2026 = {
+    "negative_mental_health_impact": 0.30,  # 30% say parenting hurts mental health
+    "burnout_increasing": True,
+    "source": "Axa 2025"
+}
+
+# Life Satisfaction (2025-2026)
+LIFE_SATISFACTION_2026 = {
+    "expect_same_or_better": 0.72,  # 72% expect life same or better
+    "personal_optimism": 0.79,  # 79% optimistic personal life
+    "source": "Washington Stand 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
