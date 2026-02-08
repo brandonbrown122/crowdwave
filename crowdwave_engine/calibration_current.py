@@ -1047,6 +1047,13 @@ EMERGENCY_SAVINGS_2026 = {
     "source": "US News, 401k Specialist 2026"
 }
 
+# Commute Time (2025-2026)
+COMMUTE_TIME_2026 = {
+    "avg_minutes": 27.2,
+    "remote_save_minutes": 40,
+    "source": "Business Journals, AnswerIQ 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
