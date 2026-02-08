@@ -998,6 +998,13 @@ TATTOOS_2026 = {
     "source": "ABC4, Disabled World, Pew 2026"
 }
 
+# Marriage/Divorce (2025-2026)
+MARRIAGE_2026 = {
+    "first_marriage_divorce": 0.41,  # 41%
+    "crude_divorce_rate": 2.4,  # per 1,000
+    "source": "South Denver Therapy 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
