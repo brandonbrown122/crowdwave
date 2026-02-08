@@ -593,6 +593,17 @@ class CrowdwaveEngine:
                         # Only 6% of non-owners plan to buy
                         return {opt0: 6.0, opt1: 94.0}
             
+            # Mental health
+            if any(t in combined_context for t in ["mental health", "depression", "anxiety"]):
+                if any(t in q_lower for t in ["diagnosed", "experienced", "suffered"]):
+                    if "yes" in opt0_lower:
+                        # 19% overall, higher for women
+                        return {opt0: 19.0, opt1: 81.0}
+                elif any(t in q_lower for t in ["concern", "worry", "important"]):
+                    if "yes" in opt0_lower:
+                        # High concern for mental health issues
+                        return {opt0: 72.0, opt1: 28.0}
+            
             # Homeownership
             if any(t in combined_context for t in ["home", "house", "mortgage"]):
                 if any(t in q_lower for t in ["own", "homeowner"]):

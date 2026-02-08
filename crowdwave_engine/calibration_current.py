@@ -249,6 +249,18 @@ CRYPTO_2026 = {
     "source": "Security.org 2026 Report"
 }
 
+# Mental Health (2025-2026)
+MENTAL_HEALTH_2026 = {
+    "ever_diagnosed_depression": {
+        "overall": 0.19,  # 19% (CDC)
+        "women": 0.367,   # 36.7% (Gallup 2025)
+        "men": 0.204,     # 20.4%
+    },
+    "anxiety_disorders": 42500000,  # 42.5M Americans
+    "young_people_mental_health": 0.25,  # >1 in 4
+    "source": "CDC, Gallup 2025"
+}
+
 # Homeownership (Q4 2025)
 HOMEOWNERSHIP_2025 = {
     "overall_rate": 0.657,  # 65.7%
