@@ -485,6 +485,26 @@ SOCIAL_MEDIA_2026 = {
     "source": "Hootsuite, Pew 2025-2026"
 }
 
+# Climate Change Concern (2025-2026)
+CLIMATE_CHANGE_2026 = {
+    "worried_air_pollution": 0.80,  # 80% worried
+    "worried_water_pollution": 0.79,
+    "worried_power_outages": 0.79,
+    "worried_extreme_heat": 0.73,
+    "climate_distress_dem": 0.36,  # 36% Dems experience distress
+    "climate_distress_rep": 0.09,  # 9% Republicans
+    "source": "Yale Climate Communication Fall 2025"
+}
+
+# Housing Affordability (2025-2026)
+HOUSING_AFFORDABILITY_2026 = {
+    "think_cost_is_problem": 0.92,  # 92% say housing cost is problem
+    "buying_more_affordable_markets": 0.66,  # 66% of markets
+    "mortgage_rate_2025_peak": 0.07,  # 7% peak
+    "mortgage_rate_late_2025": 0.062,  # 6.2% late 2025
+    "source": "Zebra, Investopedia 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

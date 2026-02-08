@@ -878,6 +878,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 55.0, opt1: 45.0}  # Avg across generations
             
+            # Climate change
+            if any(t in combined_context for t in ["climate", "global warming", "environment"]):
+                if any(t in q_lower for t in ["worried", "concerned", "problem"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 75.0, opt1: 25.0}  # Avg across concerns
+            
+            # Housing affordability
+            if any(t in combined_context for t in ["housing", "rent", "mortgage", "home price"]):
+                if any(t in q_lower for t in ["problem", "afford", "expensive"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 92.0, opt1: 8.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
