@@ -636,18 +636,27 @@ class CrowdwaveEngine:
     
     def to_json(self, report: SimulationReport) -> str:
         """Export results to JSON format."""
-        def serialize(obj):
-            if hasattr(obj, "__dict__"):
-                d = {}
-                for k, v in obj.__dict__.items():
-                    d[k] = serialize(v)
-                return d
-            elif isinstance(obj, list):
-                return [serialize(i) for i in obj]
-            elif isinstance(obj, dict):
-                return {k: serialize(v) for k, v in obj.items()}
-            elif isinstance(obj, Enum):
+        def serialize(obj, depth=0):
+            if depth > 10:  # Prevent infinite recursion
+                return str(obj)
+            if obj is None:
+                return None
+            if isinstance(obj, (str, int, float, bool)):
+                return obj
+            if isinstance(obj, Enum):
                 return obj.value
-            return obj
+            if isinstance(obj, list):
+                return [serialize(i, depth + 1) for i in obj]
+            if isinstance(obj, dict):
+                return {str(k): serialize(v, depth + 1) for k, v in obj.items()}
+            if hasattr(obj, "__dataclass_fields__"):
+                # Handle dataclasses specifically
+                return {k: serialize(getattr(obj, k), depth + 1) 
+                        for k in obj.__dataclass_fields__.keys()}
+            if hasattr(obj, "__dict__"):
+                return {k: serialize(v, depth + 1) 
+                        for k, v in obj.__dict__.items() 
+                        if not k.startswith('_')}
+            return str(obj)
         
         return json.dumps(serialize(report), indent=2)

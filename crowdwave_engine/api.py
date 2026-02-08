@@ -11,13 +11,16 @@ from dataclasses import dataclass
 try:
     from fastapi import FastAPI, HTTPException
     from fastapi.middleware.cors import CORSMiddleware
+    from fastapi.staticfiles import StaticFiles
+    from fastapi.responses import FileResponse
     from pydantic import BaseModel
+    import os
     FASTAPI_AVAILABLE = True
 except ImportError:
     FASTAPI_AVAILABLE = False
     BaseModel = object  # Fallback
 
-from .Crowdwave import CrowdwaveEngine
+from .crowdwave import CrowdwaveEngine
 from .calibration import (
     get_nps_benchmark,
     requires_partisan_segmentation,
@@ -93,16 +96,40 @@ def create_app() -> 'FastAPI':
     # Initialize engine
     engine = CrowdwaveEngine()
     
+    # Static files directory
+    static_dir = os.path.join(os.path.dirname(__file__), "static")
+    if os.path.exists(static_dir):
+        app.mount("/static", StaticFiles(directory=static_dir), name="static")
+    
     # ═══════════════════════════════════════════════════════════════
     # ENDPOINTS
     # ═══════════════════════════════════════════════════════════════
     
     @app.get("/")
     async def root():
+        """Serve the dashboard or return API info."""
+        index_path = os.path.join(static_dir, "index.html")
+        if os.path.exists(index_path):
+            return FileResponse(index_path)
+        return {
+            "service": "Crowdwave Simulation API",
+            "version": "1.0.1",
+            "status": "healthy",
+            "dashboard": "/static/index.html",
+            "endpoints": {
+                "simulate": "/simulate",
+                "benchmark": "/benchmark",
+                "validate": "/validate",
+                "calibrations": "/calibrations",
+            }
+        }
+    
+    @app.get("/api")
+    async def api_info():
         """API health check."""
         return {
             "service": "Crowdwave Simulation API",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "status": "healthy",
             "endpoints": {
                 "simulate": "/simulate",
