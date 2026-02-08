@@ -413,6 +413,25 @@ SLEEP_2025 = {
     "source": "CDC, USAFacts 2025"
 }
 
+# Travel (2026)
+TRAVEL_2026 = {
+    "plan_same_or_more": 0.56,  # 56% (YouGov)
+    "plan_travel_more": 0.42,
+    "plan_about_same": 0.47,
+    "plan_beach_vacation": 0.70,
+    "increased_budget": 0.68,
+    "source": "YouGov, TPG, Beach.com 2026"
+}
+
+# Student Loans (2025)
+STUDENT_LOANS_2025 = {
+    "have_student_debt": 0.13,  # 42.5M / 330M population
+    "college_grads_with_debt": 0.44,  # 44%
+    "students_borrow_annually": 0.60,  # 60%
+    "total_debt_trillion": 1.81,
+    "source": "Education Data, Motley Fool 2025"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

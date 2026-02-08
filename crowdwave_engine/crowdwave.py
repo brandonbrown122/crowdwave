@@ -816,6 +816,22 @@ class CrowdwaveEngine:
                     else:
                         return {opt0: 31.0, opt1: 69.0}
             
+            # Travel (2026)
+            if any(t in combined_context for t in ["travel", "vacation", "trip"]):
+                if any(t in q_lower for t in ["plan", "planning", "intend"]):
+                    if "yes" in opt0_lower:
+                        # 56% plan same or more travel
+                        return {opt0: 56.0, opt1: 44.0}
+                if any(t in q_lower for t in ["more", "increase"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 42.0, opt1: 58.0}
+            
+            # Student loans
+            if any(t in combined_context for t in ["student loan", "college debt", "student debt"]):
+                if any(t in q_lower for t in ["have", "carry", "owe"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 13.0, opt1: 87.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
