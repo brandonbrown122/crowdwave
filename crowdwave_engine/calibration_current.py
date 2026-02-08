@@ -952,6 +952,20 @@ STUDENT_LOAN_2026 = {
     "source": "Motley Fool, Education Data 2026"
 }
 
+# Gig Economy (2025-2026)
+GIG_ECONOMY_2026 = {
+    "have_side_hustle": 0.45,  # 45%
+    "avg_monthly_earnings": 442.76,
+    "source": "Yahoo Finance 2026"
+}
+
+# Cryptocurrency (2025-2026)
+CRYPTO_2026 = {
+    "holders_own_bitcoin": 0.74,  # 74%
+    "global_owners_millions": 490,
+    "source": "Security.org, Bleap 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

@@ -1282,6 +1282,18 @@ class CrowdwaveEngine:
                     if "support" in opt0_lower or "yes" in opt0_lower:
                         return {opt0: 57.0, opt1: 43.0}
             
+            # Gig economy / side hustle
+            if any(t in combined_context for t in ["gig economy", "side hustle", "uber", "lyft", "freelance"]):
+                if any(t in q_lower for t in ["have", "do", "work"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 45.0, opt1: 55.0}
+            
+            # Cryptocurrency
+            if any(t in combined_context for t in ["cryptocurrency", "bitcoin", "crypto", "ethereum"]):
+                if any(t in q_lower for t in ["own", "invest", "hold"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 15.0, opt1: 85.0}  # ~15% ownership
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
