@@ -1067,6 +1067,20 @@ NEWS_TRUST_2026 = {
     "source": "Pew 2026"
 }
 
+# Exercise/Fitness (2025-2026)
+FITNESS_2026 = {
+    "achieved_goals": 0.55,  # 55%
+    "exercisers_use_apps": 0.50,  # 50%
+    "source": "GymNation, Global Growth 2026"
+}
+
+# Organ Donation (2025-2026)
+ORGAN_DONATION_2026 = {
+    "support_donation": 0.95,  # 95%
+    "registered": 0.58,  # 58%
+    "source": "Market.us 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
