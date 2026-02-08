@@ -679,6 +679,22 @@ JOB_SATISFACTION_2026 = {
     "source": "Pew Research, SSR 2026"
 }
 
+# Buy Now Pay Later (2025-2026)
+BNPL_2026 = {
+    "used_bnpl": 0.20,  # ~20% used BNPL
+    "growth_cagr": 0.253,  # 25.3% CAGR 2022-2025
+    "market_2025_billion": 107.38,
+    "source": "GlobalNewswire 2026"
+}
+
+# Financial Literacy (2025-2026)
+FINANCIAL_LITERACY_2026 = {
+    "know_great_deal": 0.50,  # ~50% feel they know a lot
+    "have_regrets_2025": 0.54,  # 54% have regrets
+    "plan_to_change": 0.93,  # 93% plan to change
+    "source": "Pew Research, Intuit 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
