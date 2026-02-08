@@ -112,6 +112,63 @@ VEHICLE_PURCHASE_FEB2026 = {
     "source": "TransUnion Consumer Auto Survey Feb 2026"
 }
 
+# Remote Work Preferences (2025-2026)
+REMOTE_WORK_PREFERENCES = {
+    "current_arrangement": {
+        "fully_onsite": 0.56,
+        "hybrid": 0.30,
+        "fully_remote": 0.14,
+    },
+    "preferred_arrangement": {
+        "prefer_fully_remote": 0.37,
+        "prefer_hybrid": 0.60,
+        "prefer_onsite": 0.03,
+    },
+    "hybrid_or_remote_preferred": 0.98,  # 98% prefer hybrid or remote
+    "actually_hybrid": 0.52,  # 52% of eligible actually hybrid
+    "source": "Robert Half, FlexJobs 2025-2026"
+}
+
+# Social Media Trust (2025-2026)
+SOCIAL_MEDIA_TRUST = {
+    "trust_ai_recommendations": 0.07,  # Only 7% trust AI recs like human
+    "trust_news_on_social": 0.27,
+    "trust_influencer_content": 0.35,
+    "source": "Power Digital Marketing 2026"
+}
+
+# Healthcare Costs (Jan 2026)
+HEALTHCARE_COSTS_2026 = {
+    "worried_about_costs": 0.66,        # 66% somewhat/very worried (top financial worry)
+    "very_worried": 0.33,               # 1 in 3 very worried
+    "by_party": {
+        "democrat": 0.75,
+        "republican": 0.55,
+        "independent": 0.68,
+    },
+    "source": "KFF Health Tracking Poll Jan 2026"
+}
+
+# Climate Change (Fall 2025)
+CLIMATE_CHANGE_2025 = {
+    "believe_affecting_weather": {
+        "extreme_heat": 0.74,
+        "wildfires": 0.72,
+        "droughts": 0.72,
+        "hurricanes": 0.68,
+        "flooding": 0.68,
+    },
+    "worried_local_harm": 0.80,          # 80% worried about local air pollution
+    "considering_moving_due_climate": 0.49,  # 49% homeowners
+    "worried_about_climate_personally": 0.63,  # Latin America figure, US lower
+    "by_party": {
+        "democrat": 0.85,
+        "republican": 0.35,
+        "independent": 0.60,
+    },
+    "source": "Yale Climate Communication Fall 2025"
+}
+
 # Streaming Services (late 2025)
 STREAMING_BENCHMARKS = {
     "nps_by_service": {

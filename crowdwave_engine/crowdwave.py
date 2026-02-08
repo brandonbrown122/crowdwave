@@ -428,6 +428,21 @@ class CrowdwaveEngine:
                     # Only 22% trust always/mostly
                     return {"1": 24.0, "2": 30.0, "3": 24.0, "4": 16.0, "5": 6.0}
                 
+                # Healthcare costs concern - calibrated (Jan 2026)
+                if any(t in combined_context for t in ["healthcare", "health care", "medical", "insurance"]):
+                    if any(t in q_lower for t in ["cost", "afford", "pay", "expense"]):
+                        # 66% worried, 33% very worried
+                        return {"1": 5.0, "2": 10.0, "3": 19.0, "4": 36.0, "5": 30.0}
+                
+                # Climate change concern - calibrated (strongly partisan)
+                if any(t in combined_context for t in ["climate", "environment", "global warming"]):
+                    if any(t in q_lower for t in ["concern", "worried", "serious"]):
+                        # Overall ~60% concerned but huge partisan gap
+                        return {"1": 12.0, "2": 15.0, "3": 18.0, "4": 30.0, "5": 25.0}
+                    elif any(t in q_lower for t in ["believe", "real", "happening"]):
+                        # ~70% believe happening
+                        return {"1": 8.0, "2": 10.0, "3": 12.0, "4": 35.0, "5": 35.0}
+                
                 # Vaccine/health trust - calibrated
                 if any(t in combined_context for t in ["cdc", "vaccine", "health authority"]):
                     if any(t in q_lower for t in ["trust"]):
@@ -528,6 +543,28 @@ class CrowdwaveEngine:
                     return {opt0: 14.0, opt1: 86.0}
                 elif "no" in opt0_lower:
                     return {opt0: 86.0, opt1: 14.0}
+            
+            # Remote work preferences (calibrated)
+            if any(t in combined_context for t in ["remote", "work from home", "wfh", "hybrid", "office"]):
+                if "remote" in opt0_lower or "home" in opt0_lower:
+                    if "prefer" in q_lower or "want" in q_lower:
+                        # 37% prefer fully remote
+                        return {opt0: 37.0, opt1: 63.0}
+                    else:
+                        # Currently 14% fully remote
+                        return {opt0: 14.0, opt1: 86.0}
+                elif "hybrid" in opt0_lower:
+                    if "prefer" in q_lower:
+                        return {opt0: 60.0, opt1: 40.0}
+                    else:
+                        return {opt0: 30.0, opt1: 70.0}
+                elif any(t in opt0_lower for t in ["office", "in-person", "onsite"]):
+                    if "prefer" in q_lower:
+                        # Only 3% prefer fully onsite
+                        return {opt0: 3.0, opt1: 97.0}
+                    else:
+                        # Currently 56% onsite
+                        return {opt0: 56.0, opt1: 44.0}
             
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
