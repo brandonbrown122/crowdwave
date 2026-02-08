@@ -1,0 +1,653 @@
+"""
+CrowdWave Simulation Engine
+Production-ready survey simulation with calibrated accuracy.
+"""
+
+import json
+from dataclasses import dataclass, field
+from typing import Dict, List, Optional, Any, Tuple
+from datetime import datetime
+from enum import Enum
+
+from .calibration import (
+    AccuracyZone, 
+    SATISFACTION_BENCHMARKS,
+    NPS_BENCHMARKS,
+    DEMOGRAPHIC_MULTIPLIERS,
+    EXECUTIVE_MULTIPLIERS,
+    CONSTRUCT_CORRECTIONS,
+    PARTISAN_TOPICS,
+    BINARY_SPLITS,
+    ACCURACY_BY_QUESTION_TYPE,
+    get_benchmark,
+    get_demographic_modifier,
+    requires_partisan_segmentation,
+    get_nps_benchmark,
+)
+from .bias_corrections import (
+    BiasType,
+    detect_biases,
+    apply_emotional_bonding_correction,
+    apply_senior_digital_correction,
+    apply_healthcare_concern_correction,
+    apply_political_regulatory_correction,
+    apply_economic_rebalance,
+    validate_distribution,
+)
+
+
+# ═══════════════════════════════════════════════════════════════
+# DATA STRUCTURES
+# ═══════════════════════════════════════════════════════════════
+
+@dataclass
+class SurveyConfig:
+    """Configuration for a survey simulation."""
+    audience: str
+    geography: str = "USA"
+    sample_size: int = 500
+    as_of_date: str = field(default_factory=lambda: datetime.now().strftime("%Y-%m-%d"))
+    time_window: str = "current"
+    screeners: List[str] = field(default_factory=list)
+    topic: str = ""
+    stimuli: List[str] = field(default_factory=list)
+
+
+@dataclass
+class Question:
+    """A survey question to simulate."""
+    id: str
+    text: str
+    type: str  # "scale", "binary", "multiple_choice", "ranking", "open_end", "nps"
+    options: List[str] = field(default_factory=list)
+    scale: Optional[Tuple[int, int]] = None  # (min, max) for scale questions
+    labels: Optional[List[str]] = None
+
+
+@dataclass
+class SimulationResult:
+    """Result of simulating a single question."""
+    question_id: str
+    question_text: str
+    distribution: Dict[str, float]
+    mean: Optional[float] = None
+    sd: Optional[float] = None
+    confidence: float = 0.7
+    accuracy_zone: AccuracyZone = AccuracyZone.MEDIUM
+    biases_detected: List[str] = field(default_factory=list)
+    corrections_applied: List[str] = field(default_factory=list)
+    validation_warnings: List[str] = field(default_factory=list)
+    methodology_trace: Dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class EnsembleRun:
+    """A single run in the 3-run ensemble."""
+    run_type: str  # "conservative", "signal_forward", "heterogeneity"
+    distribution: Dict[str, float]
+    rationale: str
+
+
+@dataclass
+class SimulationReport:
+    """Complete simulation report."""
+    config: SurveyConfig
+    results: List[SimulationResult]
+    priors_used: List[Dict]
+    overall_confidence: float
+    flags: List[str]
+    generated_at: str = field(default_factory=lambda: datetime.now().isoformat())
+
+
+# ═══════════════════════════════════════════════════════════════
+# MAIN ENGINE
+# ═══════════════════════════════════════════════════════════════
+
+class CrowdWaveEngine:
+    """
+    Production survey simulation engine implementing 10-phase methodology.
+    
+    Usage:
+        engine = CrowdWaveEngine()
+        results = engine.simulate(survey_config, questions)
+    """
+    
+    def __init__(self, verbose: bool = False):
+        self.verbose = verbose
+        self.priors_cache = {}
+    
+    def simulate(
+        self,
+        config: Dict[str, Any],
+        questions: List[Dict[str, Any]]
+    ) -> SimulationReport:
+        """
+        Run full simulation pipeline.
+        
+        Args:
+            config: Survey configuration dict
+            questions: List of question dicts
+            
+        Returns:
+            SimulationReport with results for all questions
+        """
+        # Parse config
+        survey_config = SurveyConfig(
+            audience=config.get("audience", "General population"),
+            geography=config.get("geography", "USA"),
+            sample_size=config.get("sample_size", 500),
+            topic=config.get("topic", ""),
+            screeners=config.get("screeners", []),
+            stimuli=config.get("stimuli", []),
+        )
+        
+        # Parse questions
+        parsed_questions = [
+            Question(
+                id=q.get("id", f"Q{i+1}"),
+                text=q.get("text", ""),
+                type=q.get("type", "scale"),
+                options=q.get("options", []),
+                scale=tuple(q.get("scale", [1, 5])) if q.get("scale") else (1, 5),
+                labels=q.get("labels"),
+            )
+            for i, q in enumerate(questions)
+        ]
+        
+        # Phase 1: Establish priors
+        priors = self._establish_priors(survey_config, parsed_questions)
+        
+        # Phase 2-9: Simulate each question
+        results = []
+        for question in parsed_questions:
+            result = self._simulate_question(survey_config, question, priors)
+            results.append(result)
+        
+        # Calculate overall confidence
+        overall_confidence = sum(r.confidence for r in results) / len(results)
+        
+        # Collect flags
+        flags = []
+        for r in results:
+            if r.accuracy_zone == AccuracyZone.LOW:
+                flags.append(f"{r.question_id}: Low accuracy zone - validate results")
+            if r.validation_warnings:
+                flags.extend([f"{r.question_id}: {w}" for w in r.validation_warnings])
+        
+        return SimulationReport(
+            config=survey_config,
+            results=results,
+            priors_used=priors,
+            overall_confidence=overall_confidence,
+            flags=flags,
+        )
+    
+    def _establish_priors(
+        self,
+        config: SurveyConfig,
+        questions: List[Question]
+    ) -> List[Dict]:
+        """
+        Phase 2: Establish priors from calibration library.
+        """
+        priors = []
+        
+        # Audience priors
+        audience_lower = config.audience.lower()
+        
+        # Check for demographic matches
+        for demo_key, modifiers in DEMOGRAPHIC_MULTIPLIERS.items():
+            demo_parts = demo_key.replace("_", " ")
+            if any(part in audience_lower for part in demo_parts.split()):
+                priors.append({
+                    "type": "demographic",
+                    "key": demo_key,
+                    "modifiers": modifiers,
+                    "relevance": 4,
+                })
+        
+        # Check for executive audience
+        if any(t in audience_lower for t in ["ceo", "executive", "c-suite", "cfo", "chro"]):
+            priors.append({
+                "type": "executive",
+                "data": EXECUTIVE_MULTIPLIERS,
+                "relevance": 5,
+            })
+        
+        # Topic-specific priors
+        for q in questions:
+            q_text = q.text.lower()
+            
+            # NPS questions
+            if q.type == "nps" or "recommend" in q_text:
+                priors.append({
+                    "type": "nps_benchmark",
+                    "data": NPS_BENCHMARKS,
+                    "relevance": 4,
+                })
+            
+            # Satisfaction questions
+            if "satisf" in q_text:
+                benchmark = get_benchmark(config.topic, "satisfaction")
+                if benchmark:
+                    priors.append({
+                        "type": "satisfaction_benchmark",
+                        "data": benchmark,
+                        "relevance": 4,
+                    })
+        
+        return priors
+    
+    def _simulate_question(
+        self,
+        config: SurveyConfig,
+        question: Question,
+        priors: List[Dict]
+    ) -> SimulationResult:
+        """
+        Simulate a single question through phases 3-9.
+        """
+        # Phase 3: Detect biases
+        biases = detect_biases(question.text, config.audience, question.type)
+        biases_detected = [b.bias_type.value for b in biases]
+        
+        # Phase 4: Determine accuracy zone
+        accuracy_zone = self._determine_accuracy_zone(question)
+        
+        # Phase 5: Run ensemble (3 independent estimates)
+        runs = self._run_ensemble(config, question, priors)
+        
+        # Phase 6: Reconcile ensemble
+        distribution = self._reconcile_ensemble(runs)
+        
+        # Phase 7: Apply bias corrections (only for appropriate question types)
+        corrections_applied = []
+        for bias in biases:
+            if bias.bias_type == BiasType.EMOTIONAL_BONDING and question.type == "scale":
+                distribution = apply_emotional_bonding_correction(distribution)
+                corrections_applied.append("emotional_bonding_+20%")
+            elif bias.bias_type == BiasType.SENIOR_DIGITAL and question.type in ["scale", "nps"]:
+                # Only apply to adoption-related metrics, not all questions
+                q_lower = question.text.lower()
+                if any(t in q_lower for t in ["use", "adopt", "try", "online", "digital"]):
+                    for key in distribution:
+                        distribution[key] = apply_senior_digital_correction(
+                            distribution[key], config.audience, question.text
+                        )
+                    distribution = self._normalize(distribution)
+                    corrections_applied.append(f"senior_digital_×{bias.correction['factor']}")
+            elif bias.bias_type == BiasType.HEALTHCARE_CONCERN and question.type == "scale":
+                # Only for concern questions, not all healthcare
+                q_lower = question.text.lower()
+                if any(t in q_lower for t in ["concern", "worry", "fear", "anxious"]):
+                    for key in distribution:
+                        distribution[key] = apply_healthcare_concern_correction(
+                            distribution[key], question.text
+                        )
+                    distribution = self._normalize(distribution)
+                    corrections_applied.append("healthcare_concern_+15-30%")
+        
+        # Phase 8: Calculate statistics
+        mean, sd = self._calculate_stats(distribution, question)
+        
+        # Phase 9: Validate output
+        validation = validate_distribution(distribution, question.type, config.audience)
+        
+        # Phase 10: Calculate confidence
+        confidence = self._calculate_confidence(priors, runs, validation)
+        
+        return SimulationResult(
+            question_id=question.id,
+            question_text=question.text,
+            distribution=distribution,
+            mean=mean,
+            sd=sd,
+            confidence=confidence,
+            accuracy_zone=accuracy_zone,
+            biases_detected=biases_detected,
+            corrections_applied=corrections_applied,
+            validation_warnings=validation.warnings,
+            methodology_trace={
+                "ensemble_runs": [{"type": r.run_type, "rationale": r.rationale} for r in runs],
+                "priors_count": len(priors),
+                "validation_passed": validation.passed,
+            }
+        )
+    
+    def _determine_accuracy_zone(self, question: Question) -> AccuracyZone:
+        """Determine expected accuracy zone for a question type."""
+        q_text = question.text.lower()
+        
+        # High accuracy
+        if any(t in q_text for t in ["aware", "familiar", "trust", "confidence", "party"]):
+            return AccuracyZone.HIGH
+        
+        # Low accuracy
+        if any(t in q_text for t in ["intent", "purchase", "pay", "price", "switch"]):
+            return AccuracyZone.LOW
+        
+        # Check for polarized topics
+        if requires_partisan_segmentation(question.text):
+            return AccuracyZone.LOW
+        
+        # Default to medium
+        return AccuracyZone.MEDIUM
+    
+    def _run_ensemble(
+        self,
+        config: SurveyConfig,
+        question: Question,
+        priors: List[Dict]
+    ) -> List[EnsembleRun]:
+        """
+        Phase 5: Generate 3 independent distribution estimates.
+        """
+        runs = []
+        
+        # Get base distribution from benchmarks
+        base = self._get_base_distribution(question, priors)
+        
+        # Run 1: Conservative (anchor on priors, compress toward center)
+        conservative = self._apply_conservative_shift(base)
+        runs.append(EnsembleRun(
+            run_type="conservative",
+            distribution=conservative,
+            rationale="Heavy anchor on priors, modest stimulus effects, compressed to center"
+        ))
+        
+        # Run 2: Signal-forward (allow larger shifts from baseline)
+        signal_forward = self._apply_signal_shift(base, config)
+        runs.append(EnsembleRun(
+            run_type="signal_forward",
+            distribution=signal_forward,
+            rationale="Meaningful stimulus impact, weight recent sources heavily"
+        ))
+        
+        # Run 3: Heterogeneity (higher variance, segment differences)
+        heterogeneity = self._apply_heterogeneity_shift(base)
+        runs.append(EnsembleRun(
+            run_type="heterogeneity",
+            distribution=heterogeneity,
+            rationale="Higher variance, audience segments respond differently"
+        ))
+        
+        return runs
+    
+    def _get_base_distribution(
+        self,
+        question: Question,
+        priors: List[Dict]
+    ) -> Dict[str, float]:
+        """Get base distribution from benchmarks or defaults."""
+        q_lower = question.text.lower()
+        
+        if question.type == "scale" and question.scale:
+            min_val, max_val = question.scale
+            n_points = max_val - min_val + 1
+            
+            if n_points == 5:
+                # Vary distribution based on question semantics
+                if any(t in q_lower for t in ["satisfied", "satisfaction"]):
+                    # Positive skew for satisfaction (mode at 4)
+                    return {"1": 5.0, "2": 11.0, "3": 22.0, "4": 38.0, "5": 24.0}
+                elif any(t in q_lower for t in ["concern", "worried", "fear"]):
+                    # Higher concern for parents/children (mode at 4)
+                    return {"1": 3.0, "2": 8.0, "3": 18.0, "4": 42.0, "5": 29.0}
+                elif any(t in q_lower for t in ["comfortable", "comfort"]):
+                    # Slight positive for "open to X" audiences
+                    return {"1": 4.0, "2": 9.0, "3": 20.0, "4": 40.0, "5": 27.0}
+                elif any(t in q_lower for t in ["likely", "likelihood", "intent"]):
+                    # More neutral/conservative for intent (intent-action gap)
+                    return {"1": 8.0, "2": 14.0, "3": 28.0, "4": 32.0, "5": 18.0}
+                else:
+                    # Generic slight positive skew
+                    return {"1": 6.0, "2": 12.0, "3": 24.0, "4": 35.0, "5": 23.0}
+            else:
+                # Uniform fallback
+                pct = 100.0 / n_points
+                return {str(i): pct for i in range(min_val, max_val + 1)}
+        
+        elif question.type == "binary" and len(question.options) == 2:
+            # Status quo bias - prefer traditional/in-person
+            opt0, opt1 = question.options[0].lower(), question.options[1].lower()
+            if "in-person" in opt0 or "traditional" in opt0:
+                return {question.options[0]: 62.0, question.options[1]: 38.0}
+            elif "virtual" in opt0 or "online" in opt0:
+                return {question.options[0]: 38.0, question.options[1]: 62.0}
+            else:
+                return {question.options[0]: 55.0, question.options[1]: 45.0}
+        
+        elif question.type == "nps":
+            # NPS distribution (0-10), positive for screened audiences
+            return {
+                "0": 1.0, "1": 1.0, "2": 2.0, "3": 3.0, "4": 4.0,
+                "5": 7.0, "6": 9.0, "7": 18.0, "8": 24.0, "9": 19.0, "10": 12.0
+            }
+        
+        elif question.options:
+            # Multiple choice - equal distribution with slight primacy
+            n = len(question.options)
+            base_pct = 100.0 / n
+            dist = {}
+            for i, opt in enumerate(question.options):
+                if i == 0:
+                    dist[opt] = base_pct + 3.0
+                elif i == n - 1:
+                    dist[opt] = base_pct + 1.0
+                else:
+                    dist[opt] = base_pct - 4.0 / max(1, n - 2)
+            return dist
+        
+        return {}
+    
+    def _apply_conservative_shift(self, base: Dict[str, float]) -> Dict[str, float]:
+        """Compress distribution toward center."""
+        result = base.copy()
+        
+        # Find middle point
+        keys = list(result.keys())
+        if len(keys) >= 3:
+            mid_idx = len(keys) // 2
+            mid_key = keys[mid_idx]
+            
+            # Move 5% from extremes to middle
+            for i, key in enumerate(keys):
+                if i == 0 or i == len(keys) - 1:
+                    transfer = result[key] * 0.10
+                    result[key] -= transfer
+                    result[mid_key] += transfer
+        
+        return self._normalize(result)
+    
+    def _apply_signal_shift(
+        self,
+        base: Dict[str, float],
+        config: SurveyConfig
+    ) -> Dict[str, float]:
+        """Allow larger shifts based on stimuli and context."""
+        result = base.copy()
+        
+        # If stimuli present, shift distribution
+        if config.stimuli:
+            keys = list(result.keys())
+            if len(keys) >= 2:
+                # Boost positive end
+                result[keys[-1]] += 5.0
+                result[keys[-2]] += 3.0
+                result[keys[0]] -= 4.0
+                result[keys[1]] -= 4.0
+        
+        return self._normalize(result)
+    
+    def _apply_heterogeneity_shift(self, base: Dict[str, float]) -> Dict[str, float]:
+        """Increase variance in distribution."""
+        result = base.copy()
+        
+        # Make extremes more extreme
+        keys = list(result.keys())
+        if len(keys) >= 3:
+            mid_idx = len(keys) // 2
+            
+            # Move from middle to extremes
+            transfer = result[keys[mid_idx]] * 0.15
+            result[keys[mid_idx]] -= transfer
+            result[keys[0]] += transfer * 0.4
+            result[keys[-1]] += transfer * 0.6
+        
+        return self._normalize(result)
+    
+    def _reconcile_ensemble(self, runs: List[EnsembleRun]) -> Dict[str, float]:
+        """
+        Weighted average of ensemble runs.
+        Weights: 40% conservative, 35% signal-forward, 25% heterogeneity
+        """
+        weights = {"conservative": 0.40, "signal_forward": 0.35, "heterogeneity": 0.25}
+        
+        result = {}
+        keys = list(runs[0].distribution.keys())
+        
+        for key in keys:
+            weighted_sum = sum(
+                run.distribution.get(key, 0) * weights.get(run.run_type, 0.33)
+                for run in runs
+            )
+            result[key] = round(weighted_sum, 1)
+        
+        return self._normalize(result)
+    
+    def _calculate_stats(
+        self,
+        distribution: Dict[str, float],
+        question: Question
+    ) -> Tuple[Optional[float], Optional[float]]:
+        """Calculate mean and SD for scale questions."""
+        if question.type not in ["scale", "nps"]:
+            return None, None
+        
+        try:
+            # Calculate mean
+            total = 0
+            for key, pct in distribution.items():
+                val = float(key)
+                total += val * pct
+            mean = total / 100.0
+            
+            # Calculate variance
+            variance = 0
+            for key, pct in distribution.items():
+                val = float(key)
+                variance += ((val - mean) ** 2) * pct
+            variance /= 100.0
+            sd = variance ** 0.5
+            
+            return round(mean, 2), round(sd, 2)
+        except (ValueError, ZeroDivisionError):
+            return None, None
+    
+    def _calculate_confidence(
+        self,
+        priors: List[Dict],
+        runs: List[EnsembleRun],
+        validation
+    ) -> float:
+        """
+        Calculate confidence score.
+        
+        confidence = base_score × prior_weight × agreement_factor
+        """
+        # Base score from prior availability
+        if len(priors) >= 3:
+            base_score = 0.85
+        elif len(priors) >= 1:
+            base_score = 0.70
+        else:
+            base_score = 0.50
+        
+        # Prior relevance weight
+        if priors:
+            avg_relevance = sum(p.get("relevance", 3) for p in priors) / len(priors)
+            prior_weight = avg_relevance / 5.0
+        else:
+            prior_weight = 0.5
+        
+        # Agreement factor (how much runs agree)
+        if len(runs) >= 2:
+            keys = list(runs[0].distribution.keys())
+            max_diff = 0
+            for key in keys:
+                values = [r.distribution.get(key, 0) for r in runs]
+                max_diff = max(max_diff, max(values) - min(values))
+            
+            if max_diff <= 10:
+                agreement_factor = 1.0
+            elif max_diff <= 15:
+                agreement_factor = 0.8
+            else:
+                agreement_factor = 0.6
+        else:
+            agreement_factor = 0.7
+        
+        # Validation penalty
+        if not validation.passed:
+            agreement_factor *= 0.8
+        
+        confidence = base_score * prior_weight * agreement_factor
+        
+        # Cap at 0.90
+        return min(0.90, round(confidence, 2))
+    
+    def _normalize(self, distribution: Dict[str, float]) -> Dict[str, float]:
+        """Normalize distribution to sum to 100%."""
+        # First, ensure no negative values (floor at 0.5%)
+        cleaned = {k: max(0.5, v) for k, v in distribution.items()}
+        
+        total = sum(cleaned.values())
+        if total == 0:
+            return distribution
+        
+        normalized = {k: round(v / total * 100, 1) for k, v in cleaned.items()}
+        
+        # Adjust largest to force exact 100
+        diff = 100.0 - sum(normalized.values())
+        if diff != 0:
+            largest_key = max(normalized, key=normalized.get)
+            normalized[largest_key] = round(normalized[largest_key] + diff, 1)
+        
+        return normalized
+    
+    def to_csv(self, report: SimulationReport) -> str:
+        """Export results to CSV format."""
+        lines = ["question_id,question_text,option,percentage,mean,sd,confidence,accuracy_zone"]
+        
+        for result in report.results:
+            for option, pct in result.distribution.items():
+                lines.append(
+                    f"{result.question_id},"
+                    f"\"{result.question_text}\","
+                    f"{option},"
+                    f"{pct},"
+                    f"{result.mean or ''},"
+                    f"{result.sd or ''},"
+                    f"{result.confidence},"
+                    f"{result.accuracy_zone.value}"
+                )
+        
+        return "\n".join(lines)
+    
+    def to_json(self, report: SimulationReport) -> str:
+        """Export results to JSON format."""
+        def serialize(obj):
+            if hasattr(obj, "__dict__"):
+                d = {}
+                for k, v in obj.__dict__.items():
+                    d[k] = serialize(v)
+                return d
+            elif isinstance(obj, list):
+                return [serialize(i) for i in obj]
+            elif isinstance(obj, dict):
+                return {k: serialize(v) for k, v in obj.items()}
+            elif isinstance(obj, Enum):
+                return obj.value
+            return obj
+        
+        return json.dumps(serialize(report), indent=2)

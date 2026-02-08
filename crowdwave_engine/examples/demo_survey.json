@@ -1,0 +1,56 @@
+{
+  "audience": "Parents of children 12-17 with anxiety, open to virtual mental health care",
+  "geography": "USA",
+  "sample_size": 500,
+  "topic": "Mental health treatment preferences",
+  "screeners": [
+    "Has child age 12-17",
+    "Child has anxiety symptoms",
+    "Open to virtual mental health care"
+  ],
+  "stimuli": [
+    "Virtual therapy platform description",
+    "Evidence-based treatment approach"
+  ],
+  "questions": [
+    {
+      "id": "Q1",
+      "text": "How satisfied are you with your child's current mental health care?",
+      "type": "scale",
+      "scale": [1, 5],
+      "labels": ["Very Dissatisfied", "Dissatisfied", "Neutral", "Satisfied", "Very Satisfied"]
+    },
+    {
+      "id": "Q2",
+      "text": "How concerned are you about your child's mental health?",
+      "type": "scale",
+      "scale": [1, 5],
+      "labels": ["Not Concerned", "Slightly Concerned", "Moderately Concerned", "Very Concerned", "Extremely Concerned"]
+    },
+    {
+      "id": "Q3",
+      "text": "How comfortable would you be with your child receiving virtual therapy?",
+      "type": "scale",
+      "scale": [1, 5],
+      "labels": ["Very Uncomfortable", "Uncomfortable", "Neutral", "Comfortable", "Very Comfortable"]
+    },
+    {
+      "id": "Q4",
+      "text": "How likely are you to try a virtual mental health solution for your child in the next 6 months?",
+      "type": "scale",
+      "scale": [1, 5],
+      "labels": ["Very Unlikely", "Unlikely", "Neutral", "Likely", "Very Likely"]
+    },
+    {
+      "id": "Q5",
+      "text": "Would you prefer in-person or virtual therapy for your child?",
+      "type": "binary",
+      "options": ["In-person", "Virtual"]
+    },
+    {
+      "id": "Q6",
+      "text": "How likely are you to recommend this virtual therapy platform to other parents?",
+      "type": "nps"
+    }
+  ]
+}
