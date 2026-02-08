@@ -855,6 +855,21 @@ FAST_FOOD_2026 = {
     "source": "World Population Review, Gitnux 2026"
 }
 
+# Password Security (2025-2026)
+PASSWORD_SECURITY_2026 = {
+    "weak_or_reused": 0.94,  # 94%
+    "breaches_from_passwords": 0.80,  # 80%
+    "source": "CinchOps, Komando 2025"
+}
+
+# Solar/Renewable Energy (2025-2026)
+SOLAR_ENERGY_2026 = {
+    "gop_support_fair_competition": 0.79,  # 79%
+    "demand_growth_from_solar": 0.61,  # 61%
+    "new_capacity_renewables": 0.99,  # 99%+
+    "source": "First Solar, Electrek 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

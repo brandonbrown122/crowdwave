@@ -1196,6 +1196,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 37.0, opt1: 63.0}
             
+            # Password security
+            if any(t in combined_context for t in ["password", "security", "login"]):
+                if any(t in q_lower for t in ["reuse", "weak", "same"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 94.0, opt1: 6.0}
+            
+            # Solar/Renewable energy
+            if any(t in combined_context for t in ["solar", "renewable", "wind energy"]):
+                if any(t in q_lower for t in ["support", "favor"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 79.0, opt1: 21.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
