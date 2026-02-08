@@ -885,6 +885,21 @@ PAYMENT_METHODS_2026 = {
     "source": "PYMNTS, Capital One 2026"
 }
 
+# DIY Home Improvement (2025-2026)
+DIY_HOME_2026 = {
+    "completed_30_44": 0.72,  # 72% ages 30-44
+    "market_billion": 857,
+    "source": "Great Day Improvements 2026"
+}
+
+# Secondhand/Thrift (2025-2026)
+SECONDHAND_2026 = {
+    "clothing_secondhand": 0.33,  # 33% of US clothing
+    "likely_shop_resale": 0.60,  # 60% likely
+    "willing_consumers": 0.59,  # 59%
+    "source": "Capital One, BoF, NRF 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

@@ -1223,6 +1223,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 39.0, opt1: 61.0}  # Online
             
+            # DIY home improvement
+            if any(t in combined_context for t in ["diy", "home improvement", "renovation"]):
+                if any(t in q_lower for t in ["project", "completed", "done"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 72.0, opt1: 28.0}
+            
+            # Secondhand/Thrift
+            if any(t in combined_context for t in ["secondhand", "thrift", "resale", "used clothing"]):
+                if any(t in q_lower for t in ["buy", "shop", "purchase"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 60.0, opt1: 40.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
