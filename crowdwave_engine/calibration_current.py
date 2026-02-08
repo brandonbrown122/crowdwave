@@ -815,6 +815,23 @@ PLASTIC_SURGERY_2026 = {
     "source": "MedicalXpress 2026"
 }
 
+# Dating Apps (2025-2026)
+DATING_APPS_2026 = {
+    "couples_met_on_apps": 0.50,  # 50%+ of engaged couples
+    "used_tinder": 0.48,  # 48% of users
+    "used_bumble": 0.27,
+    "used_hinge": 0.21,
+    "source": "SSRS, The Knot 2025-2026"
+}
+
+# EV Range Anxiety (2025-2026)
+EV_RANGE_ANXIETY_2026 = {
+    "range_top_concern": True,
+    "charging_top_concern": True,
+    "rural_would_choose_ev": 0.05,  # Only 5%
+    "source": "InsideEVs, U-M 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

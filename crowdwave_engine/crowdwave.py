@@ -1157,6 +1157,21 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 15.0, opt1: 85.0}  # Approximate
             
+            # Dating apps (updated)
+            if any(t in combined_context for t in ["dating app", "tinder", "bumble", "hinge", "online dating"]):
+                if any(t in q_lower for t in ["use", "try", "met"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 37.0, opt1: 63.0}  # General usage
+                if any(t in q_lower for t in ["met partner", "relationship"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 50.0, opt1: 50.0}  # Of engaged couples
+            
+            # EV range anxiety
+            if any(t in combined_context for t in ["ev range", "electric vehicle range", "range anxiety"]):
+                if any(t in q_lower for t in ["concern", "worry", "barrier"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 70.0, opt1: 30.0}  # Top concern
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
