@@ -1318,6 +1318,15 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 21.0, opt1: 79.0}
             
+            # Tattoos
+            if any(t in combined_context for t in ["tattoo", "body art", "ink"]):
+                if any(t in q_lower for t in ["have", "got"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 30.0, opt1: 70.0}
+                if any(t in q_lower for t in ["regret"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 24.0, opt1: 76.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

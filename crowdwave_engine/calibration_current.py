@@ -989,6 +989,15 @@ ONLINE_GROCERY_2026 = {
     "source": "Capital One, Digital Commerce 360"
 }
 
+# Tattoos (2025-2026)
+TATTOOS_2026 = {
+    "have_tattoo": 0.30,  # 30%
+    "under_30": 0.41,  # 41%
+    "ages_30_49": 0.46,  # 46%
+    "regret": 0.24,  # 24%
+    "source": "ABC4, Disabled World, Pew 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
