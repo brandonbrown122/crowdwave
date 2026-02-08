@@ -380,6 +380,23 @@ RELIGION_2025 = {
     "source": "Gallup, Pew 2025"
 }
 
+# Diet (2025)
+DIET_2025 = {
+    "vegetarian": 0.05,  # 5% (Forbes)
+    "vegan": 0.03,       # 3%
+    "total_plant_based": 0.08,  # 8%
+    "source": "Forbes/Gallup 2025"
+}
+
+# Credit Card Debt (2025-2026)
+CREDIT_CARD_DEBT_2025 = {
+    "carry_balance": 0.36,  # ~36% carry balance
+    "expect_debt_increase": 0.47,  # 47% expect increase in 2026
+    "debt_is_normal": 0.49,  # 49% say debt is normal
+    "avg_household_balance": 11019,
+    "source": "NerdWallet, Bankrate 2025"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
