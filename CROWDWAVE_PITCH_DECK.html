@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Crowdwave - Pitch Deck</title>
+<style>
+@page { size: landscape; margin: 0; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #fff; }
+
+.slide {
+  width: 100%;
+  min-height: 100vh;
+  padding: 60px 80px;
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide-dark {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: white;
+}
+
+.slide-accent {
+  background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+  color: white;
+}
+
+h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
+h2 { font-size: 40px; font-weight: 700; color: #1a365d; margin-bottom: 30px; }
+h3 { font-size: 24px; font-weight: 600; color: #2c5282; margin-bottom: 15px; }
+
+.subtitle { font-size: 24px; opacity: 0.9; margin-bottom: 40px; line-height: 1.5; }
+.tagline { font-size: 28px; font-weight: 300; opacity: 0.9; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; flex: 1; align-items: center; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; }
+.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 25px; }
+
+.card {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 35px;
+  height: 100%;
+}
+.card-dark {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.stat-huge {
+  font-size: 72px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-box {
+  text-align: center;
+  padding: 30px 20px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.stat-number { font-size: 48px; font-weight: 800; color: #10b981; }
+.stat-label { font-size: 16px; color: rgba(255,255,255,0.7); margin-top: 10px; }
+
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 30px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+.footer-light { color: rgba(255,255,255,0.5); }
+
+.highlight-box {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 30px 40px;
+  border-radius: 16px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.problem-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+.problem-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fee2e2;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.solution-icon {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 18px;
+}
+.metric-row:last-child { border-bottom: none; }
+
+.logo { font-size: 32px; font-weight: 800; letter-spacing: -1px; }
+.logo span { color: #10b981; }
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.comparison-table th, .comparison-table td {
+  padding: 18px 25px;
+  text-align: left;
+}
+.comparison-table th {
+  background: #1e293b;
+  color: white;
+  font-weight: 600;
+}
+.comparison-table td {
+  border-bottom: 1px solid #e2e8f0;
+}
+.comparison-table tr:nth-child(even) td { background: #f8fafc; }
+
+.check { color: #10b981; font-weight: 700; }
+.cross { color: #ef4444; }
+
+.use-case {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  border-left: 4px solid #3b82f6;
+  margin-bottom: 20px;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.timeline-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #10b981;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.timeline-content h4 {
+  font-size: 20px;
+  color: #1e293b;
+  margin-bottom: 5px;
+}
+.timeline-content p {
+  color: #64748b;
+  font-size: 16px;
+}
+
+ul { margin-left: 0; list-style: none; }
+li { 
+  margin-bottom: 15px; 
+  font-size: 20px; 
+  line-height: 1.5;
+  padding-left: 30px;
+  position: relative;
+}
+li:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+}
+
+.cta-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 20px 50px;
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 30px;
+}
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide slide-dark">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div class="logo" style="margin-bottom:60px;">Crowd<span>wave</span></div>
+    <h1 style="font-size:64px; max-width:800px;">Survey Intelligence That Actually Works</h1>
+    <p class="tagline" style="max-width:700px; margin-top:30px;">
+      AI-powered survey simulation with 79% better accuracy than existing solutions
+    </p>
+    <div class="grid-4" style="margin-top:80px; max-width:900px;">
+      <div class="stat-box">
+        <div class="stat-number">79%</div>
+        <div class="stat-label">More Accurate</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">10x</div>
+        <div class="stat-label">Faster</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">90%</div>
+        <div class="stat-label">Cost Reduction</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">5.4M</div>
+        <div class="stat-label">Calibration Data</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer footer-light">Crowdwave, Inc. | Confidential</div>
+</div>
+
+<!-- SLIDE 2: Problem -->
+<div class="slide">
+  <h2>The $50B Problem</h2>
+  <div class="grid-2">
+    <div>
+      <div class="problem-item">
+        <div class="problem-icon">X</div>
+        <div>
+          <h3 style="color:#1e293b; margin-bottom:8px;">Traditional Surveys Are Broken</h3>
+          <p style="color:#64748b; font-size:18px;">$50B spent annually on market research, yet 80% of product launches still fail. Surveys take weeks, cost tens of thousands, and often miss the mark.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">X</div>
+        <div>
+          <h3 style="color:#1e293b; margin-bottom:8px;">AI Predictions Are Unreliable</h3>
+          <p style="color:#64748b; font-size:18px;">Generic LLMs have systematic biases that make their predictions wrong by 9+ points on average. Garbage in, garbage out.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">X</div>
+        <div>
+          <h3 style="color:#1e293b; margin-bottom:8px;">Speed vs. Accuracy Tradeoff</h3>
+          <p style="color:#64748b; font-size:18px;">Companies are forced to choose between fast-but-wrong AI predictions or slow-but-expensive traditional research.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="background:#fef2f2; border:2px solid #fecaca;">
+        <h3 style="color:#dc2626; margin-bottom:30px;">The Real Cost of Bad Data</h3>
+        <div class="metric-row">
+          <span>Average survey cost</span>
+          <strong>$15,000 - $50,000</strong>
+        </div>
+        <div class="metric-row">
+          <span>Time to results</span>
+          <strong>4-8 weeks</strong>
+        </div>
+        <div class="metric-row">
+          <span>Product launch failure rate</span>
+          <strong style="color:#dc2626;">80%</strong>
+        </div>
+        <div class="metric-row">
+          <span>Decisions made on gut feel</span>
+          <strong style="color:#dc2626;">65%</strong>
+        </div>
+        <div style="margin-top:30px; padding:20px; background:white; border-radius:12px;">
+          <p style="font-size:20px; color:#1e293b;"><strong>$10B+</strong> wasted annually on failed products that surveys should have caught</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">Source: ESOMAR Global Market Research Report 2024, Harvard Business Review</div>
+</div>
+
+<!-- SLIDE 3: Solution -->
+<div class="slide slide-accent">
+  <h1 style="text-align:center; margin-bottom:60px;">The Crowdwave Solution</h1>
+  <div class="grid-3" style="flex:1;">
+    <div class="card card-dark" style="text-align:center;">
+      <div style="font-size:60px; margin-bottom:20px;">&#9889;</div>
+      <h3 style="color:white; margin-bottom:15px;">Instant Results</h3>
+      <p style="color:rgba(255,255,255,0.8); font-size:18px;">Get survey predictions in seconds, not weeks. Test hypotheses before committing resources.</p>
+    </div>
+    <div class="card card-dark" style="text-align:center;">
+      <div style="font-size:60px; margin-bottom:20px;">&#127919;</div>
+      <h3 style="color:white; margin-bottom:15px;">Validated Accuracy</h3>
+      <p style="color:rgba(255,255,255,0.8); font-size:18px;">79% more accurate than naive AI. Calibrated against 5.4M real survey responses across 20+ industries.</p>
+    </div>
+    <div class="card card-dark" style="text-align:center;">
+      <div style="font-size:60px; margin-bottom:20px;">&#128270;</div>
+      <h3 style="color:white; margin-bottom:15px;">Full Transparency</h3>
+      <p style="color:rgba(255,255,255,0.8); font-size:18px;">Know exactly how confident to be. Every prediction includes accuracy ratings and bias disclosures.</p>
+    </div>
+  </div>
+  <div class="highlight-box" style="text-align:center; margin-top:40px;">
+    "Survey simulation that's fast enough to iterate and accurate enough to trust"
+  </div>
+  <div class="footer footer-light"></div>
+</div>
+
+<!-- SLIDE 4: How It Works -->
+<div class="slide">
+  <h2>How It Works</h2>
+  <div class="grid-2">
+    <div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>1. Define Your Survey</h4>
+          <p>Input your audience, questions, and context through our API or dashboard</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>2. Intelligent Calibration</h4>
+          <p>Engine matches your scenario to 100+ validated calibrations from real surveys</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>3. Bias Detection</h4>
+          <p>Automatically detects and corrects 8 known LLM bias patterns</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>4. Validated Results</h4>
+          <p>Receive full distributions with accuracy zones and confidence intervals</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="background:#0f172a; color:white; font-family:monospace; font-size:14px; padding:30px;">
+        <div style="color:#94a3b8; margin-bottom:15px;"># Quick start</div>
+        <div><span style="color:#10b981;">from</span> crowdwave <span style="color:#10b981;">import</span> Engine</div>
+        <br>
+        <div>engine = Engine()</div>
+        <br>
+        <div>results = engine.simulate(</div>
+        <div style="padding-left:20px;">audience=<span style="color:#fbbf24;">"US consumers 25-54"</span>,</div>
+        <div style="padding-left:20px;">questions=[{</div>
+        <div style="padding-left:40px;"><span style="color:#fbbf24;">"text"</span>: <span style="color:#fbbf24;">"How satisfied are you?"</span>,</div>
+        <div style="padding-left:40px;"><span style="color:#fbbf24;">"type"</span>: <span style="color:#fbbf24;">"scale"</span>,</div>
+        <div style="padding-left:20px;">}]</div>
+        <div>)</div>
+        <br>
+        <div style="color:#94a3b8;"># Returns in &lt;1 second:</div>
+        <div style="color:#94a3b8;"># - Full distribution</div>
+        <div style="color:#94a3b8;"># - Accuracy zone: MEDIUM</div>
+        <div style="color:#94a3b8;"># - Confidence: 68%</div>
+        <div style="color:#94a3b8;"># - Mean: 3.78</div>
+      </div>
+      <div style="margin-top:20px; display:flex; gap:15px;">
+        <div style="flex:1; background:#f0fdf4; padding:15px; border-radius:8px; text-align:center;">
+          <div style="font-size:24px; font-weight:700; color:#059669;">API</div>
+          <div style="font-size:14px; color:#64748b;">REST endpoints</div>
+        </div>
+        <div style="flex:1; background:#eff6ff; padding:15px; border-radius:8px; text-align:center;">
+          <div style="font-size:24px; font-weight:700; color:#2563eb;">SDK</div>
+          <div style="font-size:14px; color:#64748b;">Python package</div>
+        </div>
+        <div style="flex:1; background:#faf5ff; padding:15px; border-radius:8px; text-align:center;">
+          <div style="font-size:24px; font-weight:700; color:#7c3aed;">Dashboard</div>
+          <div style="font-size:14px; color:#64748b;">No-code UI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"></div>
+</div>
+
+<!-- SLIDE 5: Competitive Advantage -->
+<div class="slide">
+  <h2>Why Crowdwave Wins</h2>
+  <table class="comparison-table">
+    <tr>
+      <th style="width:25%;"></th>
+      <th style="width:25%;">Traditional Surveys</th>
+      <th style="width:25%;">Generic AI</th>
+      <th style="width:25%; background:#059669;">Crowdwave</th>
+    </tr>
+    <tr>
+      <td><strong>Time to Results</strong></td>
+      <td>4-8 weeks</td>
+      <td>Seconds</td>
+      <td class="check">Seconds</td>
+    </tr>
+    <tr>
+      <td><strong>Cost per Survey</strong></td>
+      <td>$15,000-$50,000</td>
+      <td>~$0</td>
+      <td class="check">~$0</td>
+    </tr>
+    <tr>
+      <td><strong>Accuracy (MAE)</strong></td>
+      <td>Ground truth</td>
+      <td class="cross">9.1 points</td>
+      <td class="check">1.9 points</td>
+    </tr>
+    <tr>
+      <td><strong>Bias Correction</strong></td>
+      <td>Manual</td>
+      <td class="cross">None</td>
+      <td class="check">Automatic (8 patterns)</td>
+    </tr>
+    <tr>
+      <td><strong>Confidence Intervals</strong></td>
+      <td>Yes</td>
+      <td class="cross">No</td>
+      <td class="check">Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Industry Calibration</strong></td>
+      <td>Custom</td>
+      <td class="cross">None</td>
+      <td class="check">20+ industries</td>
+    </tr>
+    <tr>
+      <td><strong>Iteration Speed</strong></td>
+      <td class="cross">Slow</td>
+      <td>Fast</td>
+      <td class="check">Fast</td>
+    </tr>
+  </table>
+  <div class="highlight-box" style="margin-top:40px; text-align:center;">
+    The speed of AI + The accuracy of real research
+  </div>
+  <div class="footer"></div>
+</div>
+
+<!-- SLIDE 6: Use Cases -->
+<div class="slide">
+  <h2>Who Uses Crowdwave</h2>
+  <div class="grid-2">
+    <div>
+      <div class="use-case">
+        <h3 style="margin-bottom:10px;">Product Teams</h3>
+        <p style="color:#64748b;">"Test 50 feature concepts in a day instead of picking 3 to survey over a month"</p>
+        <p style="margin-top:15px; font-size:16px;"><strong>Use case:</strong> Feature prioritization, concept testing, pricing research</p>
+      </div>
+      <div class="use-case" style="border-left-color:#10b981;">
+        <h3 style="margin-bottom:10px;">Market Researchers</h3>
+        <p style="color:#64748b;">"Pre-test surveys before fielding to catch problems early"</p>
+        <p style="margin-top:15px; font-size:16px;"><strong>Use case:</strong> Survey optimization, benchmarking, segmentation</p>
+      </div>
+      <div class="use-case" style="border-left-color:#f59e0b;">
+        <h3 style="margin-bottom:10px;">Strategy Consultants</h3>
+        <p style="color:#64748b;">"Rapid hypothesis testing for client engagements"</p>
+        <p style="margin-top:15px; font-size:16px;"><strong>Use case:</strong> Market sizing, competitive analysis, due diligence</p>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="background:#f0fdf4; border:2px solid #86efac;">
+        <h3 style="color:#059669; margin-bottom:25px;">Validation Results</h3>
+        <div class="metric-row" style="border-color:#bbf7d0;">
+          <span>Amazon S&S Survey (N=49)</span>
+          <strong style="color:#059669;">MAE &lt; 0.6 pts</strong>
+        </div>
+        <div class="metric-row" style="border-color:#bbf7d0;">
+          <span>NPS Benchmark (5.4M responses)</span>
+          <strong style="color:#059669;">+/- 3 pts</strong>
+        </div>
+        <div class="metric-row" style="border-color:#bbf7d0;">
+          <span>C-Suite Survey (N=1,732)</span>
+          <strong style="color:#059669;">+/- 2-3 pts</strong>
+        </div>
+        <div class="metric-row" style="border-color:#bbf7d0;">
+          <span>Predictions within 5 pts</span>
+          <strong style="color:#059669;">100%</strong>
+        </div>
+        <div style="margin-top:25px; padding:20px; background:white; border-radius:12px; text-align:center;">
+          <div style="font-size:36px; font-weight:800; color:#059669;">65 Tests Passing</div>
+          <div style="color:#64748b;">Production-ready engine</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"></div>
+</div>
+
+<!-- SLIDE 7: Market Opportunity -->
+<div class="slide slide-dark">
+  <h1 style="text-align:center; margin-bottom:60px;">Market Opportunity</h1>
+  <div class="grid-3" style="flex:1; align-items:center;">
+    <div style="text-align:center;">
+      <div class="stat-huge">$50B</div>
+      <div style="font-size:20px; color:rgba(255,255,255,0.7); margin-top:15px;">Global Market Research</div>
+      <div style="font-size:16px; color:rgba(255,255,255,0.5);">Growing 5% annually</div>
+    </div>
+    <div style="text-align:center;">
+      <div class="stat-huge">$8B</div>
+      <div style="font-size:20px; color:rgba(255,255,255,0.7); margin-top:15px;">Survey Software TAM</div>
+      <div style="font-size:16px; color:rgba(255,255,255,0.5);">Qualtrics, SurveyMonkey, etc.</div>
+    </div>
+    <div style="text-align:center;">
+      <div class="stat-huge">$2B</div>
+      <div style="font-size:20px; color:rgba(255,255,255,0.7); margin-top:15px;">AI Research Tools</div>
+      <div style="font-size:16px; color:rgba(255,255,255,0.5);">Fastest growing segment</div>
+    </div>
+  </div>
+  <div class="grid-2" style="margin-top:60px;">
+    <div class="card card-dark">
+      <h3 style="color:white;">Why Now?</h3>
+      <ul style="margin-top:20px;">
+        <li style="color:rgba(255,255,255,0.8);">LLMs finally good enough for nuanced prediction</li>
+        <li style="color:rgba(255,255,255,0.8);">Enterprises demanding faster insights</li>
+        <li style="color:rgba(255,255,255,0.8);">Traditional research budgets under pressure</li>
+        <li style="color:rgba(255,255,255,0.8);">First-mover advantage in calibrated AI surveys</li>
+      </ul>
+    </div>
+    <div class="card card-dark">
+      <h3 style="color:white;">Our Moat</h3>
+      <ul style="margin-top:20px;">
+        <li style="color:rgba(255,255,255,0.8);">100+ proprietary calibrations</li>
+        <li style="color:rgba(255,255,255,0.8);">Validated against 5.4M+ responses</li>
+        <li style="color:rgba(255,255,255,0.8);">8 documented bias correction patterns</li>
+        <li style="color:rgba(255,255,255,0.8);">Accuracy zone framework (patent pending)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer footer-light">Source: ESOMAR, Gartner, internal analysis</div>
+</div>
+
+<!-- SLIDE 8: Business Model -->
+<div class="slide">
+  <h2>Business Model</h2>
+  <div class="grid-2">
+    <div>
+      <h3 style="margin-bottom:25px;">SaaS Pricing</h3>
+      <div class="card" style="margin-bottom:20px; border-left:4px solid #94a3b8;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h3 style="color:#64748b; margin-bottom:5px;">Starter</h3>
+            <p style="color:#94a3b8;">For individuals and small teams</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:32px; font-weight:700;">$99</div>
+            <div style="color:#94a3b8;">/month</div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:20px; border-left:4px solid #3b82f6;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h3 style="color:#1e293b; margin-bottom:5px;">Professional</h3>
+            <p style="color:#64748b;">For research teams</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:32px; font-weight:700;">$499</div>
+            <div style="color:#64748b;">/month</div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:20px; border-left:4px solid #10b981; background:#f0fdf4;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h3 style="color:#059669; margin-bottom:5px;">Enterprise</h3>
+            <p style="color:#64748b;">Custom integrations + support</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:32px; font-weight:700;">Custom</div>
+            <div style="color:#64748b;">Contact us</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:25px;">Revenue Streams</h3>
+      <div class="card">
+        <div class="metric-row">
+          <span>SaaS Subscriptions</span>
+          <strong>70%</strong>
+        </div>
+        <div class="metric-row">
+          <span>API Usage (metered)</span>
+          <strong>20%</strong>
+        </div>
+        <div class="metric-row">
+          <span>Enterprise Services</span>
+          <strong>10%</strong>
+        </div>
+      </div>
+      <div class="card" style="margin-top:20px; background:#eff6ff;">
+        <h3 style="color:#1e40af; margin-bottom:15px;">Unit Economics</h3>
+        <div class="metric-row" style="border-color:#bfdbfe;">
+          <span>Gross Margin</span>
+          <strong style="color:#1e40af;">85%+</strong>
+        </div>
+        <div class="metric-row" style="border-color:#bfdbfe;">
+          <span>CAC Payback</span>
+          <strong style="color:#1e40af;">&lt;6 months</strong>
+        </div>
+        <div class="metric-row" style="border-bottom:none;">
+          <span>Net Revenue Retention</span>
+          <strong style="color:#1e40af;">120%+ target</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"></div>
+</div>
+
+<!-- SLIDE 9: Traction -->
+<div class="slide">
+  <h2>Traction & Milestones</h2>
+  <div class="grid-2">
+    <div>
+      <h3 style="margin-bottom:25px;">What We've Built</h3>
+      <div class="card" style="margin-bottom:20px;">
+        <div style="display:flex; gap:20px; align-items:center;">
+          <div style="font-size:48px;">&#9989;</div>
+          <div>
+            <h3 style="color:#1e293b; margin-bottom:5px;">Production Engine</h3>
+            <p style="color:#64748b;">65 tests passing, Docker-ready, REST API</p>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:20px;">
+        <div style="display:flex; gap:20px; align-items:center;">
+          <div style="font-size:48px;">&#9989;</div>
+          <div>
+            <h3 style="color:#1e293b; margin-bottom:5px;">Validated Accuracy</h3>
+            <p style="color:#64748b;">79% error reduction vs. naive LLM</p>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:20px;">
+        <div style="display:flex; gap:20px; align-items:center;">
+          <div style="font-size:48px;">&#9989;</div>
+          <div>
+            <h3 style="color:#1e293b; margin-bottom:5px;">Calibration Library</h3>
+            <p style="color:#64748b;">100+ multipliers, 20+ industries, 8 bias patterns</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:25px;">Roadmap</h3>
+      <div class="card" style="background:#f8fafc;">
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:#10b981;"></div>
+          <div class="timeline-content">
+            <h4>Q1 2026 - Now</h4>
+            <p>Engine v1.0, validation complete, API ready</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:#3b82f6;"></div>
+          <div class="timeline-content">
+            <h4>Q2 2026</h4>
+            <p>Dashboard launch, first paying customers</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:#8b5cf6;"></div>
+          <div class="timeline-content">
+            <h4>Q3 2026</h4>
+            <p>Enterprise features, Qualtrics integration</p>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-bottom:0;">
+          <div class="timeline-dot" style="background:#ec4899;"></div>
+          <div class="timeline-content">
+            <h4>Q4 2026</h4>
+            <p>International expansion, 50+ calibrated markets</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"></div>
+</div>
+
+<!-- SLIDE 10: Ask -->
+<div class="slide slide-accent">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+    <h1 style="font-size:56px; margin-bottom:30px;">Let's Talk</h1>
+    <p style="font-size:24px; opacity:0.9; max-width:700px; margin-bottom:50px;">
+      We're building the future of market research. Fast, accurate, and transparent survey intelligence for every team.
+    </p>
+    
+    <div class="grid-3" style="max-width:900px; margin-bottom:50px;">
+      <div class="card card-dark" style="text-align:center;">
+        <div style="font-size:36px; margin-bottom:15px;">&#128640;</div>
+        <h3 style="color:white;">Pilot Program</h3>
+        <p style="color:rgba(255,255,255,0.7); font-size:16px;">Test with your real surveys</p>
+      </div>
+      <div class="card card-dark" style="text-align:center;">
+        <div style="font-size:36px; margin-bottom:15px;">&#129309;</div>
+        <h3 style="color:white;">Partnership</h3>
+        <p style="color:rgba(255,255,255,0.7); font-size:16px;">Integrate with your platform</p>
+      </div>
+      <div class="card card-dark" style="text-align:center;">
+        <div style="font-size:36px; margin-bottom:15px;">&#128176;</div>
+        <h3 style="color:white;">Investment</h3>
+        <p style="color:rgba(255,255,255,0.7); font-size:16px;">Join our seed round</p>
+      </div>
+    </div>
+    
+    <div style="background:rgba(255,255,255,0.1); padding:30px 60px; border-radius:16px;">
+      <p style="font-size:20px; opacity:0.9;">hello@crowdwave.ai</p>
+    </div>
+  </div>
+  <div class="footer footer-light">Crowdwave, Inc. | Confidential</div>
+</div>
+
+</body>
+</html>
