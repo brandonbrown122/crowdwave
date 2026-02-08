@@ -72,6 +72,8 @@ scale_tests = [
     ('AI concern', 'US workers', 'How concerned about AI affecting your job?', 3.31, 'Resume-Now'),
     ('Healthcare', 'US adults', 'How concerned about healthcare costs?', 3.80, 'KFF'),
     ('Climate', 'US adults', 'How concerned about climate change?', 3.50, 'Yale'),
+    ('Inflation', 'US adults', 'How concerned about inflation?', 3.44, 'Consumer'),
+    ('Economy opt', 'US adults', 'How optimistic about the economy?', 3.08, 'UMich'),
 ]
 
 for topic, audience, question, expected_mean, source in scale_tests:

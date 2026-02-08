@@ -427,6 +427,11 @@ class CrowdwaveEngine:
             if n_points == 5:
                 # Check for current calibrations first
                 
+                # Inflation concern specifically
+                if any(t in q_lower for t in ["inflation"]) and any(t in q_lower for t in ["concern", "worried"]):
+                    # 68% concerned but more moderate distribution
+                    return {"1": 10.0, "2": 16.0, "3": 26.0, "4": 30.0, "5": 18.0}
+                
                 # Economic sentiment - calibrated Feb 2026
                 if any(t in combined_context for t in ["economy", "economic", "recession", "financial"]):
                     if any(t in q_lower for t in ["recession", "downturn"]):
@@ -436,7 +441,7 @@ class CrowdwaveEngine:
                         # Mixed sentiment (57.3 index)
                         return {"1": 12.0, "2": 18.0, "3": 32.0, "4": 26.0, "5": 12.0}
                     elif any(t in q_lower for t in ["concern", "worried"]):
-                        # Inflation/job concerns elevated
+                        # General economic concerns
                         return {"1": 8.0, "2": 14.0, "3": 24.0, "4": 34.0, "5": 20.0}
                 
                 # AI/job concerns - calibrated Feb 2026
