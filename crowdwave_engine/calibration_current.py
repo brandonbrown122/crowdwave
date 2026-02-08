@@ -297,6 +297,39 @@ COLLEGE_VALUE_2025 = {
     "source": "Gallup/Lumina 2025"
 }
 
+# Gun Ownership (2025)
+GUN_OWNERSHIP_2025 = {
+    "household_owns_gun": 0.36,  # YouGov
+    "personally_own_gun": 0.23,
+    "protection_reason": 0.77,  # Among owners
+    "by_party": {
+        "republican": 0.50,
+        "democrat": 0.20,
+        "independent": 0.35,
+    },
+    "source": "YouGov 2025"
+}
+
+# Marijuana Legalization (2025)
+MARIJUANA_2025 = {
+    "support_recreational": 0.69,
+    "support_medical": 0.86,
+    "by_party": {
+        "democrat": 0.93,  # Support medical
+        "republican": 0.74,
+        "independent": 0.84,
+    },
+    "source": "Marijuana Moment 2025"
+}
+
+# Abortion (2025)
+ABORTION_2025 = {
+    "support_some_limits": 0.72,  # Restrict at 6 months or earlier
+    "legal_all_most_cases": 0.63,  # Gallup trend
+    "support_pregnancy_centers": 0.84,
+    "source": "Knights of Columbus/Marist 2025, Gallup"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

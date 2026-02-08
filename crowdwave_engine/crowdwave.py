@@ -627,6 +627,33 @@ class CrowdwaveEngine:
                         # Only 33% say worth the cost
                         return {opt0: 33.0, opt1: 67.0}
             
+            # Gun ownership (2025)
+            if any(t in combined_context for t in ["gun", "firearm", "weapon"]):
+                if any(t in q_lower for t in ["own", "have", "household"]):
+                    if "yes" in opt0_lower:
+                        # 36% household, 23% personal
+                        return {opt0: 32.0, opt1: 68.0}
+            
+            # Marijuana (2025)
+            if any(t in combined_context for t in ["marijuana", "cannabis", "weed", "pot"]):
+                if any(t in q_lower for t in ["legalize", "legal", "support"]):
+                    if "yes" in opt0_lower or "support" in opt0_lower:
+                        # 69% support recreational
+                        return {opt0: 69.0, opt1: 31.0}
+                if any(t in q_lower for t in ["medical"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 86.0, opt1: 14.0}
+            
+            # Abortion (2025) - highly partisan
+            if any(t in combined_context for t in ["abortion"]):
+                if any(t in q_lower for t in ["legal", "allow", "support"]):
+                    if "yes" in opt0_lower:
+                        # 63% legal in all/most cases
+                        return {opt0: 63.0, opt1: 37.0}
+                if any(t in q_lower for t in ["restrict", "limit", "ban"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 72.0, opt1: 28.0}
+            
             # Mental health
             if any(t in combined_context for t in ["mental health", "depression", "anxiety"]):
                 if any(t in q_lower for t in ["diagnosed", "experienced", "suffered"]):

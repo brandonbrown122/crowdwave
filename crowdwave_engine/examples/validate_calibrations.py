@@ -34,6 +34,9 @@ tests = [
     ('Super Bowl', 'US adults', 'Do you plan to watch the Super Bowl?', 'binary', ['Yes', 'No'], 69, 'Numerator'),
     ('Soc Security', 'US adults', 'Are you worried about Social Security cuts?', 'binary', ['Yes', 'No'], 75, 'Cato/AARP'),
     ('College', 'US adults', 'Is college worth the cost?', 'binary', ['Yes', 'No'], 33, 'Gallup'),
+    ('Gun', 'US adults', 'Do you own a gun?', 'binary', ['Yes', 'No'], 32, 'YouGov'),
+    ('Marijuana', 'US adults', 'Support marijuana legalization?', 'binary', ['Yes', 'No'], 69, 'MM'),
+    ('Abortion', 'US adults', 'Should abortion be legal?', 'binary', ['Yes', 'No'], 63, 'Gallup'),
 ]
 
 print()
