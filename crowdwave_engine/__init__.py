@@ -81,7 +81,27 @@ from .distributions import (
     adjust_distribution_for_bias,
 )
 
-__version__ = "1.0.1"
+# Batch processing
+from .batch import (
+    BatchProcessor,
+    BatchJob,
+    BatchResult,
+    run_batch_from_file,
+)
+
+# Client (optional - requires requests)
+try:
+    from .client import (
+        CrowdwaveClient,
+        quick_simulate,
+    )
+    CLIENT_AVAILABLE = True
+except ImportError:
+    CLIENT_AVAILABLE = False
+    CrowdwaveClient = None
+    quick_simulate = None
+
+__version__ = "1.0.2"
 __author__ = "Crowdwave"
 
 __all__ = [
@@ -129,4 +149,14 @@ __all__ = [
     "generate_likert_distribution",
     "calculate_distribution_stats",
     "adjust_distribution_for_bias",
+    
+    # Batch processing
+    "BatchProcessor",
+    "BatchJob",
+    "BatchResult",
+    "run_batch_from_file",
+    
+    # Client
+    "CrowdwaveClient",
+    "quick_simulate",
 ]
