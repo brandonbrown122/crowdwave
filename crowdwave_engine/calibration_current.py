@@ -870,6 +870,21 @@ SOLAR_ENERGY_2026 = {
     "source": "First Solar, Electrek 2026"
 }
 
+# Print Media Trust (2025-2026)
+PRINT_MEDIA_2026 = {
+    "trust_print_ads": 0.82,  # 82%
+    "trust_national_news": 0.56,  # 56%
+    "source": "Chilli Printing, Pew 2025"
+}
+
+# Cash vs Digital Payments (2025-2026)
+PAYMENT_METHODS_2026 = {
+    "cash_in_store": 0.12,  # 12.1%
+    "digital_wallet_in_store": 0.12,  # 11.8%
+    "digital_wallet_online": 0.39,  # 39%
+    "source": "PYMNTS, Capital One 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

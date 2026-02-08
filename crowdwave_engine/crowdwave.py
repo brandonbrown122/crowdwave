@@ -1208,6 +1208,21 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 79.0, opt1: 21.0}
             
+            # Print media trust
+            if any(t in combined_context for t in ["print", "newspaper", "magazine"]):
+                if any(t in q_lower for t in ["trust", "believe"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 82.0, opt1: 18.0}
+            
+            # Payment methods
+            if any(t in combined_context for t in ["cash", "payment", "digital wallet", "apple pay"]):
+                if any(t in q_lower for t in ["cash", "physical"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 12.0, opt1: 88.0}
+                if any(t in q_lower for t in ["digital", "wallet", "contactless"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 39.0, opt1: 61.0}  # Online
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
