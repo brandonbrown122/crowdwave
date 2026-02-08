@@ -908,6 +908,20 @@ MEAL_KIT_2026 = {
     "source": "Market.us 2026"
 }
 
+# Wearables/Smartwatch (2025-2026)
+WEARABLES_2026 = {
+    "adults_own_smartwatch": 0.276,  # 27.6%
+    "fitness_tracker_penetration": 0.08,  # 8.13%
+    "source": "DemandSage 2026"
+}
+
+# Meditation Apps (2025-2026)
+MEDITATION_APPS_2026 = {
+    "stress_reduction_calm": 0.235,  # 23.5% reduction
+    "growing_adoption": True,
+    "source": "Forbes, JMIR 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

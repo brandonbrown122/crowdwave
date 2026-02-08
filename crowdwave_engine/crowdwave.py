@@ -1241,6 +1241,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 7.0, opt1: 93.0}
             
+            # Wearables/Smartwatch
+            if any(t in combined_context for t in ["smartwatch", "fitness tracker", "wearable", "apple watch"]):
+                if any(t in q_lower for t in ["own", "have", "use"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 28.0, opt1: 72.0}
+            
+            # Meditation apps
+            if any(t in combined_context for t in ["meditation", "mindfulness", "calm", "headspace"]):
+                if any(t in q_lower for t in ["use", "practice", "app"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 15.0, opt1: 85.0}  # Approximate
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
