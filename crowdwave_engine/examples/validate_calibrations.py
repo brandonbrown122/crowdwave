@@ -37,6 +37,8 @@ tests = [
     ('Gun', 'US adults', 'Do you own a gun?', 'binary', ['Yes', 'No'], 32, 'YouGov'),
     ('Marijuana', 'US adults', 'Support marijuana legalization?', 'binary', ['Yes', 'No'], 69, 'MM'),
     ('Abortion', 'US adults', 'Should abortion be legal?', 'binary', ['Yes', 'No'], 63, 'Gallup'),
+    ('Pet', 'US households', 'Do you own a pet?', 'binary', ['Yes', 'No'], 68, 'APPA'),
+    ('Gym', 'US adults', 'Do you have a gym membership?', 'binary', ['Yes', 'No'], 21, 'HFA'),
 ]
 
 print()

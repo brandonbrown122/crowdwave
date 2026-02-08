@@ -654,6 +654,29 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 72.0, opt1: 28.0}
             
+            # Pet ownership (2025)
+            if any(t in combined_context for t in ["pet", "dog", "cat", "animal"]):
+                if any(t in q_lower for t in ["own", "have"]):
+                    if "yes" in opt0_lower:
+                        # 68% own a pet
+                        return {opt0: 68.0, opt1: 32.0}
+                if "dog" in q_lower:
+                    if "yes" in opt0_lower:
+                        return {opt0: 38.0, opt1: 62.0}
+                if "cat" in q_lower:
+                    if "yes" in opt0_lower:
+                        return {opt0: 26.0, opt1: 74.0}
+            
+            # Gym/Fitness (2025)
+            if any(t in combined_context for t in ["gym", "fitness", "exercise", "workout"]):
+                if any(t in q_lower for t in ["member", "belong", "join"]):
+                    if "yes" in opt0_lower:
+                        # 21% have gym membership
+                        return {opt0: 21.0, opt1: 79.0}
+                if any(t in q_lower for t in ["achieved", "goal", "success"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 55.0, opt1: 45.0}
+            
             # Mental health
             if any(t in combined_context for t in ["mental health", "depression", "anxiety"]):
                 if any(t in q_lower for t in ["diagnosed", "experienced", "suffered"]):

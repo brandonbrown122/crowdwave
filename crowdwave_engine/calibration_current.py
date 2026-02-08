@@ -330,6 +330,22 @@ ABORTION_2025 = {
     "source": "Knights of Columbus/Marist 2025, Gallup"
 }
 
+# Pet Ownership (2025)
+PET_OWNERSHIP_2025 = {
+    "household_owns_pet": 0.68,  # 68-71%
+    "own_dog": 0.38,
+    "own_cat": 0.26,
+    "households_with_pets": 94000000,
+    "source": "APPA 2025, World Animal Foundation"
+}
+
+# Fitness (2025)
+FITNESS_2025 = {
+    "gym_membership": 0.21,  # ~21%
+    "achieved_fitness_goals": 0.55,  # 55% achieved goals
+    "source": "HFA 2025, Gym Statistics"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
