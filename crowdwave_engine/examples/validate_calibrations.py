@@ -31,6 +31,9 @@ tests = [
     ('Party ID', 'Gen Z adults', 'Do you identify as independent?', 'binary', ['Independent', 'Party'], 56, 'Gallup'),
     ('Crypto', 'US adults', 'Do you own cryptocurrency?', 'binary', ['Yes', 'No'], 28, 'Security.org'),
     ('Homeowner', 'US adults', 'Do you own your home?', 'binary', ['Yes', 'No'], 66, 'FRED'),
+    ('Super Bowl', 'US adults', 'Do you plan to watch the Super Bowl?', 'binary', ['Yes', 'No'], 69, 'Numerator'),
+    ('Soc Security', 'US adults', 'Are you worried about Social Security cuts?', 'binary', ['Yes', 'No'], 75, 'Cato/AARP'),
+    ('College', 'US adults', 'Is college worth the cost?', 'binary', ['Yes', 'No'], 33, 'Gallup'),
 ]
 
 print()

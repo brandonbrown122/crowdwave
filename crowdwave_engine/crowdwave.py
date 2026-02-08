@@ -598,6 +598,35 @@ class CrowdwaveEngine:
                         # Only 6% of non-owners plan to buy
                         return {opt0: 6.0, opt1: 94.0}
             
+            # Sports viewership (Feb 2026)
+            if any(t in combined_context for t in ["super bowl", "football", "nfl"]):
+                if any(t in q_lower for t in ["watch", "plan", "viewing"]):
+                    if "yes" in opt0_lower:
+                        # 69% plan to watch Super Bowl
+                        return {opt0: 69.0, opt1: 31.0}
+            
+            if any(t in combined_context for t in ["olympics", "winter games"]):
+                if any(t in q_lower for t in ["watch", "plan"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 58.0, opt1: 42.0}
+            
+            # Social Security (2026)
+            if any(t in combined_context for t in ["social security", "retirement benefits"]):
+                if any(t in q_lower for t in ["cut", "reduce", "worried", "concern"]):
+                    if "yes" in opt0_lower:
+                        # 70-80% worried about cuts
+                        return {opt0: 75.0, opt1: 25.0}
+                elif any(t in q_lower for t in ["priority", "important"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 83.0, opt1: 17.0}
+            
+            # College value (2025)
+            if any(t in combined_context for t in ["college", "university", "degree", "higher education"]):
+                if any(t in q_lower for t in ["worth", "value", "cost"]):
+                    if "yes" in opt0_lower or "worth" in opt0_lower:
+                        # Only 33% say worth the cost
+                        return {opt0: 33.0, opt1: 67.0}
+            
             # Mental health
             if any(t in combined_context for t in ["mental health", "depression", "anxiety"]):
                 if any(t in q_lower for t in ["diagnosed", "experienced", "suffered"]):

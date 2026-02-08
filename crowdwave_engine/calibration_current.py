@@ -272,6 +272,32 @@ HOMEOWNERSHIP_2025 = {
 }
 
 
+# Sports Viewership (Feb 2026)
+SPORTS_VIEWERSHIP_2026 = {
+    "super_bowl_plan_to_watch": 0.69,  # 69% (Numerator)
+    "winter_olympics": 0.58,
+    "fifa_world_cup": 0.26,
+    "source": "Numerator Feb 2026"
+}
+
+# Social Security (2025-2026)
+SOCIAL_SECURITY_2026 = {
+    "expect_benefit_cuts": 0.70,  # 70% (Cato)
+    "worried_congress_allow_cuts": 0.80,  # 80% (Motley Fool)
+    "nervous_about_future": 0.74,
+    "should_be_top_priority": 0.83,
+    "cola_not_enough": 0.77,  # AARP
+    "source": "Cato Institute, AARP, Motley Fool 2025-2026"
+}
+
+# College Value (2025)
+COLLEGE_VALUE_2025 = {
+    "worth_the_cost": 0.33,  # Down from 53% in 2013
+    "not_worth_cost": 0.67,
+    "source": "Gallup/Lumina 2025"
+}
+
+
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
     Get current calibrations for a topic.
