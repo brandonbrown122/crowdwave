@@ -742,6 +742,14 @@ GAMING_2026 = {
     "source": "Statista 2025, Udonis 2026"
 }
 
+# Homeownership (2025-2026)
+HOMEOWNERSHIP_2026 = {
+    "ownership_rate": 0.657,  # 65.7% (FRED Q4 2025)
+    "buying_more_affordable_markets": 0.66,  # 66% of markets
+    "renters_millions": 40,  # 40+ million
+    "source": "FRED, Zebra 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
