@@ -404,6 +404,16 @@ class CrowdwaveEngine:
                         # 51% worried (T2B ~60-65%)
                         return {"1": 12.0, "2": 15.0, "3": 22.0, "4": 32.0, "5": 19.0}
                 
+                # Media trust - calibrated (only 32% trust)
+                if any(t in q_lower for t in ["media", "news", "press"]) and "trust" in q_lower:
+                    # Only 32% trust media (Gallup)
+                    return {"1": 29.0, "2": 25.0, "3": 14.0, "4": 22.0, "5": 10.0}
+                
+                # Federal government trust - calibrated (only 22% trust always/mostly)
+                if any(t in combined_context for t in ["government", "federal"]) and "trust" in q_lower:
+                    # Only 22% trust always/mostly
+                    return {"1": 24.0, "2": 30.0, "3": 24.0, "4": 16.0, "5": 6.0}
+                
                 # Vaccine/health trust - calibrated
                 if any(t in combined_context for t in ["cdc", "vaccine", "health authority"]):
                     if any(t in q_lower for t in ["trust"]):
@@ -436,6 +446,14 @@ class CrowdwaveEngine:
         elif question.type == "binary" and len(question.options) == 2:
             opt0, opt1 = question.options[0], question.options[1]
             opt0_lower, opt1_lower = opt0.lower(), opt1.lower()
+            
+            # Presidential approval (Feb 2026)
+            if any(t in combined_context for t in ["trump", "president", "administration"]) and any(t in q_lower for t in ["approve", "approval"]):
+                if "approve" in opt0_lower:
+                    # 39% approve, 56% disapprove (Feb 2026)
+                    return {opt0: 39.0, opt1: 61.0}
+                elif "disapprove" in opt0_lower:
+                    return {opt0: 56.0, opt1: 44.0}
             
             # Current calibrations - Immigration (Feb 2026)
             if any(t in combined_context for t in ["immigration", "ice", "deportation", "enforcement"]):

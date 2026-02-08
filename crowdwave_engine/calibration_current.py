@@ -70,9 +70,22 @@ INSTITUTIONAL_TRUST = {
         }
     },
     "media": {
-        "overall": 0.32,
+        "overall": 0.32,    # 32% trust (Gallup)
+        "great_deal_fair": 0.32,
+        "not_very_much": 0.39,
+        "none_at_all": 0.29,
     },
-    "source": "Gallup, Edelman Trust Barometer 2025"
+    "federal_government": {
+        "trust_always_mostly": 0.22,  # Historic lows
+        "trust_some": 0.54,
+        "trust_never": 0.24,
+    },
+    "trump_approval_feb2026": {
+        "approve": 0.39,
+        "disapprove": 0.56,
+        "strongly_disapprove": 0.51,
+    },
+    "source": "Gallup, Edelman Trust Barometer 2025, NPR/Marist Feb 2026"
 }
 
 # Streaming Services (late 2025)
