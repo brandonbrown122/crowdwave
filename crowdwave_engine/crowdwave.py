@@ -1064,6 +1064,21 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 72.0, opt1: 28.0}
             
+            # Fitness/Exercise
+            if any(t in combined_context for t in ["fitness", "exercise", "gym", "workout"]):
+                if any(t in q_lower for t in ["important", "priority"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 86.0, opt1: 14.0}
+                if any(t in q_lower for t in ["achieve", "meet", "goal"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 55.0, opt1: 45.0}
+            
+            # Organic food
+            if any(t in combined_context for t in ["organic", "natural food", "local produce"]):
+                if any(t in q_lower for t in ["buy", "prefer", "purchase"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 42.0, opt1: 58.0}  # Gen Z monthly
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

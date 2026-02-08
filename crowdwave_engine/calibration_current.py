@@ -709,6 +709,22 @@ LIFE_SATISFACTION_2026 = {
     "source": "Washington Stand 2026"
 }
 
+# Fitness/Exercise (2025-2026)
+FITNESS_2026 = {
+    "gym_access_important": 0.86,  # 86% say gym important
+    "achieved_goals_2025": 0.55,  # 55% achieved fitness goals
+    "planned_spend_billion": 60,
+    "source": "Health & Fitness Association 2026"
+}
+
+# Organic Food (2025-2026)
+ORGANIC_FOOD_2026 = {
+    "gen_z_buy_monthly": 0.42,  # 42% Gen Z buy organic monthly
+    "boomers_prefer_local": 0.59,  # 59% Boomers prefer local
+    "gen_z_prefer_local": 0.45,  # 45% Gen Z prefer local
+    "source": "Guardian, Attest 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
