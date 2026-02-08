@@ -540,6 +540,28 @@ EV_CHARGING_2026 = {
     "source": "Mintel 2025, Paren 2026"
 }
 
+# Side Hustles (2025-2026)
+SIDE_HUSTLE_2026 = {
+    "have_side_hustle": 0.27,  # 27% (Bankrate 2025)
+    "rely_secondary_income": 0.72,  # 72% (IndexBox 2026)
+    "by_generation": {
+        "gen_z": 0.34,
+        "millennial": 0.31,
+        "gen_x": 0.23,
+        "boomer": 0.22,
+    },
+    "avg_monthly_income": 442.76,
+    "source": "Bankrate 2025, IndexBox 2026"
+}
+
+# Data Privacy (2025-2026)
+DATA_PRIVACY_2026 = {
+    "want_stronger_control": 0.74,  # 74% want stronger control
+    "privacy_key_to_trust": 0.80,  # 80%+ consider privacy key
+    "wont_buy_without_protection": 0.95,  # 95% won't buy
+    "source": "Cisco 2025, Folio3 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

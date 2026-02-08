@@ -917,6 +917,21 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 65.0, opt1: 35.0}  # High concern
             
+            # Side hustles
+            if any(t in combined_context for t in ["side hustle", "gig work", "freelance", "extra income"]):
+                if any(t in q_lower for t in ["have", "do", "work"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 27.0, opt1: 73.0}
+                if any(t in q_lower for t in ["need", "rely"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 72.0, opt1: 28.0}
+            
+            # Data privacy
+            if any(t in combined_context for t in ["privacy", "data", "personal information"]):
+                if any(t in q_lower for t in ["concern", "worried", "important"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 80.0, opt1: 20.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
