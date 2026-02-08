@@ -92,6 +92,26 @@ SATISFACTION_BENCHMARKS = {
         validated_date="2026-02-07",
         accuracy_zone=AccuracyZone.HIGH
     ),
+    "subscription_core_experience": Benchmark(
+        construct="satisfaction",
+        mean_range=(4.2, 4.5),
+        sd_range=(0.8, 1.0),
+        shape="strong_positive_skew",
+        source="Amazon S&S validation (N=49)",
+        sample_size=49,
+        validated_date="2026-02-08",
+        accuracy_zone=AccuracyZone.MEDIUM
+    ),
+    "subscription_peripheral": Benchmark(
+        construct="satisfaction",
+        mean_range=(3.7, 4.0),
+        sd_range=(0.9, 1.1),
+        shape="positive_skew",
+        source="Amazon S&S validation (N=49)",
+        sample_size=49,
+        validated_date="2026-02-08",
+        accuracy_zone=AccuracyZone.MEDIUM
+    ),
 }
 
 
