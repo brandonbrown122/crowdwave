@@ -1294,6 +1294,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 15.0, opt1: 85.0}  # ~15% ownership
             
+            # Veganism/Vegetarianism
+            if any(t in combined_context for t in ["vegan", "vegetarian", "plant-based"]):
+                if any(t in q_lower for t in ["are", "follow", "diet"]):
+                    if "vegan" in q_lower:
+                        if "yes" in opt0_lower:
+                            return {opt0: 3.0, opt1: 97.0}
+                    if "vegetarian" in q_lower:
+                        if "yes" in opt0_lower:
+                            return {opt0: 5.0, opt1: 95.0}
+                    if "yes" in opt0_lower:
+                        return {opt0: 8.0, opt1: 92.0}  # Combined
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

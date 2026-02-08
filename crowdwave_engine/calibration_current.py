@@ -966,6 +966,14 @@ CRYPTO_2026 = {
     "source": "Security.org, Bleap 2026"
 }
 
+# Veganism/Vegetarianism (2025-2026)
+VEGANISM_2026 = {
+    "vegan": 0.03,  # 3%
+    "vegetarian": 0.05,  # 5%
+    "combined": 0.08,  # 8%
+    "source": "Forbes, Gallup 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
