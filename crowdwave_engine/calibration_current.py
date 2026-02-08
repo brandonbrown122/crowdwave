@@ -524,6 +524,22 @@ RETIREMENT_CONFIDENCE_2026 = {
     "source": "Voya, Western & Southern 2026"
 }
 
+# Tipping Culture (2025)
+TIPPING_2025 = {
+    "negative_view": 0.63,  # 63% have at least one negative view
+    "tip_fatigue": True,
+    "annoyed_digital_prompts": True,
+    "source": "JIM Generosity Index 2025"
+}
+
+# EV Charging Concerns (2025-2026)
+EV_CHARGING_2026 = {
+    "top_concern_unreliable": True,  # Charger unreliability is top concern
+    "barriers": ["affordability", "range_anxiety", "charging_access"],
+    "dcfc_ports_growth_2026": 19500,  # Expected new ports
+    "source": "Mintel 2025, Paren 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

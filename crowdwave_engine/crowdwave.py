@@ -905,6 +905,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 47.0, opt1: 53.0}
             
+            # Tipping
+            if any(t in combined_context for t in ["tipping", "tip", "gratuity"]):
+                if any(t in q_lower for t in ["annoyed", "fatigue", "negative", "problem"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 63.0, opt1: 37.0}
+            
+            # EV charging
+            if any(t in combined_context for t in ["ev charging", "charging station", "charger"]):
+                if any(t in q_lower for t in ["concern", "barrier", "problem"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 65.0, opt1: 35.0}  # High concern
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
