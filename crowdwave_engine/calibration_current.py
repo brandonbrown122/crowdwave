@@ -1012,6 +1012,20 @@ HOMEOWNERSHIP_2026 = {
     "source": "FRED, Zebra 2026"
 }
 
+# Social Media Usage (2025-2026)
+SOCIAL_MEDIA_USAGE_2026 = {
+    "avg_daily_hours": 2.38,  # 2h 23m
+    "tiktok_monthly_hours": 48.5,
+    "source": "RecurPost, Exploding Topics 2026"
+}
+
+# Sleep/Insomnia (2025-2026)
+SLEEP_2026 = {
+    "chronic_insomnia": 0.125,  # 10-15%
+    "college_student_hours": 5.8,
+    "source": "Wikipedia, USF 2025"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
