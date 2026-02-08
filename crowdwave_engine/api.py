@@ -1,5 +1,5 @@
 """
-CrowdWave API Wrapper
+Crowdwave API Wrapper
 FastAPI-based REST API for survey simulation.
 """
 
@@ -17,7 +17,7 @@ except ImportError:
     FASTAPI_AVAILABLE = False
     BaseModel = object  # Fallback
 
-from .crowdwave import CrowdWaveEngine
+from .Crowdwave import CrowdwaveEngine
 from .calibration import (
     get_nps_benchmark,
     requires_partisan_segmentation,
@@ -74,7 +74,7 @@ def create_app() -> 'FastAPI':
         raise ImportError("FastAPI not installed. Run: pip install fastapi uvicorn")
     
     app = FastAPI(
-        title="CrowdWave Simulation API",
+        title="Crowdwave Simulation API",
         description="Production survey simulation with calibrated accuracy",
         version="1.0.0",
         docs_url="/docs",
@@ -91,7 +91,7 @@ def create_app() -> 'FastAPI':
     )
     
     # Initialize engine
-    engine = CrowdWaveEngine()
+    engine = CrowdwaveEngine()
     
     # ═══════════════════════════════════════════════════════════════
     # ENDPOINTS
@@ -101,7 +101,7 @@ def create_app() -> 'FastAPI':
     async def root():
         """API health check."""
         return {
-            "service": "CrowdWave Simulation API",
+            "service": "Crowdwave Simulation API",
             "version": "1.0.0",
             "status": "healthy",
             "endpoints": {

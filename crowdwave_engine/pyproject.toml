@@ -3,13 +3,13 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "crowdwave-engine"
+name = "Crowdwave-engine"
 version = "1.0.0"
 description = "Production survey simulation engine with 79% error reduction vs naive LLM"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "CrowdWave", email = "team@crowdwave.ai"}
+    {name = "Crowdwave", email = "team@Crowdwave.ai"}
 ]
 keywords = ["survey", "simulation", "research", "calibration", "llm"]
 classifiers = [
@@ -31,16 +31,16 @@ dev = ["pytest>=7.0.0", "pytest-cov>=4.0.0"]
 all = ["fastapi>=0.100.0", "uvicorn>=0.22.0", "pytest>=7.0.0"]
 
 [project.scripts]
-crowdwave = "crowdwave_engine.cli:main"
+Crowdwave = "Crowdwave_engine.cli:main"
 
 [project.urls]
-Homepage = "https://crowdwave.ai"
-Documentation = "https://docs.crowdwave.ai"
-Repository = "https://github.com/crowdwave/crowdwave-engine"
+Homepage = "https://Crowdwave.ai"
+Documentation = "https://docs.Crowdwave.ai"
+Repository = "https://github.com/Crowdwave/Crowdwave-engine"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["crowdwave_engine*"]
+include = ["Crowdwave_engine*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

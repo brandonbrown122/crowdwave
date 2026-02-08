@@ -55,7 +55,7 @@ style: |
 
 # Your Market Research Just Got 100x Faster
 
-## CrowdWave Survey Simulation Engine
+## Crowdwave Survey Simulation Engine
 
 **Validated Accuracy Report | February 2026**
 
@@ -77,7 +77,7 @@ style: |
 # Simulation Delivers Accurate Insights
 ## In Minutes, Not Months
 
-| Dimension | Traditional | CrowdWave |
+| Dimension | Traditional | Crowdwave |
 |-----------|-------------|-----------|
 | **Time** | 4-6 weeks | ✅ Minutes |
 | **Cost** | $25,000+ | ✅ Near-zero |

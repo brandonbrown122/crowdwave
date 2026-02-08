@@ -1,5 +1,5 @@
 """
-CrowdWave Benchmark Validation Tests
+Crowdwave Benchmark Validation Tests
 Tests engine against human-validated benchmarks from CALIBRATION_MEMORY.md
 """
 
@@ -9,7 +9,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from crowdwave_engine import CrowdWaveEngine, get_nps_benchmark
+from Crowdwave_engine import CrowdwaveEngine, get_nps_benchmark
 
 
 class TestNPSBenchmarks(unittest.TestCase):
@@ -46,7 +46,7 @@ class TestDemographicCalibrations(unittest.TestCase):
     """Test demographic-specific calibration accuracy."""
     
     def setUp(self):
-        self.engine = CrowdWaveEngine()
+        self.engine = CrowdwaveEngine()
     
     def test_senior_digital_adoption(self):
         """
@@ -54,7 +54,7 @@ class TestDemographicCalibrations(unittest.TestCase):
         AARP 2025: 90% smartphone ownership (not 70%)
         """
         # This tests that we're applying the 1.30 multiplier
-        from crowdwave_engine import DEMOGRAPHIC_MULTIPLIERS
+        from Crowdwave_engine import DEMOGRAPHIC_MULTIPLIERS
         
         mods = DEMOGRAPHIC_MULTIPLIERS.get("adults_50_plus", {})
         self.assertIn("smartphone_ownership", mods)
@@ -65,7 +65,7 @@ class TestDemographicCalibrations(unittest.TestCase):
         Validate women 60+ emotional bonding correction.
         Human data: 1.30 multiplier needed.
         """
-        from crowdwave_engine import DEMOGRAPHIC_MULTIPLIERS
+        from Crowdwave_engine import DEMOGRAPHIC_MULTIPLIERS
         
         mods = DEMOGRAPHIC_MULTIPLIERS.get("women_60_plus", {})
         self.assertIn("emotional_intensity", mods)
@@ -80,7 +80,7 @@ class TestConstructCorrections(unittest.TestCase):
         AI concern: LLM over-predicts.
         Should apply 0.90 multiplier.
         """
-        from crowdwave_engine import CONSTRUCT_CORRECTIONS
+        from Crowdwave_engine import CONSTRUCT_CORRECTIONS
         
         correction = CONSTRUCT_CORRECTIONS.get("ai_concern_general", {})
         self.assertEqual(correction.get("multiplier"), 0.90)
@@ -90,7 +90,7 @@ class TestConstructCorrections(unittest.TestCase):
         Intent-action gap: Critical.
         "Very Likely" -> 30% actual.
         """
-        from crowdwave_engine import CONSTRUCT_CORRECTIONS
+        from Crowdwave_engine import CONSTRUCT_CORRECTIONS
         
         correction = CONSTRUCT_CORRECTIONS.get("intent_very_likely", {})
         self.assertEqual(correction.get("multiplier"), 0.30)
@@ -100,7 +100,7 @@ class TestConstructCorrections(unittest.TestCase):
         Status quo preference: LLM under-predicts.
         Should add 10-15 pts.
         """
-        from crowdwave_engine import CONSTRUCT_CORRECTIONS
+        from Crowdwave_engine import CONSTRUCT_CORRECTIONS
         
         correction = CONSTRUCT_CORRECTIONS.get("status_quo_preference", {})
         add_pts = correction.get("add_points", (0, 0))
@@ -112,19 +112,19 @@ class TestPartisanSegmentation(unittest.TestCase):
     
     def test_immigration_requires_segmentation(self):
         """Immigration: 50pt gap requires party breakdown."""
-        from crowdwave_engine import requires_partisan_segmentation
+        from Crowdwave_engine import requires_partisan_segmentation
         
         self.assertTrue(requires_partisan_segmentation("illegal immigration"))
     
     def test_climate_requires_segmentation(self):
         """Climate change: 40pt gap requires party breakdown."""
-        from crowdwave_engine import requires_partisan_segmentation
+        from Crowdwave_engine import requires_partisan_segmentation
         
         self.assertTrue(requires_partisan_segmentation("climate change"))
     
     def test_neutral_topic_no_segmentation(self):
         """Neutral topics don't require segmentation."""
-        from crowdwave_engine import requires_partisan_segmentation
+        from Crowdwave_engine import requires_partisan_segmentation
         
         self.assertFalse(requires_partisan_segmentation("product satisfaction"))
 
@@ -134,7 +134,7 @@ class TestExecutiveCalibrations(unittest.TestCase):
     
     def test_cyber_concern_by_role(self):
         """Test cyber concern varies by role."""
-        from crowdwave_engine import EXECUTIVE_MULTIPLIERS
+        from Crowdwave_engine import EXECUTIVE_MULTIPLIERS
         
         by_role = EXECUTIVE_MULTIPLIERS.get("by_role", {})
         
@@ -148,7 +148,7 @@ class TestExecutiveCalibrations(unittest.TestCase):
     
     def test_regional_variation(self):
         """Test regional variation in executive concerns."""
-        from crowdwave_engine import EXECUTIVE_MULTIPLIERS
+        from Crowdwave_engine import EXECUTIVE_MULTIPLIERS
         
         by_region = EXECUTIVE_MULTIPLIERS.get("by_region", {})
         
@@ -168,7 +168,7 @@ class TestAccuracyMetrics(unittest.TestCase):
     """
     
     def setUp(self):
-        self.engine = CrowdWaveEngine()
+        self.engine = CrowdwaveEngine()
     
     def test_satisfaction_accuracy(self):
         """

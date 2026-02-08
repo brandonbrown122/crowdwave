@@ -1,9 +1,9 @@
-# CrowdWave Deck V5 — Executive Evaluation Simulation
+# Crowdwave Deck V5 — Executive Evaluation Simulation
 
 ## Simulation Config
 - **Audience:** VP+ executives at Fortune 1000 companies responsible for market research, consumer insights, or strategy decisions
 - **N:** 50 simulated respondents
-- **Context:** First exposure to CrowdWave pitch deck (12 slides)
+- **Context:** First exposure to Crowdwave pitch deck (12 slides)
 - **Time:** February 2026
 
 ---
@@ -106,7 +106,7 @@
    - Lead with "what you get" before "how it works"
 
 4. **Add competitive positioning** (-0.2 pt gap)
-   - Brief comparison: traditional vs. DIY AI vs. CrowdWave
+   - Brief comparison: traditional vs. DIY AI vs. Crowdwave
    - Why calibration matters vs. raw ChatGPT
 
 5. **Add implementation clarity** (-0.2 pt gap)
@@ -116,7 +116,7 @@
 
 ## Revised Deck Structure (Target: 8.0+)
 
-1. **Title** — CrowdWave
+1. **Title** — Crowdwave
 2. **Executive Summary** — SCR (keep)
 3. **The Problem** — Speed gap visual (keep, stronger)
 4. **The Proof** — 27 tests, 1.9pt error (keep)

@@ -1,5 +1,5 @@
 """
-CrowdWave Bias Detection and Countermeasures
+Crowdwave Bias Detection and Countermeasures
 Systematic corrections for known LLM simulation biases.
 """
 

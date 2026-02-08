@@ -1,4 +1,4 @@
-# CROWDWAVE SURVEY SIMULATION
+# Crowdwave SURVEY SIMULATION
 ## Accuracy Validation & Production Readiness
 
 **February 2026**

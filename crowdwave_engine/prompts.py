@@ -1,5 +1,5 @@
 """
-CrowdWave LLM Prompt Templates
+Crowdwave LLM Prompt Templates
 10-Phase methodology prompts for Claude/GPT integration.
 """
 
@@ -13,7 +13,7 @@ from .calibration import CONSTRUCT_CORRECTIONS, DEMOGRAPHIC_MULTIPLIERS
 
 SIMULATION_PROMPT_TEMPLATE = """
 ═══════════════════════════════════════════════════════════════
-CROWDWAVE SURVEY SIMULATION ENGINE v2.0
+Crowdwave SURVEY SIMULATION ENGINE v2.0
 ═══════════════════════════════════════════════════════════════
 
 ═══════════════════════════════════════════════════════════════
@@ -229,7 +229,7 @@ def get_quick_calibration_insert() -> str:
 
 VALIDATION_PROMPT = """
 ═══════════════════════════════════════════════════════════════
-CROWDWAVE VALIDATION CHECK
+Crowdwave VALIDATION CHECK
 ═══════════════════════════════════════════════════════════════
 
 Review this simulated distribution and check for:

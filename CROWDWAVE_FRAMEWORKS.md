@@ -2,7 +2,7 @@
 marp: true
 theme: default
 paginate: true
-footer: "CrowdWave | Confidential"
+footer: "Crowdwave | Confidential"
 style: |
   section {
     background: #ffffff;
@@ -120,7 +120,7 @@ style: |
 
 <br><br>
 
-# CrowdWave Accuracy Framework
+# Crowdwave Accuracy Framework
 
 **Calibrated AI predictions with documented, predictable accuracy**
 
@@ -155,7 +155,7 @@ February 2026
 <strong>Core insight:</strong> Raw LLMs are 25% less accurate than expert forecasters. Calibration against human survey data closes this gap for established topics.
 </div>
 
-<div class="source">Source: CrowdWave validation (27 test cases); ForecastBench 2025 (Forecasting Research Institute)</div>
+<div class="source">Source: Crowdwave validation (27 test cases); ForecastBench 2025 (Forecasting Research Institute)</div>
 
 ---
 
@@ -249,7 +249,7 @@ Novel behaviors
 
 </div>
 
-<div class="source">Source: CrowdWave accuracy testing (27 test cases, 6 domains)</div>
+<div class="source">Source: Crowdwave accuracy testing (27 test cases, 6 domains)</div>
 
 ---
 
@@ -486,7 +486,7 @@ Behavioral meta-analysis
 </div>
 </div>
 
-<div class="source">Source: CrowdWave validation testing (27 test cases, 6 domains); ACCURACY_TESTS.md</div>
+<div class="source">Source: Crowdwave validation testing (27 test cases, 6 domains); ACCURACY_TESTS.md</div>
 
 ---
 
@@ -628,7 +628,7 @@ High-stakes decisions
 </div>
 </div>
 
-<div class="source">Source: CrowdWave accuracy framework; industry best practices</div>
+<div class="source">Source: Crowdwave accuracy framework; industry best practices</div>
 
 ---
 
@@ -636,7 +636,7 @@ High-stakes decisions
 
 <div style="margin: 15px 0;">
 
-| Capability | Raw LLM | Competitors | CrowdWave |
+| Capability | Raw LLM | Competitors | Crowdwave |
 |------------|:-------:|:-----------:|:---------:|
 | Documented accuracy | ✗ | "95%" ⚠ | 27 tests ✓ |
 | Human validation | ✗ | Unclear | 5M+ ✓ |
@@ -653,7 +653,7 @@ High-stakes decisions
 <div class="box-content">"95% accuracy" — testimonials only, no methodology published, no test cases documented</div>
 </div>
 <div class="highlight-box">
-<div class="box-header" style="color: white;">CrowdWave approach</div>
+<div class="box-header" style="color: white;">Crowdwave approach</div>
 <div class="box-content" style="color: white;">27 test cases, 79% error reduction, full methodology transparency, known limitations documented</div>
 </div>
 </div>
@@ -780,7 +780,7 @@ Output
 <strong>Differentiation:</strong> Documented accuracy. Known limits. Transparent methodology.
 </div>
 
-<div class="source">Source: CrowdWave Accuracy Framework, February 2026</div>
+<div class="source">Source: Crowdwave Accuracy Framework, February 2026</div>
 
 ---
 
@@ -860,7 +860,7 @@ Directional guidance
 
 <br><br>
 
-# CrowdWave
+# Crowdwave
 
 **Documented accuracy. Known limits. Transparent methodology.**
 

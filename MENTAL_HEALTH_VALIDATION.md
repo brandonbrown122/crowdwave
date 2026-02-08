@@ -414,4 +414,4 @@ Compare aggregate positive sentiment rates (T2B):
 
 ---
 
-*Generated from mental_health_data.xlsx for CrowdWave simulation validation*
+*Generated from mental_health_data.xlsx for Crowdwave simulation validation*

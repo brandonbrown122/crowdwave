@@ -2,7 +2,7 @@
 marp: true
 theme: default
 paginate: true
-footer: "CrowdWave | Confidential"
+footer: "Crowdwave | Confidential"
 style: |
   section {
     background: #ffffff;
@@ -92,7 +92,7 @@ style: |
 
 <br><br><br>
 
-# CrowdWave Accuracy Framework
+# Crowdwave Accuracy Framework
 
 **Calibrated AI predictions with documented, predictable accuracy**
 
@@ -127,7 +127,7 @@ February 2026 | Chief Accuracy Officer
 <strong>Key finding:</strong> Raw LLMs are 25% less accurate than expert forecasters. Calibration against human survey data closes this gap, enabling reliable predictions for established topics.
 </div>
 
-<div class="source">Source: CrowdWave validation testing (27 test cases, 6 domains); ForecastBench 2025</div>
+<div class="source">Source: Crowdwave validation testing (27 test cases, 6 domains); ForecastBench 2025</div>
 
 ---
 
@@ -168,7 +168,7 @@ February 2026 | Chief Accuracy Officer
 <strong>Implication:</strong> Match question type to use case. High-accuracy questions support decisions; low-accuracy questions require human validation before action.
 </div>
 
-<div class="source">Source: CrowdWave accuracy testing (27 test cases); ACCURACY_BY_QUESTION_TYPE.md</div>
+<div class="source">Source: Crowdwave accuracy testing (27 test cases); ACCURACY_BY_QUESTION_TYPE.md</div>
 
 ---
 
@@ -278,7 +278,7 @@ February 2026 | Chief Accuracy Officer
 | AI "very concerned" | 58% | 50% | 48% | 2 pts |
 | Manufacturing NPS | 40 | 64 | 65 | 1 pt |
 
-<div class="source">Source: CrowdWave validation testing (27 test cases, 6 domains); ACCURACY_TESTS.md</div>
+<div class="source">Source: Crowdwave validation testing (27 test cases, 6 domains); ACCURACY_TESTS.md</div>
 
 ---
 
@@ -338,7 +338,7 @@ February 2026 | Chief Accuracy Officer
 - Novel behaviors with no training data
 - Regulatory or legal evidence requirements
 
-<div class="source">Source: CrowdWave accuracy framework; industry best practices</div>
+<div class="source">Source: Crowdwave accuracy framework; industry best practices</div>
 
 ---
 
@@ -346,7 +346,7 @@ February 2026 | Chief Accuracy Officer
 
 **Comparison to alternatives**
 
-| Capability | Raw LLM | Competitors | CrowdWave |
+| Capability | Raw LLM | Competitors | Crowdwave |
 |------------|---------|-------------|-----------|
 | Documented accuracy | None | "95%" (unvalidated) | 27 test cases |
 | Human validation data | None | Unclear | 5M+ responses |
@@ -408,7 +408,7 @@ February 2026 | Chief Accuracy Officer
 | Medium | ±4-5 pts | Satisfaction, NPS, concern → Direction |
 | Low | ±8-15 pts | Intent, price, polarized → Validate |
 
-<div class="source">Source: CrowdWave Accuracy Framework, February 2026</div>
+<div class="source">Source: Crowdwave Accuracy Framework, February 2026</div>
 
 ---
 
@@ -475,7 +475,7 @@ February 2026 | Chief Accuracy Officer
 
 **Total system documentation: ~150KB**
 
-<div class="source">Source: CrowdWave documentation repository</div>
+<div class="source">Source: Crowdwave documentation repository</div>
 
 ---
 
@@ -486,7 +486,7 @@ February 2026 | Chief Accuracy Officer
 
 <br><br><br>
 
-# CrowdWave
+# Crowdwave
 
 **Documented accuracy. Known limits. Transparent methodology.**
 

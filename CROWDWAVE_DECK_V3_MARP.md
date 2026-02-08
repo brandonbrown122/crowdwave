@@ -2,7 +2,7 @@
 marp: true
 theme: default
 paginate: true
-footer: "CrowdWave | Confidential | February 2026"
+footer: "Crowdwave | Confidential | February 2026"
 style: |
   section {
     background: #ffffff;
@@ -62,7 +62,7 @@ style: |
 <!-- _color: #ffffff -->
 <!-- _footer: "" -->
 
-# CrowdWave
+# Crowdwave
 
 **Accurate consumer insights in minutes, not months**
 
@@ -76,7 +76,7 @@ February 2026 | Confidential
 
 **Complication:** Competitors running 20 concept tests per quarter will outlearn teams running 2-3. Speed is the new competitive moat.
 
-**Resolution:** CrowdWave's calibrated simulation delivers 95% directional accuracy in minutes. Validated against Pew, Gallup, and AARP — averaging 2-point error. Test 10x more ideas, kill losers instantly, validate only winners.
+**Resolution:** Crowdwave's calibrated simulation delivers 95% directional accuracy in minutes. Validated against Pew, Gallup, and AARP — averaging 2-point error. Test 10x more ideas, kill losers instantly, validate only winners.
 
 ---
 
@@ -100,7 +100,7 @@ February 2026 | Confidential
 
 **Blind validation against authoritative sources**
 
-| Prediction | CrowdWave | Actual | Error |
+| Prediction | Crowdwave | Actual | Error |
 |------------|-----------|--------|-------|
 | Adults 50+ smartphone ownership | 89% | 90% | **1 pt** |
 | Americans identifying as Independent | 44% | 45% | **1 pt** |
@@ -177,7 +177,7 @@ February 2026 | Confidential
 
 **The trap:** Report "48% concerned about immigration" and you've described no one. Republicans: 75%. Democrats: 25%. The average is fiction.
 
-**Our rule:** CrowdWave flags polarized topics and enforces segmentation. No misleading averages.
+**Our rule:** Crowdwave flags polarized topics and enforces segmentation. No misleading averages.
 
 ---
 
@@ -196,7 +196,7 @@ February 2026 | Confidential
 - Apply factors: Definitely → ×0.30, Probably → ×0.15, Might → ×0.05
 - Pricing decisions: Always validate with behavioral data
 
-**CrowdWave applies corrections automatically** on intent questions.
+**Crowdwave applies corrections automatically** on intent questions.
 
 ---
 
@@ -238,7 +238,7 @@ February 2026 | Confidential
 
 # Simulation changes research economics: 10x velocity, 1/100th cost
 
-| Metric | Traditional | CrowdWave | Multiple |
+| Metric | Traditional | Crowdwave | Multiple |
 |--------|-------------|-----------|----------|
 | Time to insight | 4-6 weeks | Minutes | **1000x** |
 | Cost per concept | $25,000 | ~$0 | **Near-infinite** |
@@ -363,7 +363,7 @@ Log predictions vs. outcomes. Feed misses back. Calibration improves continuousl
 <!-- _color: #ffffff -->
 <!-- _footer: "" -->
 
-# CrowdWave
+# Crowdwave
 
 **Documented accuracy. Known limits. Transparent methodology.**
 

@@ -1,4 +1,4 @@
-# CROWDWAVE MASTER SIMULATION SYSTEM
+# Crowdwave MASTER SIMULATION SYSTEM
 ## Production Reference v1.1 | February 2026
 
 > **v1.2 Update (2026-02-07):** Expanded domain coverage. Added NPS benchmarks, employee engagement, brand loyalty, willingness-to-pay, and national concerns calibrations. Validated against 9 human data sources. MAE: 2-4 points across question types.
@@ -44,7 +44,7 @@ This document consolidates the complete Crowdwave simulation methodology into a 
 
 ```
 ═══════════════════════════════════════════════════════════════
-CROWDWAVE SURVEY SIMULATION ENGINE v2.0
+Crowdwave SURVEY SIMULATION ENGINE v2.0
 ═══════════════════════════════════════════════════════════════
 
 ═══════════════════════════════════════════════════════════════

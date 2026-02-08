@@ -155,7 +155,7 @@ Brier Score = (1/N) × Σ(P - O)² = [0.XXXX]
 | Benchmark | Score |
 |-----------|:-----:|
 | This project | [0.XX] |
-| CrowdWave target | 0.12–0.15 |
+| Crowdwave target | 0.12–0.15 |
 | Superforecasters | 0.081 |
 | Random baseline | 0.25 |
 
@@ -213,7 +213,7 @@ Brier Score = (1/N) × Σ(P - O)² = [0.XXXX]
 1. **[Recommendation 1]:** [Specific guidance based on findings]
 2. **[Recommendation 2]:** [Specific guidance based on findings]
 
-### For CrowdWave Calibration Library
+### For Crowdwave Calibration Library
 
 1. **Add to calibration:** [New data points to log]
 2. **Adjust multipliers:** [Specific multiplier changes]
@@ -262,4 +262,4 @@ Brier Score = (1/N) × Σ(P - O)² = [0.XXXX]
 **Document Classification:** [Internal / Client Confidential]  
 **Next Review Date:** [Date]
 
-*CrowdWave Research Division*
+*Crowdwave Research Division*

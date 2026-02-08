@@ -1,5 +1,5 @@
 """
-CrowdWave CLI
+Crowdwave CLI
 Command-line interface for running simulations.
 """
 
@@ -7,18 +7,18 @@ import argparse
 import json
 import sys
 from pathlib import Path
-from .crowdwave import CrowdWaveEngine
+from .Crowdwave import CrowdwaveEngine
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="CrowdWave Survey Simulation Engine",
+        description="Crowdwave Survey Simulation Engine",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  crowdwave simulate --config survey.json --output results.csv
-  crowdwave validate --input results.json
-  crowdwave benchmark --industry healthcare --b2b
+  Crowdwave simulate --config survey.json --output results.csv
+  Crowdwave validate --input results.json
+  Crowdwave benchmark --industry healthcare --b2b
         """
     )
     
@@ -63,7 +63,7 @@ def run_simulation(args):
     with open(config_path) as f:
         config = json.load(f)
     
-    engine = CrowdWaveEngine(verbose=args.verbose)
+    engine = CrowdwaveEngine(verbose=args.verbose)
     
     survey_config = {
         "audience": config.get("audience", "General population"),

@@ -1,5 +1,5 @@
 """
-CrowdWave Engine Unit Tests
+Crowdwave Engine Unit Tests
 Tests core simulation functionality.
 """
 
@@ -9,8 +9,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from crowdwave_engine import (
-    CrowdWaveEngine,
+from Crowdwave_engine import (
+    CrowdwaveEngine,
     AccuracyZone,
     detect_biases,
     validate_distribution,
@@ -22,7 +22,7 @@ class TestEngineBasics(unittest.TestCase):
     """Test basic engine functionality."""
     
     def setUp(self):
-        self.engine = CrowdWaveEngine()
+        self.engine = CrowdwaveEngine()
     
     def test_scale_question_simulation(self):
         """Test 5-point scale question simulation."""
@@ -163,7 +163,7 @@ class TestAccuracyZones(unittest.TestCase):
     """Test accuracy zone classification."""
     
     def setUp(self):
-        self.engine = CrowdWaveEngine()
+        self.engine = CrowdwaveEngine()
     
     def test_high_accuracy_awareness(self):
         """Test that awareness questions get HIGH zone."""
@@ -196,7 +196,7 @@ class TestCalibrationApplication(unittest.TestCase):
     """Test that calibration multipliers are applied correctly."""
     
     def setUp(self):
-        self.engine = CrowdWaveEngine()
+        self.engine = CrowdwaveEngine()
     
     def test_parent_child_concern_elevated(self):
         """Test that concern is elevated for parents re: children."""

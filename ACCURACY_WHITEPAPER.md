@@ -2,14 +2,14 @@
 
 ## A Technical Whitepaper on AI-Calibrated Market Research
 
-**CrowdWave Research Division**  
+**Crowdwave Research Division**  
 **February 2026**
 
 ---
 
 ## Executive Summary
 
-CrowdWave has developed a rigorously calibrated synthetic prediction system that delivers survey-equivalent insights in hours rather than weeks—at a fraction of traditional research costs. Our methodology combines large language model inference with empirically-derived calibration multipliers validated against 25+ authoritative human data sources representing over 150,000 survey respondents.
+Crowdwave has developed a rigorously calibrated synthetic prediction system that delivers survey-equivalent insights in hours rather than weeks—at a fraction of traditional research costs. Our methodology combines large language model inference with empirically-derived calibration multipliers validated against 25+ authoritative human data sources representing over 150,000 survey respondents.
 
 **Key Performance Metrics:**
 - **Brier Score:** 0.12–0.15 (expert-level accuracy)
@@ -49,9 +49,9 @@ Enterprise market research faces three persistent challenges:
 
 ### The Synthetic Solution
 
-CrowdWave's calibrated prediction system addresses these constraints:
+Crowdwave's calibrated prediction system addresses these constraints:
 
-| Dimension | CrowdWave Approach | Improvement |
+| Dimension | Crowdwave Approach | Improvement |
 |-----------|-------------------|-------------|
 | **Speed** | Same-day preliminary results | 95%+ faster |
 | **Cost** | Fraction of traditional costs | 80–90% savings |
@@ -184,7 +184,7 @@ The Brier Score (0 = perfect, 0.25 = random) is the gold standard for probabilis
 |-----------|-------------|----------------|
 | Superforecasters | 0.081 | Gold standard |
 | Best LLMs (uncalibrated) | 0.101 | Excellent |
-| **CrowdWave (calibrated)** | **0.12–0.15** | **Expert-level** |
+| **Crowdwave (calibrated)** | **0.12–0.15** | **Expert-level** |
 | Average crowd | 0.20–0.25 | Baseline |
 
 ### Prediction Accuracy Examples
@@ -224,7 +224,7 @@ The Brier Score (0 = perfect, 0.25 = random) is the gold standard for probabilis
 Our calibration curves demonstrate strong alignment between predicted and observed probabilities:
 
 ```
-Predicted    Observed (Ideal)    Observed (CrowdWave)
+Predicted    Observed (Ideal)    Observed (Crowdwave)
 ─────────────────────────────────────────────────────
 10%          10%                 11% ±3%
 30%          30%                 28% ±4%
@@ -284,9 +284,9 @@ Expected Calibration Error (ECE): **0.032** (excellent calibration)
 
 ## 6. Comparison to Alternatives
 
-### CrowdWave vs. Traditional Surveys
+### Crowdwave vs. Traditional Surveys
 
-| Dimension | Traditional Survey | CrowdWave Synthetic |
+| Dimension | Traditional Survey | Crowdwave Synthetic |
 |-----------|-------------------|---------------------|
 | **Time to results** | 4–8 weeks | Same day |
 | **Cost per study** | $50,000–$150,000+ | Fraction |
@@ -296,9 +296,9 @@ Expected Calibration Error (ECE): **0.032** (excellent calibration)
 | **Iteration speed** | Weeks per iteration | Minutes |
 | **Longitudinal tracking** | Expensive | Continuous |
 
-### CrowdWave vs. Uncalibrated LLM Predictions
+### Crowdwave vs. Uncalibrated LLM Predictions
 
-| Dimension | Raw LLM | CrowdWave Calibrated |
+| Dimension | Raw LLM | Crowdwave Calibrated |
 |-----------|---------|----------------------|
 | **Brier Score** | 0.10–0.15 | 0.12–0.15 |
 | **Mean Absolute Error** | ±8–15 pts | ±4–6 pts |
@@ -307,9 +307,9 @@ Expected Calibration Error (ECE): **0.032** (excellent calibration)
 | **Confidence intervals** | Often missing | Always provided |
 | **Uncertainty quantification** | Poor | Rigorous |
 
-### CrowdWave vs. Prediction Markets
+### Crowdwave vs. Prediction Markets
 
-| Dimension | Prediction Markets | CrowdWave |
+| Dimension | Prediction Markets | Crowdwave |
 |-----------|-------------------|-----------|
 | **Accuracy (liquid markets)** | Excellent | Excellent (calibrated domains) |
 | **Topic coverage** | Limited | Comprehensive |
@@ -327,27 +327,27 @@ Expected Calibration Error (ECE): **0.032** (excellent calibration)
 #### ✅ Rapid Hypothesis Generation
 **Scenario:** A product team needs to understand likely customer reactions to a new feature before investing in full research.
 
-**CrowdWave delivers:** Directional guidance on feature appeal, potential concerns, and segment-level preferences within hours.
+**Crowdwave delivers:** Directional guidance on feature appeal, potential concerns, and segment-level preferences within hours.
 
 #### ✅ Research Design Optimization
 **Scenario:** A research director is designing a large quantitative study and needs to prioritize which hypotheses to test.
 
-**CrowdWave delivers:** Pre-study predictions that inform questionnaire design, sample sizing, and subgroup prioritization.
+**Crowdwave delivers:** Pre-study predictions that inform questionnaire design, sample sizing, and subgroup prioritization.
 
 #### ✅ Continuous Market Monitoring
 **Scenario:** A brand team needs to track competitive positioning monthly, but budget only allows quarterly traditional research.
 
-**CrowdWave delivers:** Monthly synthetic tracking with quarterly traditional validation points.
+**Crowdwave delivers:** Monthly synthetic tracking with quarterly traditional validation points.
 
 #### ✅ Segment Exploration
 **Scenario:** A marketing team wants to understand how 12 different customer segments might respond to a campaign.
 
-**CrowdWave delivers:** Comprehensive segment-level predictions that would be cost-prohibitive to field traditionally.
+**Crowdwave delivers:** Comprehensive segment-level predictions that would be cost-prohibitive to field traditionally.
 
 #### ✅ Executive Decision Support
 **Scenario:** A CEO needs rapid input on a strategic question before a board meeting.
 
-**CrowdWave delivers:** Evidence-based predictions with confidence intervals and source transparency.
+**Crowdwave delivers:** Evidence-based predictions with confidence intervals and source transparency.
 
 ### Not Recommended For
 
@@ -474,9 +474,9 @@ Where λ varies by domain:
 
 ## Conclusion
 
-CrowdWave's calibrated synthetic prediction system represents a step-function improvement in market research speed and accessibility. By rigorously validating against authoritative human data sources and systematically correcting for known LLM biases, we deliver predictions that approach traditional survey accuracy while enabling real-time decision support.
+Crowdwave's calibrated synthetic prediction system represents a step-function improvement in market research speed and accessibility. By rigorously validating against authoritative human data sources and systematically correcting for known LLM biases, we deliver predictions that approach traditional survey accuracy while enabling real-time decision support.
 
-Our methodology is transparent, our limitations are clearly stated, and our accuracy is continuously validated. For organizations seeking to augment their research capabilities with AI-powered insights, CrowdWave offers a rigorously calibrated solution.
+Our methodology is transparent, our limitations are clearly stated, and our accuracy is continuously validated. For organizations seeking to augment their research capabilities with AI-powered insights, Crowdwave offers a rigorously calibrated solution.
 
 ---
 
@@ -484,4 +484,4 @@ Our methodology is transparent, our limitations are clearly stated, and our accu
 **Last Updated:** February 2026  
 **Classification:** Client-Ready
 
-*For questions about methodology or validation, contact the CrowdWave Research Division.*
+*For questions about methodology or validation, contact the Crowdwave Research Division.*

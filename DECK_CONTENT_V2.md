@@ -1,4 +1,4 @@
-# CROWDWAVE SIMULATION ENGINE
+# Crowdwave SIMULATION ENGINE
 ## Executive Presentation — February 2026
 
 ---
@@ -7,7 +7,7 @@
 
 ## Your Market Research Just Got 100x Faster
 
-**CrowdWave Survey Simulation Engine**
+**Crowdwave Survey Simulation Engine**
 *Validated Accuracy Report*
 
 February 2026 | Confidential
@@ -30,7 +30,7 @@ February 2026 | Confidential
 
 ## Simulation Delivers Accurate Consumer Insights in Minutes, Not Months
 
-| Dimension | Traditional | CrowdWave |
+| Dimension | Traditional | Crowdwave |
 |-----------|-------------|-----------|
 | **Time** | 4-6 weeks | Minutes |
 | **Cost** | $25,000+ | Near-zero |

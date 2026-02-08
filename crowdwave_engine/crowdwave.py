@@ -1,5 +1,5 @@
 """
-CrowdWave Simulation Engine
+Crowdwave Simulation Engine
 Production-ready survey simulation with calibrated accuracy.
 """
 
@@ -103,12 +103,12 @@ class SimulationReport:
 # MAIN ENGINE
 # ═══════════════════════════════════════════════════════════════
 
-class CrowdWaveEngine:
+class CrowdwaveEngine:
     """
     Production survey simulation engine implementing 10-phase methodology.
     
     Usage:
-        engine = CrowdWaveEngine()
+        engine = CrowdwaveEngine()
         results = engine.simulate(survey_config, questions)
     """
     

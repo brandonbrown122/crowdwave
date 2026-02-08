@@ -59,7 +59,7 @@ style: |
   }
 ---
 
-# CrowdWave Accuracy Framework
+# Crowdwave Accuracy Framework
 ### Prediction Accuracy You Can Document | February 2026
 
 <div class="columns">

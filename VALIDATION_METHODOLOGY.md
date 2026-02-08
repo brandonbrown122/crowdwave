@@ -1,8 +1,8 @@
-# CrowdWave Validation Methodology
+# Crowdwave Validation Methodology
 
 *A rigorous framework for prediction accuracy tracking and calibration validation*
 
-> **Goal:** Make CrowdWave's calibration the most rigorous in the industry by combining best practices from polling science, superforecasting research, and prediction market methodology.
+> **Goal:** Make Crowdwave's calibration the most rigorous in the industry by combining best practices from polling science, superforecasting research, and prediction market methodology.
 
 ---
 
@@ -575,7 +575,7 @@ Unless:
 
 ### Minimum Standards for Publication
 
-Before CrowdWave publishes any prediction:
+Before Crowdwave publishes any prediction:
 
 - [ ] At least 3 independent sources consulted
 - [ ] Source quality scores assigned to each
@@ -589,4 +589,4 @@ Before CrowdWave publishes any prediction:
 
 *Document Version: 1.0*
 *Last Updated: 2025-02-07*
-*Author: CrowdWave Validation Framework*
+*Author: Crowdwave Validation Framework*

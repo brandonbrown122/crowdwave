@@ -1,8 +1,8 @@
-# CrowdWave Accuracy System
+# Crowdwave Accuracy System
 ## Complete Documentation Index
 
 **Last Updated:** February 7, 2026  
-**Chief Accuracy Officer:** CrowdWave AI  
+**Chief Accuracy Officer:** Crowdwave AI  
 **Total Documentation:** ~330KB across 37 files
 
 ---
@@ -11,7 +11,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    CROWDWAVE ACCURACY SYSTEM                      │
+│                    Crowdwave ACCURACY SYSTEM                      │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                   │
 │   ┌─────────────┐    ┌─────────────┐    ┌─────────────┐         │
@@ -66,16 +66,16 @@
 
 | File | Format | Purpose |
 |------|--------|---------|
-| **CROWDWAVE_ACCURACY_FRAMEWORK.md** | Source | 28-slide comprehensive deck |
-| **CROWDWAVE_ACCURACY_FRAMEWORK.pdf** | PDF | Print/present version |
-| **CROWDWAVE_ACCURACY_FRAMEWORK.pptx** | PPTX | Editable version |
+| **Crowdwave_ACCURACY_FRAMEWORK.md** | Source | 28-slide comprehensive deck |
+| **Crowdwave_ACCURACY_FRAMEWORK.pdf** | PDF | Print/present version |
+| **Crowdwave_ACCURACY_FRAMEWORK.pptx** | PPTX | Editable version |
 
 ### Supporting Materials
 
 | File | Format | Purpose |
 |------|--------|---------|
-| **CROWDWAVE_EXECUTIVE_ONEPAGER.md/pdf** | 1 page | Executive summary |
-| **CROWDWAVE_CLIENT_PROPOSAL_TEMPLATE.md** | Template | Client project proposals |
+| **Crowdwave_EXECUTIVE_ONEPAGER.md/pdf** | 1 page | Executive summary |
+| **Crowdwave_CLIENT_PROPOSAL_TEMPLATE.md** | Template | Client project proposals |
 | **VALIDATION_REPORT_TEMPLATE.md** | Template | Post-project accuracy reports |
 
 ---
@@ -131,9 +131,9 @@
 3. Check: `ACCURACY_BY_QUESTION_TYPE.md` (confidence levels)
 
 ### For Sales/Client Conversations
-1. Present: `CROWDWAVE_ACCURACY_FRAMEWORK.pdf` (main deck)
-2. Leave-behind: `CROWDWAVE_EXECUTIVE_ONEPAGER.pdf`
-3. Propose: Use `CROWDWAVE_CLIENT_PROPOSAL_TEMPLATE.md`
+1. Present: `Crowdwave_ACCURACY_FRAMEWORK.pdf` (main deck)
+2. Leave-behind: `Crowdwave_EXECUTIVE_ONEPAGER.pdf`
+3. Propose: Use `Crowdwave_CLIENT_PROPOSAL_TEMPLATE.md`
 
 ### For Validation/QA
 1. Framework: `VALIDATION_METHODOLOGY.md`
@@ -182,11 +182,11 @@
 ## 📁 File Organization
 
 ```
-crowdwave/
+Crowdwave/
 ├── 📊 Presentations/
-│   ├── CROWDWAVE_ACCURACY_FRAMEWORK.pdf    (main deck)
-│   ├── CROWDWAVE_EXECUTIVE_ONEPAGER.pdf    (summary)
-│   └── CROWDWAVE_CALIBRATION_DECK.pdf      (legacy)
+│   ├── Crowdwave_ACCURACY_FRAMEWORK.pdf    (main deck)
+│   ├── Crowdwave_EXECUTIVE_ONEPAGER.pdf    (summary)
+│   └── Crowdwave_CALIBRATION_DECK.pdf      (legacy)
 │
 ├── 📚 Core Documentation/
 │   ├── MASTER_SIMULATION_SYSTEM.md         (methodology)
@@ -200,7 +200,7 @@ crowdwave/
 │   └── *_VALIDATION.md                     (studies)
 │
 ├── 📋 Templates/
-│   ├── CROWDWAVE_CLIENT_PROPOSAL_TEMPLATE.md
+│   ├── Crowdwave_CLIENT_PROPOSAL_TEMPLATE.md
 │   ├── VALIDATION_REPORT_TEMPLATE.md
 │   └── QUICK_REFERENCE.md
 │
@@ -250,4 +250,4 @@ crowdwave/
 
 ---
 
-*This system represents the state of CrowdWave accuracy calibration as of February 7, 2026. Continuous improvement ongoing.*
+*This system represents the state of Crowdwave accuracy calibration as of February 7, 2026. Continuous improvement ongoing.*

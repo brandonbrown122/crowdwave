@@ -1,4 +1,4 @@
-# CrowdWave Competitive Advantage: Evidence Base
+# Crowdwave Competitive Advantage: Evidence Base
 
 ## The Problem with Raw LLM Predictions
 
@@ -29,7 +29,7 @@
 
 ## Why Calibration Is the Answer
 
-### The CrowdWave Approach
+### The Crowdwave Approach
 
 We don't use raw LLM predictions. We:
 
@@ -41,7 +41,7 @@ We don't use raw LLM predictions. We:
 
 ### What This Solves
 
-| Raw LLM Problem | CrowdWave Solution |
+| Raw LLM Problem | Crowdwave Solution |
 |-----------------|-------------------|
 | Over-predicts AI concern | ×0.90 multiplier (validated) |
 | Under-predicts senior tech adoption | ×1.30-1.65 multiplier |
@@ -90,7 +90,7 @@ We don't use raw LLM predictions. We:
 
 ### vs. Raw LLM Predictions
 
-| Metric | Raw LLM | CrowdWave Calibrated |
+| Metric | Raw LLM | Crowdwave Calibrated |
 |--------|---------|---------------------|
 | Uses human validation | ❌ | ✅ |
 | Corrects known biases | ❌ | ✅ |
@@ -100,7 +100,7 @@ We don't use raw LLM predictions. We:
 
 ### vs. Synthetic Survey Competitors
 
-| Capability | Typical Competitor | CrowdWave |
+| Capability | Typical Competitor | Crowdwave |
 |------------|-------------------|-----------|
 | Forecasting accuracy (new concepts) | 0.30 correlation | Calibrated to human data |
 | Validation methodology | Unvalidated | Brier score + MAE tracking |
@@ -110,7 +110,7 @@ We don't use raw LLM predictions. We:
 
 ### vs. Traditional Research
 
-| Factor | Traditional Survey | CrowdWave |
+| Factor | Traditional Survey | Crowdwave |
 |--------|-------------------|-----------|
 | Speed | Weeks | Minutes |
 | Cost | $50K-$500K | Fraction |
@@ -120,7 +120,7 @@ We don't use raw LLM predictions. We:
 
 ---
 
-## When to Use CrowdWave (Honest Assessment)
+## When to Use Crowdwave (Honest Assessment)
 
 ### ✅ High Confidence Use Cases
 
@@ -170,7 +170,7 @@ We don't use raw LLM predictions. We:
 - Rate: ~0.016 Brier pts/year improvement
 - Projected parity with superforecasters: Late 2026
 
-### CrowdWave Edge
+### Crowdwave Edge
 Even as raw LLMs improve, calibration provides:
 - **Faster accuracy** — Don't wait for model improvements
 - **Domain expertise** — Validated in specific verticals
@@ -179,7 +179,7 @@ Even as raw LLMs improve, calibration provides:
 
 ---
 
-## Summary: Why CrowdWave Wins
+## Summary: Why Crowdwave Wins
 
 | Factor | Evidence |
 |--------|----------|

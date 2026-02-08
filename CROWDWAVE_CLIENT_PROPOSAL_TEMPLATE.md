@@ -1,7 +1,7 @@
-# CrowdWave Simulation Project Proposal
+# Crowdwave Simulation Project Proposal
 ## [Client Name] | [Project Title]
 
-**Prepared by:** CrowdWave Research Team  
+**Prepared by:** Crowdwave Research Team  
 **Date:** [Date]  
 **Version:** 1.0
 
@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-[2-3 sentences describing the research objective and how CrowdWave simulation will address it]
+[2-3 sentences describing the research objective and how Crowdwave simulation will address it]
 
 **Confidence Level:** [High / Medium / Requires Validation]  
 **Rationale:** [Brief explanation of confidence assessment based on accuracy framework]
@@ -148,7 +148,7 @@ Based on accuracy framework analysis:
 
 ---
 
-## Why CrowdWave
+## Why Crowdwave
 
 | Advantage | Evidence |
 |-----------|----------|
@@ -189,8 +189,8 @@ Based on accuracy framework analysis:
 | Role | Name | Signature | Date |
 |------|------|-----------|------|
 | Client Lead | | | |
-| CrowdWave Lead | | | |
+| Crowdwave Lead | | | |
 
 ---
 
-*This proposal incorporates the CrowdWave Accuracy Framework. Confidence levels and expected accuracy are based on validated calibrations as of February 2026.*
+*This proposal incorporates the Crowdwave Accuracy Framework. Confidence levels and expected accuracy are based on validated calibrations as of February 2026.*

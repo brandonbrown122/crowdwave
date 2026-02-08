@@ -27,7 +27,7 @@ style: |
   }
 ---
 
-# CrowdWave Calibration System
+# Crowdwave Calibration System
 ## Best-in-Market Predictive Accuracy
 
 **February 2026**
@@ -216,7 +216,7 @@ Different roles have different concerns. We calibrate for each.
 
 ## How We Compare
 
-| Capability | Raw LLM | Competitors | CrowdWave |
+| Capability | Raw LLM | Competitors | Crowdwave |
 |------------|---------|-------------|-----------|
 | Human validation | ❌ | Unclear | ✅ 5M+ |
 | Bias correction | ❌ | None documented | ✅ 8 patterns |
@@ -236,7 +236,7 @@ Different roles have different concerns. We calibrate for each.
 | Saucery.ai | "95% correlation" | Third-party validated ✓ |
 | NIQ | Category-specific | Published methodology ✓ |
 | Delve AI | "Validated" | No benchmarks ⚠️ |
-| **CrowdWave** | **79% error reduction** | **27 test cases, 6 domains** ✓ |
+| **Crowdwave** | **79% error reduction** | **27 test cases, 6 domains** ✓ |
 
 **We show our work. That's the difference.**
 
@@ -281,7 +281,7 @@ We calibrate for what they *actually* do.
 
 # Use Case Guidance
 
-## When To Use CrowdWave
+## When To Use Crowdwave
 
 ### ✅ High Confidence
 - Established topics with benchmark data
@@ -362,7 +362,7 @@ We calibrate for what they *actually* do.
 
 # Key Differentiators
 
-## Why CrowdWave Wins
+## Why Crowdwave Wins
 
 1. **Data-Backed**
    5M+ human responses, not marketing claims
@@ -420,7 +420,7 @@ We calibrate for what they *actually* do.
 
 # Contact
 
-## CrowdWave
+## Crowdwave
 
 **Human-calibrated AI predictions**
 **for high-stakes research**
@@ -520,7 +520,7 @@ We calibrate for what they *actually* do.
 
 # End
 
-## CrowdWave Calibration System
+## Crowdwave Calibration System
 
 *Best-in-market predictive accuracy*
 *February 2026*

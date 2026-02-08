@@ -1,4 +1,4 @@
-# CrowdWave Calibration Expansion System
+# Crowdwave Calibration Expansion System
 
 ## Comprehensive Survey Benchmarks for Prediction Calibration
 

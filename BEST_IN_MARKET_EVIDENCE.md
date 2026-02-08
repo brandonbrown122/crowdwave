@@ -1,8 +1,8 @@
-# CrowdWave: Best-in-Market Evidence Brief
+# Crowdwave: Best-in-Market Evidence Brief
 
 ## Executive Summary
 
-CrowdWave's calibrated prediction system represents a fundamental advance over raw LLM predictions and competitor synthetic survey approaches. This document compiles the evidence demonstrating market-leading accuracy.
+Crowdwave's calibrated prediction system represents a fundamental advance over raw LLM predictions and competitor synthetic survey approaches. This document compiles the evidence demonstrating market-leading accuracy.
 
 ---
 
@@ -110,7 +110,7 @@ Key findings:
 
 ### vs. Raw LLM Predictions
 
-| Capability | Raw LLM | CrowdWave |
+| Capability | Raw LLM | Crowdwave |
 |------------|---------|-----------|
 | Human validation | ❌ | ✅ 5M+ responses |
 | Bias correction | ❌ | ✅ 8 patterns |
@@ -120,7 +120,7 @@ Key findings:
 
 ### vs. Synthetic Survey Competitors
 
-| Capability | Typical Competitor | CrowdWave |
+| Capability | Typical Competitor | Crowdwave |
 |------------|-------------------|-----------|
 | New concept accuracy | 0.30 correlation | Calibrated + validation |
 | Methodology transparency | Black box | Full documentation |
@@ -130,7 +130,7 @@ Key findings:
 
 ### vs. Traditional Research
 
-| Factor | Traditional | CrowdWave |
+| Factor | Traditional | Crowdwave |
 |--------|-------------|-----------|
 | Speed | Weeks | Minutes |
 | Cost | $50K-$500K | Fraction |
@@ -199,7 +199,7 @@ Key findings:
 ### Improvement Trajectory
 - ForecastBench: LLMs improving ~0.016 Brier pts/year
 - Projected LLM-superforecaster parity: Late 2026
-- CrowdWave advantage: Calibration accelerates accuracy NOW
+- Crowdwave advantage: Calibration accelerates accuracy NOW
 
 ---
 
@@ -225,7 +225,7 @@ Key findings:
 
 ## 9. Bottom Line
 
-### Why CrowdWave is Best-in-Market
+### Why Crowdwave is Best-in-Market
 
 1. **Data-Backed:** 5M+ human responses, not marketing claims
 2. **Transparent:** Full methodology documentation

@@ -1,5 +1,5 @@
 """
-CrowdWave Calibration Library
+Crowdwave Calibration Library
 Human-validated multipliers and benchmarks for survey simulation.
 """
 

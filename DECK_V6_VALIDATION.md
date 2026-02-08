@@ -1,4 +1,4 @@
-# CrowdWave Deck V6 — Validation Simulation
+# Crowdwave Deck V6 — Validation Simulation
 
 ## Changes from V5 → V6
 1. ✓ Added case study slide (Fortune 500 CPG, 47 concepts tested)

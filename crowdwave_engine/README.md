@@ -1,6 +1,6 @@
-# CrowdWave Simulation Engine
+# Crowdwave Simulation Engine
 
-Production-ready survey simulation engine implementing the CrowdWave calibration methodology.
+Production-ready survey simulation engine implementing the Crowdwave calibration methodology.
 
 ## Features
 
@@ -13,9 +13,9 @@ Production-ready survey simulation engine implementing the CrowdWave calibration
 ## Quick Start
 
 ```python
-from crowdwave import CrowdWaveEngine
+from Crowdwave import CrowdwaveEngine
 
-engine = CrowdWaveEngine()
+engine = CrowdwaveEngine()
 
 survey = {
     "audience": "Parents of children 12-17 with anxiety",
@@ -39,8 +39,8 @@ print(results)
 ## Architecture
 
 ```
-crowdwave_engine/
-├── crowdwave.py          # Main engine class
+Crowdwave_engine/
+├── Crowdwave.py          # Main engine class
 ├── calibration.py        # Calibration library and multipliers
 ├── bias_corrections.py   # Bias detection and countermeasures
 ├── distributions.py      # Statistical distribution utilities

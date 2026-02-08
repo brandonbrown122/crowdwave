@@ -1,4 +1,4 @@
-# CROWDWAVE — THE SPEED ADVANTAGE
+# Crowdwave — THE SPEED ADVANTAGE
 ## Consulting-Quality Executive Deck | February 2026
 
 ---
@@ -9,13 +9,13 @@
 
 **Complication:** Your competitors running 20 concept tests per quarter will outlearn and outmaneuver teams running 2-3. Speed is the new competitive moat.
 
-**Resolution:** CrowdWave's calibrated simulation engine delivers 95% directional accuracy in minutes. We've validated predictions against Pew, Gallup, and AARP — averaging 2-point error on a 100-point scale. Use simulation to test 10x more ideas, kill losers instantly, and validate only the winners.
+**Resolution:** Crowdwave's calibrated simulation engine delivers 95% directional accuracy in minutes. We've validated predictions against Pew, Gallup, and AARP — averaging 2-point error on a 100-point scale. Use simulation to test 10x more ideas, kill losers instantly, and validate only the winners.
 
 ---
 
 # SLIDE 1: TITLE SLIDE
 
-# CrowdWave
+# Crowdwave
 
 **Accurate consumer insights in minutes, not months**
 
@@ -47,7 +47,7 @@ February 2026 | Confidential
 
 **Blind validation against authoritative sources**
 
-| Prediction | CrowdWave | Actual | Error |
+| Prediction | Crowdwave | Actual | Error |
 |------------|-----------|--------|-------|
 | Adults 50+ smartphone ownership | 89% | 90% | **1 pt** |
 | Americans identifying as Independent | 44% | 45% | **1 pt** |
@@ -67,7 +67,7 @@ February 2026 | Confidential
 
 **The calibration difference**
 
-| Metric | Raw LLM | Calibrated CrowdWave | Improvement |
+| Metric | Raw LLM | Calibrated Crowdwave | Improvement |
 |--------|---------|----------------------|-------------|
 | Mean absolute error | 9.1 points | 1.9 points | **79% reduction** |
 | Predictions within 2 points | 7% | 81% | 11x better |
@@ -136,7 +136,7 @@ February 2026 | Confidential
 
 **The trap:** Report a single number (48% concerned about immigration) and you've described no one. Republicans are at 75%. Democrats are at 25%. The "average" is a fiction.
 
-**Our rule:** CrowdWave automatically flags polarized topics and enforces segmentation. We don't let you publish misleading averages.
+**Our rule:** Crowdwave automatically flags polarized topics and enforces segmentation. We don't let you publish misleading averages.
 
 ---
 
@@ -157,7 +157,7 @@ February 2026 | Confidential
 - Apply conversion factors: Definitely → ×0.30, Probably → ×0.15, Might → ×0.05
 - For pricing decisions, always validate with real behavioral data
 
-**CrowdWave applies these corrections automatically** when purchase intent questions are detected.
+**Crowdwave applies these corrections automatically** when purchase intent questions are detected.
 
 ---
 
@@ -207,7 +207,7 @@ February 2026 | Confidential
 
 **Before and after comparison**
 
-| Metric | Traditional | With CrowdWave | Multiple |
+| Metric | Traditional | With Crowdwave | Multiple |
 |--------|-------------|----------------|----------|
 | Time to first insight | 4-6 weeks | Minutes | **1000x faster** |
 | Cost per concept test | $25,000 | ~$0 marginal | **Near-infinite** |
@@ -300,7 +300,7 @@ Start with simulation. Screen concepts, identify patterns, kill obvious losers. 
 - Pricing and conversion → Always validate
 
 ## 3. Track and compound accuracy
-Log predictions against outcomes. Share misses with CrowdWave. Calibration improves with every data point.
+Log predictions against outcomes. Share misses with Crowdwave. Calibration improves with every data point.
 
 ---
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-CrowdWave Demo
+Crowdwave Demo
 Demonstrates the simulation engine with a sample survey.
 """
 
@@ -16,12 +16,12 @@ if sys.platform == 'win32':
 # Add parent to path for local testing
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from crowdwave_engine import CrowdWaveEngine, AccuracyZone
+from Crowdwave_engine import CrowdwaveEngine, AccuracyZone
 
 
 def main():
     print("=" * 60)
-    print("CROWDWAVE SIMULATION ENGINE DEMO")
+    print("Crowdwave SIMULATION ENGINE DEMO")
     print("=" * 60)
     
     # Load demo survey
@@ -35,7 +35,7 @@ def main():
     print(f"📍 Geography: {survey['geography']}")
     
     # Initialize engine
-    engine = CrowdWaveEngine(verbose=True)
+    engine = CrowdwaveEngine(verbose=True)
     
     # Extract config and questions
     config = {

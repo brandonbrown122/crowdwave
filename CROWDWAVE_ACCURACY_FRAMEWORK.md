@@ -60,7 +60,7 @@ style: |
 <!-- _backgroundColor: #0066cc -->
 <!-- _color: #ffffff -->
 
-# CrowdWave
+# Crowdwave
 ## Prediction Accuracy Framework
 
 **Chief Accuracy Officer Report**
@@ -70,7 +70,7 @@ February 2026
 
 # Executive Summary
 
-CrowdWave simulates survey responses with **documented, predictable accuracy** across different question types and domains.
+Crowdwave simulates survey responses with **documented, predictable accuracy** across different question types and domains.
 
 | Dimension | Performance |
 |-----------|-------------|
@@ -372,7 +372,7 @@ Generic "executive" predictions miss these role-based variations.
 # Competitive Position
 ## How We Compare
 
-| Capability | Raw LLM | Competitors | CrowdWave |
+| Capability | Raw LLM | Competitors | Crowdwave |
 |------------|---------|-------------|-----------|
 | Documented accuracy | ❌ None | ⚠️ Claimed | ✅ 27 tests |
 | Human validation data | ❌ | ⚠️ Unclear | ✅ 5M+ |
@@ -401,7 +401,7 @@ Generic "executive" predictions miss these role-based variations.
 
 ---
 
-# When to Use CrowdWave
+# When to Use Crowdwave
 
 ## ✅ High Confidence Applications
 - Concept testing (which message resonates?)
@@ -494,7 +494,7 @@ Generic "executive" predictions miss these role-based variations.
 # ROI Model
 ## Speed × Accuracy × Cost
 
-| Factor | Traditional Survey | CrowdWave |
+| Factor | Traditional Survey | Crowdwave |
 |--------|-------------------|-----------|
 | Cost | $15,000 - $50,000 | ~$0 marginal |
 | Time | 2-4 weeks | Minutes |
@@ -528,7 +528,7 @@ Generic "executive" predictions miss these role-based variations.
 
 # Summary
 
-## The CrowdWave Accuracy Framework
+## The Crowdwave Accuracy Framework
 
 | What We Know | Accuracy |
 |--------------|----------|
@@ -558,4 +558,4 @@ Generic "executive" predictions miss these role-based variations.
 **Documented accuracy. Known limits. Defensible methodology.**
 
 Chief Accuracy Officer
-CrowdWave | February 2026
+Crowdwave | February 2026

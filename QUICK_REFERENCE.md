@@ -1,4 +1,4 @@
-# CrowdWave Calibration Quick Reference
+# Crowdwave Calibration Quick Reference
 
 **Version 2.0 | February 2026**
 
@@ -171,7 +171,7 @@
 
 ## Performance Benchmarks
 
-| Metric | CrowdWave | Superforecasters | Random |
+| Metric | Crowdwave | Superforecasters | Random |
 |--------|:---------:|:----------------:|:------:|
 | Brier Score | 0.12–0.15 | 0.081 | 0.25 |
 | MAE | ±4–6 pts | ±3–4 pts | ±15+ pts |
@@ -182,4 +182,4 @@
 **Need Full Methodology?** See `ACCURACY_WHITEPAPER.md`  
 **Documenting Results?** Use `VALIDATION_REPORT_TEMPLATE.md`
 
-*CrowdWave Research Division | February 2026*
+*Crowdwave Research Division | February 2026*
