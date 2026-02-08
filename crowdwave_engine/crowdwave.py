@@ -890,6 +890,21 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 92.0, opt1: 8.0}
             
+            # Childcare
+            if any(t in combined_context for t in ["childcare", "child care", "daycare"]):
+                if any(t in q_lower for t in ["problem", "crisis", "afford"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 80.0, opt1: 20.0}
+            
+            # Retirement
+            if any(t in combined_context for t in ["retirement", "401k", "pension", "retire"]):
+                if any(t in q_lower for t in ["confident", "ready", "enough"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 58.0, opt1: 42.0}  # General population
+                if any(t in q_lower for t in ["worried", "concerned"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 47.0, opt1: 53.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

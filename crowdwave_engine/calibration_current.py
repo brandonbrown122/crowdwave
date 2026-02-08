@@ -505,6 +505,25 @@ HOUSING_AFFORDABILITY_2026 = {
     "source": "Zebra, Investopedia 2026"
 }
 
+# Childcare (2026)
+CHILDCARE_2026 = {
+    "crisis_or_major_problem": 0.80,  # 80% say crisis/major problem
+    "crisis_republican": 0.65,
+    "crisis_independent": 0.81,
+    "crisis_democrat": 0.94,
+    "percent_of_income": 0.20,  # 20% of family income
+    "source": "FFYF National Poll 2026, Care.com"
+}
+
+# Retirement Confidence (2025-2026)
+RETIREMENT_CONFIDENCE_2026 = {
+    "confident_tdf_investors": 0.71,  # 71% TDF investors confident
+    "confident_non_investors": 0.58,
+    "boomers_not_confident": 0.47,  # 47% boomers not confident
+    "expect_market_correction": 0.56,  # 56% expect 2026 correction
+    "source": "Voya, Western & Southern 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
