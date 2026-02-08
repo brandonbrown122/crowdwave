@@ -439,6 +439,20 @@ HEALTH_INSURANCE_2025 = {
     "source": "NBC News/SurveyMonkey 2025"
 }
 
+# Minimum Wage (2025)
+MINIMUM_WAGE_2025 = {
+    "support_15_minimum": 0.59,  # 59% (Reuters/Ipsos)
+    "oppose": 0.34,
+    "source": "Reuters/Ipsos"
+}
+
+# Universal Basic Income (2025)
+UBI_2025 = {
+    "support_18_36": 0.51,  # 51% among young adults
+    "support_overall": 0.45,  # Estimated overall
+    "source": "U Chicago, YouGov"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

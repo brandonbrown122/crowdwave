@@ -839,6 +839,18 @@ class CrowdwaveEngine:
                         # 82% satisfied
                         return {opt0: 82.0, opt1: 18.0}
             
+            # Minimum wage
+            if any(t in combined_context for t in ["minimum wage", "$15", "wage increase"]):
+                if any(t in q_lower for t in ["support", "favor", "increase"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 59.0, opt1: 41.0}
+            
+            # Universal Basic Income
+            if any(t in combined_context for t in ["ubi", "universal basic income", "basic income"]):
+                if any(t in q_lower for t in ["support", "favor"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 45.0, opt1: 55.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
