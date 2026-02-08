@@ -34,6 +34,13 @@ from .bias_corrections import (
     apply_economic_rebalance,
     validate_distribution,
 )
+from .calibration_current import (
+    IMMIGRATION_ENFORCEMENT_FEB2026,
+    AI_JOB_CONCERNS_2026,
+    VACCINATION_RATES_US,
+    STREAMING_BENCHMARKS,
+    get_current_calibration,
+)
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -345,7 +352,7 @@ class CrowdwaveEngine:
         runs = []
         
         # Get base distribution from benchmarks
-        base = self._get_base_distribution(question, priors)
+        base = self._get_base_distribution(question, priors, config.topic)
         
         # Run 1: Conservative (anchor on priors, compress toward center)
         conservative = self._apply_conservative_shift(base)
@@ -376,46 +383,107 @@ class CrowdwaveEngine:
     def _get_base_distribution(
         self,
         question: Question,
-        priors: List[Dict]
+        priors: List[Dict],
+        topic: str = ""
     ) -> Dict[str, float]:
         """Get base distribution from benchmarks or defaults."""
         q_lower = question.text.lower()
+        topic_lower = topic.lower() if topic else ""
+        combined_context = q_lower + " " + topic_lower
         
         if question.type == "scale" and question.scale:
             min_val, max_val = question.scale
             n_points = max_val - min_val + 1
             
             if n_points == 5:
-                # Vary distribution based on question semantics
+                # Check for current calibrations first
+                
+                # AI/job concerns - calibrated Feb 2026
+                if any(t in combined_context for t in ["ai ", "artificial intelligence", "automation"]):
+                    if any(t in q_lower for t in ["concern", "worried", "fear", "impact"]):
+                        # 51% worried (T2B ~60-65%)
+                        return {"1": 12.0, "2": 15.0, "3": 22.0, "4": 32.0, "5": 19.0}
+                
+                # Vaccine/health trust - calibrated
+                if any(t in combined_context for t in ["cdc", "vaccine", "health authority"]):
+                    if any(t in q_lower for t in ["trust"]):
+                        # ~58% trust overall, varies by party
+                        return {"1": 10.0, "2": 14.0, "3": 18.0, "4": 34.0, "5": 24.0}
+                    elif any(t in q_lower for t in ["concern", "worried"]):
+                        # Measles outbreak - higher concern
+                        return {"1": 5.0, "2": 10.0, "3": 18.0, "4": 38.0, "5": 29.0}
+                
+                # Streaming satisfaction - calibrated (be specific to streaming services)
+                if any(t in combined_context for t in ["streaming service", "netflix", "disney+", "hbo", "hulu"]):
+                    # Mean ~3.4/5
+                    return {"1": 6.0, "2": 14.0, "3": 26.0, "4": 34.0, "5": 20.0}
+                
+                # Generic patterns
                 if any(t in q_lower for t in ["satisfied", "satisfaction"]):
-                    # Positive skew for satisfaction (mode at 4)
                     return {"1": 5.0, "2": 11.0, "3": 22.0, "4": 38.0, "5": 24.0}
                 elif any(t in q_lower for t in ["concern", "worried", "fear"]):
-                    # Higher concern for parents/children (mode at 4)
                     return {"1": 3.0, "2": 8.0, "3": 18.0, "4": 42.0, "5": 29.0}
                 elif any(t in q_lower for t in ["comfortable", "comfort"]):
-                    # Slight positive for "open to X" audiences
                     return {"1": 4.0, "2": 9.0, "3": 20.0, "4": 40.0, "5": 27.0}
                 elif any(t in q_lower for t in ["likely", "likelihood", "intent"]):
-                    # More neutral/conservative for intent (intent-action gap)
                     return {"1": 8.0, "2": 14.0, "3": 28.0, "4": 32.0, "5": 18.0}
                 else:
-                    # Generic slight positive skew
                     return {"1": 6.0, "2": 12.0, "3": 24.0, "4": 35.0, "5": 23.0}
             else:
-                # Uniform fallback
                 pct = 100.0 / n_points
                 return {str(i): pct for i in range(min_val, max_val + 1)}
         
         elif question.type == "binary" and len(question.options) == 2:
-            # Status quo bias - prefer traditional/in-person
-            opt0, opt1 = question.options[0].lower(), question.options[1].lower()
-            if "in-person" in opt0 or "traditional" in opt0:
-                return {question.options[0]: 62.0, question.options[1]: 38.0}
-            elif "virtual" in opt0 or "online" in opt0:
-                return {question.options[0]: 38.0, question.options[1]: 62.0}
+            opt0, opt1 = question.options[0], question.options[1]
+            opt0_lower, opt1_lower = opt0.lower(), opt1.lower()
+            
+            # Current calibrations - Immigration (Feb 2026)
+            if any(t in combined_context for t in ["immigration", "ice", "deportation", "enforcement"]):
+                if "approve" in opt0_lower:
+                    # 33% approve ICE, 60% disapprove (Feb 2026)
+                    return {opt0: 33.0, opt1: 67.0}
+                elif "disapprove" in opt0_lower:
+                    return {opt0: 60.0, opt1: 40.0}
+            
+            # AI workplace adoption (Feb 2026)
+            if any(t in combined_context for t in ["ai ", "artificial intelligence"]):
+                if any(t in q_lower for t in ["employer", "workplace", "company", "using"]):
+                    # 53% say workplace uses AI
+                    if "yes" in opt0_lower:
+                        return {opt0: 53.0, opt1: 47.0}
+                    else:
+                        return {opt0: 47.0, opt1: 53.0}
+                elif "good" in opt0_lower or "positive" in opt0_lower:
+                    # Mixed on AI being good for workers
+                    return {opt0: 48.0, opt1: 52.0}
+            
+            # Vaccination (calibrated from CDC data)
+            if any(t in combined_context for t in ["vaccine", "vaccinated", "mmr", "measles"]):
+                if "yes" in opt0_lower:
+                    # 92.5% kindergarteners vaccinated nationally
+                    return {opt0: 91.0, opt1: 9.0}
+                else:
+                    return {opt0: 9.0, opt1: 91.0}
+            
+            # Streaming cancellation (calibrated)
+            if any(t in combined_context for t in ["cancel", "streaming", "subscription"]):
+                if "yes" in opt0_lower:
+                    # ~35% considering canceling
+                    return {opt0: 35.0, opt1: 65.0}
+                else:
+                    return {opt0: 65.0, opt1: 35.0}
+            
+            # Default patterns - status quo bias
+            if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
+                return {opt0: 60.0, opt1: 40.0}
+            elif any(t in opt1_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
+                return {opt0: 40.0, opt1: 60.0}
+            elif any(t in opt0_lower for t in ["virtual", "online", "new", "switch", "change"]):
+                return {opt0: 40.0, opt1: 60.0}
+            elif any(t in opt1_lower for t in ["virtual", "online", "new", "switch", "change"]):
+                return {opt0: 60.0, opt1: 40.0}
             else:
-                return {question.options[0]: 55.0, question.options[1]: 45.0}
+                return {opt0: 52.0, opt1: 48.0}
         
         elif question.type == "nps":
             # NPS distribution (0-10), positive for screened audiences
