@@ -981,6 +981,14 @@ SMART_SPEAKERS_2026 = {
     "source": "Digital Holics, Security.org 2026"
 }
 
+# Online Grocery (2025-2026)
+ONLINE_GROCERY_2026 = {
+    "prefer_online": 0.21,  # 21.2%
+    "purchase_most_online": 0.19,  # 19%
+    "yoy_growth": 0.232,  # 23.2%
+    "source": "Capital One, Digital Commerce 360"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
