@@ -929,6 +929,14 @@ CORD_CUTTING_2026 = {
     "source": "Cord Cutters News 2026"
 }
 
+# Home Security (2025-2026)
+HOME_SECURITY_2026 = {
+    "have_system": 0.531,  # 53.1% have security system
+    "no_system": 0.469,  # 46.9% don't
+    "households_millions": 39,
+    "source": "Zebra, SafeHome 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
