@@ -937,6 +937,21 @@ HOME_SECURITY_2026 = {
     "source": "Zebra, SafeHome 2026"
 }
 
+# Remote/Hybrid Work (2025-2026)
+REMOTE_WORK_2026 = {
+    "prefer_hybrid": 0.60,  # 60%
+    "prefer_fully_remote": 0.37,  # 37%
+    "currently_hybrid": 0.52,  # 52%
+    "source": "Robert Half, Archie 2026"
+}
+
+# Student Loan Debt (2025-2026)
+STUDENT_LOAN_2026 = {
+    "use_savings_pay_debt": 0.57,  # 57%
+    "delinquent_federal": 0.10,  # 10%
+    "source": "Motley Fool, Education Data 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
