@@ -1079,6 +1079,21 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 42.0, opt1: 58.0}  # Gen Z monthly
             
+            # Podcasts
+            if any(t in combined_context for t in ["podcast", "audio show"]):
+                if any(t in q_lower for t in ["listen", "subscribe"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 55.0, opt1: 45.0}  # Monthly
+                if any(t in q_lower for t in ["tried", "ever"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 73.0, opt1: 27.0}
+            
+            # Video games
+            if any(t in combined_context for t in ["video game", "gaming", "gamer"]):
+                if any(t in q_lower for t in ["play", "game"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 65.0, opt1: 35.0}  # Approximate adult gamers
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

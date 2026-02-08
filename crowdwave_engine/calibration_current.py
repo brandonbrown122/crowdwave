@@ -725,6 +725,23 @@ ORGANIC_FOOD_2026 = {
     "source": "Guardian, Attest 2026"
 }
 
+# Podcast Listening (2025-2026)
+PODCAST_2026 = {
+    "monthly_listeners": 0.55,  # 55% monthly
+    "ever_tried": 0.73,  # 73% have tried
+    "audio_consumption_share": 0.09,  # 9% of audio time
+    "source": "Edison Research, Forbes 2025-2026"
+}
+
+# Video Gaming (2025-2026)
+GAMING_2026 = {
+    "adults_play": 0.80,  # 80% of gamers are adults
+    "play_1_5_hrs_week": 0.28,  # 28%
+    "play_6_10_hrs_week": 0.25,  # 25%
+    "play_20_plus_hrs_week": 0.08,  # 8%
+    "source": "Statista 2025, Udonis 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
