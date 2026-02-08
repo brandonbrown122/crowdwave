@@ -1253,6 +1253,15 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 15.0, opt1: 85.0}  # Approximate
             
+            # Cord cutting
+            if any(t in combined_context for t in ["cable", "cord cutting", "tv subscription"]):
+                if any(t in q_lower for t in ["cut", "cancel", "drop"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 50.0, opt1: 50.0}  # ~Half have cut
+                if any(t in q_lower for t in ["have", "subscribe"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 45.0, opt1: 55.0}  # Less than half have cable
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

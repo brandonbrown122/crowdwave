@@ -922,6 +922,13 @@ MEDITATION_APPS_2026 = {
     "source": "Forbes, JMIR 2026"
 }
 
+# Cord Cutting (2025-2026)
+CORD_CUTTING_2026 = {
+    "streaming_tv_usage": 0.448,  # 44.8% of total TV
+    "non_pay_tv_majority": True,
+    "source": "Cord Cutters News 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
