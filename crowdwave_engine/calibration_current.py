@@ -1160,6 +1160,15 @@ EV_PURCHASE_2026 = {
     "source": "Autoblog, KPMG 2026"
 }
 
+# Trust in Government/CDC (2025-2026)
+TRUST_GOVERNMENT_2026 = {
+    "trust_cdc_democrats": 0.55,  # 55%
+    "trust_cdc_republicans": 0.43,  # 43%
+    "trust_cdc_independents": 0.46,  # 46%
+    "confidence_federal_health": 0.44,  # 44%
+    "source": "KFF 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

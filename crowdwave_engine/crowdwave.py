@@ -1455,6 +1455,12 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 7.0, opt1: 93.0}
             
+            # Trust in government/CDC
+            if any(t in combined_context for t in ["cdc", "federal health", "government health"]):
+                if any(t in q_lower for t in ["trust", "confidence"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 44.0, opt1: 56.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
