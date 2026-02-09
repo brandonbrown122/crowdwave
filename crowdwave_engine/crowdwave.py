@@ -1526,6 +1526,21 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 44.0, opt1: 56.0}
             
+            # Screen time / parenting
+            if any(t in combined_context for t in ["screen time", "parenting", "children screens"]):
+                if any(t in q_lower for t in ["limit", "restrict"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 58.0, opt1: 42.0}
+            
+            # Job satisfaction
+            if any(t in combined_context for t in ["job satisfaction", "work happiness"]):
+                if any(t in q_lower for t in ["like", "satisfied"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 51.0, opt1: 49.0}
+                if any(t in q_lower for t in ["pay", "salary"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 34.0, opt1: 66.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

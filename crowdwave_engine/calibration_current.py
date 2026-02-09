@@ -1243,6 +1243,21 @@ HOUSING_AFFORDABILITY_2026 = {
     "source": "Houston Chronicle, SF Fed 2026"
 }
 
+# Screen Time / Parenting (2025-2026)
+SCREEN_TIME_2026 = {
+    "parents_limit_teens": 0.58,  # 58%
+    "toddlers_watch_daily": 0.98,  # 98%
+    "source": "Exploding Topics, Guardian 2026"
+}
+
+# Job Satisfaction (2025-2026)
+JOB_SATISFACTION_2026 = {
+    "like_job": 0.51,  # 51%
+    "happy_with_pay": 0.34,  # 34%
+    "prefer_survey_feedback": 0.77,  # 77%
+    "source": "Pew, Achievers 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
