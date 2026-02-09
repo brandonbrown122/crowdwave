@@ -1434,6 +1434,12 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 55.0, opt1: 45.0}
             
+            # Freelancing
+            if any(t in combined_context for t in ["freelance", "self-employed", "independent contractor"]):
+                if any(t in q_lower for t in ["are", "work"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 25.0, opt1: 75.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

@@ -1140,6 +1140,12 @@ SOLAR_PANELS_2026 = {
     "source": "Roofing Contractor 2026"
 }
 
+# Freelancing (2025-2026)
+FREELANCING_2026 = {
+    "knowledge_workers_freelance": 0.25,  # 25%+
+    "source": "Investopedia 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
