@@ -130,6 +130,93 @@ class CrowdwaveEngine:
         self.verbose = verbose
         self.priors_cache = {}
     
+    def get_accuracy_guidance(self, audience: str, topic: str = "") -> Dict[str, Any]:
+        """
+        Get accuracy guidance for a given audience/topic before running simulation.
+        
+        Returns dict with:
+            - calibration_status: "calibrated", "partially_calibrated", "uncalibrated"
+            - expected_error: estimated error range
+            - warnings: list of accuracy warnings
+            - recommendations: usage recommendations
+        """
+        combined = (audience + " " + topic).lower()
+        
+        # Calibrated domains
+        calibrated = {
+            "mental_health": (["mental health", "anxiety", "depression", "therapy", "well-being"], "0.5-2pt", "HIGH"),
+            "executives": (["ceo", "c-suite", "executive", "cfo", "board"], "3-6pt", "MEDIUM"),
+            "pet_owners": (["pet owner", "dog owner", "cat owner"], "2-4pt", "HIGH"),
+            "tech_seniors": (["50+", "60+", "senior", "aarp", "older adult"], "2-4pt", "HIGH"),
+            "political": (["democrat", "republican", "political", "party affil"], "2-3pt", "HIGH"),
+            "trust_institutions": (["trust", "confidence in"], "2-3pt", "HIGH"),
+            "satisfaction": (["satisfaction", "satisfied"], "3-4pt", "MEDIUM"),
+            "nps": (["recommend", "nps", "net promoter"], "4-5pt", "MEDIUM"),
+        }
+        
+        # High-risk domains
+        risky = {
+            "pricing": (["price", "pricing", "willingness to pay", "wtp"], "10-20pt", "LOW"),
+            "purchase_intent": (["purchase intent", "would you buy", "likelihood to buy"], "8-15pt", "LOW"),
+            "conversion": (["conversion", "sign up", "subscribe"], "10-20pt", "LOW"),
+        }
+        
+        # Check matches
+        matched_calibrated = None
+        for domain, (keywords, error, confidence) in calibrated.items():
+            if any(kw in combined for kw in keywords):
+                matched_calibrated = (domain, error, confidence)
+                break
+        
+        matched_risky = None
+        for domain, (keywords, error, confidence) in risky.items():
+            if any(kw in combined for kw in keywords):
+                matched_risky = (domain, error, confidence)
+                break
+        
+        # Build response
+        if matched_risky:
+            domain, error, confidence = matched_risky
+            return {
+                "calibration_status": "low_accuracy",
+                "expected_error": error,
+                "confidence": confidence,
+                "domain": domain,
+                "warnings": [f"{domain.replace('_', ' ').title()} predictions have {error} error range"],
+                "recommendations": [
+                    "Use for directional insights only",
+                    "Validate critical decisions with real survey data",
+                    "Consider narrowing to more specific, calibrated questions"
+                ]
+            }
+        elif matched_calibrated:
+            domain, error, confidence = matched_calibrated
+            return {
+                "calibration_status": "calibrated",
+                "expected_error": error,
+                "confidence": confidence,
+                "domain": domain,
+                "warnings": [],
+                "recommendations": [
+                    f"Good calibration for {domain.replace('_', ' ')} domain",
+                    "Results suitable for strategic decision-making",
+                    "Consider validation for decisions >$1M impact"
+                ]
+            }
+        else:
+            return {
+                "calibration_status": "uncalibrated",
+                "expected_error": "3-5pt",
+                "confidence": "MEDIUM",
+                "domain": "general",
+                "warnings": [f"'{topic or audience}' not in calibration library"],
+                "recommendations": [
+                    "Results use general benchmarks",
+                    "Suitable for early exploration and hypothesis generation",
+                    "Validate findings before major decisions"
+                ]
+            }
+    
     def simulate(
         self,
         config: Dict[str, Any],
@@ -180,8 +267,8 @@ class CrowdwaveEngine:
         # Calculate overall confidence
         overall_confidence = sum(r.confidence for r in results) / len(results)
         
-        # Collect flags
-        flags = []
+        # Collect flags and add calibration warnings
+        flags = self._check_calibration_coverage(survey_config, parsed_questions)
         for r in results:
             if r.accuracy_zone == AccuracyZone.LOW:
                 flags.append(f"{r.question_id}: Low accuracy zone - validate results")
@@ -209,6 +296,79 @@ class CrowdwaveEngine:
         elif any(t in audience_lower for t in ["boomer", "55+", "60+", "65+", "senior", "older"]):
             return "boomer"
         return None
+    
+    def _check_calibration_coverage(
+        self,
+        config: SurveyConfig,
+        questions: List[Question]
+    ) -> List[str]:
+        """
+        Check calibration coverage and return accuracy warnings.
+        """
+        warnings = []
+        audience_lower = config.audience.lower()
+        topic_lower = config.topic.lower() if config.topic else ""
+        combined = audience_lower + " " + topic_lower
+        
+        # Calibrated domains (validated with human data)
+        calibrated_domains = {
+            "mental_health": ["mental health", "anxiety", "depression", "well-being", "wellbeing", "therapy"],
+            "pet_owners": ["pet", "dog", "cat", "animal"],
+            "executives": ["ceo", "c-suite", "executive", "cfo", "chro", "board"],
+            "tech_adoption_seniors": ["50+", "60+", "65+", "senior", "older", "aarp"],
+            "political": ["democrat", "republican", "political", "party", "vote"],
+            "trust": ["trust", "confidence", "believe"],
+            "nps": ["recommend", "nps", "promoter"],
+            "satisfaction": ["satisfied", "satisfaction"],
+        }
+        
+        # Check if any calibrated domain matches
+        matched_domain = None
+        for domain, keywords in calibrated_domains.items():
+            if any(kw in combined for kw in keywords):
+                matched_domain = domain
+                break
+        
+        # High-risk uncalibrated domains
+        risky_domains = {
+            "pricing": ["price", "pricing", "willingness to pay", "wtp", "how much"],
+            "purchase_intent": ["purchase", "buy", "intent to", "likelihood to buy"],
+            "b2b_specific": ["enterprise", "procurement", "vendor selection"],
+            "medical_claims": ["cure", "treatment efficacy", "clinical"],
+            "legal_regulatory": ["compliance", "legal", "regulatory"],
+        }
+        
+        for domain, keywords in risky_domains.items():
+            if any(kw in combined for kw in keywords):
+                warnings.append(f"ACCURACY WARNING: {domain.replace('_', ' ').title()} questions have 8-15pt error range. Validate with real data.")
+        
+        # Check question types
+        for q in questions:
+            q_lower = q.text.lower()
+            
+            # Purchase intent warning
+            if any(t in q_lower for t in ["would you buy", "purchase", "likelihood to buy"]):
+                if "ACCURACY WARNING" not in str(warnings):
+                    warnings.append("ACCURACY WARNING: Purchase intent predictions have high error (8-15pts). Use for directional insights only.")
+            
+            # Pricing warning
+            if any(t in q_lower for t in ["how much would you pay", "willingness to pay", "price point"]):
+                warnings.append(f"{q.id}: Pricing questions have LOW accuracy (10-20pt error). Recommend real-world validation.")
+            
+            # Open-ended warning
+            if q.type == "open_end":
+                warnings.append(f"{q.id}: Open-ended simulations are directional only. Responses may be too polished.")
+        
+        # General calibration status
+        if not matched_domain:
+            # Check for generic patterns that are still reasonably calibrated
+            generic_calibrated = ["important", "satisfied", "concern", "worried", "trust", "recommend"]
+            has_generic = any(any(g in q.text.lower() for g in generic_calibrated) for q in questions)
+            
+            if not has_generic:
+                warnings.insert(0, f"NOTE: '{config.topic or config.audience}' is not a calibrated domain. Results use general benchmarks (3-5pt expected error).")
+        
+        return warnings
     
     def _establish_priors(
         self,
