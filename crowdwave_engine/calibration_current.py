@@ -1169,6 +1169,21 @@ TRUST_GOVERNMENT_2026 = {
     "source": "KFF 2026"
 }
 
+# Burnout/Work-Life Balance (2025-2026)
+BURNOUT_2026 = {
+    "frontline_burnout": 0.76,  # 76%
+    "professional_burnout_symptoms": 0.78,  # 78%
+    "remote_reduced_stress": 0.40,  # 40%
+    "source": "UKG, Skills-Up 2026"
+}
+
+# Data Privacy (2025-2026)
+DATA_PRIVACY_2026 = {
+    "worry_privacy": 0.70,  # 70%
+    "customers_wont_buy_unprotected": 0.95,  # 95%
+    "source": "Clutch, Cisco 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
