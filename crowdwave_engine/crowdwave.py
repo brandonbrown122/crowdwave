@@ -1392,6 +1392,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 42.0, opt1: 58.0}
             
+            # Pet ownership
+            if any(t in combined_context for t in ["pet", "dog", "cat"]):
+                if any(t in q_lower for t in ["own", "have"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 71.0, opt1: 29.0}
+            
+            # Life insurance
+            if any(t in combined_context for t in ["life insurance", "insurance policy"]):
+                if any(t in q_lower for t in ["have", "own"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 60.0, opt1: 40.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

@@ -1095,6 +1095,21 @@ GUN_OWNERSHIP_2026 = {
     "source": "Gallup, Pew, Legal Reader 2026"
 }
 
+# Pet Ownership (2025-2026)
+PET_OWNERSHIP_2026 = {
+    "household_own_pet": 0.71,  # 71%
+    "own_dog": 0.384,  # 38.4%
+    "own_cat": 0.254,  # 25.4%
+    "source": "APPA, World Animal Foundation 2026"
+}
+
+# Life Insurance (2025-2026)
+LIFE_INSURANCE_2026 = {
+    "have_policy": 0.60,  # 60%
+    "no_coverage_millions": 74,
+    "source": "Zebra, LIMRA 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
