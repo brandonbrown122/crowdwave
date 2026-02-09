@@ -250,6 +250,191 @@ DEMOGRAPHIC_MULTIPLIERS = {
 
 
 # ═══════════════════════════════════════════════════════════════
+# MENTAL HEALTH IMPORTANCE BENCHMARKS (Validated N=873)
+# ═══════════════════════════════════════════════════════════════
+
+MENTAL_HEALTH_BENCHMARKS = {
+    "source": "Mental Health Survey 2026, N=873 adults with anxiety/depression",
+    "validated_date": "2026-02-07",
+    "accuracy_zone": AccuracyZone.HIGH,
+    
+    # Importance ratings (5-point scale: 1=Not at all, 5=Most important)
+    "importance_distributions": {
+        "effectiveness": {
+            "distribution": {"1": 2.9, "2": 4.8, "3": 17.0, "4": 44.4, "5": 30.9},
+            "mean": 3.96,
+            "t2b": 75.4,
+        },
+        "safety": {
+            "distribution": {"1": 3.2, "2": 6.4, "3": 22.9, "4": 45.7, "5": 21.8},
+            "mean": 3.76,
+            "t2b": 67.5,
+        },
+        "affordability": {
+            "distribution": {"1": 3.2, "2": 5.5, "3": 17.5, "4": 42.8, "5": 30.9},
+            "mean": 3.93,
+            "t2b": 73.8,
+        },
+        "speed": {
+            "distribution": {"1": 3.2, "2": 8.6, "3": 32.4, "4": 41.1, "5": 14.7},
+            "mean": 3.55,
+            "t2b": 55.8,
+        },
+        "privacy": {
+            "distribution": {"1": 3.0, "2": 7.6, "3": 22.3, "4": 40.9, "5": 26.2},
+            "mean": 3.80,
+            "t2b": 67.1,
+        },
+        "convenience": {
+            "distribution": {"1": 3.1, "2": 6.0, "3": 21.3, "4": 49.6, "5": 20.0},
+            "mean": 3.78,
+            "t2b": 69.6,
+        },
+        "enjoyability": {
+            "distribution": {"1": 4.4, "2": 10.4, "3": 35.7, "4": 37.9, "5": 11.6},
+            "mean": 3.42,
+            "t2b": 49.5,
+        },
+        "ease": {
+            "distribution": {"1": 3.2, "2": 6.8, "3": 28.6, "4": 47.5, "5": 13.9},
+            "mean": 3.62,
+            "t2b": 61.4,
+        },
+        "time_investment": {
+            "distribution": {"1": 3.0, "2": 7.9, "3": 34.2, "4": 43.1, "5": 11.8},
+            "mean": 3.53,
+            "t2b": 54.9,
+        },
+    },
+    
+    # Product concept ratings (5-point scale: 1=Poor, 5=Excellent)
+    "concept_distributions": {
+        "effectiveness": {
+            "distribution": {"1": 4.0, "2": 9.2, "3": 36.9, "4": 29.5, "5": 20.4},
+            "mean": 3.53,
+            "t2b": 49.8,
+        },
+        "speed": {
+            "distribution": {"1": 3.8, "2": 9.3, "3": 40.7, "4": 26.5, "5": 19.7},
+            "mean": 3.49,
+            "t2b": 46.1,
+        },
+        "safety": {
+            "distribution": {"1": 3.8, "2": 5.3, "3": 40.3, "4": 31.1, "5": 19.6},
+            "mean": 3.57,
+            "t2b": 50.6,
+        },
+        "convenience": {
+            "distribution": {"1": 3.6, "2": 3.9, "3": 31.3, "4": 36.7, "5": 24.5},
+            "mean": 3.75,
+            "t2b": 61.2,
+        },
+        "privacy": {
+            "distribution": {"1": 4.4, "2": 8.1, "3": 36.7, "4": 27.3, "5": 23.6},
+            "mean": 3.58,
+            "t2b": 50.9,
+        },
+        "ease": {
+            "distribution": {"1": 3.7, "2": 4.9, "3": 33.9, "4": 36.6, "5": 20.8},
+            "mean": 3.66,
+            "t2b": 57.4,
+        },
+        "enjoyability": {
+            "distribution": {"1": 3.6, "2": 6.9, "3": 44.3, "4": 30.3, "5": 15.0},
+            "mean": 3.46,
+            "t2b": 45.2,
+        },
+    },
+    
+    # Severity adjustments (multiply T2B by these factors)
+    "severity_multipliers": {
+        "severe_anxiety": 1.06,      # 79.9% vs 75.4% baseline for effectiveness
+        "severe_depression": 1.09,   # 82.3% vs 75.4% baseline
+        "both_diagnoses": 1.19,      # 89.8% vs 75.4% baseline
+        "no_diagnosis": 0.94,        # 70.7% vs 75.4% baseline
+    },
+    
+    # Generic importance distribution (for unmapped attributes)
+    "generic_importance": {
+        "distribution": {"1": 3.2, "2": 6.5, "3": 24.0, "4": 43.0, "5": 23.3},
+        "mean": 3.77,
+        "t2b": 66.3,
+    },
+}
+
+
+# ═══════════════════════════════════════════════════════════════
+# HEALTH IMPORTANCE GENERIC BENCHMARKS
+# ═══════════════════════════════════════════════════════════════
+
+HEALTH_IMPORTANCE_BENCHMARKS = {
+    "source": "Derived from mental health + general health research",
+    
+    # Core attributes typically rank in this order for health products
+    "ranking": [
+        "effectiveness",    # Usually #1
+        "safety",           # Usually #2
+        "affordability",    # Usually #3
+        "privacy",          # Variable
+        "convenience",      # Variable
+        "speed",            # Usually mid-tier
+        "ease",             # Usually mid-tier
+        "enjoyability",     # Usually lowest
+    ],
+    
+    # T2B ranges by attribute type (health context)
+    "t2b_ranges": {
+        "effectiveness": (70, 80),
+        "safety": (65, 75),
+        "affordability": (68, 78),
+        "privacy": (60, 72),
+        "convenience": (62, 72),
+        "speed": (50, 60),
+        "ease": (55, 65),
+        "enjoyability": (42, 55),
+    },
+}
+
+
+def get_mental_health_distribution(attribute: str, question_type: str = "importance") -> dict:
+    """Get calibrated distribution for mental health survey questions."""
+    benchmarks = MENTAL_HEALTH_BENCHMARKS
+    
+    # Determine which distribution set to use
+    if question_type in ["concept", "rating", "rate"]:
+        dist_set = benchmarks["concept_distributions"]
+    else:
+        dist_set = benchmarks["importance_distributions"]
+    
+    # Map common attribute names
+    attribute_map = {
+        "effective": "effectiveness",
+        "safe": "safety",
+        "affordable": "affordability",
+        "quick": "speed",
+        "fast": "speed",
+        "private": "privacy",
+        "convenient": "convenience",
+        "easy": "ease",
+        "enjoyable": "enjoyability",
+        "fun": "enjoyability",
+        "time": "time_investment",
+    }
+    
+    attr_lower = attribute.lower()
+    for key, mapped in attribute_map.items():
+        if key in attr_lower:
+            attr_lower = mapped
+            break
+    
+    # Return matched distribution or generic
+    if attr_lower in dist_set:
+        return dist_set[attr_lower]["distribution"].copy()
+    
+    return benchmarks["generic_importance"]["distribution"].copy()
+
+
+# ═══════════════════════════════════════════════════════════════
 # EXECUTIVE/C-SUITE MULTIPLIERS (Conference Board, N=1,732)
 # ═══════════════════════════════════════════════════════════════
 

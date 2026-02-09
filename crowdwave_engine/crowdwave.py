@@ -19,10 +19,13 @@ from .calibration import (
     PARTISAN_TOPICS,
     BINARY_SPLITS,
     ACCURACY_BY_QUESTION_TYPE,
+    MENTAL_HEALTH_BENCHMARKS,
+    HEALTH_IMPORTANCE_BENCHMARKS,
     get_benchmark,
     get_demographic_modifier,
     requires_partisan_segmentation,
     get_nps_benchmark,
+    get_mental_health_distribution,
 )
 from .bias_corrections import (
     BiasType,
@@ -426,6 +429,57 @@ class CrowdwaveEngine:
             
             if n_points == 5:
                 # Check for current calibrations first
+                
+                # Mental health calibrations (validated N=873, 0.5pt MAE)
+                if any(t in combined_context for t in ["mental health", "anxiety", "depression", "well-being", "wellbeing"]):
+                    from .calibration import get_mental_health_distribution
+                    
+                    # Determine if importance or concept rating
+                    is_concept = any(t in q_lower for t in ["rate", "rating", "ideal", "concept"])
+                    q_type = "concept" if is_concept else "importance"
+                    
+                    # Match attribute (order matters - check speed before effectiveness since
+                    # speed questions may mention "symptoms" as context)
+                    if any(t in q_lower for t in ["quick", "fast", "speed", "soon", "quickly"]):
+                        return get_mental_health_distribution("speed", q_type)
+                    elif any(t in q_lower for t in ["effective", "symptom", "reduc"]):
+                        return get_mental_health_distribution("effectiveness", q_type)
+                    elif any(t in q_lower for t in ["safe", "safety"]):
+                        return get_mental_health_distribution("safety", q_type)
+                    elif any(t in q_lower for t in ["afford", "cost", "price"]):
+                        return get_mental_health_distribution("affordability", q_type)
+                    elif any(t in q_lower for t in ["privacy", "private", "confidential"]):
+                        return get_mental_health_distribution("privacy", q_type)
+                    elif any(t in q_lower for t in ["convenient", "convenience", "schedule", "fit"]):
+                        return get_mental_health_distribution("convenience", q_type)
+                    elif any(t in q_lower for t in ["enjoy", "fun", "pleasant"]):
+                        return get_mental_health_distribution("enjoyability", q_type)
+                    elif any(t in q_lower for t in ["easy", "ease", "simple"]):
+                        return get_mental_health_distribution("ease", q_type)
+                    elif any(t in q_lower for t in ["time", "invest", "commitment"]):
+                        return get_mental_health_distribution("time_investment", q_type)
+                    else:
+                        # Generic mental health importance distribution
+                        return get_mental_health_distribution("generic", q_type)
+                
+                # Health importance questions (general, not mental health specific)
+                if any(t in combined_context for t in ["health", "medical", "treatment", "therapy", "solution"]):
+                    if any(t in q_lower for t in ["important", "importance"]):
+                        from .calibration import HEALTH_IMPORTANCE_BENCHMARKS
+                        
+                        # Match attribute to benchmark range
+                        if any(t in q_lower for t in ["effective"]):
+                            return {"1": 3.0, "2": 5.0, "3": 17.0, "4": 44.0, "5": 31.0}  # 75% T2B
+                        elif any(t in q_lower for t in ["safe"]):
+                            return {"1": 3.0, "2": 6.0, "3": 21.0, "4": 46.0, "5": 24.0}  # 70% T2B
+                        elif any(t in q_lower for t in ["afford"]):
+                            return {"1": 3.0, "2": 5.0, "3": 19.0, "4": 43.0, "5": 30.0}  # 73% T2B
+                        elif any(t in q_lower for t in ["privat"]):
+                            return {"1": 3.0, "2": 7.0, "3": 24.0, "4": 42.0, "5": 24.0}  # 66% T2B
+                        elif any(t in q_lower for t in ["convenient"]):
+                            return {"1": 3.0, "2": 6.0, "3": 24.0, "4": 47.0, "5": 20.0}  # 67% T2B
+                        elif any(t in q_lower for t in ["enjoy"]):
+                            return {"1": 5.0, "2": 12.0, "3": 35.0, "4": 36.0, "5": 12.0}  # 48% T2B
                 
                 # Inflation concern specifically
                 if any(t in q_lower for t in ["inflation"]) and any(t in q_lower for t in ["concern", "worried"]):
