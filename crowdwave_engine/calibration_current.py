@@ -1110,6 +1110,21 @@ LIFE_INSURANCE_2026 = {
     "source": "Zebra, LIMRA 2026"
 }
 
+# Food Allergies (2025-2026)
+FOOD_ALLERGIES_2026 = {
+    "peanut": 0.022,  # 2.2%
+    "milk": 0.019,  # 1.9%
+    "shellfish": 0.013,  # 1.3%
+    "source": "Allergy & Asthma Network 2026"
+}
+
+# Charitable Giving (2025-2026)
+CHARITABLE_GIVING_2026 = {
+    "donated_religious_org": 0.41,  # 41%
+    "expect_give_more": 0.25,  # 25%
+    "source": "Gallup, Philanthropy News 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
