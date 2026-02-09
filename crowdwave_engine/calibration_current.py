@@ -1208,6 +1208,19 @@ CHATGPT_USAGE_2026 = {
     "source": "DemandSage, AP/Gallup 2026"
 }
 
+# Climate Change Beliefs (2025-2026)
+CLIMATE_CHANGE_2026 = {
+    "understand_scientist_consensus": 0.57,  # 57%
+    "believe_extinction_risk": 0.25,  # 25%
+    "source": "Yale Climate Communication, YouGov 2026"
+}
+
+# Universal Basic Income (2025-2026)
+UBI_2026 = {
+    "support_ubi": 0.55,  # 55%
+    "source": "Hill-HarrisX, Wikipedia 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

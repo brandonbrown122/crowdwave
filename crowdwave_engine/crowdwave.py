@@ -1493,6 +1493,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 60.0, opt1: 40.0}  # Rapid adoption
             
+            # Climate change beliefs
+            if any(t in combined_context for t in ["climate change", "global warming"]):
+                if any(t in q_lower for t in ["believe", "real", "happening"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 57.0, opt1: 43.0}
+            
+            # Universal basic income
+            if any(t in combined_context for t in ["universal basic income", "ubi", "basic income"]):
+                if any(t in q_lower for t in ["support", "favor"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 55.0, opt1: 45.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
