@@ -1236,6 +1236,13 @@ SOCIAL_MEDIA_MENTAL_HEALTH_2026 = {
     "source": "APA, Sokolove Law 2026"
 }
 
+# Housing Affordability (2025-2026)
+HOUSING_AFFORDABILITY_2026 = {
+    "can_afford_median": 0.44,  # 44% (Houston)
+    "tight_market": True,
+    "source": "Houston Chronicle, SF Fed 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
