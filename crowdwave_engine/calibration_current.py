@@ -1184,6 +1184,14 @@ DATA_PRIVACY_2026 = {
     "source": "Clutch, Cisco 2026"
 }
 
+# Hybrid Work Preferences (2025-2026)
+HYBRID_WORK_2026 = {
+    "prefer_remote_less_pay": 0.60,  # 60%
+    "office_four_days": 0.34,  # 34%
+    "pay_important": 0.91,  # 91%
+    "source": "Breeze, HR Morning, Owl Labs 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

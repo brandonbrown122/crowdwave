@@ -1473,6 +1473,12 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 70.0, opt1: 30.0}
             
+            # Hybrid/Remote work preferences
+            if any(t in combined_context for t in ["remote work", "work from home", "hybrid"]):
+                if any(t in q_lower for t in ["prefer", "accept less pay"]):
+                    if "yes" in opt0_lower or "remote" in opt0_lower:
+                        return {opt0: 60.0, opt1: 40.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
