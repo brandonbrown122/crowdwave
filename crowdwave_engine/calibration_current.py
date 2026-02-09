@@ -1258,6 +1258,21 @@ JOB_SATISFACTION_2026 = {
     "source": "Pew, Achievers 2026"
 }
 
+# College Degree Value (2025-2026)
+COLLEGE_VALUE_2026 = {
+    "worth_cost": 0.33,  # 33%
+    "not_worth_cost": 0.63,  # 63%
+    "very_important": 0.35,  # 35%
+    "source": "Pew, Gallup 2026"
+}
+
+# Trust in Science (2025-2026)
+TRUST_SCIENCE_2026 = {
+    "trust_scientists": 0.77,  # 77%
+    "great_deal_confidence": 0.28,  # 28%
+    "source": "Pew 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

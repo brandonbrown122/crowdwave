@@ -1541,6 +1541,18 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 34.0, opt1: 66.0}
             
+            # College degree value
+            if any(t in combined_context for t in ["college degree", "university", "higher education"]):
+                if any(t in q_lower for t in ["worth", "value"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 33.0, opt1: 67.0}
+            
+            # Trust in science
+            if any(t in combined_context for t in ["science", "scientists", "scientific"]):
+                if any(t in q_lower for t in ["trust", "confidence"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 77.0, opt1: 23.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
