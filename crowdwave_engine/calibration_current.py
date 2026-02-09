@@ -1146,6 +1146,20 @@ FREELANCING_2026 = {
     "source": "Investopedia 2026"
 }
 
+# AI Job Fears (2025-2026)
+AI_JOB_FEARS_2026 = {
+    "worried_job_loss": 0.40,  # 40%
+    "expect_ai_eliminate_jobs": 0.60,  # 60%
+    "not_worried": 0.49,  # 49%
+    "source": "CNBC Mercer, Resume-Now 2026"
+}
+
+# EV Purchase Intent (2025-2026)
+EV_PURCHASE_2026 = {
+    "plan_buy_ev_next": 0.07,  # 7%
+    "source": "Autoblog, KPMG 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

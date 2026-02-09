@@ -1440,6 +1440,21 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 25.0, opt1: 75.0}
             
+            # AI job fears
+            if any(t in combined_context for t in ["ai job", "automation", "ai replacing"]):
+                if any(t in q_lower for t in ["worried", "concerned", "fear"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 40.0, opt1: 60.0}
+                if any(t in q_lower for t in ["expect", "will"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 60.0, opt1: 40.0}
+            
+            # EV purchase intent
+            if any(t in combined_context for t in ["electric vehicle", "ev", "electric car"]):
+                if any(t in q_lower for t in ["buy", "purchase", "next car"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 7.0, opt1: 93.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
