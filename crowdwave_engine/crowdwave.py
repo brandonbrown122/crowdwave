@@ -1505,6 +1505,21 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 55.0, opt1: 45.0}
             
+            # Weight loss
+            if any(t in combined_context for t in ["weight loss", "diet", "lose weight"]):
+                if any(t in q_lower for t in ["want", "trying"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 52.0, opt1: 48.0}
+                if any(t in q_lower for t in ["serious", "effort"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 26.0, opt1: 74.0}
+            
+            # Social media mental health
+            if any(t in combined_context for t in ["social media", "instagram", "tiktok"]):
+                if any(t in q_lower for t in ["reduce", "cut back", "less"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 50.0, opt1: 50.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}

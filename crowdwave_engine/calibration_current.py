@@ -1221,6 +1221,21 @@ UBI_2026 = {
     "source": "Hill-HarrisX, Wikipedia 2026"
 }
 
+# Weight Loss (2025-2026)
+WEIGHT_LOSS_2026 = {
+    "want_lose_weight": 0.52,  # 52%
+    "serious_effort": 0.26,  # 26%
+    "avg_spend": 12308,
+    "source": "Endocrinology Advisor, Talker 2026"
+}
+
+# Social Media Mental Health (2025-2026)
+SOCIAL_MEDIA_MENTAL_HEALTH_2026 = {
+    "reduced_use_2025": 0.50,  # ~50%
+    "addiction_women_share": 0.60,  # 60%
+    "source": "APA, Sokolove Law 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
