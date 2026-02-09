@@ -1192,6 +1192,22 @@ HYBRID_WORK_2026 = {
     "source": "Breeze, HR Morning, Owl Labs 2026"
 }
 
+# Online Shopping (2025-2026)
+ONLINE_SHOPPING_2026 = {
+    "mobile_retail_purchase": 0.48,  # 48%
+    "prefer_online": 0.22,  # 22%
+    "boomers_prefer_store": 0.60,  # 60%
+    "source": "Capital One, Network Solutions 2026"
+}
+
+# ChatGPT/AI Usage (2025-2026)
+CHATGPT_USAGE_2026 = {
+    "weekly_users_millions": 800,
+    "linkedin_skill_added": 0.60,  # 60% added ChatGPT
+    "rapid_workplace_adoption": True,
+    "source": "DemandSage, AP/Gallup 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

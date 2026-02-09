@@ -1479,6 +1479,20 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower or "remote" in opt0_lower:
                         return {opt0: 60.0, opt1: 40.0}
             
+            # Online shopping
+            if any(t in combined_context for t in ["online shopping", "ecommerce", "online retail"]):
+                if any(t in q_lower for t in ["prefer", "shop"]):
+                    if "online" in opt0_lower:
+                        return {opt0: 22.0, opt1: 78.0}  # General preference
+                    if "store" in opt0_lower or "in-person" in opt0_lower:
+                        return {opt0: 60.0, opt1: 40.0}  # Boomers
+            
+            # ChatGPT/AI at work
+            if any(t in combined_context for t in ["chatgpt", "ai at work", "generative ai"]):
+                if any(t in q_lower for t in ["use", "using"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 60.0, opt1: 40.0}  # Rapid adoption
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
