@@ -1125,6 +1125,14 @@ CHARITABLE_GIVING_2026 = {
     "source": "Gallup, Philanthropy News 2026"
 }
 
+# Budgeting (2025-2026)
+BUDGETING_2026 = {
+    "have_budget": 0.86,  # 86%
+    "go_over_budget": 0.84,  # 84%
+    "no_emergency_savings": 0.24,  # 24%
+    "source": "Principal, Bankrate 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """

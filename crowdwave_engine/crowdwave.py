@@ -1416,6 +1416,15 @@ class CrowdwaveEngine:
                     if "yes" in opt0_lower:
                         return {opt0: 41.0, opt1: 59.0}
             
+            # Budgeting
+            if any(t in combined_context for t in ["budget", "budgeting", "expenses"]):
+                if any(t in q_lower for t in ["have", "track"]):
+                    if "yes" in opt0_lower:
+                        return {opt0: 86.0, opt1: 14.0}
+                if any(t in q_lower for t in ["stick", "follow"]):
+                    if "no" in opt0_lower or "over" in opt0_lower:
+                        return {opt0: 84.0, opt1: 16.0}
+            
             # Default patterns - status quo bias
             if any(t in opt0_lower for t in ["in-person", "traditional", "stay", "current", "keep"]):
                 return {opt0: 60.0, opt1: 40.0}
