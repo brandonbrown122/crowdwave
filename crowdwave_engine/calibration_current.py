@@ -1133,6 +1133,13 @@ BUDGETING_2026 = {
     "source": "Principal, Bankrate 2026"
 }
 
+# Solar Panels (2025-2026)
+SOLAR_PANELS_2026 = {
+    "have_solar": 0.09,  # 9%
+    "interested_solar": 0.55,  # 55%
+    "source": "Roofing Contractor 2026"
+}
+
 
 def get_current_calibration(topic: str, question_type: str = None) -> dict:
     """
