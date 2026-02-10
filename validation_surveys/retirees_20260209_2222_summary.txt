@@ -1,0 +1,42 @@
+Survey: retirees
+Date: 2026-02-09T22:22:43.331641
+Audience: Retired adults (65+)
+Calibration: calibrated
+Expected Error: 3-4pt
+
+Q1: How satisfied are you with retirement?
+  4: 38.1%
+  5: 23.5%
+  3: 22.3%
+  2: 11.0%
+  1: 5.1%
+  T2B: 61.6%
+
+Q2: How confident are you about your financial security?
+  3: 31.8%
+  4: 26.0%
+  2: 18.0%
+  5: 12.2%
+  1: 12.0%
+  T2B: 38.2%
+
+Q3: Do you feel socially connected?
+  Yes: 52.0%
+  No: 48.0%
+
+Q4: How satisfied are you with healthcare access?
+  4: 38.1%
+  5: 23.5%
+  3: 22.3%
+  2: 11.0%
+  1: 5.1%
+  T2B: 61.6%
+
+Q5: Would you recommend your retirement community/area?
+  8: 23.9%
+  9: 19.0%
+  7: 18.0%
+  10: 11.7%
+  6: 9.0%
+  T2B: 11.3%
+

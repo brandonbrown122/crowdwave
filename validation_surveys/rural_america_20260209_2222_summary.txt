@@ -1,0 +1,42 @@
+Survey: rural_america
+Date: 2026-02-09T22:22:43.329636
+Audience: Rural US adults
+Calibration: uncalibrated
+Expected Error: 3-5pt
+
+Q1: How satisfied are you with your local community?
+  4: 38.1%
+  5: 23.5%
+  3: 22.3%
+  2: 11.0%
+  1: 5.1%
+  T2B: 61.6%
+
+Q2: How concerned are you about jobs leaving your area?
+  4: 34.0%
+  3: 24.2%
+  5: 19.8%
+  2: 14.0%
+  1: 8.0%
+  T2B: 53.8%
+
+Q3: Do you trust the federal government?
+  Yes: 52.0%
+  No: 48.0%
+
+Q4: How satisfied are you with internet access in your area?
+  4: 38.1%
+  5: 23.5%
+  3: 22.3%
+  2: 11.0%
+  1: 5.1%
+  T2B: 61.6%
+
+Q5: Would you recommend your community to others?
+  8: 23.9%
+  9: 19.0%
+  7: 18.0%
+  10: 11.7%
+  6: 9.0%
+  T2B: 11.3%
+

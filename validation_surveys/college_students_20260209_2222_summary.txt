@@ -1,0 +1,42 @@
+Survey: college_students
+Date: 2026-02-09T22:22:43.331641
+Audience: Current college students (18-24)
+Calibration: uncalibrated
+Expected Error: 3-5pt
+
+Q1: How satisfied are you with your college experience?
+  4: 38.1%
+  5: 23.5%
+  3: 22.3%
+  2: 11.0%
+  1: 5.1%
+  T2B: 61.6%
+
+Q2: How confident are you about finding a job after graduation?
+  4: 35.0%
+  3: 24.3%
+  5: 22.6%
+  2: 12.0%
+  1: 6.1%
+  T2B: 57.6%
+
+Q3: Is your education worth the cost?
+  No: 67.0%
+  Yes: 33.0%
+
+Q4: How stressed are you about student loans?
+  4: 35.0%
+  3: 24.3%
+  5: 22.6%
+  2: 12.0%
+  1: 6.1%
+  T2B: 57.6%
+
+Q5: Would you recommend your college to others?
+  8: 23.9%
+  9: 19.0%
+  7: 18.0%
+  10: 11.7%
+  6: 9.0%
+  T2B: 11.3%
+

@@ -12,10 +12,12 @@ import {
   PieChart,
   Settings,
   Waves,
+  Target,
 } from 'lucide-react';
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
+  { name: 'Calibration', href: '/calibration', icon: Target },
   { name: 'Data Sources', href: '/data-sources', icon: Database },
   { name: 'Segments', href: '/segments', icon: Users },
   { name: 'Surveys', href: '/surveys', icon: ClipboardList },
