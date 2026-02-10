@@ -581,7 +581,94 @@ class CrowdwaveEngine:
         """Get base distribution from benchmarks or defaults."""
         q_lower = question.text.lower()
         topic_lower = topic.lower() if topic else ""
-        combined_context = q_lower + " " + topic_lower
+        audience_lower = audience.lower() if audience else ""
+        combined_context = q_lower + " " + topic_lower + " " + audience_lower
+        
+        # ═══════════════════════════════════════════════════════════════
+        # PARTISAN CALIBRATION (for political topics with party audiences)
+        # ═══════════════════════════════════════════════════════════════
+        
+        # Detect party affiliation in audience
+        party = None
+        if any(t in audience_lower for t in ["democrat", "democrats", "dem ", "liberal"]):
+            party = "democrat"
+        elif any(t in audience_lower for t in ["republican", "republicans", "gop", "conservative"]):
+            party = "republican"
+        elif any(t in audience_lower for t in ["independent", "independents", "unaffiliated"]):
+            party = "independent"
+        
+        # Handle binary questions with partisan framing
+        if question.type == "binary" and len(question.options) == 2 and party:
+            opt0, opt1 = question.options[0], question.options[1]
+            opt0_lower, opt1_lower = opt0.lower(), opt1.lower()
+            
+            # Transparency/release questions
+            if any(t in q_lower for t in ["release", "disclose", "transparency", "public"]):
+                is_yes_first = any(t in opt0_lower for t in ["yes", "release", "support"])
+                
+                # Check for partisan framing ("exposes Trump", "exposes Democrats", etc.)
+                exposes_trump = any(t in q_lower for t in ["trump", "republican", "gop"])
+                exposes_dems = any(t in q_lower for t in ["democrat", "biden", "clinton"])
+                
+                if exposes_trump:
+                    # Democrats strongly support (92%), Republicans resist (38%), Independents middle (71%)
+                    if party == "democrat":
+                        yes_pct = 92.0
+                    elif party == "republican":
+                        yes_pct = 38.0
+                    else:  # independent
+                        yes_pct = 71.0
+                elif exposes_dems:
+                    # Republicans strongly support (89%), Democrats more reserved (71%), Independents middle (73%)
+                    if party == "democrat":
+                        yes_pct = 71.0
+                    elif party == "republican":
+                        yes_pct = 89.0
+                    else:  # independent
+                        yes_pct = 73.0
+                else:
+                    # General transparency question (no partisan target)
+                    # Democrats 78%, Republicans 65%, Independents 74%
+                    if party == "democrat":
+                        yes_pct = 78.0
+                    elif party == "republican":
+                        yes_pct = 65.0
+                    else:  # independent
+                        yes_pct = 74.0
+                
+                if is_yes_first:
+                    return {opt0: yes_pct, opt1: 100.0 - yes_pct}
+                else:
+                    return {opt0: 100.0 - yes_pct, opt1: yes_pct}
+            
+            # Generic partisan support/oppose questions
+            if any(t in q_lower for t in ["support", "approve", "favor"]):
+                is_yes_first = any(t in opt0_lower for t in ["yes", "support", "approve", "favor"])
+                
+                # Trump-related
+                if "trump" in q_lower:
+                    if party == "democrat":
+                        yes_pct = 8.0
+                    elif party == "republican":
+                        yes_pct = 85.0
+                    else:
+                        yes_pct = 39.0
+                    if is_yes_first:
+                        return {opt0: yes_pct, opt1: 100.0 - yes_pct}
+                    else:
+                        return {opt0: 100.0 - yes_pct, opt1: yes_pct}
+        
+        # Handle scale questions with partisan importance adjustments
+        if question.type == "scale" and party:
+            if any(t in q_lower for t in ["important", "transparency"]):
+                if any(t in combined_context for t in ["government", "political", "files", "release"]):
+                    # Democrats: 85% T2B, Republicans: 72%, Independents: 79%
+                    if party == "democrat":
+                        return {"1": 3.0, "2": 5.0, "3": 7.0, "4": 40.0, "5": 45.0}  # 85% T2B
+                    elif party == "republican":
+                        return {"1": 5.0, "2": 8.0, "3": 15.0, "4": 42.0, "5": 30.0}  # 72% T2B
+                    else:
+                        return {"1": 4.0, "2": 6.0, "3": 11.0, "4": 44.0, "5": 35.0}  # 79% T2B
         
         if question.type == "scale" and question.scale:
             min_val, max_val = question.scale
