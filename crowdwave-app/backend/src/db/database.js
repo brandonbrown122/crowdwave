@@ -2,7 +2,10 @@ const initSqlJs = require('sql.js');
 const fs = require('fs');
 const path = require('path');
 
-const dbPath = path.join(__dirname, '..', '..', 'crowdwave.db');
+// Use /tmp for Railway or local path for development
+const dbPath = process.env.RAILWAY_ENVIRONMENT 
+  ? '/tmp/crowdwave.db'
+  : path.join(__dirname, '..', '..', 'crowdwave.db');
 
 let db = null;
 let SQL = null;
@@ -12,18 +15,21 @@ let initialized = false;
 async function initDatabase() {
   if (initialized) return;
   
+  console.log('Initializing database at:', dbPath);
   SQL = await initSqlJs();
   
   // Load existing database or create new one
   try {
     if (fs.existsSync(dbPath)) {
+      console.log('Loading existing database...');
       const buffer = fs.readFileSync(dbPath);
       db = new SQL.Database(buffer);
     } else {
+      console.log('Creating new database...');
       db = new SQL.Database();
     }
   } catch (err) {
-    console.log('Creating new database...');
+    console.log('Creating new database due to error:', err.message);
     db = new SQL.Database();
   }
 
