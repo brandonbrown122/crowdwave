@@ -9,6 +9,7 @@ import {
   ClipboardList,
   Play,
   BarChart3,
+  PieChart,
   Settings,
   Waves,
 } from 'lucide-react';
@@ -20,6 +21,7 @@ const navigation = [
   { name: 'Surveys', href: '/surveys', icon: ClipboardList },
   { name: 'Run Simulation', href: '/simulate', icon: Play },
   { name: 'Results', href: '/results', icon: BarChart3 },
+  { name: 'Analyze', href: '/analyze', icon: PieChart },
 ];
 
 export default function Sidebar() {

@@ -1,0 +1,38 @@
+Survey: healthcare_patient
+Date: 2026-02-09T22:12:35.900786
+Audience: US adults who visited a doctor in past 6 months
+Topic: Healthcare experience and trust
+Sample Size: 500
+Calibration Status: calibrated
+Expected Error: 2-3pt
+
+Results:
+----------------------------------------
+
+Q1: How satisfied are you with your primary care provider?
+  4: 38.1%
+  5: 23.5%
+  3: 22.3%
+  2: 11.0%
+  1: 5.1%
+  T2B: 61.6%
+
+Q2: How much do you trust your doctor's recommendations?
+  NPS: -100
+  T2B: 57.6%
+
+Q3: Would you recommend your healthcare provider to others?
+  NPS: 3
+  T2B: 11.3%
+
+Q4: How concerned are you about healthcare costs?
+  4: 36.0%
+  5: 29.2%
+  3: 19.7%
+  2: 10.0%
+  1: 5.1%
+  T2B: 65.2%
+
+Q5: Have you delayed care due to cost in the past year?
+  Yes: 92.0%
+  No: 8.0%

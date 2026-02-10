@@ -1,0 +1,38 @@
+Survey: small_business_outlook
+Date: 2026-02-09T22:12:35.902796
+Audience: Small business owners (under 50 employees)
+Topic: Business conditions and outlook
+Sample Size: 500
+Calibration Status: uncalibrated
+Expected Error: 3-5pt
+
+Results:
+----------------------------------------
+
+Q1: How would you rate current business conditions?
+  4: 35.0%
+  3: 24.3%
+  5: 22.6%
+  2: 12.0%
+  1: 6.1%
+  T2B: 57.6%
+
+Q2: Do you expect business conditions to improve in the next 6 months?
+  Yes: 52.0%
+  No: 48.0%
+
+Q3: Are you planning to hire in the next 6 months?
+  Yes: 52.0%
+  No: 48.0%
+
+Q4: How concerned are you about inflation affecting your business?
+  4: 30.0%
+  3: 26.1%
+  5: 17.9%
+  2: 16.0%
+  1: 10.0%
+  T2B: 47.9%
+
+Q5: Are you currently using AI tools in your business?
+  Yes: 53.0%
+  No: 47.0%

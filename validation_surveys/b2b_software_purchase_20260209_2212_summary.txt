@@ -1,0 +1,54 @@
+Survey: b2b_software_purchase
+Date: 2026-02-09T22:12:35.882932
+Audience: IT Decision Makers at mid-size companies
+Topic: Enterprise software evaluation
+Sample Size: 500
+Calibration Status: uncalibrated
+Expected Error: 3-5pt
+
+Results:
+----------------------------------------
+
+Q1: How important is vendor reputation when selecting software?
+  4: 35.0%
+  3: 24.3%
+  5: 22.6%
+  2: 12.0%
+  1: 6.1%
+  T2B: 57.6%
+
+Q2: How important is price when selecting software?
+  4: 35.0%
+  3: 24.3%
+  5: 22.6%
+  2: 12.0%
+  1: 6.1%
+  T2B: 57.6%
+
+Q3: How important is ease of integration?
+  4: 35.0%
+  3: 24.3%
+  5: 22.6%
+  2: 12.0%
+  1: 6.1%
+  T2B: 57.6%
+
+Q4: How important is customer support quality?
+  4: 35.0%
+  3: 24.3%
+  5: 22.6%
+  2: 12.0%
+  1: 6.1%
+  T2B: 57.6%
+
+Q5: Would you recommend your current primary software vendor?
+  NPS: 3
+  T2B: 11.3%
+
+Q6: How likely are you to switch vendors in the next 12 months?
+  4: 32.0%
+  3: 28.0%
+  5: 17.9%
+  2: 14.0%
+  1: 8.1%
+  T2B: 49.9%

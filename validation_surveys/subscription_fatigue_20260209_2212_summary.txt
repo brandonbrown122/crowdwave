@@ -1,0 +1,38 @@
+Survey: subscription_fatigue
+Date: 2026-02-09T22:12:35.902796
+Audience: US consumers with 3+ active subscriptions
+Topic: Subscription services attitudes
+Sample Size: 500
+Calibration Status: uncalibrated
+Expected Error: 3-5pt
+
+Results:
+----------------------------------------
+
+Q1: How satisfied are you with the value of your streaming subscriptions?
+  4: 38.1%
+  5: 23.5%
+  3: 22.3%
+  2: 11.0%
+  1: 5.1%
+  T2B: 61.6%
+
+Q2: Are you considering canceling any subscriptions in the next 3 months?
+  Yes: 65.0%
+  No: 35.0%
+
+Q3: Do you feel you have too many subscriptions?
+  Yes: 65.0%
+  No: 35.0%
+
+Q4: How important is ad-free experience in streaming services?
+  4: 33.9%
+  3: 26.1%
+  5: 19.8%
+  2: 14.0%
+  1: 6.2%
+  T2B: 53.7%
+
+Q5: Would you switch to an ad-supported tier to save money?
+  Yes: 52.0%
+  No: 48.0%
