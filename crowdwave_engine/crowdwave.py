@@ -727,6 +727,67 @@ class CrowdwaveEngine:
                 else:
                     return {opt0: 100.0 - yes_pct, opt1: yes_pct}
             
+            
+            # Climate policy by party
+            if any(t in q_lower for t in ["climate", "carbon", "emissions", "environment"]):
+                if any(t in q_lower for t in ["support", "favor"]):
+                    is_yes_first = any(t in opt0_lower for t in ["yes", "support", "favor"])
+                    if party == "democrat":
+                        yes_pct = 78.0
+                    elif party == "republican":
+                        yes_pct = 28.0
+                    else:
+                        yes_pct = 52.0
+                    if is_yes_first:
+                        return {opt0: yes_pct, opt1: 100.0 - yes_pct}
+                    else:
+                        return {opt0: 100.0 - yes_pct, opt1: yes_pct}
+            
+            # Immigration policy by party
+            if any(t in q_lower for t in ["immigration", "border", "deportation", "migrant"]):
+                if any(t in q_lower for t in ["stricter", "tougher", "enforcement"]):
+                    is_yes_first = any(t in opt0_lower for t in ["yes", "support", "favor"])
+                    if party == "democrat":
+                        yes_pct = 35.0
+                    elif party == "republican":
+                        yes_pct = 88.0
+                    else:
+                        yes_pct = 62.0
+                    if is_yes_first:
+                        return {opt0: yes_pct, opt1: 100.0 - yes_pct}
+                    else:
+                        return {opt0: 100.0 - yes_pct, opt1: yes_pct}
+            
+            # Gun policy by party
+            if any(t in q_lower for t in ["gun", "firearm", "second amendment", "2nd amendment"]):
+                if any(t in q_lower for t in ["stricter", "control", "regulation"]):
+                    is_yes_first = any(t in opt0_lower for t in ["yes", "support", "favor"])
+                    if party == "democrat":
+                        yes_pct = 85.0
+                    elif party == "republican":
+                        yes_pct = 25.0
+                    else:
+                        yes_pct = 55.0
+                    if is_yes_first:
+                        return {opt0: yes_pct, opt1: 100.0 - yes_pct}
+                    else:
+                        return {opt0: 100.0 - yes_pct, opt1: yes_pct}
+            
+            # Healthcare policy by party
+            if any(t in q_lower for t in ["healthcare", "medicare", "medicaid"]):
+                if any(t in q_lower for t in ["government", "universal", "expand"]):
+                    is_yes_first = any(t in opt0_lower for t in ["yes", "support", "favor"])
+                    if party == "democrat":
+                        yes_pct = 82.0
+                    elif party == "republican":
+                        yes_pct = 22.0
+                    else:
+                        yes_pct = 48.0
+                    if is_yes_first:
+                        return {opt0: yes_pct, opt1: 100.0 - yes_pct}
+                    else:
+                        return {opt0: 100.0 - yes_pct, opt1: yes_pct}
+
             # Generic partisan support/oppose questions
             if any(t in q_lower for t in ["support", "approve", "favor"]):
                 is_yes_first = any(t in opt0_lower for t in ["yes", "support", "approve", "favor"])
