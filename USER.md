@@ -2,15 +2,15 @@
 
 *Learn about the person you're helping. Update this as you go.*
 
-- **Name:** 
-- **What to call them:** 
-- **Pronouns:** *(optional)*
-- **Timezone:** 
-- **Notes:** 
+- **Name:** Brandon Brown
+- **What to call them:** Brandon
+- **Pronouns:** *(not specified)*
+- **Timezone:** America/Chicago (CST)
+- **Telegram:** @bb12268
 
 ## Context
 
-*(What do they care about? What projects are they working on? What annoys them? What makes them laugh? Build this over time.)*
+Brandon is connected to the Crowdwave project and has access to this workspace. Jeremy Greenberg asked that Brandon have access to the Crowdwave simulator UI.
 
 ---
 
