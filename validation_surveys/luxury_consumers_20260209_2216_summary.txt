@@ -1,0 +1,42 @@
+Survey: luxury_consumers
+Date: 2026-02-09T22:16:55.609512
+Audience: High-income consumers ($200K+ household)
+Calibration: uncalibrated
+Expected Error: 3-5pt
+
+Q1: How important is brand prestige when making purchases?
+  4: 35.0%
+  3: 24.3%
+  5: 22.6%
+  2: 12.0%
+  1: 6.1%
+  T2B: 57.6%
+
+Q2: Do you prefer exclusive/limited products?
+  Yes: 52.0%
+  No: 48.0%
+
+Q3: How satisfied are you with luxury brand customer service?
+  4: 38.1%
+  5: 23.5%
+  3: 22.3%
+  2: 11.0%
+  1: 5.1%
+  T2B: 61.6%
+
+Q4: How important is sustainability in luxury purchases?
+  4: 35.0%
+  3: 24.3%
+  5: 22.6%
+  2: 12.0%
+  1: 6.1%
+  T2B: 57.6%
+
+Q5: Would you recommend your preferred luxury brand?
+  8: 23.9%
+  9: 19.0%
+  7: 18.0%
+  10: 11.7%
+  6: 9.0%
+  T2B: 11.3%
+

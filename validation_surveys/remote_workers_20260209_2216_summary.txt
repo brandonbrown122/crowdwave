@@ -1,0 +1,38 @@
+Survey: remote_workers
+Date: 2026-02-09T22:16:55.609512
+Audience: Full-time remote workers
+Calibration: calibrated
+Expected Error: 3-4pt
+
+Q1: How satisfied are you with remote work overall?
+  4: 38.1%
+  5: 23.5%
+  3: 22.3%
+  2: 11.0%
+  1: 5.1%
+  T2B: 61.6%
+
+Q2: Do you want to return to office full-time?
+  Yes: 52.0%
+  No: 48.0%
+
+Q3: How productive do you feel working remotely?
+  4: 35.0%
+  3: 24.3%
+  5: 22.6%
+  2: 12.0%
+  1: 6.1%
+  T2B: 57.6%
+
+Q4: How important is flexible schedule to you?
+  4: 35.0%
+  3: 24.3%
+  5: 22.6%
+  2: 12.0%
+  1: 6.1%
+  T2B: 57.6%
+
+Q5: Would you take a pay cut to keep working remotely?
+  No: 66.0%
+  Yes: 34.0%
+

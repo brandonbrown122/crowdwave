@@ -831,6 +831,24 @@ class CrowdwaveEngine:
                         # General economic concerns
                         return {"1": 8.0, "2": 14.0, "3": 24.0, "4": 34.0, "5": 20.0}
                 
+                # Remote work calibrations (Gallup/Pew 2025)
+                if any(t in combined_context for t in ["remote work", "work from home", "wfh", "hybrid", "telecommut"]):
+                    if any(t in q_lower for t in ["satisfied", "satisfaction", "happy"]):
+                        # ~78% satisfied with remote work
+                        return {"1": 4.0, "2": 8.0, "3": 15.0, "4": 38.0, "5": 35.0}
+                    elif any(t in q_lower for t in ["productive", "productivity"]):
+                        # ~75% feel as or more productive
+                        return {"1": 5.0, "2": 8.0, "3": 17.0, "4": 40.0, "5": 30.0}
+                    elif any(t in q_lower for t in ["return", "office", "rto"]):
+                        # Only ~25% want full RTO (scale inverted - 1=want RTO)
+                        return {"1": 25.0, "2": 18.0, "3": 20.0, "4": 22.0, "5": 15.0}
+                    elif any(t in q_lower for t in ["flexible", "flexibility", "schedule"]):
+                        # ~85% value flexibility highly
+                        return {"1": 2.0, "2": 5.0, "3": 10.0, "4": 35.0, "5": 48.0}
+                    elif any(t in q_lower for t in ["pay cut", "salary", "compensation"]):
+                        # ~40% would take pay cut to stay remote
+                        return {"1": 30.0, "2": 15.0, "3": 18.0, "4": 22.0, "5": 15.0}
+                
                 # AI/job concerns - calibrated Feb 2026
                 if any(t in combined_context for t in ["ai ", "artificial intelligence", "automation"]):
                     if any(t in q_lower for t in ["concern", "worried", "fear", "impact"]):

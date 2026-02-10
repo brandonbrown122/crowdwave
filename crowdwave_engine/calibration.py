@@ -112,6 +112,48 @@ SATISFACTION_BENCHMARKS = {
         validated_date="2026-02-08",
         accuracy_zone=AccuracyZone.MEDIUM
     ),
+    # Remote Work Benchmarks (Gallup/Pew 2025)
+    "remote_work_satisfaction": Benchmark(
+        construct="satisfaction",
+        mean_range=(4.0, 4.3),
+        sd_range=(0.8, 1.0),
+        shape="positive_skew",
+        source="Gallup Remote Work 2025",
+        sample_size=5000,
+        validated_date="2026-02-09",
+        accuracy_zone=AccuracyZone.HIGH
+    ),
+    "remote_work_productivity": Benchmark(
+        construct="satisfaction",
+        mean_range=(3.9, 4.2),
+        sd_range=(0.9, 1.1),
+        shape="positive_skew",
+        source="Gallup Remote Work 2025",
+        sample_size=5000,
+        validated_date="2026-02-09",
+        accuracy_zone=AccuracyZone.HIGH
+    ),
+    "return_to_office_preference": Benchmark(
+        construct="preference",
+        mean_range=(0.20, 0.28),  # Only 20-28% want full RTO
+        sd_range=(0.05, 0.08),
+        shape="negative_skew",
+        source="Gallup/Pew Remote Work 2025",
+        sample_size=8000,
+        validated_date="2026-02-09",
+        accuracy_zone=AccuracyZone.HIGH
+    ),
+    "hybrid_preference": Benchmark(
+        construct="preference",
+        mean_range=(0.55, 0.62),  # 55-62% prefer hybrid
+        sd_range=(0.05, 0.08),
+        shape="normal",
+        source="Gallup Remote Work 2025",
+        sample_size=5000,
+        validated_date="2026-02-09",
+        accuracy_zone=AccuracyZone.HIGH
+    ),
+    
     # C-Suite Executive Benchmarks (Conference Board 2025)
     "csuite_cyber_concern": Benchmark(
         construct="concern",

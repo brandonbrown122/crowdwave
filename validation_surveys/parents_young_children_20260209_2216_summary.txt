@@ -1,0 +1,38 @@
+Survey: parents_young_children
+Date: 2026-02-09T22:16:55.609512
+Audience: Parents with children under 10
+Calibration: uncalibrated
+Expected Error: 3-5pt
+
+Q1: How concerned are you about screen time for your children?
+  4: 43.1%
+  5: 29.9%
+  3: 15.8%
+  2: 8.0%
+  1: 3.2%
+  T2B: 73.0%
+
+Q2: How important is product safety when buying for children?
+  4: 36.5%
+  5: 24.8%
+  3: 20.7%
+  2: 12.0%
+  1: 6.1%
+  T2B: 61.2%
+
+Q3: Do you research products online before buying for your kids?
+  Yes: 52.0%
+  No: 48.0%
+
+Q4: How satisfied are you with childcare options in your area?
+  4: 39.4%
+  5: 25.5%
+  3: 19.0%
+  2: 11.0%
+  1: 5.1%
+  T2B: 64.9%
+
+Q5: Would you pay more for organic/natural products for your children?
+  Yes: 52.0%
+  No: 48.0%
+
