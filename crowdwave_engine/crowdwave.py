@@ -283,6 +283,92 @@ class CrowdwaveEngine:
             flags=flags,
         )
     
+    def generate_respondents(
+        self,
+        report: SimulationReport,
+        n: int = None
+    ) -> List[Dict[str, Any]]:
+        """
+        Generate synthetic respondent-level data from simulation results.
+        
+        Args:
+            report: SimulationReport from simulate()
+            n: Number of respondents (default: config.sample_size)
+            
+        Returns:
+            List of respondent dicts with demographic info and responses
+        """
+        import random
+        
+        n = n or report.config.sample_size
+        respondents = []
+        
+        for i in range(n):
+            resp = {
+                'respondent_id': i + 1,
+                'audience': report.config.audience,
+                'geography': report.config.geography,
+            }
+            
+            # Generate responses based on distributions
+            for result in report.results:
+                # Convert distribution to weighted choice
+                options = list(result.distribution.keys())
+                weights = list(result.distribution.values())
+                
+                # Normalize weights
+                total = sum(weights)
+                weights = [w / total for w in weights]
+                
+                # Select response
+                response = random.choices(options, weights=weights, k=1)[0]
+                resp[result.question_id] = response
+            
+            respondents.append(resp)
+        
+        return respondents
+    
+    def to_csv(
+        self,
+        report: SimulationReport,
+        filepath: str = None,
+        n: int = None
+    ) -> str:
+        """
+        Export simulation results as respondent-level CSV.
+        
+        Args:
+            report: SimulationReport from simulate()
+            filepath: Path to save CSV (if None, returns string)
+            n: Number of respondents (default: config.sample_size)
+            
+        Returns:
+            CSV string (if filepath is None) or filepath
+        """
+        import csv
+        import io
+        
+        respondents = self.generate_respondents(report, n)
+        
+        if not respondents:
+            return ""
+        
+        # Get fieldnames from first respondent
+        fieldnames = list(respondents[0].keys())
+        
+        if filepath:
+            with open(filepath, 'w', newline='', encoding='utf-8') as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(respondents)
+            return filepath
+        else:
+            output = io.StringIO()
+            writer = csv.DictWriter(output, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(respondents)
+            return output.getvalue()
+    
     def _detect_generation(self, audience: str) -> Optional[str]:
         """Detect generation from audience description."""
         audience_lower = audience.lower()
@@ -2064,8 +2150,8 @@ class CrowdwaveEngine:
         
         return normalized
     
-    def to_csv(self, report: SimulationReport) -> str:
-        """Export results to CSV format."""
+    def to_csv_aggregate(self, report: SimulationReport) -> str:
+        """Export aggregate results to CSV format."""
         lines = ["question_id,question_text,option,percentage,mean,sd,confidence,accuracy_zone"]
         
         for result in report.results:
