@@ -6,17 +6,19 @@ import Link from 'next/link';
 
 export default function ResultDetailPage() {
   const { id } = useParams();
-  const [results, setResults] = useState(null);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [activeTab, setActiveTab] = useState('insights');
+  const [activeTab, setActiveTab] = useState('overview');
 
   useEffect(() => {
     async function fetchResults() {
       try {
         const res = await fetch(`/api/results/${id}`);
         if (!res.ok) throw new Error('Failed to load results');
-        setResults(await res.json());
+        const json = await res.json();
+        console.log('Results data:', json);
+        setData(json);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -30,17 +32,14 @@ export default function ResultDetailPage() {
     window.open(`/api/results/${id}/csv`, '_blank');
   }
 
-  const getConfidenceColor = (score) => {
-    if (score >= 70) return 'text-green-600 bg-green-100';
-    if (score >= 50) return 'text-yellow-600 bg-yellow-100';
-    return 'text-red-600 bg-red-100';
-  };
-
   if (loading) return <div className="text-center py-8 text-gray-500">Loading results...</div>;
   if (error) return <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">{error}</div>;
-  if (!results) return <div className="text-center py-8 text-gray-500">Results not found</div>;
+  if (!data) return <div className="text-center py-8 text-gray-500">Results not found</div>;
 
-  const { simulation, survey, segments, insights, confidence_scores, respondent_count } = results;
+  const results = data.results || {};
+  const responses = results.responses || [];
+  const aggregates = results.aggregates || {};
+  const segments = data.segments || results.segments || [];
 
   return (
     <div className="space-y-6">
@@ -48,34 +47,45 @@ export default function ResultDetailPage() {
       <div className="flex justify-between items-start">
         <div>
           <Link href="/results" className="text-sm text-gray-500 hover:text-gray-700 mb-2 inline-block">← Back to Results</Link>
-          <h1 className="text-2xl font-bold text-gray-900">{survey?.name || 'Simulation Results'}</h1>
-          <p className="text-gray-600 mt-1">{respondent_count} respondents • {segments?.length || 0} segment(s)</p>
+          <h1 className="text-2xl font-bold text-gray-900">{data.surveyName || 'Simulation Results'}</h1>
+          <p className="text-gray-600 mt-1">
+            {responses.length} respondents • {segments.length} segment(s) • 
+            Status: <span className={data.status === 'completed' ? 'text-green-600' : 'text-yellow-600'}>{data.status}</span>
+          </p>
         </div>
-        <button onClick={downloadCsv} className="bg-crowdwave-600 text-white px-4 py-2 rounded-lg hover:bg-crowdwave-700 flex items-center gap-2">
+        <button onClick={downloadCsv} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-2">
           📥 Download CSV
         </button>
       </div>
 
-      {/* Overall Confidence */}
-      {confidence_scores?._overall && (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="font-semibold text-gray-900">Overall Confidence</h2>
-              <p className="text-sm text-gray-600">{confidence_scores._overall.note}</p>
-            </div>
-            <div className={`px-4 py-2 rounded-lg font-bold text-2xl ${getConfidenceColor(confidence_scores._overall.score)}`}>
-              {confidence_scores._overall.score}%
-            </div>
+      {/* Summary Card */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <h2 className="font-semibold text-gray-900 mb-4">📊 Summary</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-gray-50 rounded-lg p-4">
+            <div className="text-2xl font-bold text-blue-600">{responses.length}</div>
+            <div className="text-sm text-gray-600">Respondents</div>
+          </div>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <div className="text-2xl font-bold text-green-600">{Object.keys(aggregates).length}</div>
+            <div className="text-sm text-gray-600">Questions</div>
+          </div>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <div className="text-2xl font-bold text-purple-600">{segments.length}</div>
+            <div className="text-sm text-gray-600">Segments</div>
+          </div>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <div className="text-2xl font-bold text-orange-600">{data.status === 'completed' ? '✓' : '...'}</div>
+            <div className="text-sm text-gray-600">Status</div>
           </div>
         </div>
-      )}
+      </div>
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
         <nav className="flex gap-8">
-          {['insights', 'questions', 'respondents', 'confidence'].map(tab => (
-            <button key={tab} onClick={() => setActiveTab(tab)} className={`py-3 px-1 border-b-2 font-medium text-sm transition ${activeTab === tab ? 'border-crowdwave-500 text-crowdwave-600' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>
+          {['overview', 'questions', 'respondents'].map(tab => (
+            <button key={tab} onClick={() => setActiveTab(tab)} className={`py-3 px-1 border-b-2 font-medium text-sm transition ${activeTab === tab ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
             </button>
           ))}
@@ -83,179 +93,163 @@ export default function ResultDetailPage() {
       </div>
 
       {/* Tab Content */}
-      {activeTab === 'insights' && insights && (
+      {activeTab === 'overview' && (
         <div className="space-y-6">
-          {/* Key Findings */}
-          {insights.key_findings?.length > 0 && (
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-              <h2 className="font-semibold text-gray-900 mb-4">🔑 Key Findings</h2>
-              <ul className="space-y-3">
-                {insights.key_findings.map((finding, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="text-crowdwave-600">•</span>
-                    <span className="text-gray-700">{finding.finding}</span>
-                  </li>
-                ))}
-              </ul>
+          {/* Segments */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <h2 className="font-semibold text-gray-900 mb-4">👥 Segments</h2>
+            <div className="flex flex-wrap gap-2">
+              {segments.map((seg, i) => (
+                <span key={i} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                  {seg.name || seg}
+                </span>
+              ))}
             </div>
-          )}
+          </div>
 
-          {/* Cross-Segment Comparisons */}
-          {insights.cross_segment_comparisons?.length > 0 && (
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-              <h2 className="font-semibold text-gray-900 mb-4">📊 Segment Differences</h2>
-              <div className="space-y-4">
-                {insights.cross_segment_comparisons.map((comp, i) => (
-                  <div key={i} className="border-l-4 border-crowdwave-500 pl-4">
-                    <p className="font-medium text-gray-900">{comp.question_text}</p>
-                    <p className="text-sm text-gray-600 mt-1">{comp.insight}</p>
+          {/* Question Results */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <h2 className="font-semibold text-gray-900 mb-4">📋 Question Results</h2>
+            {Object.entries(aggregates).length === 0 ? (
+              <p className="text-gray-500">No aggregate data available</p>
+            ) : (
+              <div className="space-y-6">
+                {Object.entries(aggregates).map(([qId, qData]) => (
+                  <div key={qId} className="border-b border-gray-100 pb-4 last:border-0">
+                    <h3 className="font-medium text-gray-900 mb-2">{qData.questionText || qId}</h3>
+                    <p className="text-sm text-gray-500 mb-3">Type: {qData.type}</p>
+                    
+                    {/* Show distribution for each segment */}
+                    {qData.bySegment && Object.entries(qData.bySegment).map(([segId, segData]) => (
+                      <div key={segId} className="mt-3">
+                        <p className="text-sm font-medium text-gray-700 mb-2">
+                          {segments.find(s => s.id === segId)?.name || segId}
+                        </p>
+                        
+                        {/* Average for likert */}
+                        {segData.average && (
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-2xl font-bold text-blue-600">{segData.average}</span>
+                            <span className="text-gray-500">average rating</span>
+                          </div>
+                        )}
+                        
+                        {/* Distribution */}
+                        {segData.distribution && (
+                          <div className="space-y-1">
+                            {Object.entries(segData.distribution).map(([value, count]) => {
+                              const total = Object.values(segData.distribution).reduce((a, b) => a + b, 0);
+                              const pct = Math.round((count / total) * 100);
+                              return (
+                                <div key={value} className="flex items-center gap-3">
+                                  <div className="w-8 text-sm text-gray-700">{value}</div>
+                                  <div className="flex-1 bg-gray-200 rounded-full h-4 overflow-hidden">
+                                    <div className="bg-blue-500 h-full" style={{ width: `${pct}%` }} />
+                                  </div>
+                                  <div className="w-16 text-right text-sm text-gray-600">{pct}% ({count})</div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       )}
 
-      {activeTab === 'questions' && insights?.by_question && (
-        <div className="space-y-4">
-          {Object.entries(insights.by_question).map(([qId, analysis]) => (
-            <div key={qId} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-              <h3 className="font-medium text-gray-900 mb-3">{analysis.question_text}</h3>
-              <div className="text-sm text-gray-500 mb-4">{analysis.question_type.replace('_', ' ')}</div>
-              
-              {/* Multiple Choice */}
-              {analysis.distribution && (
-                <div className="space-y-2">
-                  {Object.entries(analysis.distribution).map(([option, data]) => (
-                    <div key={option} className="flex items-center gap-3">
-                      <div className="w-32 text-sm text-gray-700 truncate">{option}</div>
-                      <div className="flex-1 bg-gray-200 rounded-full h-4 overflow-hidden">
-                        <div className="bg-crowdwave-500 h-full" style={{ width: `${data.percentage}%` }} />
-                      </div>
-                      <div className="w-16 text-right text-sm text-gray-600">{data.percentage}%</div>
+      {activeTab === 'questions' && (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 className="font-semibold text-gray-900 mb-4">📋 All Questions</h2>
+          {Object.entries(aggregates).length === 0 ? (
+            <p className="text-gray-500">No question data available</p>
+          ) : (
+            <div className="space-y-6">
+              {Object.entries(aggregates).map(([qId, qData]) => (
+                <div key={qId} className="border border-gray-200 rounded-lg p-4">
+                  <h3 className="font-medium text-gray-900">{qData.questionText || qId}</h3>
+                  <p className="text-sm text-gray-500 mb-4">Type: {qData.type}</p>
+                  
+                  {qData.bySegment && Object.entries(qData.bySegment).map(([segId, segData]) => (
+                    <div key={segId} className="mt-4 bg-gray-50 rounded-lg p-3">
+                      <p className="text-sm font-medium text-gray-700 mb-2">
+                        Segment: {segments.find(s => s.id === segId)?.name || segId}
+                      </p>
+                      {segData.average && <p className="text-lg font-bold text-blue-600">Average: {segData.average}</p>}
+                      {segData.distribution && (
+                        <div className="mt-2 grid grid-cols-5 gap-2 text-center text-sm">
+                          {Object.entries(segData.distribution).map(([val, count]) => (
+                            <div key={val} className="bg-white rounded p-2">
+                              <div className="font-bold">{count}</div>
+                              <div className="text-gray-500">Rating {val}</div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
-              )}
-
-              {/* Likert */}
-              {analysis.mean && (
-                <div>
-                  <div className="flex items-center gap-4">
-                    <span className="text-3xl font-bold text-crowdwave-600">{analysis.mean}</span>
-                    <span className="text-gray-500">/ {analysis.scale}</span>
-                    <span className="text-sm text-gray-600">({analysis.interpretation})</span>
-                  </div>
-                  <div className="text-sm text-gray-500 mt-2">Std Dev: {analysis.std_dev}</div>
-                </div>
-              )}
-
-              {/* Open Ended */}
-              {analysis.top_themes && (
-                <div>
-                  <h4 className="text-sm font-medium text-gray-700 mb-2">Top Themes</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {analysis.top_themes.map((theme, i) => (
-                      <span key={i} className="bg-crowdwave-100 text-crowdwave-800 px-3 py-1 rounded-full text-sm">
-                        {theme.theme} ({theme.percentage}%)
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Ranking */}
-              {analysis.rankings && (
-                <div className="space-y-2">
-                  {analysis.rankings.map((item, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <span className="w-8 h-8 bg-crowdwave-100 text-crowdwave-800 rounded-full flex items-center justify-center font-bold">{i + 1}</span>
-                      <span className="text-gray-700">{item.item}</span>
-                      <span className="text-sm text-gray-500">(avg rank: {item.avg_rank})</span>
-                    </div>
-                  ))}
-                </div>
-              )}
+              ))}
             </div>
-          ))}
+          )}
         </div>
       )}
 
       {activeTab === 'respondents' && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="font-semibold text-gray-900">Respondent Data</h2>
-            <button onClick={downloadCsv} className="text-crowdwave-600 hover:text-crowdwave-800 text-sm">Download Full CSV →</button>
+            <h2 className="font-semibold text-gray-900">👤 Respondent Data</h2>
+            <button onClick={downloadCsv} className="text-blue-600 hover:text-blue-800 text-sm">Download Full CSV →</button>
           </div>
-          <p className="text-gray-600 mb-4">{respondent_count} synthetic respondents generated</p>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="text-left px-3 py-2">ID</th>
-                  <th className="text-left px-3 py-2">Segment</th>
-                  <th className="text-left px-3 py-2">Age</th>
-                  <th className="text-left px-3 py-2">Profile</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {results.respondents?.slice(0, 20).map((r, i) => (
-                  <tr key={i} className="hover:bg-gray-50">
-                    <td className="px-3 py-2 font-mono text-xs">{r.id.slice(0, 8)}...</td>
-                    <td className="px-3 py-2">{r.persona?.segment_name}</td>
-                    <td className="px-3 py-2">{r.persona?.demographics?.age}</td>
-                    <td className="px-3 py-2 text-gray-600 truncate max-w-md">{r.persona?.profile}</td>
+          <p className="text-gray-600 mb-4">{responses.length} synthetic respondents generated</p>
+          
+          {responses.length === 0 ? (
+            <p className="text-gray-500">No respondent data available</p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="text-left px-3 py-2">ID</th>
+                    <th className="text-left px-3 py-2">Segment</th>
+                    <th className="text-left px-3 py-2">Answers</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            {respondent_count > 20 && (
-              <p className="text-center text-gray-500 text-sm mt-4">Showing 20 of {respondent_count} respondents. Download CSV for full data.</p>
-            )}
-          </div>
-        </div>
-      )}
-
-      {activeTab === 'confidence' && confidence_scores && (
-        <div className="space-y-4">
-          {Object.entries(confidence_scores).filter(([k]) => k !== '_overall').map(([qId, score]) => (
-            <div key={qId} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-              <div className="flex justify-between items-start">
-                <div className="flex-1">
-                  <h3 className="font-medium text-gray-900">{qId}</h3>
-                  <p className="text-sm text-gray-600">{score.level} confidence</p>
-                </div>
-                <div className={`px-3 py-1 rounded-lg font-bold ${getConfidenceColor(score.score)}`}>
-                  {score.score}%
-                </div>
-              </div>
-              
-              {score.factors && (
-                <div className="mt-4 grid grid-cols-2 md:grid-cols-5 gap-3">
-                  {Object.entries(score.factors).map(([factor, data]) => (
-                    <div key={factor} className="bg-gray-50 rounded p-2">
-                      <div className="text-xs text-gray-500">{factor.replace(/_/g, ' ')}</div>
-                      <div className="font-medium">{Math.round(data.score * 100)}%</div>
-                    </div>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {responses.slice(0, 50).map((r, i) => (
+                    <tr key={i} className="hover:bg-gray-50">
+                      <td className="px-3 py-2 font-mono text-xs">{r.id?.slice(0, 20)}...</td>
+                      <td className="px-3 py-2">{r.segmentName || r.segmentId?.slice(0, 8)}</td>
+                      <td className="px-3 py-2 text-gray-600">
+                        {r.answers && Object.entries(r.answers).map(([q, a]) => (
+                          <span key={q} className="mr-2 bg-gray-100 px-2 py-1 rounded text-xs">
+                            {q}: {a}
+                          </span>
+                        ))}
+                      </td>
+                    </tr>
                   ))}
-                </div>
-              )}
-
-              {score.recommendations?.length > 0 && (
-                <div className="mt-4 border-t border-gray-100 pt-4">
-                  <h4 className="text-sm font-medium text-gray-700 mb-2">Recommendations</h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    {score.recommendations.map((rec, i) => (
-                      <li key={i}>• {rec}</li>
-                    ))}
-                  </ul>
-                </div>
+                </tbody>
+              </table>
+              {responses.length > 50 && (
+                <p className="text-center text-gray-500 text-sm mt-4">Showing 50 of {responses.length} respondents. Download CSV for full data.</p>
               )}
             </div>
-          ))}
+          )}
         </div>
       )}
+
+      {/* Debug Info */}
+      <details className="text-xs text-gray-400">
+        <summary className="cursor-pointer">Debug: Raw Data</summary>
+        <pre className="mt-2 p-2 bg-gray-100 rounded overflow-auto max-h-64">
+          {JSON.stringify(data, null, 2)}
+        </pre>
+      </details>
     </div>
   );
 }
