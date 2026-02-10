@@ -80,18 +80,26 @@ router.post('/', (req, res, next) => {
 });
 
 // GET /api/surveys - List all surveys
-router.get('/', (req, res) => {
-  const surveys = db.prepare(`
-    SELECT id, name, description, questions, created_at as createdAt
-    FROM surveys
-    ORDER BY created_at DESC
-  `).all();
+router.get('/', (req, res, next) => {
+  try {
+    console.log('Fetching all surveys...');
+    const surveys = db.prepare(`
+      SELECT id, name, description, questions, created_at as createdAt
+      FROM surveys
+      ORDER BY created_at DESC
+    `).all();
+    
+    console.log(`Found ${surveys.length} surveys`);
 
-  res.json(surveys.map(s => ({
-    ...s,
-    questions: JSON.parse(s.questions),
-    questionCount: JSON.parse(s.questions).length
-  })));
+    res.json(surveys.map(s => ({
+      ...s,
+      questions: JSON.parse(s.questions),
+      questionCount: JSON.parse(s.questions).length
+    })));
+  } catch (error) {
+    console.error('Error fetching surveys:', error);
+    next(error);
+  }
 });
 
 // GET /api/surveys/:id - Get a specific survey

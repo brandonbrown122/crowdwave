@@ -121,7 +121,9 @@ const dbWrapper = {
         const database = getDb();
         try {
           const stmt = database.prepare(sql);
-          stmt.bind(params);
+          if (params.length > 0) {
+            stmt.bind(params);
+          }
           if (stmt.step()) {
             const row = stmt.getAsObject();
             stmt.free();
@@ -139,7 +141,9 @@ const dbWrapper = {
         try {
           const results = [];
           const stmt = database.prepare(sql);
-          stmt.bind(params);
+          if (params.length > 0) {
+            stmt.bind(params);
+          }
           while (stmt.step()) {
             results.push(stmt.getAsObject());
           }
